@@ -34,117 +34,75 @@ Component({
         },
 
         setUrl: '',
-        shangjiaManageList: [
-            {
-                image: '../../assets/images/user/shanghu@2x.png',
-                text: '商户设置',
-                url: '/pages/merchant/index',
-            },
-            {
-                image: '../../assets/images/user/chanpin@2x.png',
-                text: '产品管理',
-                url: '/pages/goodsManage/index',
-            },
-            {
-                image: '../../assets/images/user/dingdan@2x.png',
-                text: '订单管理',
-                url: '../../packages/pack-A/pages/order/index',
-            },
-            {
-                image: '../../assets/images/user/yonghu@2x.png',
-                text: '用户管理',
-                url: '../../packages/pack-A/pages/user/userManageMent/index',
-            },
-            {
-                image: '../../assets/images/user/zuling@2x.png',
-                text: '我的租赁',
-                url: '../../packages/pack-A/pages/myRenting/index',
-            },
-            {
-                image: '../../assets/images/user/qiugou@2x.png',
-                text: '我的求购',
-                url: '../../packages/pack-A/pages/myAskBuy/index',
-            },
-            {
-                image: '../../assets/images/user/yingxiao@2x.png',
-                text: '营销管理',
-                url: '/pages/marketing/index',
-            },
-            {
-                image: '../../assets/images/user/dianpu@2x.png',
-                text: '店铺数据',
-                url: '/packages/pack-A/pages/order/quantity/index',
-            },
-            {
-                image: '../../assets/images/user/gongyinglian@2x.png',
-                text: '供应链名片',
-                url: '',
-            }
-        ],
         personManageList: [
             {
-                image: '../../assets/images/user/homepage@2x.png',
-                text: '个人主页',
+                image: '../../assets/images/iyou_user/youhuiquan@2x.png',
+                text: '优惠券',
                 url: '/pages/merchant/index',
             },
             {
-                image: '../../assets/images/user/shoucang@2x.png',
+                image: '../../assets/images/iyou_user/jifen@2x.png',
+                text: '积分',
+                url: '/pages/collection/index',
+            },
+            {
+                image: '../../assets/images/iyou_user/shoucang@2x.png',
                 text: '收藏夹',
                 url: '/pages/collection/index',
             },
             {
-                image: '../../assets/images/user/tongxunlu@2x.png',
-                text: '通讯录',
-                url: '/pages/mailList/index',
-            },
-            {
-                image: '../../assets/images/user/liulan@2x.png',
-                text: '浏览历史',
-                url: '/pages/browse/index',
-            },
-            {
-                image: '../../assets/images/user/dianzan@2x.png',
+                image: '../../assets/images/iyou_user/dianzan@2x.png',
                 text: '点赞',
                 url: '',
             },
             {
-                image: '../../assets/images/user/address@2x.png',
-                text: '地址管理',
-                url: '/pages/deliveryAddress/index',
+                image: '../../assets/images/iyou_user/guanzhu@2x.png',
+                text: '关注的店',
+                url: '/pages/browse/index',
             },
             {
-                image: '../../assets/images/user/remark@2x.png',
-                text: '建议留言',
-                url: '',
+                image: '../../assets/images/iyou_user/liulan@2x.png',
+                text: '浏览历史',
+                url: '/pages/browse/index',
             },
             {
-                image: '../../assets/images/user/rebate@2x.png',
-                text: '返利小金库',
-                url: '',
-            },
-            {
-                image: '../../assets/images/user/lesson@2x.png',
-                text: 'iME课堂',
-                url: '',
-            },
-            {
-                image: '../../assets/images/user/record@2x.png',
+                image: '../../assets/images/iyou_user/record@2x.png',
                 text: '拿货记录',
                 url: '../../packages/pack-A/pages/myAskBuy/index',
             },
             {
-                image: '../../assets/images/user/setting@2x.png',
-                text: '设置',
+                image: '../../assets/images/iyou_user/address@2x.png',
+                text: '收货地址',
+                url: '/pages/deliveryAddress/index',
+            },
+            {
+                image: '../../assets/images/iyou_user/remark@2x.png',
+                text: '建议留言',
                 url: '',
             },
             {
-                image: '../../assets/images/user/contact@2x.png',
+                image: '../../assets/images/iyou_user/rebate@2x.png',
+                text: '返利小金库',
+                url: '',
+            },
+            {
+                image: '../../assets/images/iyou_user/contact@2x.png',
                 text: '联系我们',
                 url: '',
             },
             {
-                image: '../../assets/images/user/jifen@2x.png',
-                text: '积分',
+                image: '../../assets/images/iyou_user/setting@2x.png',
+                text: '设置',
+                url: '',
+            },
+            {
+                image: '../../assets/images/iyou_user/message@2x.png',
+                text: '开启通知',
+                url: '',
+            },
+            {
+                image: '../../assets/images/iyou_user/organizag@2x.png',
+                text: '找组织',
                 url: '',
             }
         ]

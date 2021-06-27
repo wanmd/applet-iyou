@@ -23,7 +23,7 @@ page {
     height: 25px;
     line-height: 25px;
     text-align: center;
-    background: #FFE200;
+    background: #AB00FF;
     opacity: 1;
     border-radius: 16px;
     z-index: 99;
@@ -32,7 +32,7 @@ page {
 .car-cell-edit {
     /* text-align: right; */
     width: 100%;
-    color: #333333;
+    color: #FFFFFF;
 }
 
 .car-cell-succ {
@@ -237,8 +237,8 @@ page {
 }
 
 .price {
-    color: #ECBD75;
-    font-size: 32rpx;
+    color: #FF0000;
+    font-size: 40rpx;
 }
 
 .car-cell {
@@ -252,11 +252,11 @@ page {
 }
 
 .car-btn--account {
-    background-color: #FFE200;
+    background-color: #AB00FF;
     font-size: 32rpx;
     font-family: PingFangSC-Medium, PingFangSC;
     font-weight: 500;
-    color: #333333;
+    color: #fff;
 }
 
 .car-btn--delete {
@@ -482,7 +482,7 @@ page {
 
 .cart2_btns .btn5.active {
     border: none;
-    background: #FFE200;
+    background: #AB00FF;
     line-height: 38rpx;
     border-radius: 20rpx;
 }
@@ -527,8 +527,8 @@ page {
 }
 
 .user-box .btn2 {
-    color: #FFE200;
-    background: #393939;
+    color: #FFFFFF;
+    background: #AB00FF;
     height: 44rpx;
 }
 
@@ -596,10 +596,11 @@ page {
 }
 
 .all_checkbox .text {
-    background: #FFE200;
+    background: #AB00FF;
     line-height: 40rpx;
     padding: 10rpx 20rpx;
     border-radius: 30rpx;
+    color: #fff;
 }
 
 .navBar__it--a:after {
@@ -635,4 +636,17 @@ page {
     background: #515151;
     opacity: 1;
     border-radius: 76rpx;
+}
+/* 店铺类型 */
+.shop-type {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 122rpx;
+    height: 40rpx;
+    background: #AB00FF;
+    border-radius: 24rpx;
+    font-size: 22rpx;
+    line-height: 30rpx;
+    color: #FFFFFF;
 }

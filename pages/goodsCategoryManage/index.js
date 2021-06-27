@@ -1,67 +1,66 @@
-import { Request, toast } from '../../utils/util.js'
-let request = new Request()
-wx.Page({
+// pages/goodsCategoryManage/index.js
+Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    cateName : '',
-    cateList: [],
-    selectedIndex : -1,
-    storeId:''
+
   },
 
-  input (e) {
-    this.setData({cateName : e.detail.value})
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (options) {
+
   },
 
-  addCategory () {
-    let name = this.data.cateName
-    if(name === ''){
-      return
-    }
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
 
-    request.post('cateogry/add', res => {
-      if(res.success){
-        let index = this.data.cateList.length
-        let update = { cateName : ''}
-        update[`cateList[${index}]`] = {id : res.data.id, name : name, count : 0}
-        this.setData(update)
-      }else{
-        toast(res.msg)
-      }
-    }, {name : name})
   },
 
-  select (e) {
-    this.setData({selectedIndex : e.detail})
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
 
-  getList () {
-    this.get('/categorys',{storeId:this.data.storeId}).then(res=>{
-      if(res.success){
-        this.setData({ cateList : res.data.list})
-      }
-    })
-    // request.get('categorys', res => {
-    //   if(res.success){
-    //     this.setData({ cateList : res.data.list})
-    //   }
-    // })
-  },
-  
-  confirm () {
-    let index = this.data.selectedIndex
-    if(index < 0){
-      wx.navigateBack()
-      return
-    }
-    let cate = this.data.cateList[index]
-    let pages = getCurrentPages()
-    let parent = pages[pages.length - 2]
-    parent.setData({ category_id: cate.id, category_name : cate.name})
-    wx.navigateBack()
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
   },
 
-  onLoad: function (opts) {
-    if(opts.storeId) this.setData({storeId:opts.storeId})
-    this.getList()
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 })

@@ -2,6 +2,7 @@
 import { Request, toast, maskNumber } from '../../utils/util.js'
 import { bannerUrl, ALIYUN_URL } from '../../utils/config.js'
 let request = new Request()
+const app = getApp()
 
 Component({
   /**
@@ -22,6 +23,14 @@ Component({
       value: 0
     } ,
     user: { // 商家信息
+      type: String,
+      value: ''
+    },
+    needSelectType: {
+      type: Boolean,
+      value: true
+    },
+    type: { // 拿货类型
       type: String,
       value: ''
     }
@@ -62,6 +71,26 @@ Component({
    */
   methods: {
     initData() {
+      const { type } = this.data;
+      let type_title = '';
+
+      switch(type) {
+        case 'cart':
+          type_title = '加入购物车'
+          break
+        case 'single':
+          type_title = '一件代发'
+          break
+        case 'agent':
+          type_title = '代理拿货'
+          break
+      }
+      if(!this.data.needSelectType) {
+        this.setData({
+          canSelect: true,
+          type_title
+        })
+      }
       this.getDetail()
     },
     getDetail() {

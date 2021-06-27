@@ -583,15 +583,15 @@ page {
     display: flex;
     align-items: center;
     padding: 20rpx 36rpx 6rpx 48rpx;
-    background: #F7F7F7;
+    background: #fff;
 }
 
 .search_wrap .input {
     width: 432rpx;
     height: 58rpx;
-    padding: 10rpx 20rpx;
+    padding: 10rpx 30rpx;
     box-sizing: border-box;
-    background: rgba(255, 255, 255, 1);
+    background: #F5F5F5;
     border-radius: 29rpx;
 }
 
@@ -816,3 +816,21 @@ page {
     border-bottom: 14rpx solid #BFBFBF;
     margin-bottom: 3rpx;
   } 
+
+  .shareBtn  {
+      position: absolute;
+      right: 30rpx;
+      top: 30rpx;
+      width: 90rpx;
+      height: 33rpx;
+  }
+  .shareicon {
+    position: relative;
+    width: 90rpx;
+    height: 33rpx;
+  }
+  .sharetext {
+      position: absolute;
+      right: 20rpx;
+      top: 4rpx;
+  }

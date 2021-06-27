@@ -1,11 +1,11 @@
 page{
   background:#fff;
-  height:100%;
-  padding-bottom:160rpx;
+  /* height:100%; */
+  /* padding-bottom:160rpx; */
 }
 
 .header{
-  background:#FFE200;
+  background:rgba(171, 0, 255, 0.18);
   padding-top:40rpx;
   /*padding-bottom:60rpx;*/
   padding-bottom: 110rpx;

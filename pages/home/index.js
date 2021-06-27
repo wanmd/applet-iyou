@@ -251,7 +251,7 @@ wx.Page({
         this.setData({ goodsList: goodsList })
     },
     load1(e) {
-        // console.log(e);
+        console.log(e);
         let isAgent = e.detail.isAgent;
         let rows = e.detail.list || [
             {

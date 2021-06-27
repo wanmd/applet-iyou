@@ -3421,8 +3421,8 @@ switch .wx-checkbox-input {
 /* 选中后的 背景样式 （红色背景 无边框 可根据UI需求自己修改） */
 
 switch .wx-checkbox-input.wx-checkbox-input-checked {
-    border: 1rpx solid #FFE200;
-    background: #FFE200;
+    border: 1rpx solid #AB00FF;
+    background: #AB00FF;
 }
 
 
@@ -3439,7 +3439,7 @@ switch .wx-checkbox-input.wx-checkbox-input-checked::before {
     text-align: center;
     font-size: 24rpx;
     /* 对勾大小 30rpx */
-    color: #333;
+    color: #fff;
     /* 对勾颜色 白色 */
     background: transparent;
     transform: translate(-50%, -50%) scale(0.8);
@@ -3757,7 +3757,7 @@ input {
     content: '';
     width: 60rpx;
     height: 8rpx;
-    background: #FFE200;
+    background: #AB00FF;
     transform: translateX(-50%);
 }
 
@@ -3875,7 +3875,7 @@ navigator {
 }
 
 image {
-    height: auto;
+    /* height: auto; */
 }
 
 input {

@@ -80,6 +80,28 @@
     <view class='p-l-r text-justify m-t-60 c-999 fz-28 lh-46'>
       <text selectable="{{true}}">{{chat.content}}</text>
     </view>
+    <!-- 拼单 -->
+    <view class="groupCard p-30">
+      <view class="d-f jc-sb mb-40">
+        <view class="fz-24 c-333">TA们已发起拼单，可一起拼单</view>
+        <view class="fz-20 c-333" bindtap="handleMoreGroup">查看更多></view>
+      </view>
+      <view class="groupList">
+        <view class="groupItem d-f ai-c jc-sb">
+          <view class="d-f ai-c">
+            <image src="/assets/images/sad.png" class="w-72 h-72 mr-16" />
+            <text class="fz-24 c-333">Kaylah McGlynn</text>
+          </view>
+          <view class="d-f jc-sb ai-c">
+            <view class="d-f fxd-c mr-14 ai-fe">
+              <view class="fz-24 c-333 mb-8">还差1人拼单</view>
+              <view class="fz-24 c-333">剩余23：59：59.9</view>
+            </view>
+            <view class="groupItemBtn">跟TA拼单</view>
+          </view>
+        </view>
+      </view>
+    </view>
     
     <view data-url='../applyAgent/index?storeId={{chat.user.user_id}}&storeName={{chat.user.nickname}}' catchtap="isAuth_" hover-class="none">
       <view class="link-CWDL">
@@ -193,14 +215,30 @@
           <!-- 一般用户 一件代发(会员价) + 代理拿货(代理价) 
             会员用户 一件代发(会员价) + 代理拿货(代理价) 
             代理用户 一件代发(代理价) + 代理拿货(代理价) -->
-          <btn class='add-cart1 middle' style-text='width:139rpx;height: 88rpx;line-height: 88rpx;color: #fff;background:linear-gradient(270deg,rgba(255,186,0,1),rgba(255,225,3,1));border-radius:42px 0px 0px 42px;'>+购物车</btn>
-          <btn class='now-buy1 middle' style-text='width:160rpx;height: 88rpx;color: #fff;background:linear-gradient(90deg,rgba(255,174,0,1),rgba(255,132,0,1));'>
-            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">¥{{chat.isAgent ? chat.agent_price : chat.vip_price}}</view>
-            <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">一件代发</view>
+          <btn 
+            class='add-cart1 middle' 
+            style-text='width:139rpx;height: 88rpx;line-height: 88rpx;color: #fff;background:#D681FF;border-radius:42px 0px 0px 42px;'
+          >+购物车
           </btn>
-          <btn class='now-buy2 middle' style-text='width:158rpx;height: 88rpx;color: #fff;background:linear-gradient(90deg,rgba(255,115,1,1),rgba(255,84,0,1));border-radius:0px 42px 42px 0px;'>
-            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">¥{{chat.agent_price}}</view>
-            <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">代理拿货</view>
+          <btn 
+            class='now-buy1 middle' 
+            style-text='width:160rpx;height: 88rpx;color: #fff;background:#C246FF;'>
+            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
+              ¥{{chat.isAgent ? chat.agent_price : chat.vip_price}}
+            </view>
+            <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">
+              一件代发
+            </view>
+          </btn>
+          <btn 
+            class='now-buy2 middle' 
+            style-text='width:158rpx;height: 88rpx;color: #fff;background:#AB00FF;border-radius:0px 42px 42px 0px;'>
+            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
+              ¥{{chat.agent_price}}
+            </view>
+            <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">
+              代理拿货
+            </view>
           </btn>
         </view>
         <view wx:else class="buy_btn2">
@@ -268,6 +306,7 @@
     </view>
   </view>
 </view>
+<!-- 分享方式弹框 -->
 <view class="select-share-type {{showSelectShareType==0?'slidown_none':''}} {{showSelectShareType==1 ?'sliup_1': ''}} {{showSelectShareType==2 ?'slidown_1': ''}}" bindtap='toggleSelectShareType'>
   <view class="modal">
     <view class='header'>
@@ -349,3 +388,53 @@
 
 <!-- 购物车弹框 -->
 <shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" user="{{user}}" mode="b0" />
+<!-- 拼单列表弹窗 -->
+<view 
+  class="select-share-type {{showGroupListModal==0?'slidown_none':''}} {{showGroupListModal==1 ?'sliup_1': ''}}">
+  <view class="groupModal">
+    <view class='groupheader'>
+      参与平台用户发起的拼单
+      <el-image class='close middle' src='close.png' catchtap='toggleShowGroupListModal'></el-image>
+    </view>
+    <view class="groupsWrap pl-48 pr-32">
+      <view class="d-f jc-sb ai-c">
+        <view class="d-f ai-c">
+          <view class="w-100rpx h-100rpx mr-16 bdrs-50p ov-h">
+            <image src="/assets/images/sad.png" class="w-100rpx h-100rpx" />
+          </view>
+          <view class="d-f fxd-c">
+            <text class="fz-24 c-333 MB-14">Kaylah McGlynn</text>
+            <text class="fz-24 c-3A3A3A">剩余 23：59：59. 9 </text>
+          </view>
+        </view>
+        <view class="groupItemBtn" data-id="" bindtap="handleRaiseGoup">和TA拼单</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 发起拼单弹窗 -->
+<view 
+  class="select-share-type z-99 {{showGroupModal==0?'slidown_none':''}} {{showGroupModal==1 ?'sliup_1': ''}}">
+  <view class="raise_groupModal">
+    <view class='groupheader'>
+      参与平台用户发起的拼单
+      <el-image class='close middle' src='close.png' catchtap='toggleShowGroupModal'></el-image>
+    </view>
+    <view class="d-f jc-c fz-24 c-3A3A3A mt-12 mb-56">仅限一个名额，23：59：59.9后结束</view>
+    <view class="groupsWrap pl-146 pr-146">
+      <view class="d-f jc-sb ai-c">
+        <view class="w-100rpx h-100rpx mr-46 bdrs-50p ov-h">
+            <image src="/assets/images/sad.png" class="w-100rpx h-100rpx" />
+        </view>
+        <view class="w-64 h-58 mr-46 bdrs-50p ov-h">
+            <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
+        </view>
+        <view class="w-100rpx h-100rpx bdrs-50p ov-h">
+            <image src="/assets/images/sad.png" class="w-100rpx h-100rpx" />
+        </view>
+      </view>
+    </view>
+    <view class="confirmGroupBtn" data-id="" bindtap="handleRaiseGoup">和TA拼单</view>
+  </view>
+</view>
+

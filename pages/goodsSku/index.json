@@ -1,6 +1,0 @@
-{
-  "usingComponents": {
-    "priceExcel": "./comp/priceExcel/index"
-  },
-  "navigationBarTitleText": "产品多规格设置"
-}

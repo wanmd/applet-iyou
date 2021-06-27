@@ -48,11 +48,6 @@
     "pages/bargainTool/index",
     "pages/lotteryTool/index",
     "pages/area/selectCity/index",
-    "pages/publish/offer/index",
-    "pages/publish/chat/index",
-    "pages/publish/luckDraw/index",
-    "pages/publish/askBuy/index",
-    "pages/publish/renting/index",
     "pages/goodsCategory/index",
     "pages/deliveryAddress/index",
     "pages/deliveryAddress/add/index",
@@ -60,16 +55,7 @@
     "pages/auth/index",
     "pages/contact/index",
     "pages/test/index",
-    "pages/webview/webview",
-    "pages/storeCategory/index",
-    "pages/storeCategory/edit",
-    "pages/goodsManage/index",
-    "pages/publish/newChat/index",
-    "pages/publish/newChat/edit",
-    "pages/goodsLabel/index",
-    "pages/productCategory/index",
-    "pages/goodsSku/index",
-    "pages/merchant/storeBackground/index"
+    "pages/webview/webview"
   ],
   "subPackages": [
     {

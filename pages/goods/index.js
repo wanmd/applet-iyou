@@ -36,7 +36,9 @@ wx.Page({
     storeCommonParam: null,
     showShopCarPop: !true,
     goods_id: null,
-    user: ''
+    user: '',
+    showGroupListModal : 0,
+    showGroupModal: 0
   },
   onLoad: function (opts) {
     console.log("goods=======opts");
@@ -909,10 +911,34 @@ wx.Page({
       title: this.data.chat.goods_name
     }
   },
-  // 
+  // 购物车弹框
   handleShowPop() {
     this.setData({
       showShopCarPop: true
+    })
+  },
+  // 拼单列表弹窗
+  handleMoreGroup() {
+    this.setData({
+      showGroupListModal: 1
+    })
+  },
+  toggleShowGroupListModal() {
+    this.setData({
+      showGroupListModal: this.data.showGroupListModal ? 0 : 1
+    })
+  },
+  // 参与拼单
+  handleRaiseGoup(e) {
+    const { id } = e.currentTarget.dataset;
+    this.setData({
+      showGroupModal: 1
+    })
+  },
+  // 关闭拼单
+  toggleShowGroupModal() {
+    this.setData({
+      showGroupModal: 0
     })
   }
 })

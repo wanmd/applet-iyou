@@ -174,7 +174,7 @@ App({
             success(res) {
                 if (res.code) {
                     wx.promise
-                        .post('/login', { code: res.code, inviter: inviter })
+                        .post('iy/login', { code: res.code, inviter: inviter })
                         .then(result => {
                             wx._hideLoading()
                             if (result.code == 200) {
@@ -225,7 +225,7 @@ App({
         wx.login({
             success(res) {
                 if (res.code) {
-                    wx.promise.post('/login', { code: res.code }).then(result => {
+                    wx.promise.post('iy/login', { code: res.code }).then(result => {
                         wx._hideLoading();
                         if (result.code == 200 && result.success) {
                             self.globalData.isLogin = true;

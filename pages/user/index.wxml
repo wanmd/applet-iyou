@@ -1,4 +1,4 @@
-<view style='height:100%;overflow-y:scroll'>
+<view style='overflow-y:scroll'>
   <view class='header' wx:if="{{!userInfo.nickname}}">
     <view class='h-100 relative p-l-r'>
       <navigator class='user-line flex_align-center' url='/pages/auth/index' hover-class="none">
@@ -10,7 +10,7 @@
       <view class='user-info'>
         <view class='color-333 f-24 m-t-10'>身体和灵魂，总有一个在路上</view>
       </view>
-      <view class='user-data'>
+      <view class='user-data' wx:if="{{false}}">
         <navigator class='item' url='/pages/auth/index' hover-class="none">
           <view class='num'>0</view>
           <view class='title'>获赞</view>
@@ -32,15 +32,6 @@
         <view catchtap="isAuth_" class='avatar' data-url='/pages/userInfo/index' hover-class="none">
           <image class='image' src='{{userInfo.avatar}}'></image>
         </view>
-        <view catchtap="isAuth_" wx:if='{{userType == 2}}' class='store-nav store-nav_r middle' hover-class="none" data-url='/pages/store/index?storeId={{userInfo.user_id}}'>
-          <icon-text icon='ic_shop@2x.png' left='8rpx' width='64rpx'>我的店铺</icon-text>
-        </view>
-        <view catchtap="isAuth_" wx:else class='store-nav  middle' hover-class="none" data-url='/pages/applyMerchant/index'>
-          <icon-text icon='ic_shop@2x.png' left='8rpx' width='64rpx'>成为商家</icon-text>
-        </view>
-        <!-- <view wx:if='{{userInfo.user_type == 2}}' catchtap="getqr" class='getqr-nav middle' hover-class="none">
-          <icon-text-flex icon='user/saomiao@2x.png' width='40rpx' style='padding: 4rpx;'></icon-text-flex>
-        </view> -->
         <view class='getqr-nav middle' hover-class="none">
           <!-- <el-image src='user/saomiao@2x.png' style='width:40rpx;display: inline-block;padding: 4rpx;'></el-image> -->
           <icon-text-flex icon='user/message@2x.png' width='40rpx' style='padding: 4rpx;'></icon-text-flex>
@@ -53,7 +44,7 @@
           {{userInfo.remark?userInfo.remark:'身体和灵魂，总有一个在路上'}}
         </view>
       </view>
-      <view class='user-data'>
+      <view class='user-data'  wx:if="{{false}}">
         <view catchtap="isAuth_" class='item' data-url='' hover-class="none">
           <view class='num'>{{numbers.praise || 0}}</view>
           <view class='title'>获赞</view>
@@ -103,31 +94,31 @@
         </view>
         <view class="d-f ai-c jc-c pb-30">
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=1">
-              <icon-text-flex class='item-icon' width="120rpx" icon='user/my-order1@2x.png'>
+              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order1@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitPayNum>0}}">{{orderCount.waitPayNum > 99 ? "99+" : orderCount.waitPayNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24">待付款</view>
           </view>
-          <!-- <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=1">
-              <icon-text-flex class='item-icon' width="120rpx" icon='user/my-order6@2x.png'>
+          <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=1">
+              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order6@2x.png'>
                 <view class="red-number">6</view>
               </icon-text-flex>
               <view class="item-text fz-24">待成团</view>
-          </view> -->
+          </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=2">
-              <icon-text-flex class='item-icon' width="120rpx" icon='user/my-order2@2x.png'>
+              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order2@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitSendNum>0}}">{{orderCount.waitSendNum > 99 ? '99+' : orderCount.waitSendNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24">待发货</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=3">
-              <icon-text-flex class='item-icon' width="120rpx" icon='user/my-order3@2x.png'>
+              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order3@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitReceiveNum>0}}">{{orderCount.waitReceiveNum > 99 ? '99+' : orderCount.waitReceiveNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24">待收货</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=4">
-              <icon-text-flex class='item-icon' width="120rpx" icon='user/my-order4@2x.png'>
+              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order4@2x.png'>
                 <!-- <view class="red-number" wx:if="{{orderCount.hasDoneNum>0}}">{{orderCount.hasDoneNum > 99 ? '99+' : orderCount.hasDoneNum}}</view> -->
                 <!-- <view class="red-number">0</view> -->
               </icon-text-flex>
@@ -138,20 +129,6 @@
       </view>
     </view>
     <view class="line10"></view>
-    <!-- 商户类型 新样式 -->
-    <view class="bgc-fff p-26" wx:if="{{userType == 2}}">
-      <view class="card">
-        <view class="d-f fxd-c jc-c w-25p mb-28" 
-          wx:for="{{shangjiaManageList}}" 
-          wx:key="{{item.text}}" 
-          bindtap="isAuth_"
-          data-url="{{item.url}}"
-        >
-          <view class="d-f jc-c mb-28"><image style="width: 35px;height:35px" src="{{item.image}}" /></view>
-          <view class="d-f jc-c c-000 fz-20">{{item.text}}</view>
-        </view>
-      </view>
-    </view>
     <!-- 个人类型  新样式 -->
     <view class="bgc-fff p-26">
       <view class="card2">
@@ -165,76 +142,6 @@
           <view class="d-f jc-c c-333 fz-24">{{item.text}}</view>
         </view>
       </view>
-    </view>
-    <view class="p-l-r" wx:if="{{false}}">
-      
-      <view class='nav border-b' bindtap="isAuth_" data-url='/pages/homepage/index?userId={{userInfo.user_id}}'>
-        <icon-text class='wrap' icon='ic_user_zhuye@2x.png'>我的主页</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <view class='nav border-b' bindtap="isAuth_" data-url="/pages/mailList/index">
-        <icon-text class='wrap' icon='ic_user_contacts.png'>通讯录</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <view class='nav border-b' bindtap="isAuth_" data-url="/pages/browse/index">
-        <icon-text class='wrap' icon='lishijilu@2x.png'>浏览历史</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <view class='nav border-b' bindtap="isAuth_" data-url="../../packages/pack-A/pages/offer/index">
-        <icon-text class='wrap' icon='offer/shanghudingdanuanli@2x.png'>下单拿货记录</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <view class='nav' bindtap="isAuth_" data-url="../../packages/pack-A/pages/myRenting/index">
-        <icon-text class='wrap' icon='user/zuling.png'>旺旺租赁</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <navigator class='nav' url='/pages/collection/index'>
-      <icon-text class='wrap' icon='ic_user_collect@2x.png'>我的收藏</icon-text>
-      </navigator>
-    </view>
-    <view class="line10"></view>
-    <view class="p-l-r">
-      <block wx:if="{{false}}">
-        <!-- 商户类型 -->
-        <!-- userType == 2 -->
-        <view class='nav border-b' bindtap="isAuth_" data-url="../../packages/pack-A/pages/order/index">
-          <icon-text class='wrap' icon='order_complete.png'>订单管理</icon-text>
-          <view class="arrow-right">
-            <view class="red-number" style="top: 0rpx;right: 40rpx;" wx:if="{{orderCount2.waitSendNum>0}}">{{orderCount2.waitSendNum > 99 ? '99+' : orderCount2.waitSendNum}}</view>
-          </view>
-        </view>
-        <view class='nav border-b' bindtap="isAuth_" data-url="../../packages/pack-A/pages/myAskBuy/index">
-          <icon-text class='wrap' icon='user/qiugou.png'>我的求购</icon-text>
-          <view class="arrow-right"></view>
-        </view>
-        <view class='nav border-b' bindtap="isAuth_" data-url="/pages/marketing/index">
-          <icon-text class='wrap' icon='ic_operation.png'>营销管理</icon-text>
-          <view class="arrow-right"></view>
-        </view>
-        <view class='nav border-b' bindtap="isAuth_" data-url="/pages/merchant/index">
-          <icon-text class='wrap' icon='shangjiaguanli@2x.png'>商户管理</icon-text>
-          <view class="arrow-right"></view>
-        </view>
-        <view class='nav' bindtap="isAuth_" data-url="../../packages/pack-A/pages/myRenting/index">
-          <icon-text class='wrap' icon='user/zuling.png'>旺旺租赁</icon-text>
-          <view class="arrow-right"></view>
-        </view>
-      </block>
-    </view>
-    <view class="line10"></view>
-    <view class="p-l-r" wx:for="{{false}}">
-      <view class='nav border-b' data-url="url" bind:tap="toUnivercity">
-        <icon-text class='wrap' icon='univercity@2x.png'>iME课堂</icon-text>
-        <view class="arrow-right"></view>
-      </view>
-      <button hover-class="none" open-type="contact" class='nav border-b'>
-        <icon-text class='wrap' icon='ic_kefu@2x.png'>联系客服</icon-text>
-        <view class="arrow-right"></view>
-      </button>
-      <!-- <web-view class='nav' src="">
-        <icon-text class='wrap' icon='ic_user_collect@2x.png'>新手攻略</icon-text>
-        <view class="arrow-right"></view>
-      </web-view> -->
     </view>
   </view>
 </view>
