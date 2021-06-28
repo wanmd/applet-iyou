@@ -60,7 +60,11 @@
       </view>
     </view>
     <view class="bottom mt-40 w-100p d-f fxd-c ai-c jc-sb">
-      <view wx:if="{{type === 'single'}}" class="h-64 w-100p d-f jc-sb ai-c fz-24 c-AB00FF pl-54 pr-34 bgc-171-0-255-18p mb-12">
+      <view 
+        wx:if="{{type === 'single'}}" 
+        class="h-64 w-100p d-f jc-sb ai-c fz-24 c-AB00FF pl-54 pr-34 bgc-171-0-255-18p mb-12"
+        bindtap="handleGroupBuy"
+      >
         <view>拼单购买超值优惠，大多用户都选择</view>
         <view>拼单购买 ></view>
       </view>

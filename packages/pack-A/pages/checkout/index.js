@@ -164,7 +164,7 @@ Page({
     // let cartIds = dddd.split(',')
 console.log(app.formatDecimal("1.20"))
 
-    request.post('cart/toorder', res => {
+    request.post('iy/cart/toorder', res => {
       if(res.success){
         let goodsCount = 0
         let amount = 0

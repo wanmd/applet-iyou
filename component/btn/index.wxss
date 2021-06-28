@@ -1,6 +1,7 @@
 .btn{
-  background:#FFE200;
+  background:#AB00FF;
   font-size:32rpx;
+  color: #fff;
 }
 .btn::before,.btn::after{
   content:none;

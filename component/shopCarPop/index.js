@@ -79,10 +79,10 @@ Component({
           type_title = '加入购物车'
           break
         case 'single':
-          type_title = '一件代发'
+          type_title = '单独购买'
           break
-        case 'agent':
-          type_title = '代理拿货'
+        case 'group':
+          type_title = '拼单购买'
           break
       }
       if(!this.data.needSelectType) {
@@ -94,7 +94,7 @@ Component({
       this.getDetail()
     },
     getDetail() {
-      request.get('product/' + this.data.goods_id, res => {
+      request.get('iy/product/' + this.data.goods_id, res => {
         if (res.success) {
           // console.log(res);
           // 改造数据结构
@@ -119,18 +119,34 @@ Component({
 
 
           let specs = res.data.specs;
-          let member_price = specs.sort(function(a, b) {
-            return a.member_price - b.member_price
+          let sale_price = specs.sort(function(a, b) {
+            return a.sale_price - b.sale_price
+          })
+          let group_price = specs.sort(function(a, b) {
+            return a.group_price - b.group_price
           })
           let agent_price = specs.sort(function(a, b) {
             return a.agent_price - b.agent_price
           })
+          // 用户价格显示区别：
+          // 1 一般用户单击单独购买：
+          // 零售价
+          // 2.一般用户单击拼单购买：
+          // 拼单价+划线零售价
+          // 3.会员用户单击单独购买+拼单购买都展示：
+          // 会员价（公开报价）+划线零售价
+          // 会员价（公开报价）+划线拼单价
+          // 4此商家代理单击单独购买+拼单购买都展示：
+          // 代理价（拿货价）+划线零售价
+          // 代理价（拿货价）+划线拼单价
+
+
           // 一般用户
           if (!isVip && !isAgent) {
             this.setData({
               userType: 'normal',
-              price_1: member_price[0].member_price,
-              price_2: maskNumber(agent_price[0].agent_price)
+              price_1: sale_price[0].sale_price,
+              price_2: group_price[0].group_price
             })
           }
           // 会员用户
@@ -138,15 +154,15 @@ Component({
             this.setData({
               userType: 'member',
               price_1: member_price[0].member_price,
-              price_2: agent_price[0].agent_price
+              price_2: group_price[0].group_price
             })
           }
           // 代理
           if (isAgent) {
             this.setData({
               userType: 'agent',
-              price_1: member_price[0].agent_price,
-              price_2: agent_price[0].agent_price
+              price_1: agent_price[0].agent_price,
+              price_2: group_price[0].group_price
             })
           }
           console.log(res.data);
@@ -214,28 +230,37 @@ Component({
       const { nickname, user_id } = this.data.user ? JSON.parse(this.data.user) : wx.getStorageSync('userinfo');
       let header_price = '';
 
-      switch(type) {
-        case 'cart':
-          header_price = price_1
-          break
-        case 'single':
-          header_price = price_1
-          break
-        case 'group':
-          // if (!isAgent) {
-          //   wx.navigateTo({
-          //     url: `/pages/applyAgent/index?storeId=${user_id}&storeName=${nickname}`,
-          //   })
-          //   return
-          // }
-          // header_price = price_2
-          break
-      }
-
       this.setData({
         type,
-        header_price,
         canSelect: true
+      })
+
+      if (!this.data.canConfirm) {
+        switch(type) {
+          case 'cart':
+            // header_price = price_1
+            break
+          case 'single':
+            // header_price = price_1
+            break
+          case 'group':
+            // if (!isAgent) {
+            //   wx.navigateTo({
+            //     url: `/pages/applyAgent/index?storeId=${user_id}&storeName=${nickname}`,
+            //   })
+            //   return
+            // }
+            // header_price = price_2
+            break
+        }
+      } else {
+        this.changePriceShow()
+      }
+    },
+    // 切换拼单购买
+    handleGroupBuy() {
+      this.setData({
+        type: 'group'
       })
     },
     // 选取规格型号
@@ -318,22 +343,22 @@ Component({
         }
       }
       console.log(select_product_specs);
-      const { agent_price, member_price } = select_product_specs;
+      const { agent_price, member_price, group_price, sale_price } = select_product_specs;
       const { userType, type } = this.data;
 
       switch(userType) {
         case 'normal':
           this.setData({
-            price_1: member_price,
-            price_2: maskNumber(agent_price),
-            header_price: member_price
+            price_1: sale_price,
+            price_2: group_price,
+            header_price: type === 'group' ? group_price : sale_price
           })
           break
         case 'member':
           this.setData({
             price_1: member_price,
-            price_2: agent_price,
-            header_price: type === 'agent' ? agent_price : member_price
+            price_2: group_price,
+            header_price: member_price
           })
           break
         case 'agent':
@@ -356,10 +381,10 @@ Component({
           this.postCart();
           break
         case 'single':
-          this.postBuy();
+          this.postBuy(2);
           break
         case 'group':
-          this.postAgent();
+          this.postBuy(1);
           break
       }
     },
@@ -393,7 +418,7 @@ Component({
         quantity: num,
         productSpecs: this.getProductSpecs()
       }
-      request.post('cart', res => {
+      request.post('iy/cart', res => {
         if(res.success){
           toast('加入购物车成功!')
           this.setData({
@@ -408,17 +433,15 @@ Component({
       }, data).showLoading()
     },
     // 购买
-    postBuy() { 
-      const { detail, num: goodsNum, type } = this.data;
+    postBuy(isGroup = 2) { // 是否拼单购买 1-是 2-否 一般用户生效
+      const { detail, num: goodsNum, userType } = this.data;
       const { chat_id: chatId, remark = '', shareUserId = 0 } = detail;
       const productSpecs = JSON.stringify(this.getProductSpecs());
-      // 是否拼单购买 1-是 2-否 一般用户生效
-      // const isGroup = 2 ; 
-      const buyType =  type === 'agent' ? 2 : 1; // 1-普通用户 2-会员购买
+      const buyType =  userType === 'agent' ? 2 : 1; // 1-普通用户 2-会员购买
       const prefix = '../../packages/pack-A/pages/checkout/index?chatId=' 
 
       wx.navigateTo({
-        url: prefix + chatId + "&goodsNum=" + goodsNum + "&remark=" + remark + "&type=2&shareUserId=" + shareUserId + '&isGroup=2&productSpecs=' + productSpecs + '&buyType=' + buyType,
+        url: prefix + chatId + "&goodsNum=" + goodsNum + "&remark=" + remark + "&type=2&shareUserId=" + shareUserId + '&isGroup='+ isGroup +'&productSpecs=' + productSpecs + '&buyType=' + buyType,
       });
     }
   }

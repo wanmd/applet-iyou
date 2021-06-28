@@ -919,13 +919,13 @@ wx.Page({
     const { chat } = this.data;
     console.log(chat);
 
-    if(type === 'agent' && !chat.isAgent) {
-      const { nickname, user_id } = chat ? chat.user : wx.getStorageSync('userinfo');
-      wx.navigateTo({
-        url: `/pages/applyAgent/index?storeId=${user_id}&storeName=${nickname}`,
-      })
-      return
-    }
+    // if(type === 'agent' && !chat.isAgent) {
+    //   const { nickname, user_id } = chat ? chat.user : wx.getStorageSync('userinfo');
+    //   wx.navigateTo({
+    //     url: `/pages/applyAgent/index?storeId=${user_id}&storeName=${nickname}`,
+    //   })
+    //   return
+    // }
     
     this.setData({
       showShopCarPop: true,

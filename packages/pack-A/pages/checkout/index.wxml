@@ -136,7 +136,7 @@
       <text class='flex__1 color-f9696c'>￥<text class='f-36'>{{isVip__amount}}</text></text>
     </view>
   </view>
-  <btn class='absolute middle r-0' style-text='width:300rpx' bindtap='confirm'>提交订单</btn>
+  <btn class='absolute middle r-0 bgc-AB00FF c-fff' style-text='width:300rpx' bindtap='confirm'>提交订单</btn>
 </view>
 <view wx:if='{{ai__addressFlag}}'>
   <view style='position:absolute;z-index:15;background:rgba(0,0,0,0.5);height:100%;width:100%;left:0;top:0;' catchtap='ai__addressHide'></view>

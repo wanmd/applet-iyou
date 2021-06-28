@@ -179,6 +179,7 @@
 .active {
   background: rgba(171, 0, 255, 0.18);
   border: 2rpx solid #AB00FF;
+  color: #AB00FF;
 }
 
 .bigger {
