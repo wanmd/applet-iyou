@@ -105,7 +105,7 @@
     
     <view data-url='../applyAgent/index?storeId={{chat.user.user_id}}&storeName={{chat.user.nickname}}' catchtap="isAuth_" hover-class="none">
       <view class="link-CWDL">
-        <image class='image' src='/assets/images/DAILI@2x.png'  style="width:35rpx;height:35rpx;"></image>
+        <image class='image' src='/assets/images/DAILI2@2x.png'  style="width:35rpx;height:35rpx;"></image>
         <!-- <el-image class='icon' width= "35rpx" height="31rpx" src='DAILI@2x.png'></el-image> -->
         <text>成为代理商 一件代发 拿货更便宜 兼职赚大钱</text>
         <image class='jiantou' src='/assets/images/jiantou.png' style="width:12rpx;height:22rpx;"></image>
@@ -147,7 +147,8 @@
   </view>
 </view>
 <view class='bottom-fixed' style='background:rgba(247,247,247,1)'>
-  <view class='store-nav p-l-r'>
+  <!-- 店铺信息 -->
+  <view class='store-nav p-l-r' wx:if="{{false}}">
     <view class='relative'>
       <avatar user="{{chat.user}}" src='{{chat.user.avatar}}' noPreviewImg="2" wx:if="{{!userInfo.nickname||!userInfo.isAuth}}">
         <view class='user-info'>
@@ -202,7 +203,7 @@
           </form>
     </block>
     <block wx:else>
-        <view wx:if="{{shareUserId==''||shareUserId==0}}" class="buy_btn2" bindtap='handleShowPop'>
+        <view wx:if="{{shareUserId==''||shareUserId==0}}" class="buy_btn2">
           <!-- <btn class='add-cart1 middle' style-text='width:139rpx;height: 88rpx;line-height: 88rpx;color: #fff;background:linear-gradient(270deg,rgba(255,186,0,1),rgba(255,225,3,1));border-radius:42px 0px 0px 42px;' bindtap='addCart' >+购物车</btn>
           <btn class='now-buy1 middle' style-text='width:160rpx;height: 88rpx;color: #fff;background:linear-gradient(90deg,rgba(255,174,0,1),rgba(255,132,0,1));' bindtap='nowBuy'>
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">¥{{chat.price}}</view>
@@ -216,11 +217,15 @@
             会员用户 一件代发(会员价) + 代理拿货(代理价) 
             代理用户 一件代发(代理价) + 代理拿货(代理价) -->
           <btn 
+            data-type="cart"
+            bindtap='handleShowPop'
             class='add-cart1 middle' 
             style-text='width:139rpx;height: 88rpx;line-height: 88rpx;color: #fff;background:#D681FF;border-radius:42px 0px 0px 42px;'
           >+购物车
           </btn>
           <btn 
+            data-type="single"
+            bindtap='handleShowPop'
             class='now-buy1 middle' 
             style-text='width:160rpx;height: 88rpx;color: #fff;background:#C246FF;'>
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
@@ -231,6 +236,8 @@
             </view>
           </btn>
           <btn 
+            data-type="agent"
+            bindtap='handleShowPop'
             class='now-buy2 middle' 
             style-text='width:158rpx;height: 88rpx;color: #fff;background:#AB00FF;border-radius:0px 42px 42px 0px;'>
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
@@ -387,7 +394,14 @@
 </view>
 
 <!-- 购物车弹框 -->
-<shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" user="{{user}}" mode="b0" />
+<shopCarPop 
+  show="{{showShopCarPop}}" 
+  goods_id="{{goods_id}}" 
+  user="{{user}}" 
+  mode="b0" 
+  needSelectType="{{needSelectType}}"
+  type="{{type}}" 
+/>
 <!-- 拼单列表弹窗 -->
 <view 
   class="select-share-type {{showGroupListModal==0?'slidown_none':''}} {{showGroupListModal==1 ?'sliup_1': ''}}">

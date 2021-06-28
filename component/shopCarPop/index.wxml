@@ -7,7 +7,7 @@
           <image class="pic" mode="aspectFill" src="{{baseUrl}}/{{[detail.image_urls]}}" />
         </view>
         <view class="header_right fx-1 d-f fxd-c ai-fs">
-          <view class="c-333 fz-28">{{type_title}}</view>
+          <view class="c-AB00FF fz-32">{{type_title}}</view>
           <view class=""><text class="c-333 fz-28">价格:  ￥</text><text class="c-333 fz-32">{{header_price}}</text></view>
           <view class="mb-20">
             <text class="c-333 fz-28 mr-14">已选择：</text>

@@ -183,13 +183,12 @@ Component({
             if (!userInfo.nickname || !userInfo.isAuth) {
                 wx._setStorageSync("nav_key", 'swit')
                 app.requireLogin('/pages/user/index')
+            }else if(!userInfo.isAuth) {
+                this.setData({
+                    showBindMobileModel: true,
+                    setUrl: e.currentTarget.dataset.url
+                })
                 return
-                // }else if(!userInfo.isAuth) {
-                // 	this.setData({
-                // 		showBindMobileModel: true,
-                // 		setUrl: e.currentTarget.dataset.url
-                // 	})
-                // 	return
             } else {
                 console.log(e)
                 app.requireLogin(e.currentTarget.dataset.url)

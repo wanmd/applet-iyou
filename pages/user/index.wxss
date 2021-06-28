@@ -243,8 +243,9 @@ page{
 }
 .my-items .item-text,
 .order-items .item-text{
-  margin-top: -10rpx;
+  /* margin-top: -10rpx; */
   margin-left: -14rpx;
+  color: #333;
 }
 .item-icon{
   width: 120rpx;

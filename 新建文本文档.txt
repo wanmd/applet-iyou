@@ -1,0 +1,10 @@
+含vip_price字段的接口,需要改成member_price:
+1、http://dev.kingwish.com.cn/api/chat/chat?id=2375
+2.http://dev.kingwish.com.cn/api/iy/user/getNewChatList?store_id=903450&lastPk=0&page=1&pageSize=20
+
+其它问题：
+1、http://dev.kingwish.com.cn/api/iy/chat/getQuoteList?store_id=&keyword=&type=2&lastPk=0&page=1&pageSize=20
+首页报价接口没有返回多个类型的数据；也没有返回是否是代理
+
+2、http://dev.kingwish.com.cn/api/iy/chat/record?store_id=903450&type=2&lastPk=0&page=1&pageSize=20
+产品图集要支持关键词查询

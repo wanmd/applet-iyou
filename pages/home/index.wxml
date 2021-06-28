@@ -20,8 +20,8 @@
                 </block>
                 <button hover-class="none" class='pull-left m-l-30' open-type='share'><el-image style='display:block;width:36rpx;' src='ic_share@2x.png'></el-image></button>
             </view> -->
-            <view class='absolute middle r-46 overflow' bindtap="navToIme">
-                <image class="w-52 h-52" src="../../assets/images/index/ToIme@2x.png" />
+            <view class='absolute middle r-46 overflow' bindtap="toggleShowShareModal">
+                <image class="w-40 h-40" src="../../assets/images/index/ToIme@2x.png" />
             </view>
         </view>
         <view class='top-nav'>
@@ -33,7 +33,7 @@
         </view>
     </view>
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==1}}'>
-        <pagination  class='relative relative1' id='pagination' pkName='chat_id' url='store/goods' query='{{query}}' bind:load='load'>
+        <pagination  class='relative relative1' id='pagination' pkName='chat_id' url='iy/store/goods' query='{{query}}' bind:load='load'>
         <view class="relative1_box bgc-fff {{goodsList == null ? 'pb-600' : ''}}">
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
@@ -72,7 +72,10 @@
                                         2.1一般用户只显示拼单价+会员价
                                         2.2会员展示 公开报价（会员价）+划线拼单价
                                         2.3此商家代理显示代理价+划线拼单价 -->
-                                <view wx:if="{{!item.isAgent && !userinfo.isVip}}"><text class='f-32 bold c-333'>￥{{item.group_price}}</text></view>
+                                <view wx:if="{{!item.isAgent && !userinfo.isVip}}">
+                                    <text class='f-32 bold c-333 mr-20'>￥{{item.group_price}}</text>
+                                    <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text>
+                                </view>
                                 <view wx:if="{{!item.isAgent && userinfo.isVip}}">
                                     ￥<text class='f-32 bold c-ECBD75 mr-20'>{{item.member_price}}</text>
                                     ￥<text class='f-24 td-l c-BFBFBF td-l'>￥{{item.group_price}}</text>
@@ -104,7 +107,7 @@
         </pagination>
     </view>
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==2}}'>
-        <pagination id='pagination2' url='user/getNewChatList' query='{{query2}}' pkName='chat_id' bind:load='load1'>
+        <pagination id='pagination2' url='iy/user/getNewChatList' query='{{query2}}' pkName='chat_id' bind:load='load1'>
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
                     <view class="input mr-30">
@@ -126,25 +129,34 @@
                                 <view class='title ellipsis-2' data-type="{{chat.chat_type}}" data-chatid="{{chat.chat_id}}">
                                     {{chat.goods_name?chat.goods_name:chat.content}}
                                 </view>
-                                <view class='a ' wx:if='{{isSelf}}'>
+                                <!-- <view class='a ' wx:if='{{isSelf}}'>
                                     <view class='price1 d-f jc-sb si-c'>
                                         <view><text class="c-333 fz-32">￥ {{chat.sale_price}}</text></view>
                                         <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                             <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                                         </view>
                                     </view>
-                                </view>
-                                <view class='a' wx:elif='{{!isSelf && isAgent == 1}}'>
+                                </view> -->
+                                <!-- 2.1一般用户只显示拼单价+会员价，按照拼单价结算；
+                                2.2会员展示 公开报价（会员价）+划线拼单价，按照会员价结算；
+                                2.3此商家代理显示代理价+划线拼单价，按照代理价结算； -->
+                                <view class='a' wx:if='{{isAgent == 1}}'>
                                     <view class='price1'>
-                                        <text class="mr-8">￥ {{chat.agent_price}}</text>
-                                        <text class="c-000 td-l">￥ {{chat.sale_price}}</text>
+                                        <text class="c-AB00FF mr-8">￥ {{chat.agent_price}}</text>
+                                        <text class="c-000 td-l">￥ {{chat.group_price}}</text>
+                                    </view>
+                                </view>
+                                <view class='a' wx:elif="{{!isAgent && isVip}}">
+                                    <view class='price1 d-f ai-c'>
+                                        <text class="c-000 fz-32">￥ {{chat.member_price}}</text>
+                                        <text class="c-A5A5A5 fz-24 td-l">￥ {{chat.group_price}}</text>
                                     </view>
                                 </view>
                                 <view class='a' wx:else>
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-000">￥ {{chat.sale_price}}</text>
-                                        <image data-url='../applyAgent/index?storeId={{userInfo.user_id}}&storeName={{userInfo.nickname}}' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/daili@2x (2).png'></image>
-                                        <text>￥ {{chat.agent_price}}</text>
+                                        <text class="c-000">￥ {{chat.group_price}}</text>
+                                        <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>
+                                        <text>￥ {{chat.member_price}}</text>
                                     </view>
                                 </view>
                             </navigator>
@@ -157,7 +169,7 @@
     </view>
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==3}}'>
-        <pagination id='pagination3' class='relative' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'>
+        <pagination id='pagination3' class='relative' url='iy/chat/getQuoteList' query='{{query3}}' bind:load='load3'>
             <view class="relative1_box">
                 <view class="search_wrap jc-sb">
                     <view class="d-f ai-c">
@@ -213,8 +225,7 @@
                         <!-- 报价 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
                             <view>
-                                <view class="nickname">
-                                    <text></text>
+                                <view wx:if="{{}}">
                                     <text></text>
                                     <text></text>
                                 </view>
@@ -235,7 +246,7 @@
         </pagination>
     </view>
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==4}}'>
-        <pagination id='pagination4' url='chat/record' query='{{query4}}' pkName='chat_id' bind:load='load2'>
+        <pagination id='pagination4' url='iy/chat/record' query='{{query4}}' pkName='chat_id' bind:load='load2'>
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
                     <view class="input mr-30">
@@ -409,3 +420,22 @@
 
 <!-- 购物车弹框 -->
 <shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" mode="not" />
+
+<!-- 店铺弹窗 -->
+<view class="select-share-type {{shareModal==0?'slidown_none':''}} {{shareModal==1 ?'sliup_1': ''}}" bindtap='toggleShowShareModal'>
+  <view class="modal">
+    <view class='header_top d-f ai-c jc-c pt-20'>
+        选择分享方式
+    </view>
+    <view class='types'>
+      <button hover-class="none" class='item' open-type='share'>
+        <el-image class='icon' src='share_ic_wechat@2x.png'></el-image>
+        <view class='name'>微信</view>
+      </button>
+      <view class='item' catch:tap='getStoreQr'>
+        <el-image class='icon' src='share_ic_qrcode@2x.png'></el-image>
+        <view class='name'>店铺卡</view>
+      </view>
+    </view>
+  </view>
+</view>

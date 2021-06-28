@@ -58,7 +58,8 @@ wx.Page({
         navTop: 0,
         showType: 0,
         showShopCarPop: false,
-        goods_id: null
+        goods_id: null,
+        shareModal: 0
     },
 
     /**
@@ -216,20 +217,6 @@ wx.Page({
 
     load(e) {
         // console.log(e);
-        this.setData({ goodsList: [
-            {
-                agent_price: "60.00",
-                chat_id: 2375,
-                chat_type: 2,
-                cover: "20c261f0a3fd0530754d052f6d745878.jpg",
-                goods_name: "哈哈11朵粉香皂玫瑰花束礼盒礼品保鲜花康乃馨情人节父亲节",
-                group_price: "90.00",
-                id: 69,
-                member_price: "80.00",
-                sale_price: "100.00",
-            }
-        ]})
-        return
         let rows = e.detail.list
         let page = e.detail.page
         console.log(page)
@@ -339,7 +326,7 @@ wx.Page({
     load2(e) {
         let rows = e.detail.list
         let page = e.detail.page
-            // let isAgent =  e.detail.isAgent;
+            let isAgent =  e.detail.isAgent;
         if (rows.length == 0 && page == 1) {
             this.setData({
                 picture2: null
@@ -362,7 +349,7 @@ wx.Page({
             })
             this.setData({
                 picture2,
-                // isAgent: isAgent
+                isAgent: isAgent
             })
         }
     },
@@ -462,7 +449,7 @@ wx.Page({
         let req = new Request()
         req.setConfig('responseType', 'arraybuffer')
         req.get('qr/store', res => {
-            this.closeMark()
+            this.toggleShowShareModal()
             let qrcode = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
             this.setData({ storeQr: qrcode, showQr: true })
             wx.nextTick(() => {
@@ -801,5 +788,10 @@ wx.Page({
             goods_id 
         })
     },
-    navToIme
+    navToIme,
+    toggleShowShareModal() {
+        this.setData({
+            shareModal: !this.data.shareModal
+        })
+    }
 })

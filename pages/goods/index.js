@@ -37,6 +37,8 @@ wx.Page({
     showShopCarPop: !true,
     goods_id: null,
     user: '',
+    needSelectType: true, //需不需要再进行操作按钮选择
+    type: '',
     showGroupListModal : 0,
     showGroupModal: 0
   },
@@ -125,7 +127,7 @@ wx.Page({
     }, { user_id: user_id}).showLoading()
   },
   getGoodsDetail(chatId){
-    request.get('chat/chat', res => {
+    request.get('iy/chat/chat', res => {
       if(res.success){
         let data = res.data
         if(!(data.user instanceof Object)) {
@@ -912,9 +914,23 @@ wx.Page({
     }
   },
   // 购物车弹框
-  handleShowPop() {
+  handleShowPop(e) {
+    const { type } = e.currentTarget.dataset;
+    const { chat } = this.data;
+    console.log(chat);
+
+    if(type === 'agent' && !chat.isAgent) {
+      const { nickname, user_id } = chat ? chat.user : wx.getStorageSync('userinfo');
+      wx.navigateTo({
+        url: `/pages/applyAgent/index?storeId=${user_id}&storeName=${nickname}`,
+      })
+      return
+    }
+    
     this.setData({
-      showShopCarPop: true
+      showShopCarPop: true,
+      needSelectType: false,
+      type
     })
   },
   // 拼单列表弹窗
