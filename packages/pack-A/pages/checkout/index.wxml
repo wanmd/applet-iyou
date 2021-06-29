@@ -47,8 +47,8 @@
         <view class='user-info'>{{item.store.nickname}}</view>
         <view class="user-status user-status1" wx:if="{{item.isAgent}}">我的商家</view>
       </navigator>
-      <view class="user-status" wx:if="{{item.isAgent}}">代理价结算</view>
-      <view class="user-status" wx:else>会员价结算</view>
+      <view class="fz-24 lh-48 c-A4A4A4" wx:if="{{item.isAgent}}">已按代理价结算</view>
+      <view class="fz-24 lh-48 c-A4A4A4" wx:else>已按会员价结算</view>
     </view>
     <view class='goods-list p-l-r'>
       <view class='goods' wx:for='{{item.cart}}' wx:for-index='idx' wx:for-item="it" wx:key='id'>

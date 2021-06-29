@@ -50,7 +50,7 @@
 }
 .order-status-item .item.current{
   /*background:#FFE200;*/
-  border-bottom: 5rpx solid #FFE200;
+  border-bottom: 5rpx solid #AB00FF;
 }
 .order-status-item .item .wrap{
   padding-top: 20rpx;
@@ -95,14 +95,15 @@
 
 
 .cancel-btn, .confirm-btn{
-  width:216rpx;
+  width:176rpx;
   line-height:72rpx;
-  background: #FFE200;
+  background: #AB00FF;
   float:right;
-  border-radius:0;
+  /* border-radius:0; */
   text-align:center;
   position:relative;
   z-index:5;
+  color: #fff;
 }
 .cancel-btn{
   color:#999;

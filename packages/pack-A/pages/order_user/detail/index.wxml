@@ -32,7 +32,7 @@
   <view class='color-999999 f-24'>
     <view class='overflow'>
       <view class='pull-left'>订单号：<text class='m-l-20'>{{order.order_no}}</text></view>
-      <view class='pull-right color-ffe200 f-28' data-content="{{order.order_no}}" catch:tap="copyTxt">复制</view>
+      <view class='pull-right c-AB00FF f-28' data-content="{{order.order_no}}" catch:tap="copyTxt">复制</view>
     </view>
     
     <view class='m-t-20' wx:if='{{order.merchant_confirm_time}}'>创建时间：<text class='m-l-20'>{{order.merchant_confirm_time}}</text></view>
@@ -48,7 +48,7 @@
     </view>
     <view class='overflow m-t-20' wx:if="{{order.express_no&&order.express_no!=''}}">
       <view class='pull-left'>物流单号：<text class='m-l-20'>{{order.express_no}}</text></view>
-      <view class='pull-right color-ffe200 f-28' data-content="{{order.express_no}}" catch:tap="copyTxt">复制</view>
+      <view class='pull-right c-AB00FF f-28' data-content="{{order.express_no}}" catch:tap="copyTxt">复制</view>
     </view>
     <view class='overflow m-t-20' wx:if="{{order.status != 1&&order.status != 2&&order.verify_no&&order.express_no==''}}">
       <view class='pull-left'>消费条码：<text class='m-l-20'>{{order.verify_no}}</text></view>
@@ -125,7 +125,7 @@
     <view class='hx_dizhi'>
       <view class="name">{{order.store.nickname}}</view>
       <view class="dizhi">{{order.store.m_prov + order.store.m_city + order.store.m_dist + order.store.m_street}}</view>
-      <view class="copy color-ffe200" data-content="{{order.store.m_prov + order.store.m_city + order.store.m_dist + order.store.m_street}}" catch:tap="capy">复制</view>
+      <view class="copy c-AB00FF" data-content="{{order.store.m_prov + order.store.m_city + order.store.m_dist + order.store.m_street}}" catch:tap="capy">复制</view>
     </view>
   </view>
 
@@ -198,7 +198,7 @@
 <view class="flex--c z100 link-box {{showlink==0?'slidown_none':''}} {{showlink==1 ?'sliup_1': ''}} {{showlink==2 ?'slidown_1': ''}}">
   <view class="link-wrap border-b">
     <view class="link-tit">微信号： {{userInfo.wechat}}</view>
-    <view class="link-num" data-content="{{userInfo.wechat}}" catch:tap="capy">复制</view>
+    <view class="link-num c-AB00FF" data-content="{{userInfo.wechat}}" catch:tap="capy">复制</view>
   </view>
   <view class="link-wrap border-b">
     <view class="link-tit">手机号：{{userInfo.mobile}}</view>

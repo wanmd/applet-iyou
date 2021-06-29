@@ -85,7 +85,7 @@
                                     ￥<text class='f-24 td-l c-BFBFBF'>￥{{item.group_price}}</text>
                                 </view>
                                 <view catchtap="showGoodsPopup" data-goods_id='{{item.id}}'>
-                                <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
+                                    <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                                 </view>
                             </view>
                         </block>
@@ -145,11 +145,17 @@
                                         <text class="c-AB00FF mr-8">￥ {{chat.agent_price}}</text>
                                         <text class="c-000 td-l">￥ {{chat.group_price}}</text>
                                     </view>
+                                    <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
+                                        <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
+                                    </view>
                                 </view>
                                 <view class='a' wx:elif="{{!isAgent && isVip}}">
                                     <view class='price1 d-f ai-c'>
                                         <text class="c-000 fz-32">￥ {{chat.member_price}}</text>
                                         <text class="c-A5A5A5 fz-24 td-l">￥ {{chat.group_price}}</text>
+                                    </view>
+                                    <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
+                                        <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                                     </view>
                                 </view>
                                 <view class='a' wx:else>
@@ -158,7 +164,11 @@
                                         <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>
                                         <text>￥ {{chat.member_price}}</text>
                                     </view>
+                                    <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
+                                        <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
+                                    </view>
                                 </view>
+                                
                             </navigator>
                             <!-- <el-image wx:if="{{!isSelf}}" class='delete' src='ic_del_g.png' data-index='{{index}}' data-i='{{i}}' catchtap='deleteChat'></el-image> -->
                         </view>

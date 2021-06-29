@@ -198,6 +198,9 @@ Page({
   },
   onUnload () {
     clearTimeout(numberInter)
+  },
+  selfPay() {
+    
   }
 
 })

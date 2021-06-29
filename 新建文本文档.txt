@@ -8,3 +8,7 @@
 
 2、http://dev.kingwish.com.cn/api/iy/chat/record?store_id=903450&type=2&lastPk=0&page=1&pageSize=20
 产品图集要支持关键词查询
+
+3.首页商品，没有返回分享能赚多少钱
+
+4.分类列表的一系列接口

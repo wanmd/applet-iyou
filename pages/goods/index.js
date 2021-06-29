@@ -164,7 +164,7 @@ wx.Page({
     }, { id: chatId}).showLoading()
   },
   addVisitGoods(chatId){
-    request.post('user/addVisitGoods', res => {
+    request.post('iy/user/addVisitGoods', res => {
       if(res.success){
         console.log(res.success)
       }else{
@@ -177,7 +177,7 @@ wx.Page({
     let userId = app.globalData.userInfo.user_id
     if (sharer != userId) {
       //不是自己分享出去的
-      request.post('chat/grabShareAmount', res => {
+      request.post('iy/chat/grabShareAmount', res => {
 
       }, { chatId: this.data.chatId, sharer: sharer})
     }

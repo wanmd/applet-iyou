@@ -180,6 +180,9 @@
 .ml-12 {
   margin-left: 12rpx;
 }
+.ml-16 {
+  margin-left: 16rpx;
+}
 .ml-17 {
   margin-left: 17rpx;
 }
@@ -1296,6 +1299,9 @@
 .c-FF00EE {
   color:#FF00EE;
 }
+.c-A4A4A4 {
+  color:#A4A4A4;
+}
 .c-A5A5A5 {
   color:#A5A5A5;
 }
@@ -1443,12 +1449,16 @@
 .bdrs-22 {
   border-radius: 22rpx;
 }
-.bdrs-40 {
-  border-radius: 40rpx;
-}
 .bdrs-30 {
   border-radius: 30rpx;
 }
+.bdrs-32 {
+  border-radius: 32rpx;
+}
+.bdrs-40 {
+  border-radius: 40rpx;
+}
+
 .bdrs-44 {
   border-radius: 44rpx;
 }

@@ -23,7 +23,7 @@ Page({
   },
   deleteAPI (id){
     let that = this;
-    request.post('deliveryaddress/delete', res => {
+    request.post('iy/deliveryaddress/delete', res => {
       if (res.success) {
         request.setMany(true);
         that.getAddress();
@@ -51,7 +51,7 @@ Page({
       })
   },
   getAddress () {
-    request.get('deliveryaddress', res => {
+    request.get('iy/deliveryaddress', res => {
       if (res.success) {
         let address = res.data.address
         if (address.length > 0) {

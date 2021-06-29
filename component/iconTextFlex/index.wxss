@@ -1,7 +1,9 @@
 .component{
-  display: flex;
-  justify-content: center;
-  align-items: center
+  /* display: flex; */
+  /* justify-content: center;
+  align-items: center; */
+  /* display: inline-block; */
+  text-align: center;
 }
 .icon.left{
   position:absolute;

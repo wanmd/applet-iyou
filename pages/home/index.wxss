@@ -423,7 +423,7 @@ page {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: space-between;
     margin-top: 20rpx;
     position: relative;
     width: 100%;
@@ -440,7 +440,7 @@ page {
     color: rgba(140, 139, 139, 1);
     line-height: 20rpx;
     margin-bottom: 8rpx;
-    width: 100%;
+    /* width: 100%; */
 }
 
 .date-block .a .price1 text {

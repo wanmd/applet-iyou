@@ -45,7 +45,7 @@ wx.Page({
     },
     getList(showLoading) {
         if (showLoading) wx._showLoading();
-        this.get('/cart').then(res => {
+        this.get('iy/cart').then(res => {
             if (showLoading) wx._hideLoading();
             let cartList = res.data.list;
             let goodsCount = 0;
@@ -61,7 +61,7 @@ wx.Page({
                             item.agent_price = Number(item.agent_price).toFixed(2);
                             item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : maskNumber(Number(item.agent_price).toFixed(2));
                             let display = ''
-                            let product_specs =JSON.parse(item.product_specs);
+                            let product_specs = item.product_specs && JSON.parse(item.product_specs);
                             for (let key in product_specs) {
                                 display +=  key + ':' + product_specs[key] + ';'
                             }
@@ -381,7 +381,7 @@ wx.Page({
             wx.showToast({ title: '请选择要删除的商品', icon: 'none' });
             return;
         }
-        this.post('/cart/delete', { cartIds: this.data.ids }).then(res => {
+        this.post('iy/cart/delete', { cartIds: this.data.ids }).then(res => {
             if (res.success) {
                 wx._showToast('删除成功');
                 this.getList(false);
@@ -495,7 +495,7 @@ wx.Page({
     changeCart(q, id, remark) {
         wx.showToast({ title: '处理中', icon: 'none' });
         if (this.data.currentType == 1) {
-            this.post('cart/change', { id: id, quantity: q, remark: remark }).then(res => {
+            this.post('iy/cart/change', { id: id, quantity: q, remark: remark }).then(res => {
                 if (res.success) {
                     toast("修改成功");
                 } else {
@@ -525,7 +525,7 @@ wx.Page({
         ret[pindex].cart[cindex].remark = remark;
         this.setData({ cartList: ret });
         let quantity = goods.quantity;
-        this.post('/cart/change', { id: id, remark: remark, quantity: quantity }).then(res => {
+        this.post('iy/cart/change', { id: id, remark: remark, quantity: quantity }).then(res => {
             if (res.success) {} else {
                 toast(res.msg);
             }

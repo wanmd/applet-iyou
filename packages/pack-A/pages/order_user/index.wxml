@@ -6,7 +6,7 @@
   <view class='order-status-item'>
     <view class='item {{query.status == 5 ? "current" : ""}}' data-status='5' bindtap='selectToggle'>
       <view class='wrap'>
-        <icon-text-flex class='item-icon' width="100rpx" icon='user/quanbu1@2x.png'>
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/quanbu1@2x.png'>
         </icon-text-flex>
         <!-- <el-image class='icon' src='user/quanbu1@2x.png' mode='widthFix'></el-image> -->
         <view class='text'>全部</view>
@@ -16,7 +16,7 @@
       <view class='wrap'>
         <!-- <view class='number-notify' wx:if='{{number1 > 0}}'>{{number1}}</view> -->
         <!-- <el-image class='icon' src='user/my-order1@2x.png' mode='widthFix'></el-image> -->
-        <icon-text-flex class='item-icon' width="100rpx" icon='user/my-order1@2x.png'>
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order1@2x.png'>
           <view class="red-number" wx:if="{{orderCount.waitPayNum>0}}">{{orderCount.waitPayNum > 99 ? '99+' : orderCount.waitPayNum}}</view>
         </icon-text-flex>
         <view class='text'>待付款</view>
@@ -25,7 +25,16 @@
     <view class='item {{query.status == 2 ? "current" : ""}}' data-status='2' bindtap='selectToggle'>
       <view class='wrap'>
         <!-- <el-image class='icon' src='user/my-order2@2x.png' mode='widthFix'></el-image> -->
-        <icon-text-flex class='item-icon' width="100rpx" icon='user/my-order2@2x.png'>
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order6@2x.png'>
+          <view class="red-number" wx:if="{{orderCount.waitSendNum>0}}">{{orderCount.waitSendNum > 99 ? '99+' : orderCount.waitSendNum}}</view>
+        </icon-text-flex>
+        <view class='text'>待成团</view>
+      </view>
+    </view>
+    <view class='item {{query.status == 2 ? "current" : ""}}' data-status='2' bindtap='selectToggle'>
+      <view class='wrap'>
+        <!-- <el-image class='icon' src='user/my-order2@2x.png' mode='widthFix'></el-image> -->
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order2@2x.png'>
           <view class="red-number" wx:if="{{orderCount.waitSendNum>0}}">{{orderCount.waitSendNum > 99 ? '99+' : orderCount.waitSendNum}}</view>
         </icon-text-flex>
         <view class='text'>待发货</view>
@@ -34,7 +43,7 @@
     <view class='item {{query.status == 3 ? "current" : ""}}' data-status='3' bindtap='selectToggle'>
       <view class='wrap'>
         <!-- <el-image class='icon' src='user/my-order3@2x.png' mode='widthFix'></el-image> -->
-        <icon-text-flex class='item-icon' width="100rpx" icon='user/my-order3@2x.png'>
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order3@2x.png'>
           <view class="red-number" wx:if="{{orderCount.waitReceiveNum>0}}">{{orderCount.waitReceiveNum > 99 ? '99+' : orderCount.waitReceiveNum}}</view>
         </icon-text-flex>
         <view class='text'>待收货</view>
@@ -42,7 +51,7 @@
     </view>
     <view class='item {{query.status == 4 ? "current" : ""}}' data-status='4' bindtap='selectToggle'>
       <view class='wrap'>
-        <icon-text-flex class='item-icon' width="100rpx" icon='user/my-order4@2x.png'>
+        <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order4@2x.png'>
         </icon-text-flex>
         <view class='text'>已完成</view>
       </view>
@@ -60,11 +69,12 @@
         <view class='wrap'>
           <view class='overflow'>
             <text class='pull-left'>共 {{item.quantity}} 件，合计：</text>
-            <text class='pull-right color-f9bb69'>￥<text class='f-36'>{{item.amount}}</text></text>
+            <text class='pull-right c-AB00FF'>￥<text class='f-36'>{{item.amount}}</text></text>
           </view>
           <view class='overflow m-t-30' wx:if='{{item.status == 0 || item.status == 1 || item.status == 3}}'>
-            <navigator wx:if='{{item.status == 1}}' class='confirm-btn m-l-20' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">确定</navigator>
-            <button hover-class="none" class='cancel-btn' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
+            <navigator wx:if='{{item.status == 1}}' class='confirm-btn ml-16 bdrs-32' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">立即付款</navigator>
+            <button hover-class="none" class='confirm-btn ml-16 bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='selfPay'>自助付款</button>
+            <button hover-class="none" class='cancel-btn bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
             <!-- <button hover-class="none" wx:if='{{ item.status == 3}}' data-index='{{index}}' bindtap='confirmComplete' class='confirm-btn'>确认收货</button> -->
           </view>
         </view>

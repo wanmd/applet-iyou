@@ -123,7 +123,7 @@ Page({
       userInfo: userInfo
     })
     request.setMany(true)
-    request.get('delivery/address', res => {
+    request.get('iy/delivery/address', res => {
       if(res.success){
         this.setData({address : res.data.address})
       }

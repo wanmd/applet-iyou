@@ -520,8 +520,8 @@ page {
 }
 
 .user-box .btn1 {
-    border: 1rpx solid #FFBFBF;
-    color: #FFBFBF;
+    border: 1rpx solid #FF0000;
+    color: #FF0000;
     margin-right: 30rpx;
     height: 42rpx;
 }
