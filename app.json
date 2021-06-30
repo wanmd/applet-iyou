@@ -3,6 +3,7 @@
     "pages/home/index",
     "pages/index/index",
     "pages/dynamics/index",
+    "pages/shopGoodsList/index",
     "pages/chatRecord/index",
     "pages/bargainManage/index",
     "pages/goods/index",
@@ -94,7 +95,6 @@
         "pages/user/userManageMent/index",
         "pages/user/setFreight/index",
         "pages/goodsRemark/index",
-        "pages/shopGoodsList/index",
         "pages/user/setQrCode/index"
       ]
     },
@@ -133,7 +133,7 @@
       {
         "iconPath": "./assets/images/tabbar/ic_tab_cate@3x.png",
         "selectedIconPath": "./assets/images/tabbar/ic_tab_cate_act@3x.png",
-        "pagePath": "pages/dynamics/index",
+        "pagePath": "pages/shopGoodsList/index",
         "text": "分类"
       },
       {

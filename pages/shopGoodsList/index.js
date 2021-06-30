@@ -1,5 +1,4 @@
-// packages/pack-A/pages/shopGoodsList/index.js
-import { Request, toast } from '../../../../utils/util.js'
+import { Request, toast } from '../../utils/util.js'
 let request = new Request()
 
 Page({
@@ -12,16 +11,16 @@ Page({
     loading: false,
     allCategoryMenu: false, // 是否展开所有二级分类
     current: 1, // 顶部导航activeIndex
-    sidebarId: 1,
+    sidebarId: null,
     // 左侧一级分类列表
     sidebarData: [],
     // 二级分类列表
     commodityList: [],
     // 搜索关键字
     goodsName: '',
-		goodsList: new Array(20),
+		goodsList: [],
 		cartGoodsQuantity: '0',
-		currentTab: 0,
+		currentTab: null,
 		navScrollLeft: 0,
 		page: 1,
 		pageSize: 10,
@@ -76,7 +75,8 @@ Page({
   },
 
   initData() {
-    request.get('category/trees', res => {
+    request.setMany(true);
+    request.get('iy/productcategories', res => {
       if(res.success){
         console.log(res);
         let { list } = res.data;
@@ -90,9 +90,10 @@ Page({
         console.log(commodityList);
         this.setData({ 
           sidebarData : list,
-          sidebarId,
+          // sidebarId,
           commodityList,
         })
+        this.getGoodsList()
         console.log(this.data.commodityList);
       }
     }, {parentid: 0})
@@ -115,6 +116,7 @@ Page({
 
   //选择分类
 	async sidebarClick(e) {
+    console.log(e);
 		const query = e.currentTarget ? e.currentTarget.dataset['id'] : e;
 		if (query === this.data.sidebarId) return
     const { sidebarData } = this.data;
@@ -129,24 +131,8 @@ Page({
       loading: true, 
       commodityList: sidebarData.filter(item => item.id == query)[0].son
     })
-    this.setData({
-      loading: false
-    })
-		// const commodityList = await getAllCategoryList({ categoryId: query });
-		// console.log(commodityList)
-		// if (commodityList.data.length == 0) {
-		// 	let noCategory = await getCommunityGoodsList({ categoryId: query });
-		// 	noCategory.records.forEach(e => {
-		// 		e.tagList = e.tagList.slice(0, 2)
-		// 	})
-		// 	this.setData({ goodsList: noCategory.records, loading: false, currentTab: 0 })
-		// } else {
-		// 	let myCommodityList = commodityList.data
-		// 	myCommodityList = [...[{ categoryName: '全部', id: query }], ...myCommodityList]
-		// 	this.setData({ commodityList: myCommodityList, loading: false, currentTab: 0 })
-		// 	this.getGoodsList()
-
-		// }
+   
+    this.getGoodsList(query)
   },
   
   //展开所有分类
@@ -158,6 +144,7 @@ Page({
   
   //切换分类
 	async switchNav(event) {
+    const { id } = event.currentTarget.dataset;
 		//console.log(event)
 		var cur = event.currentTarget.dataset.current;
 		//每个tab选项宽度占1/5
@@ -177,7 +164,7 @@ Page({
 				hasNextPage: true,
 				page: 1,
 			})
-			// this.getGoodsList()
+			this.getGoodsList(id)
 		}
   },
 
@@ -196,9 +183,9 @@ Page({
   },
 
   
-  async getGoodsList() {
+  getGoodsList(query) {
 		let cIdx = this.data.currentTab
-		let categoryId = this.data.commodityList[cIdx].id
+		let categoryId = query || null
 		//console.log(categoryId)
 		let page = this.data.page
 		let pageSize = this.data.pageSize
@@ -216,35 +203,24 @@ Page({
 		// wx.showLoading({ mask: 'true', title: '加载中.....' })
 		this.setData({
 			loading: true
-		})
-
-		let goodsList = await getCommunityGoodsList(dataInfo);
-		//console.log(goodsList)
-
-		if (goodsList.records != undefined) {
-			//console.log(goodsListVal)
-			//console.log(goodsList.records)
-			goodsList.records.forEach(e => {
-				e.tagList = e.tagList.slice(0, 2)
-			})
-			goodsListVal = [...goodsListVal, ...goodsList.records]
-			setTimeout(() => {
-				this.setData({
-					goodsList: goodsListVal,
-					hasNextPage: goodsList.hasNextPage,
-					showDown: true,
-					loading: false
-				})
-			}, 500)
-
-		} else {
-			this.setData({
-				loading: false
-			})
-			wx.showToast({
-				title: 'title',
-			})
-		}
+    })
+    
+    request.get('iy/products', res => {
+      if(res.success){
+        this.setData({
+          goodsList: res.data.list.map(item => {
+            item.image_urls = item.image_urls.indexOf(',') ? item.image_urls.split(',')[0] : item.image_urls;
+            return item
+          }),
+          loading: false
+        })
+      } else {
+        this.setData({
+          loading: false
+        })
+      }
+      
+    }, {categoryid: categoryId})
 
 	},
 

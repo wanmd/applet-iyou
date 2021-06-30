@@ -111,9 +111,9 @@
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
                     <view class="input mr-30">
-                        <input data-target='goodsName'  bindinput="bindinput_" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+                        <input data-target='query2.keyword'  bindinput="bindinput_keyword" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{query2.keyword}}" bindconfirm="search2" confirm-type="search"/>
                     </view>
-                    <view class="search_btn" bindtap='search'>搜索</view>
+                    <view class="search_btn" bindtap='search2'>搜索</view>
                 </view>
             </view>
             <view class='date-block' wx:for='{{chatList}}' wx:key='index'>
@@ -184,9 +184,9 @@
                 <view class="search_wrap jc-sb">
                     <view class="d-f ai-c">
                         <view class="input">
-                            <input data-target='goodsName'  bindinput="bindinput_" placeholder="请输入产品关键词" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+                            <input data-target='query3.keyword'  bindinput="bindinput_keyword" placeholder="请输入产品关键词" placeholder-style="color: #d8d8d8;" value="{{query3.keyword}}" bindconfirm="search3" confirm-type="search"/>
                         </view>
-                        <view class="search_btn" bindtap='search'>搜索</view>
+                        <view class="search_btn" bindtap='search3'>搜索</view>
                     </view>
                     <view bindtap="handleChangeShowType"><image class="w-46 h-48" src="../../assets/images/index/changeView@2x.png" /></view>
                 </view>
@@ -233,12 +233,18 @@
                             </view>
                         </view>
                         <!-- 报价 -->
+                        <!-- 一般用户 会员 代理用户显示区别：
+                            1一般用户不可见
+                            2会员展示 公开报价+划线拼单价
+                            3此商家代理显示代理价+划线拼单价 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
-                            <view>
-                                <view wx:if="{{}}">
-                                    <text></text>
-                                    <text></text>
-                                </view>
+                            <view wx:if="{{item.isAgent}}">
+                                <text class="">{{item.product.agent_price}}</text>
+                                <text class="td-l">{{item.product.group_price}}</text>
+                            </view>
+                            <view wx:if="{{!item.isAgent && userInfo.isVip}}">
+                                <text class="">{{item.product.member_price}}</text>
+                                <text class="td-l">{{item.product.group_price}}</text>
                             </view>
                         </view>
                         <!-- 操作 -->
@@ -260,9 +266,9 @@
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
                     <view class="input mr-30">
-                        <input data-target='goodsName'  bindinput="bindinput_" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+                        <input data-target='query4.keyword'  bindinput="bindinput_keyword" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{query4.keyword}}" bindconfirm="search4" confirm-type="search"/>
                     </view>
-                    <view class="search_btn" bindtap='search'>搜索</view>
+                    <view class="search_btn" bindtap='search4'>搜索</view>
                 </view>
             </view>
             <view class='body'>

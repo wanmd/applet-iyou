@@ -15,6 +15,7 @@ wx.Page({
         goodsName: '',
         query: { category: 0, goodsName: '' },
         query2: {
+            keyword: "",
             store_id: '',
         },
         query3: {
@@ -24,6 +25,7 @@ wx.Page({
         },
         query4: {
             store_id: '',
+            keyword: "",
             type: 2
         },
         user: {},
@@ -386,11 +388,13 @@ wx.Page({
         update[target] = e.detail.value
         this.setData(update)
     },
-    search3() {
-        let query3 = this.data.query3;
-        query3.keyword = this.data.quoteListKeyword;
-        this.setData({ query3: query3, offerList: [] })
-        this.selectComponent('#pagination3').initLoad()
+    bindinput_keyword(e) {
+        let target = e.currentTarget.dataset.target
+        console.log(target);
+        let update = {}
+        update[target] = e.detail.value
+        this.setData(update)
+        console.log(this.data.query2);
     },
     copyName(e) {
         var val = e.currentTarget.dataset.copy_name;
@@ -701,16 +705,29 @@ wx.Page({
             // this.selectComponent('#pagination').initLoad()
         })
     },
-    // bindinput_(e) {
-    //     let val = e.detail.value;
-    //     this.setData({ goodsName: val })
-    // },
     search() {
         let query = this.data.query
         query.goodsName = this.data.goodsName;
         this.setData({ query: query })
         let pagination = this.selectComponent('#pagination');
         pagination.initLoad()
+    },
+    search2() {
+        let query2 = this.data.query2
+        this.setData({ query2: query2, chatList: [] })
+        let pagination2 = this.selectComponent('#pagination2');
+        pagination2.initLoad()
+    },
+    search3() {
+        let query3 = this.data.query3;
+        this.setData({ query3: query3, offerList: [] })
+        this.selectComponent('#pagination3').initLoad()
+    },
+    search4() {
+        let query4 = this.data.query4
+        query4.goodsName = this.data.goodsName;
+        this.setData({ query4: query4, picture2: [] })
+        this.selectComponent('#pagination4').initLoad()
     },
     isToLogin() {
         let userInfo = wx._getStorageSync('userinfo')

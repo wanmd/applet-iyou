@@ -1,4 +1,3 @@
-/* packages/pack-A/pages/shopGoodsList/index.wxss */
 page {
   --tab-active-text-color: #ff6c1e;
   font-size: 24rpx;
@@ -14,7 +13,7 @@ page {
 }
 .sidebar-click text{
   font-size: 28rpx !important;
-  color: #FFE200;
+  color: #AB00FF;
   /* font-weight: 600 !important; */
 }
 .sidebar-click:before {
@@ -22,7 +21,7 @@ page {
   display: block;
   width: 12rpx;
   height: 100rpx;
-  background: #FFE200;
+  background: #AB00FF;
   position: absolute;
   left: 0rpx;
   /* top: calc(50% - 16rpx); */
@@ -91,9 +90,9 @@ page {
 }
 
 .nav-item.active {
-  border: 1px solid #FFE200;
-  color: #333333;
-  background: rgba(255, 226, 0, 0.18);
+  border: 1px solid #AB00FF;
+  color: #AB00FF;
+  background: rgba(171, 0, 255, 0.08);
 }
 
 .tab-box {
@@ -291,8 +290,9 @@ page {
   content: '';
   width: 124rpx;
   height: 6rpx;
-  background-color: #FFE200; */
-  border-bottom: 6rpx solid #FFE200;
+  background-color: #AB00FF; */
+  color: #AB00FF;
+  border-bottom: 6rpx solid #AB00FF;
 }
 .current2 {
   position: absolute;
@@ -301,7 +301,7 @@ page {
   content: '';
   width: 180rpx;
   height: 6rpx;
-  background-color: #FFE200;
+  background-color: #AB00FF;
 }
 
 .search_wrap {
@@ -370,14 +370,15 @@ page {
 }
 .goodsBox {
   margin-bottom: 20rpx;
+  overflow: hidden;
 }
 .tagListBox {
   height: 32rpx;
-  border: 2rpx solid #FFE200;
+  border: 2rpx solid #AB00FF;
   border-radius: 22rpx;
   font-size: 16rpx;
   line-height: 22rpx;
-  color: #FFE200;
+  color: #AB00FF;
   margin-right: 28rpx;
   margin-bottom: 10rpx;
   padding: 4rpx 16rpx;
@@ -389,10 +390,10 @@ page {
   width: 208rpx;
   height: 68rpx;
   background: rgba(255, 255, 255, 0.08);
-  border: 2rpx solid #FFE200;
+  border: 2rpx solid #AB00FF;
   border-radius: 42rpx;
   font-size: 24rpx;
   line-height: 32rpx;
-  color: #0B0B0B;
+  color: #AB00FF;
   margin-bottom: 40rpx;
 }

@@ -714,6 +714,12 @@
           "pathName": "pages/store/index",
           "query": "storeId=903450&type=4",
           "scene": null
+        },
+        {
+          "name": "分类商品",
+          "pathName": "pages/shopGoodsList/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
