@@ -78,7 +78,6 @@ Page({
     request.setMany(true);
     request.get('iy/productcategories', res => {
       if(res.success){
-        console.log(res);
         let { list } = res.data;
         let sidebarId = list.length > 0 ? list[0].id : null;
         let commodityList = [];
@@ -90,11 +89,11 @@ Page({
         console.log(commodityList);
         this.setData({ 
           sidebarData : list,
-          // sidebarId,
+          sidebarId,
+          currentTab: 0,
           commodityList,
         })
-        this.getGoodsList()
-        console.log(this.data.commodityList);
+        this.getGoodsList(commodityList[0] ? commodityList[0].id : null)
       }
     }, {parentid: 0})
   },
@@ -120,19 +119,20 @@ Page({
 		const query = e.currentTarget ? e.currentTarget.dataset['id'] : e;
 		if (query === this.data.sidebarId) return
     const { sidebarData } = this.data;
+    const commodityList = sidebarData.filter(item => item.id == query)[0].son;
     
 		this.setData({ 
       sidebarId: query, 
-      currentTab: null,
+      currentTab: 0,
       page: 1, 
       goodsList: [], 
       navScrollLeft: 0, 
       hasNextPage: true, 
       loading: true, 
-      commodityList: sidebarData.filter(item => item.id == query)[0].son
+      commodityList
     })
    
-    this.getGoodsList(query)
+    this.getGoodsList(commodityList.length ? commodityList[0].id : null)
   },
   
   //展开所有分类

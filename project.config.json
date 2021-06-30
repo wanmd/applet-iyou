@@ -23,19 +23,19 @@
     "compileHotReLoad": false,
     "useMultiFrameRuntime": true,
     "useApiHook": true,
-    "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "useIsolateContext": false,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "useApiHostProcess": false,
+    "enableEngineNative": false,
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -750,6 +750,13 @@
           "id": -1,
           "name": "商家报价单设置",
           "pathName": "pages/merchant/storeBackground/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "分类商品",
+          "pathName": "pages/shopGoodsList/index",
           "query": "",
           "scene": null
         }

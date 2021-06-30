@@ -453,7 +453,10 @@ wx.Page({
         let req = new Request()
         req.setConfig('responseType', 'arraybuffer')
         req.get('qr/store', res => {
-            this.toggleShowShareModal()
+            this.setData({
+                showSelectShareType: 0,
+                shareModal: 0
+            })
             let qrcode = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
             this.setData({ storeQr: qrcode, showQr: true })
             wx.nextTick(() => {
