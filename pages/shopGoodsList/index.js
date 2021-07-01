@@ -192,8 +192,11 @@ Page({
 		let goodsListVal = this.data.goodsList
 		let hasNextPage = this.data.hasNextPage
 		let dataInfo = {
-			categoryId: categoryId,
-			page: page,
+      categoryid: categoryId,
+      storeId: 903449,
+      keyword: '',
+      lastPk: 0
+,			page: page,
 			pageSize: pageSize
 		}
 		if (!hasNextPage) {
@@ -220,7 +223,7 @@ Page({
         })
       }
       
-    }, {categoryid: categoryId})
+    }, dataInfo)
 
 	},
 

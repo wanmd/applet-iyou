@@ -86,7 +86,7 @@
           <view class="mt-10">
             <block wx:for="{{goodsList}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx">
               <view class="d-f goodsBox" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
-                <view class="goodsImg w-180 h-180 mr-16">
+                <view class="goodsImg d-f w-180 h-180 mr-16">
                   <img style="width:180rpx;height:180rpx" src="{{tabItem.image_urls || '../../assets/images/default-jj.png'}}"></img>
                 </view>
                 <view class="d-f fxd-c jc-sb">
