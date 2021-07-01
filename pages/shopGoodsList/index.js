@@ -90,10 +90,10 @@ Page({
         this.setData({ 
           sidebarData : list,
           sidebarId,
-          currentTab: 0,
+          // currentTab: 0,
           commodityList,
         })
-        this.getGoodsList(commodityList[0] ? commodityList[0].id : null)
+        this.getGoodsList(sidebarId)
       }
     }, {parentid: 0})
   },
@@ -123,7 +123,7 @@ Page({
     
 		this.setData({ 
       sidebarId: query, 
-      currentTab: 0,
+      // currentTab: 0,
       page: 1, 
       goodsList: [], 
       navScrollLeft: 0, 
@@ -132,7 +132,7 @@ Page({
       commodityList
     })
    
-    this.getGoodsList(commodityList.length ? commodityList[0].id : null)
+    this.getGoodsList(query)
   },
   
   //展开所有分类

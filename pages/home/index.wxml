@@ -142,8 +142,8 @@
                                 2.3此商家代理显示代理价+划线拼单价，按照代理价结算； -->
                                 <view class='a' wx:if='{{isAgent == 1}}'>
                                     <view class='price1'>
-                                        <text class="c-AB00FF mr-8">￥ {{chat.agent_price}}</text>
-                                        <text class="c-000 td-l">￥ {{chat.group_price}}</text>
+                                        <text class="c-AB00FF mr-8 fz-32">￥ {{chat.agent_price}}</text>
+                                        <text class="c-000 fz-24 td-l">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -151,7 +151,7 @@
                                 </view>
                                 <view class='a' wx:elif="{{!isAgent && isVip}}">
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-000 fz-32">￥ {{chat.member_price}}</text>
+                                        <text class="c-ECBD75 fz-32">￥ {{chat.member_price}}</text>
                                         <text class="c-A5A5A5 fz-24 td-l">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
@@ -160,9 +160,9 @@
                                 </view>
                                 <view class='a' wx:else>
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-000">￥ {{chat.group_price}}</text>
+                                        <text class="c-000 fz-32">￥ {{chat.group_price}}</text>
                                         <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>
-                                        <text>￥ {{chat.member_price}}</text>
+                                        <text class="c-ECBD75 fz-24">￥ {{chat.member_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -263,7 +263,7 @@
     </view>
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==4}}'>
         <pagination id='pagination4' url='iy/chat/record' query='{{query4}}' pkName='chat_id' bind:load='load2'>
-            <view class="search_wrap jc-sb">
+            <view class="search_wrap jc-sb mb-20">
                 <view class="d-f ai-c">
                     <view class="input mr-30">
                         <input data-target='query4.keyword'  bindinput="bindinput_keyword" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{query4.keyword}}" bindconfirm="search4" confirm-type="search"/>
