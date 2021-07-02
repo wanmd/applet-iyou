@@ -95,10 +95,11 @@
           <view class="d-f jc-sb ai-c">
             <view class="d-f fxd-c mr-14 ai-fe">
               <view class="fz-24 c-333 mb-8">还差{{groupList.length}}人拼单</view>
-              <!-- <view class="fz-24 c-333">剩余23：59：59.9</view> -->
-              <timer wx:if="{{groupList.length}}" time="{{item.difftime}}" color="#333333" />
+              <view class="fz-24 c-333">
+                剩余<timer wx:if="{{groupList.length}}" time="{{item.difftime}}" color="#333333" />
+              </view>
             </view>
-            <view class="groupItemBtn" data-item="{{item.item}}" bindtap="handleRaiseGoup">跟TA拼单</view>
+            <view class="groupItemBtn" data-item="{{item}}" bindtap="handleShowRaiseGoupModal">跟TA拼单</view>
           </view>
         </view>
       </view>
@@ -214,9 +215,12 @@
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">¥{{chat.vip_price}}</view>
             <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">会员购买</view>
           </btn> -->
-          <!-- 一般用户 一件代发(会员价) + 代理拿货(代理价) 
-            会员用户 一件代发(会员价) + 代理拿货(代理价) 
-            代理用户 一件代发(代理价) + 代理拿货(代理价) -->
+          <!-- 1用户价格显示区别：
+            一般用户默认显示：单独购买+拼单购买
+
+            会员用户显示：单独购买+会员价购买
+
+            此商家代理显示：单独购买+代理拿货价 -->
           <btn 
             data-type="cart"
             bindtap='handleShowPop'
@@ -411,17 +415,17 @@
       参与平台用户发起的拼单
       <el-image class='close middle' src='close.png' catchtap='toggleShowGroupModal'></el-image>
     </view>
-    <view class="d-f jc-c fz-24 c-3A3A3A mt-12 mb-56">仅限一个名额，23：59：59.9后结束</view>
+    <view class="d-f jc-c fz-24 c-3A3A3A mt-12 mb-56">仅限一个名额<timer wx:if="{{currentGroup.difftime}}" time="{{currentGroup.difftime}}" color="#333333" />后结束</view>
     <view class="groupsWrap pl-146 pr-146">
       <view class="d-f jc-sb ai-c">
         <view class="w-100rpx h-100rpx mr-46 bdrs-50p ov-h">
-            <image src="/assets/images/sad.png" class="w-100rpx h-100rpx" />
+            <image src="{{currentGroup.avatar}}" class="w-100rpx h-100rpx" />
         </view>
         <view class="w-64 h-58 mr-46 bdrs-50p ov-h">
             <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
         </view>
         <view class="w-100rpx h-100rpx bdrs-50p ov-h">
-            <image src="/assets/images/sad.png" class="w-100rpx h-100rpx" />
+            <image src="{{userInfo.avatar}}" class="w-100rpx h-100rpx" />
         </view>
       </view>
     </view>

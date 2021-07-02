@@ -197,7 +197,7 @@ wx.Page({
   },
   getShareChatDetail(){
     let sharer = parseInt(this.data.sharer || 0)
-    let userId = app.globalData.userInfo.user_id
+    let userId = app.globalData.userInfo ? app.globalData.userInfo.user_id : null
     if (sharer != userId) {
       //不是自己分享出去的
       request.post('iy/chat/grabShareAmount', res => {
@@ -956,28 +956,28 @@ wx.Page({
       type
     })
   },
-  // 拼单列表弹窗
-  handleMoreGroup() {
-    this.setData({
-      showGroupListModal: 1
-    })
-  },
-  toggleShowGroupListModal() {
-    this.setData({
-      showGroupListModal: this.data.showGroupListModal ? 0 : 1
-    })
-  },
   // 参与拼单
-  handleRaiseGoup(e) {
-    const { id } = e.currentTarget.dataset;
+  handleShowRaiseGoupModal(e) {
+    const { item } = e.currentTarget.dataset;
     this.setData({
-      showGroupModal: 1
+      showGroupModal: 1,
+      currentGroup: item
     })
   },
   // 关闭拼单
   toggleShowGroupModal() {
     this.setData({
       showGroupModal: 0
+    })
+  },
+  handleRaiseGoup() {
+    this.toggleShowGroupModal();
+    this.handleShowPop({
+      currentTarget: {
+        dataset: {
+          type: 'group'
+        }
+      }
     })
   }
 })

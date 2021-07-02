@@ -1,10 +1,10 @@
-<view class="d-f fxd-r ai-c ">
+<text class="d-ib">
   
   <!-- <view class="d-f ai-c jc-c h-36 bdrs-4 fz-24 lh-20  {{color ? color : 'c-fff'}}">剩余{{leftd || 0}}</view> -->
-  <view class="d-f ai-c jc-c h-36 bdrs-4 fz-24 lh-20 {{color ? color : 'c-fff'}}">剩余{{lefth || 0}}</view>
-  <view class="fz-24 lh-20 mlr-4 {{speratecolor || color || 'c-8799C0' }}">:</view>
-  <view class="d-f ai-c jc-c w-32 h-36 bdrs-4 fz-24 lh-20  {{color ? color : 'c-fff'}}">{{leftm || 0}}</view>
-  <view class="fz-24 lh-20 mlr-4 {{speratecolor || color || 'c-8799C0' }}">:</view>
-  <view class="d-f ai-c jc-c w-32 h-36 bdrs-4 fz-24 lh-20  {{color ? color : 'c-fff'}}">{{lefts || 0}}</view>
-</view>
+  <text class="h-36 bdrs-4 fz-24 lh-20 {{color ? color : 'c-fff'}}">{{lefth || 0}}</text>
+  <text class="fz-24 lh-20 mlr-4 {{speratecolor || color || 'c-8799C0' }}">:</text>
+  <text class="w-32 h-36 bdrs-4 fz-24 lh-20  {{color ? color : 'c-fff'}}">{{leftm || 0}}</text>
+  <text class="fz-24 lh-20 mlr-4 {{speratecolor || color || 'c-8799C0' }}">:</text>
+  <text class="w-32 h-36 bdrs-4 fz-24 lh-20  {{color ? color : 'c-fff'}}">{{lefts || 0}}</text>
+</text>
 
