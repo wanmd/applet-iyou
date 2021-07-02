@@ -17,7 +17,7 @@ Page({
     // 二级分类列表
     commodityList: [],
     // 搜索关键字
-    goodsName: '',
+    keyword: '',
 		goodsList: [],
 		cartGoodsQuantity: '0',
 		currentTab: null,
@@ -33,7 +33,19 @@ Page({
     // nav_button_height: 0, // 胶囊按钮高度
     navHeight: 0,
     navTop: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    query1: {
+      categoryid: 0,
+      storeId: 0,
+      keyword: '',
+      lastPk: 0
+,			page: 1,
+			pageSize: 10
+    },
+    query2: {
+      storeId: 0,
+      keyword: '',
+		}
   },
 
   /**
@@ -72,6 +84,7 @@ Page({
    */
   onShow: function () {
     this.initData()
+    // this.initLabels()
   },
 
   initData() {
@@ -105,15 +118,22 @@ Page({
     })
   },
 
-  // 切换顶部
-  handleNav(e) {
+  // 切换导航
+  handleNavTab(e) {
     const { current } = e.currentTarget.dataset;
     this.setData({
-      current
+      current,
+      keyword: ''
+    }, () => {
+      if (this.data.current == 1) {
+        this.initData()
+      } else {
+        this.initLabels()
+      }
     })
   },
 
-  //选择分类
+  //选择侧边一级分类
 	async sidebarClick(e) {
     console.log(e);
 		const query = e.currentTarget ? e.currentTarget.dataset['id'] : e;
@@ -135,16 +155,17 @@ Page({
     this.getGoodsList(query)
   },
   
-  //展开所有分类
+  //展开所有二级分类
 	handleAllCategory(e) {
 		this.setData({
 			allCategoryMenu: !this.data.allCategoryMenu
 		})
   },
   
-  //切换分类
+  //切换二级分类
 	async switchNav(event) {
     const { id } = event.currentTarget.dataset;
+    const { sidebarId } = this.data;
 		//console.log(event)
 		var cur = event.currentTarget.dataset.current;
 		//每个tab选项宽度占1/5
@@ -155,7 +176,14 @@ Page({
 			navScrollLeft: ((cur - 2) * singleNavWidth) + 10
 		})
 		if (this.data.currentTab == cur) {
-			return false;
+			this.setData({
+				currentTab: null,
+				goodsList: [],
+				allCategoryMenu: false,
+				hasNextPage: true,
+				page: 1,
+			})
+			this.getGoodsList(sidebarId)
 		} else {
 			this.setData({
 				currentTab: cur,
@@ -170,35 +198,35 @@ Page({
 
   // 监听input变化
   bindinput_(e) {
-    console.log(e);
-    this.setData({
-      goodsName: e.detail.value
-    })
+    const value = e.detail.value;
+    if (this.data.current == 1) {
+      this.setData({
+        'query1.keyword': value
+      })
+    } else {
+      this.setData({
+        'query2.keyword': value
+      })
+    }
   },
 
   // 确定搜索
   search(e) {
-    const { target } = e.currentTarget.dataset;
-    console.log(target);
+    // const { target } = e.currentTarget.dataset;
+    // console.log(target);
+    if (this.data.current == 1) {
+      this.getGoodsList(this.data.query1.categoryid)
+    } else {
+      this.initLabels()
+    }
   },
 
   
   getGoodsList(query) {
-		let cIdx = this.data.currentTab
-		let categoryId = query || null
-		//console.log(categoryId)
-		let page = this.data.page
-		let pageSize = this.data.pageSize
-		let goodsListVal = this.data.goodsList
 		let hasNextPage = this.data.hasNextPage
-		let dataInfo = {
-      categoryid: categoryId,
-      storeId: 903449,
-      keyword: '',
-      lastPk: 0
-,			page: page,
-			pageSize: pageSize
-		}
+    this.setData({
+      'query1.categoryid': query || null
+    })
 		if (!hasNextPage) {
 			wx.hideLoading()
 			return
@@ -222,10 +250,26 @@ Page({
           loading: false
         })
       }
-      
-    }, dataInfo)
+    }, this.data.query1)
+  },
+  // 获取标签列表
+  initLabels() {
+    request.get('iy/labels', res => {
+      if(res.success){
+        console.log(res);
+        this.setData({
+          labelsList: [...res.data.list]
+        })
+      }
+    }, this.data.query2).showLoading()
+  },
 
-	},
+  navTo(e) {
+    const { name } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: '/pages/goodsManage/index?labelname=' + name,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面隐藏

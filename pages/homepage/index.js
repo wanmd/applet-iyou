@@ -131,7 +131,7 @@ wx.Page({
 		  return
 		}
     let followed = this.data.followed;
-    let url = followed ? 'visit/unfollow' : 'visit/follow';
+    let url = followed ? 'iy/visit/unfollow' : 'iy/visit/follow';
     request.post(
       url,
       res => {

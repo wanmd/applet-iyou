@@ -3,7 +3,7 @@
     <view class='fixed w-100' style='left:0;top:0;z-index:2;height: {{topHeight + 100}}px;background-image:url(https://img2.baidu.com/it/u=4143679663,1350814886&fm=26&fmt=auto&gp=0.jpg);background-size: cover'>
         <!-- <view bindtap="handleBack" class="backnav fz-24 bgc-fff c-929292 fixed w-96 ta-c" style='top:{{navTop}}px;line-height:{{navHeight}}rpx;border-radius: 0 20px 20px 0;'>返回</view> -->
         <view class='p-l-r relative padd_tb-10 mb-20' style="margin-top:{{topHeight}}px">
-            <avatar size='80rpx' src='{{user.avatar}}' user="{{user}}" userId='{{storeId}}'>
+            <avatar size='80rpx' src='{{user.avatar}}' user="{{user}}">
                 <view class='m-l-20 c-fff'>
                     <view class='bold'>
                         <text class="nickname ellipsis1">{{user.nickname}}</text>
@@ -45,7 +45,7 @@
                 </view>
             </view>
             <view class='goods-list' wx:if='{{goodsList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;">
-                <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none">
+                <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
                     <view class='_wrap relative'>
                         <img class='cover' mode='aspectFill' thumb="{{thumb}}" src='{{item.cover}}'></img>
                         <!-- 分享赚 -->
@@ -125,7 +125,7 @@
                     <view class='body'>
                         <img class='cover cover1' wx:if="{{chat.cover}}" ispre="true" picture="{{chat.picture}}" thumb src='{{chat.cover}}'></img>
                         <view class="flex-column">
-                            <navigator class="a" url='/pages/goods/index?chatId={{chat.chat_id}}' hover-class="none">
+                            <navigator class="a" url='/pages/goods/index?chatId={{chat.chat_id}}&productid={{item.id}}' hover-class="none">
                                 <view class='title ellipsis-2' data-type="{{chat.chat_type}}" data-chatid="{{chat.chat_id}}">
                                     {{chat.goods_name?chat.goods_name:chat.content}}
                                 </view>
@@ -274,7 +274,7 @@
             <view class='body'>
                 <view class='thumbs thumbs_l' wx:if="{{picture2.length}}">
                     <block wx:for='{{picture2}}' wx:key="index">
-                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none">
+                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
                             <img slot='content' class='thumb thumb_l' thumb src='{{item.cover}}'></img>
                             <view class="image_num">{{item.picture.length}}</view>
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">

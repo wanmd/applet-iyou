@@ -58,7 +58,7 @@ Component({
             {
                 image: '../../assets/images/iyou_user/guanzhu@2x.png',
                 text: '关注的店',
-                url: '/pages/browse/index',
+                url: '/pages/mailList/index',
             },
             {
                 image: '../../assets/images/iyou_user/liulan@2x.png',

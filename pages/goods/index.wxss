@@ -542,7 +542,7 @@ page {
 }
 .raise_groupModal {
   position: absolute;
-  top: 100rpx;
+  top: 300rpx;
   left: 50rpx;
   right: 50rpx;
   height: 516rpx;

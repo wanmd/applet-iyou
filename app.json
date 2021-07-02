@@ -169,7 +169,8 @@
     "avatar": "/component/avatar/index",
     "empty": "/component/empty/index",
     "notice": "/component/notice/index",
-    "shopCarPop": "/component/shopCarPop/index"
+    "shopCarPop": "/component/shopCarPop/index",
+    "timer": "/component/timer/index"
   },
   "permission": {
     "scope.userLocation": {

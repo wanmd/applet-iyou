@@ -1,0 +1,47 @@
+<!--pages/goodsManage/index.wxml-->
+<pagination  class='relative relative1' id='pagination' pkName='chat_id' url='iy/products' query='{{query}}' bind:load='load'>
+  <view class="relative1_box po-sr">
+      <!-- <view class="search_wrap jc-sb">
+          <view class="d-f ai-c ">
+              <view class="input mr-38">
+                  <input data-target='goodsName'  bindinput="bindinput_" placeholder="请输入您要搜索的产品或商家" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+              </view>
+              <view class="search_btn" bindtap='search'>搜索</view>
+          </view>
+      </view>
+      <view class='top-nav'>
+          <view class='toggle-item'>
+              <view wx:for='{{topNavs}}' wx:key="index" class='item {{selectedNav == item.type ? "current" : ""}}' data-type='{{item.type}}' bindtap='toggleType'>
+                  {{item.name}}
+              </view>
+          </view>
+      </view> -->
+      <view class='goods-list bgc-fff {{ goodsList.length ? "pb-50" : ""}}' wx:if='{{goodsList.length}}' style="padding-top: 0;margin-top: 46rpx;">
+          <navigator class='item mb-20 pl-32 pr-60' wx:for="{{goodsList}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none">
+            <view class="d-f goodsBox" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
+              <view class="goodsImg d-f w-180 h-180 mr-16">
+                <img style="width:180rpx;height:180rpx" src="{{tabItem.image_urls || '../../assets/images/default-jj.png'}}"></img>
+              </view>
+              <view class="d-f fxd-c jc-sb">
+                <view>
+                  <view class="c-666 fz-28 tov-e-1 mb-8 lh-46">{{tabItem.name}}</view>
+                  <view class="d-f fxw-w">
+                    <!-- <block wx:for="{{tabItem.tagList}}" wx:for-item="tagList" wx:for-index="idx" wx:key="idx">
+                      <view class="tagListBox">{{tagList}}</view>
+                    </block> -->
+                    <view class="tagListBox">{{tabItem.label_names}}</view>
+                  </view>
+                </view>
+                
+                <view class="saleBox d-f">
+                  <text class="c-000 fz-20 lh-28">￥</text><text class="c-000 fz-28 lh-32">{{tabItem.price}}</text>
+                </view>
+              </view>
+            </view>
+          </navigator>
+      </view>
+      <view wx:else class="h-100vh po-sr">
+        <empty  class='absolute xy' text='TA还没放商品呢'></empty>
+      </view>
+  </view>
+</pagination>

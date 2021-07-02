@@ -4,7 +4,12 @@ Page({
   data: {
     selectedNav : 1,
     urls: ['mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
-    topNavs: [{ type: 1, name: '关注' }, { type: 2, name: '粉丝' }, { type: 3, name: '我的代理' }, { type: 4, name: '我的商户' }],
+    topNavs: [
+      // { type: 1, name: '关注的店' }, 
+      // { type: 2, name: '粉丝' }, 
+      // { type: 3, name: '我的代理' }, 
+      // { type: 4, name: '我的商户' }
+    ],
     userList : []
   },
 

@@ -383,6 +383,9 @@ page {
   margin-bottom: 10rpx;
   padding: 4rpx 16rpx;
 }
+.content {
+  overflow-y: auto;
+}
 .tagListBox2 {
   display: flex;
   align-items: center;
@@ -396,4 +399,5 @@ page {
   line-height: 32rpx;
   color: #AB00FF;
   margin-bottom: 40rpx;
+  margin-right: 20rpx;
 }

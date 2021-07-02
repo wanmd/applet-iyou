@@ -694,7 +694,7 @@
         {
           "name": "商品详情(新)",
           "pathName": "pages/goods/index",
-          "query": "chatId=2375",
+          "query": "chatId=2381&productid=75",
           "scene": null
         },
         {

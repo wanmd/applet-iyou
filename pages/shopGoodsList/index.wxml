@@ -5,10 +5,10 @@
     <view class="navbar bgc-fff " style='height:{{navHeight}}px;'>
       <view  class="navbar-action-wrap fz-48" style='top:{{navTop}}px;height:{{menuButtonHeight}}px'>
         <view class="mr-108" bindtap="handleBack"><text decode="{{true}}">&lt;</text></view>
-        <view class='w-120 ta-c mr-120 fz-28 pos-r {{current == 1 ? "current" : ""}}' style='line-height:{{menuButtonHeight}}px' bindtap="handleNav" data-current="1">
+        <view class='w-120 ta-c mr-120 fz-28 pos-r {{current == 1 ? "current" : ""}}' style='line-height:{{menuButtonHeight}}px' bindtap="handleNavTab" data-current="1">
           分类
         </view>
-        <view class='w-120 ta-c fz-28 pos-r {{current == 2 ? "current" : ""}}' style='line-height:{{menuButtonHeight}}px' bindtap="handleNav" data-current="2">
+        <view class='w-120 ta-c fz-28 pos-r {{current == 2 ? "current" : ""}}' style='line-height:{{menuButtonHeight}}px' bindtap="handleNavTab" data-current="2">
           产品标签
         </view>
       </view>
@@ -17,9 +17,9 @@
     <view class="search_wrap jc-sb bgc-F7F7F7">
         <view class="d-f ai-c">
             <view class="input mr-18">
-                <input data-target='{{goodsName}}'  bindinput="bindinput_" placeholder="搜索" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+                <input data-target='{{keyword}}'  bindinput="bindinput_" placeholder="搜索" placeholder-style="color: #d8d8d8;" value="{{keyword}}" bindconfirm="search" confirm-type="search"/>
             </view>
-            <view class="search_btn" data-target='{{goodsName}}' bindtap='search'>搜索</view>
+            <view class="search_btn" data-target='{{keyword}}' bindtap='search'>搜索</view>
         </view>
     </view>
   </view>
@@ -27,9 +27,14 @@
   <view wx:if="{{current == 1}}" class="content d-f" style="margin-top:{{navHeight + 29 + 20}}px;height:calc(100vh - {{navHeight}}px - 49px)">
     <!-- 左侧边栏 一级分类 -->
     <scroll-view scroll-y class="roll_none sidebar-wrap bgc-f5 w-150 pb-30 h-100p bxz-bb">
-      <view wx:for="{{sidebarData}}" wx:key="index" wx:for-index="index"
+      <view 
+        wx:for="{{sidebarData}}" 
+        wx:key="index" 
+        wx:for-index="index"
         class="sidebar-item  pos-r ai-c fz-32 fw-400 c-999  jc-c w-100p h-100rpx d-f  {{sidebarId === item.id?'sidebar-click': ''}}"
-        data-id="{{item.id}}" bind:tap="sidebarClick">
+        data-id="{{item.id}}" 
+        bind:tap="sidebarClick"
+      >
         <text style="font-size: 28rpx; font-weight:400;line-height: 40rpx;">{{item.name}}</text>
       </view>
     </scroll-view>
@@ -127,11 +132,9 @@
     </scroll-view>
   </view>
   <!-- 产品标签模块 -->
-  <view wx:if="{{current == 2}}" class="content d-f" style="margin-top:{{navHeight + 29 + 20}}px;height:calc(100vh - {{navHeight}}px - 49px)">
-    <view class="d-f fxw-w jc-sb  w-100 pt-52 plr-32">
-      <view  class="tagListBox2">产品标签6字</view>
-      <view  class="tagListBox2">产品标签6字</view>
-      <view  class="tagListBox2">产品标签6字</view>
+  <view wx:if="{{current == 2}}" class="content d-f" style="margin-top:{{navHeight + 29 + 20}}px;max-height:calc(100vh - {{navHeight}}px - 49px)">
+    <view class="d-f fxw-w ic-fs  w-100 pt-52 plr-32">
+      <view bindtap="navTo" data-name="{{item.name}}"  class="tagListBox2" wx:for="{{labelsList}}" w:key="id">{{item.name}}</view>
     </view>
   </view>
 </view>

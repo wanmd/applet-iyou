@@ -117,8 +117,8 @@ class Request {
             networkError();
         };
 
-        config.data = data;
-        // config.data = Object.assign({}, data, { storeId: 100 });
+        // config.data = data;
+        config.data = Object.assign({}, data, { storeId: 903450 });
 
         this.isSendIng = true;
         wx.request(config);

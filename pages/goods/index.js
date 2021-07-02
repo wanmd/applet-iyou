@@ -60,11 +60,17 @@ wx.Page({
     console.log(path);
     this.setData({
       path:path,
-      chatId:opts.chatId
+      chatId:opts.chatId,
+      productid:opts.productid
     })
     request.setMany(true)
+    // 获取商品详情
     this.getGoodsDetail(this.data.chatId)
+    // 获取拼单列表
+    this.getGroupList()
+    // 添加访问记录
     this.addVisitGoods(this.data.chatId)
+    // 分享
     this.getShareChatDetail()
     request.setMany(false)
     if(opts.dst === 'share') {
@@ -102,6 +108,7 @@ wx.Page({
         })
        })
     }
+    
   },
   isAuth_(e) {
     if(!this.isToLogin()) return;
@@ -109,6 +116,22 @@ wx.Page({
   },
   isAuth1_(e) {
     if(!this.isToLogin()) return;
+  },
+  // 获取拼团列表
+  getGroupList() {
+    request.get('iy/productgroups', res => {
+      if(res.success){
+        console.log(res);
+        this.setData({
+          groupList: res.data.list.map(item => {
+            item.difftime = item.created_at + 86400 - Math.floor(new Date().getTime()/1000)
+            return item
+          })
+        })
+      }else{
+        toast(res.msg)
+      }
+    }, { productid: this.data.productid }).showLoading()
   },
   getStoreCommonParam(user_id){
     // request.get('user/getStoreCommonParam', res => {

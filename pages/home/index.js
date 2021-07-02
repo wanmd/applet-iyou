@@ -13,7 +13,9 @@ wx.Page({
         storeQr: '',
         storeId: 0,
         goodsName: '',
-        query: { category: 0, goodsName: '' },
+        query: { 
+            category: 0, goodsName: '' 
+        },
         query2: {
             keyword: "",
             store_id: '',
