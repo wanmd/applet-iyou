@@ -13,7 +13,7 @@
             会员用户 一件代发(会员价) + 代理拿货(代理价) 
             代理用户 一件代发(代理价) + 代理拿货(代理价) -->
         <view>
-          <text class="fz-48 c-262626 mr-24">￥{{chat.isAgent ? chat.agent_price : chat.vip_price}}</text>
+          <text class="fz-48 c-262626 mr-24">￥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.group_price}}</text>
           <text class="c-828282 fz-28 td-l">￥{{chat.sale_price}}</text>
         </view>
         <!-- 分享按钮 -->
@@ -87,14 +87,14 @@
         <!-- <view class="fz-20 c-333" bindtap="handleMoreGroup">查看更多></view> -->
       </view>
       <view class="groupList" wx:for="{{groupList}}">
-        <view class="groupItem d-f ai-c jc-sb">
+        <view class="groupItem d-f ai-c jc-sb mb-40">
           <view class="d-f ai-c">
-            <image src="{{item.avatar}}" class="w-72 h-72 mr-16" />
+            <image src="{{item.avatar}}" class="w-72 h-72 mr-16 bdrs-50p" />
             <text class="fz-24 c-333">{{item.nickname}}</text>
           </view>
           <view class="d-f jc-sb ai-c">
             <view class="d-f fxd-c mr-14 ai-fe">
-              <view class="fz-24 c-333 mb-8">还差{{groupList.length}}人拼单</view>
+              <view class="fz-24 c-333 mb-8">还差1人拼单</view>
               <view class="fz-24 c-333">
                 剩余<timer wx:if="{{groupList.length}}" time="{{item.difftime}}" color="#333333" />
               </view>
@@ -228,13 +228,17 @@
             style-text='width:139rpx;height: 88rpx;line-height: 88rpx;color: #fff;background:#D681FF;border-radius:42px 0px 0px 42px;'
           >+购物车
           </btn>
+          <!-- iyou 客户端
+              一般用户 单独购买(零售价) + 拼单购买(拼单价)
+              会员用户 单独购买(会员价) + 会员购买(会员价)
+              代理用户 单独购买(代理价) + 代理拿货(代理价) -->
           <btn 
             data-type="single"
             bindtap='handleShowPop'
             class='now-buy1 middle' 
             style-text='width:160rpx;height: 88rpx;color: #fff;background:#C246FF;'>
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
-              ¥{{chat.isAgent ? chat.agent_price : chat.vip_price}}
+              ¥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.sale_price}}
             </view>
             <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">
               单独购买
@@ -246,7 +250,7 @@
             class='now-buy2 middle' 
             style-text='width:158rpx;height: 88rpx;color: #fff;background:#AB00FF;border-radius:0px 42px 42px 0px;'>
             <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
-              ¥{{chat.agent_price}}
+              ¥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.group_price}}
             </view>
             <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">
               拼单购买
@@ -402,6 +406,7 @@
 <shopCarPop 
   show="{{showShopCarPop}}" 
   goods_id="{{goods_id}}" 
+  groupid="{{currentGroupId}}" 
   user="{{user}}" 
   mode="b0" 
   needSelectType="{{needSelectType}}"
@@ -429,7 +434,7 @@
         </view>
       </view>
     </view>
-    <view class="confirmGroupBtn" data-id="" bindtap="handleRaiseGoup">和TA拼单</view>
+    <view class="confirmGroupBtn" data-id="{{currentGroup.id}}" bindtap="handleRaiseGoup">和TA拼单</view>
   </view>
 </view>
 

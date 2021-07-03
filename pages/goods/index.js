@@ -967,10 +967,11 @@ wx.Page({
   // 关闭拼单
   toggleShowGroupModal() {
     this.setData({
-      showGroupModal: 0
+      showGroupModal: 0,
+      currentGroupId: null
     })
   },
-  handleRaiseGoup() {
+  handleRaiseGoup(e) {
     this.toggleShowGroupModal();
     this.handleShowPop({
       currentTarget: {
@@ -978,6 +979,9 @@ wx.Page({
           type: 'group'
         }
       }
+    })
+    this.setData({
+      currentGroupId: e.currentTarget.dataset.id
     })
   }
 })

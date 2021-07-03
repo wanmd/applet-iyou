@@ -12,6 +12,7 @@ Page({
     user__isAgent: false,
     isAgent__amount: 0,
     isVip__amount: 0,
+    isGroup__amount: 0,
     autoH: true,
     orderNo : '',
     address : null,
@@ -84,6 +85,8 @@ Page({
     if(this.data.type == 2){
       data['shareUserId'] = this.data.shareUserId;
     }
+    // 0 发起新团  >0 加入某个团
+    data['groupId'] = this.data.groupId || 0
     console.log(data)
     // request.post('cart/settlement', res => {
     request.post('order/buy', res => {
@@ -141,7 +144,7 @@ Page({
         cartIds: cartIds,
         type: opt.type
       }
-      this.setData({type : opt.type, cartIds : cartIds})
+      this.setData({type : opt.type, cartIds : cartIds, groupId: opt.groupId })
     }else if(opt.type==2){//直接下单
       console.log(JSON.parse(opt.productSpecs));
       
@@ -172,6 +175,7 @@ console.log(app.formatDecimal("1.20"))
         let user__isAgent = false;
         let isAgent__amount = 0;
         let isVip__amount = 0;
+        let isGroup__amount = 0;
         res.data.list.forEach((v, index) => {
           remarks.push('')
           v.store = JSON.parse(v.store)
@@ -186,13 +190,14 @@ console.log(app.formatDecimal("1.20"))
               isVip__amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
               amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
             }else{
-              isAgent__amount += (item.quantity * app.formatDecimal(item.member_price))*100
-              amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
+              isGroup__amount += (item.quantity * app.formatDecimal(item.group_price))*100
+              amount += (~~item.quantity * app.formatDecimal(item.group_price))*100
             }
           })
         })
         isAgent__amount = isAgent__amount/100;
         isVip__amount = isVip__amount/100;
+        isGroup__amount = isGroup__amount/100;
         amount = amount/100;
         this.setData({
             cartList: res.data.list, 
@@ -202,7 +207,8 @@ console.log(app.formatDecimal("1.20"))
             orderNo: res.data.orderNo,
             user__isAgent: user__isAgent,
             isAgent__amount: isAgent__amount,
-            isVip__amount: isVip__amount
+            isVip__amount: isVip__amount,
+            isGroup__amount: isGroup__amount
           })
         if(opt.type==1){
           this.setData({

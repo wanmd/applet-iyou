@@ -118,7 +118,7 @@ class Request {
         };
 
         // config.data = data;
-        config.data = Object.assign({}, data, { storeId: 903450 });
+        config.data = Object.assign({}, data, { storeId: 903449 });
 
         this.isSendIng = true;
         wx.request(config);
