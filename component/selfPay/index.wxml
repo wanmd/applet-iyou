@@ -1,14 +1,32 @@
 <!-- 购物车弹框 -->
 <view class="select-share-type sliup_1" data-current="sliup_1" bindtap='toggleSelectShareType'>
-  <view class="modal" data-current="modal" catchtap="toggleSelectShareType">
-    <view class='header mb-40'>
-    111
+  <view class="modal relative" data-current="modal" catchtap="toggleSelectShareType">
+    <view class='header pt-30 ta-c'>
+     <view class="fz-36 c-333 lh-48">买家自助支付</view>
     </view>
-    <view class="content ml-38 mt-250">
+    <view class="content  mt-20">
+      <view class="ml-38 fz-28 c-666 lh-48">买家可与卖家约定付款方式，选择扫码通道完成离线支付，并上传此订单支付成功截图，商家确认后即可完成发货。</view>
+      <view class="d-f jc-sb mlr-60 mt-56 w-100p">
+        <view class="">
+          <text>微信支付</text>
+          <image src="/assets/images/index/wx_pay.png" class="w-240 h-240"/>
+        </view>
+        <view>
+          <text>支付宝支付</text>
+          <image src="/assets/images/index/wx_pay.png" class="w-240 h-240"/>
+        </view>
+      </view>
+      <view class="fz-24 c-999 mt-54 mb-36 ta-c">长按保存商家收款码</view>
+      <view class="ml-38 c-333 fz-32 lh-42 mb-20">上传付款凭证{{images.length}}/3</view>
+      <view class='images clear ml-20 ov-h'>
+        <upload class='item' wx:for='{{images}}' wx:key='id' data-index='{{index}}' initFile='{{item.file}}' bind:success='uploadPic_' bind:clear='clearPic'></upload>
+        <!-- <upload wx:if='{{images.length < 9}}' class='item' bind:success='uploadPic' bind:clear='clearPic' only count='{{9-images.length}}'></upload> -->
+        <upload wx:if='{{images.length < 3}}' class='item' bind:success='uploadPic' bind:clear='clearPic' only count='{{3-images.length}}'></upload>
+      </view>
     </view>
-    <view class="bottom mt-40 w-100p d-f fxd-c ai-c jc-sb">
-      <button >取消</button>
-      <button class="save" bindtap="handleSubmit">确定</button>
+    <view class="bottom mt-20">
+      <button class="fx-1 d-f ai-c jc-c bgc-F3F3F3 c-000 fz-24" bindtap="cancel">取消</button>
+      <button class="fx-1 d-f ai-c jc-c bgc-AB00FF c-fff fz-24" bindtap="submit">确定已自助付款</button>
     </view>
   </view>
 </view>

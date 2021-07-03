@@ -1,4 +1,6 @@
 /* component/selfPay/index.wxss */
+@import '../../utils/wxss/index.wxss';
+
 .select-share-type {
   position: fixed;
   height: 100%;
@@ -36,9 +38,9 @@
 }
 
 .select-share-type .modal .header {
-  position: fixed;
+  /* position: fixed;
   left: 20rpx;
-  right: 20rpx;
+  right: 20rpx; */
   border-radius: 20rpx;
   line-height: 48rpx;
   font-size: 32rpx;
@@ -72,4 +74,22 @@
   /* background: #FFC901; */
   border-radius: 46rpx 46rpx 46rpx 46rpx;
   overflow: hidden;
+}
+.bottom {
+  /* position: absolute;
+  left: 0;
+  right: 0;
+  top: 1300rpx; */
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.images .item {
+  float: left;
+  margin: 18rpx 0rpx 0rpx 18rpx;
+}
+
+.images .item:nth-of-type(3n + 1) {
+  margin-left: 0rpx;
 }

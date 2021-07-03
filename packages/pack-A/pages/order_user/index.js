@@ -22,7 +22,8 @@ Page({
       waitSendNum: 0,
       hasDoneNum: 0,
     },
-    current: 1
+    current: 1,
+    selfPayShow: 0
   },
 
   selectToggle(e) {
@@ -200,8 +201,26 @@ Page({
   onUnload () {
     clearTimeout(numberInter)
   },
-  selfPay() {
-    
+  toggleSelfPay(e) {
+    this.setData({
+      selfPayShow: !this.data.selfPayShow,
+      selfpayId: e.currentTarget.dataset.id
+    })
+  },
+  handleSubmit(data) {
+    let params = {
+      payPicture: data.detail.reduce((prev, next) => {
+        return prev.file + ',' + next.file
+      })
+    }
+    request.post('iy/order/selfpay/' + this.data.selfpayId, res => {
+      if (res.success) {
+        toast('提交成功');
+        this.toggleSelfPay()
+      } else {
+        toast(res.msg)
+      }
+    }, params)
   },
   // 切换导航
   handleNavTab(e) {
