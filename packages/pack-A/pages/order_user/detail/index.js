@@ -85,7 +85,7 @@ Page({
             return
         }
 
-        request.post('order/buy', res => {
+        request.post('iy/order/buy', res => {
             if (res.success) {
                 let params = res.data.wxparam
                 params.success = () => {
@@ -114,7 +114,7 @@ Page({
             return
         }
 
-        request.post('order/pay', res => {
+        request.post('iy/order/pay', res => {
             if (res.success) {
                 toast('确定成功')
                 let pages = getCurrentPages()
@@ -147,7 +147,7 @@ Page({
     confirmCompleteApi() { //确定收货
         let orderId = this.data.orderId
 
-        request.post('order/complete', res => {
+        request.post('iy/order/complete', res => {
             if (res.success) {
                 toast('确定成功')
                 wx.redirectTo({
@@ -235,7 +235,7 @@ Page({
     getConcentInfo(userId) {
         request.setMany(true)
         request.get(
-            'visit/contactInfo',
+            'iy/visit/contactInfo',
             res => {
                 if (res.success) {
                     this.setData({ otherUserInfo: res.data });
@@ -260,7 +260,7 @@ Page({
         let orderId = options.orderId
         var that = this;
         request.setMany(true);
-        request.get('order/detail', res => {
+        request.get('iy/order/detail', res => {
             if (res.success) {
                 let order = res.data.order
 
