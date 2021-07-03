@@ -3,6 +3,14 @@
     <view class='item current' id='abc'>我发起的订单</view>
     <navigator wx:if='{{userType == 2}}' class='item' url='/pages/order/merchant/index' hover-class="none">我收到的订单</navigator>
   </view> -->
+  <view  class="d-f mlr-100">
+    <view class='fx-1 pb-20 ta-c fz-28 pos-r {{current == 1 ? "current" : ""}}' bindtap="handleNavTab" data-current="1">
+      产品订单
+    </view>
+    <view class='fx-1 pb-20 ta-c fz-28 pos-r {{current == 2 ? "current" : ""}}' bindtap="handleNavTab" data-current="2">
+      拿货订单
+    </view>
+  </view>
   <view class='order-status-item'>
     <view class='item {{query.status == 5 ? "current" : ""}}' data-status='5' bindtap='selectToggle'>
       <view class='wrap'>
@@ -87,3 +95,5 @@
 
 </pagination>
 <confirm wx:if='{{showCancelConfirm}}' bindcallback='cancelCallback'></confirm>
+
+<!-- <selfPay /> -->

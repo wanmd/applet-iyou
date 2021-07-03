@@ -95,7 +95,8 @@
         "pages/user/userManageMent/index",
         "pages/user/setFreight/index",
         "pages/goodsRemark/index",
-        "pages/user/setQrCode/index"
+        "pages/user/setQrCode/index",
+        "pages/order_user/group/index"
       ]
     },
     {
@@ -170,7 +171,8 @@
     "empty": "/component/empty/index",
     "notice": "/component/notice/index",
     "shopCarPop": "/component/shopCarPop/index",
-    "timer": "/component/timer/index"
+    "timer": "/component/timer/index",
+    "selfPay": "/component/selfPay/index"
   },
   "permission": {
     "scope.userLocation": {

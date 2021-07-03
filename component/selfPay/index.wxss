@@ -1,0 +1,75 @@
+/* component/selfPay/index.wxss */
+.select-share-type {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.select-share-type .modal {
+  position: absolute;
+  /* width: 100%; */
+  left: 20rpx;
+  right: 20rpx;
+  top: 100rpx;
+  height: 1200rpx;
+  border-radius: 20rpx;
+  overflow-y: auto;
+  overflow: hidden;
+  /* padding-bottom: 160rpx; */
+  /*bottom: 0;*/
+  background: #fff;
+  z-index: 9999;
+  
+}
+.b-0 {
+  bottom: 0 !important;
+}
+
+.select-share-type .modal .close {
+  position: absolute;
+  right: 30rpx;
+  width: 48rpx;
+}
+
+.select-share-type .modal .header {
+  position: fixed;
+  left: 20rpx;
+  right: 20rpx;
+  border-radius: 20rpx;
+  line-height: 48rpx;
+  font-size: 32rpx;
+  text-align: center;
+  background-color: #fff;
+  z-index: 99;
+  /* border-bottom: 1px solid #f7f7f7; */
+  /* position: relative; 111*/
+}
+
+.select-share-type .modal .type{
+  /* position: fixed;
+  height: 88rpx;
+  bottom: 0; */
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.type {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  bottom: 26rpx;
+  background: #fff;
+  z-index: 9999;
+}
+.type .buttonWrap {
+  width: 600rpx;
+  height: 88rpx;
+  /* background: #FFC901; */
+  border-radius: 46rpx 46rpx 46rpx 46rpx;
+  overflow: hidden;
+}

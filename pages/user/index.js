@@ -127,7 +127,7 @@ Component({
             }
         },
         getOrderCount(type) {
-            request.get('order/getOrderCount', res => {
+            request.get('iy/order/getOrderCount', res => {
                 if (res.success) {
                     let orderCount = res.data.info;
                     if (type == 1) {
@@ -162,7 +162,7 @@ Component({
                 showBindMobileModel: false
             })
             if (e.detail.errMsg === 'getPhoneNumber:ok') {
-                request.post('bindMobile', res => {
+                request.post('iy/bindMobile', res => {
                     if (res.success) {
                         app.reloadUserInfo(() => {
                             app.globalData.userInfo = wx._getStorageSync('userinfo')
@@ -272,7 +272,7 @@ Component({
                 })
             }
             // if (!app.globalData.userNumber) {
-            request.get('user/number', res => {
+            request.get('iy/user/number', res => {
                     app.globalData.userNumber = res.data
                     this.setData({
                         numbers: res.data

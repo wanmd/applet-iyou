@@ -22,6 +22,7 @@ Page({
       waitSendNum: 0,
       hasDoneNum: 0,
     },
+    current: 1
   },
 
   selectToggle(e) {
@@ -73,7 +74,7 @@ Page({
     if (e.detail == 0) {
       let index = this.data.currentIndex
       let orderId = this.data.orderList[index].order_id
-      request.post('order/cancel', res => {
+      request.post('iy/order/cancel', res => {
         if (res.success) {
           toast('取消订单成功')
           // that.onLoad(this.data.query)
@@ -121,7 +122,7 @@ Page({
 
   completeOrder (index) {
     let orderId = this.data.orderList[index].order_id
-    request.post('order/complete', res => {
+    request.post('iy/order/complete', res => {
       if (res.success) {
         toast('确定成功')
         let query = this.data.query;
@@ -153,7 +154,7 @@ Page({
     })
   },
   getOrderCount(type) {
-    request.get('order/getOrderCount', res => {
+    request.get('iy/order/getOrderCount', res => {
       if (res.success) {
         let orderCount = res.data.info;
           this.setData({
@@ -166,7 +167,7 @@ Page({
   },
   onLoad (options) {
     console.log('onLoad')
-    let userInfo = app.globalData.userInfo
+    let userInfo = app.globalData.userInfo || {}
     if (userInfo.user_type == 2) {
       this.setData({ userType: userInfo.user_type })
     }
@@ -183,7 +184,7 @@ Page({
     request.setMany(true);
     if(this.data.pageHude){
       // this.onLoad(this.data.query)
-      request.get('order/list', res => {
+      request.get('iy/order/list', res => {
         if (res.success && res.data.list.length > 0) {
           this.load({ detail: { list: res.data.list, page: 1 } }, 1)
         }
@@ -201,6 +202,20 @@ Page({
   },
   selfPay() {
     
-  }
+  },
+  // 切换导航
+  handleNavTab(e) {
+    const { current } = e.currentTarget.dataset;
+    this.setData({
+      current,
+      keyword: ''
+    }, () => {
+      if (this.data.current == 1) {
+        // this.initData()
+      } else {
+        // this.initLabels()
+      }
+    })
+  },
 
 })

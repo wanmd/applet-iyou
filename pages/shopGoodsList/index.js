@@ -27,13 +27,11 @@ Page({
 		hasNextPage: true,
     showDown: true,
     // 自定义导航
-    topHeight: 0,
     // statusBarHeight: 0, // 顶部状态栏
     // navTop: 0, // 胶囊按钮与顶部的距离
     // nav_button_height: 0, // 胶囊按钮高度
     navHeight: 0,
     navTop: 0,
-    windowHeight: 0,
     query1: {
       categoryid: 0,
       storeId: 0,
@@ -63,7 +61,6 @@ Page({
           navHeight,
           navTop,
           menuButtonHeight: menuButtonObject.height,
-          windowHeight: res.windowHeight
         })
       },
       fail(err) {

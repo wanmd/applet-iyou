@@ -3,7 +3,7 @@ Page({
 
   data: {
     selectedNav : 1,
-    urls: ['mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
+    urls: ['iy/mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
     topNavs: [
       // { type: 1, name: '关注的店' }, 
       // { type: 2, name: '粉丝' }, 
@@ -27,6 +27,7 @@ Page({
   },
 
   load (e) {
+    console.log(e);
     let rows = e.detail.list
     let page = e.detail.page
     if (page == 1 && rows.length == 0) {
@@ -37,9 +38,6 @@ Page({
       rows.forEach(row => {
         if(!row) {
           return
-        }
-        if (!(row.user instanceof Object)) {
-          row.user = JSON.parse(row.user)
         }
         userList.push(row)
       })

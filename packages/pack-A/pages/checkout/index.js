@@ -95,9 +95,16 @@ Page({
           params.success = () => {
             toast('提交成功')
             setTimeout(function(){
-              wx.redirectTo({
-                url: '../order_user/index'
-              })
+              if (data.groupId) {// 组团订单
+                wx.redirectTo({
+                  url: '../order_user/group/index'
+                })
+              } else {
+                wx.redirectTo({
+                  url: '../order_user/index'
+                })
+              }
+              
             }, 1000)
           },
           params.fail = () => {

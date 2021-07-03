@@ -125,6 +125,7 @@ wx.Page({
         this.setData({
           groupList: res.data.list.map(item => {
             item.difftime = item.created_at + 86400 - Math.floor(new Date().getTime()/1000)
+            console.log(item.difftime);
             return item
           })
         })

@@ -27,3 +27,8 @@ page{
   justify-content:  center;
   align-items:  center;
 }
+
+.current {
+  color: #AB00FF;
+  border-bottom: 6rpx solid #AB00FF;
+}

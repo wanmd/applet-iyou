@@ -87,7 +87,7 @@ wx.Page({
         })
     },
     getTel(params) {
-        this.post('bindMobile', params).then(res => {
+        this.post('iy/bindMobile', params).then(res => {
             if (res.success) {
                 let userInfo = app.globalData.userInfo;
                 userInfo.isAuth = true

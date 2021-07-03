@@ -11,7 +11,7 @@ Page({
   },
 
   callback (e) {
-    request.post('bindMobile', res => {
+    request.post('iy/bindMobile', res => {
       if(res.success) {
         getApp().reloadUserInfo()
         toast('绑定手机号码成功')

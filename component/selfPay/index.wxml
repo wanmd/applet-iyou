@@ -1,0 +1,14 @@
+<!-- 购物车弹框 -->
+<view class="select-share-type sliup_1" data-current="sliup_1" bindtap='toggleSelectShareType'>
+  <view class="modal" data-current="modal" catchtap="toggleSelectShareType">
+    <view class='header mb-40'>
+    111
+    </view>
+    <view class="content ml-38 mt-250">
+    </view>
+    <view class="bottom mt-40 w-100p d-f fxd-c ai-c jc-sb">
+      <button >取消</button>
+      <button class="save" bindtap="handleSubmit">确定</button>
+    </view>
+  </view>
+</view>

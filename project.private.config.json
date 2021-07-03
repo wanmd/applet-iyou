@@ -720,6 +720,18 @@
           "pathName": "pages/shopGoodsList/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "关注的店",
+          "pathName": "pages/mailList/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "发起拼团成功",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "",
+          "scene": null
         }
       ]
     }
