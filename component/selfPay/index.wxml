@@ -13,7 +13,7 @@
         </view>
         <view>
           <text>支付宝支付</text>
-          <image src="/assets/images/index/wx_pay.png" class="w-240 h-240"/>
+          <image src="/assets/images/alipay@2x.png" class="w-240 h-240"/>
         </view>
       </view>
       <view class="fz-24 c-999 mt-54 mb-36 ta-c">长按保存商家收款码</view>

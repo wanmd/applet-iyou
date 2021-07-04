@@ -31,7 +31,29 @@ Page({
       address : ''
     },
     cartIds: '',
-    type: 0
+    type: 0,
+    // 方式
+    current: 1,
+    option1: [
+      {
+          value: 1,
+          label: '7天无理由'
+      },
+      {
+          value: 2,
+          label: '特殊商品不退换'
+      }
+    ],
+    date: '',
+    option: {
+      initialValue: null
+    },
+    selfParams: {
+      selfPickup: 0,
+      pickupTime: '',
+      consignee: '',
+      mobile: '',
+    }
   },
   smart: function (val){
     return address_parse.method(val || '')
@@ -54,13 +76,13 @@ Page({
   },
 
   confirm () {
-    let address = this.data.address
-    console.log(address)
-    if(address == null){
+    const { current } = this.data; // 1.快递物流  2.到店
+    let address = this.data.address;
+
+    if(current == 1 && address == null){
       toast('请选择收货地址')
       return
     }
-
     let cartIds = []
     let cartList = this.data.cartList
     cartList.forEach(item => {
@@ -85,11 +107,31 @@ Page({
     if(this.data.type == 2){
       data['shareUserId'] = this.data.shareUserId;
     }
+    // 到店
+    if(current == 2) {
+      if (address == null) {
+        toast('请选择收货地址')
+        return
+      } else {
+        data['consignee'] = address.consignee;
+        data['mobile'] = address.mobile;
+      }
+      const { selfPickup, pickupTime } = this.data.selfParams;
+      data['selfPickup'] = selfPickup;
+      if (data['selfPickup'] == 1) {// 自提时间 selfPickup=1时必填
+        if (!pickupTime) {
+          toast('请选择自提时间')
+          return
+        } else {
+          data['pickupTime'] = pickupTime;
+        }
+      }
+    }
     // 0 发起新团  >0 加入某个团
     data['groupId'] = this.data.groupId || 0
     console.log(data)
     // request.post('cart/settlement', res => {
-    request.post('order/buy', res => {
+    request.post('iy/order/buy', res => {
         if(res.success){
           let params = res.data.wxparam
           params.success = () => {
@@ -153,7 +195,7 @@ Page({
       }
       this.setData({type : opt.type, cartIds : cartIds, groupId: opt.groupId })
     }else if(opt.type==2){//直接下单
-      console.log(JSON.parse(opt.productSpecs));
+      // console.log(JSON.parse(opt.productSpecs));
       
       data = {
         chatId: opt.chatId,
@@ -162,7 +204,8 @@ Page({
         shareUserId: opt.shareUserId||0,
         type: opt.type,
         buyType: opt.buyType,
-        productSpecs: JSON.parse(opt.productSpecs),
+        // productSpecs: JSON.parse(opt.productSpecs),
+        productSpecs: {尺寸: "27", 颜色: "黑色"},
         isGroup: opt.isGroup
       }
       this.setData({type : opt.type, cartIds : opt.chatId, shareUserId: data.shareUserId})
@@ -310,4 +353,52 @@ console.log(app.formatDecimal("1.20"))
       addressAI: address
     })
   },
+  // 切换快递物流还是到店消费
+  handleChange(e) {
+    const { index } = e.currentTarget.dataset;
+    this.setData({
+      current: index
+    })
+    if (index == 2) {
+      this.getStoreInfo()
+    }
+  },
+  getStoreInfo() {
+    const { storeId } = wx.getStorageSync('storeInfo');
+    request.get('iy/store/' + storeId, res => {
+      console.log(res);
+      this.setData({
+        storeInfo:  res.data.list
+      })
+    }, {}).showLoading()
+  },
+  // handleInput(e) {
+  //   console.log(e);
+  //   let update = {};
+  //   const { key } = e.currentTarget.dataset;
+  //   update[`selfParams.${key}`] = e.detail.value;
+  //   this.setData(update)
+  // },
+  bindChangeType(e) {
+    this.setData({
+      'selfParams.selfPickup': e.currentTarget.dataset.type
+    })
+  },
+  // 自提时间
+  handlePickupTime(e) {
+    this.setData({
+      'selfParams.pickupTime': e.detail.value
+    })
+  },
+  navToAddress() {
+    wx.navigateTo({
+      url: '/pages/deliveryAddress/index?target=select',
+    })
+  },
+  daohang() {
+    wx.openLocation({
+      latitude: 22.52291,//要去的纬度-地址
+      longitude: 114.05454,//要去的经度-地址
+    })
+  }
 })

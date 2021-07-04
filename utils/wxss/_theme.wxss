@@ -48,6 +48,9 @@
 .mt-40 {
   margin-top: 40rpx;
 }
+.mt-44 {
+  margin-top: 44rpx;
+}
 .mt-45 {
   margin-top: 45rpx;
 }
@@ -230,6 +233,9 @@
 }
 .ml-56 {
   margin-left: 56rpx;
+}
+.ml-60 {
+  margin-left: 60rpx;
 }
 .ml-100 {
   margin-left: 100rpx;
@@ -1372,6 +1378,12 @@
 .c-EE3700 {
   color:#EE3700;
 }
+.c-434759 {
+  color:#434759;
+}
+.c-B3B3B3 {
+  color:#B3B3B3;
+}
 /* Background */
 .bgc-f5 {
   background-color: #f5f5f5;
@@ -1477,6 +1489,9 @@
 }
 .bgc-AB00FF {
   background-color: #AB00FF;
+}
+.bgc-AB00FF-15p {
+  background-color: rgba(171, 0, 255, 0.15);
 }
 .bgc-F3F3F3 {
   background-color: #F3F3F3;

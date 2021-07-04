@@ -135,6 +135,25 @@ Page({
       }
     }, { id: orderId })
   },
+  // 产品订单
+  getOrderList() {
+    if(this.data.pageHude){
+      // this.onLoad(this.data.query)
+      request.get('iy/order/list', res => {
+        if (res.success && res.data.list.length > 0) {
+          this.load({ detail: { list: res.data.list, page: 1 } }, 1)
+        }
+      }, { status: this.data.query.status, lastPk: 0, page: 1, pageSize: 20 }) 
+    }
+  },
+  // 拿货订单
+  // getMyTakeGoodsList() {
+  //   request.get('iy/getMyTakeGoodsList', res => {
+  //     if (res.success && res.data.list.length > 0) {
+  //       this.load({ detail: { list: res.data.list, page: 1 } }, 1)
+  //     }
+  //   }, { status: this.data.query.status, lastPk: 0, page: 1, pageSize: 20 }) 
+  // },
 
   getNumber () {
     var req = new Request()
@@ -183,14 +202,7 @@ Page({
   },
   onShow () {
     request.setMany(true);
-    if(this.data.pageHude){
-      // this.onLoad(this.data.query)
-      request.get('iy/order/list', res => {
-        if (res.success && res.data.list.length > 0) {
-          this.load({ detail: { list: res.data.list, page: 1 } }, 1)
-        }
-      }, { status: this.data.query.status, lastPk: 0, page: 1, pageSize: 20 })
-    }
+    // this.getOrderList()
     this.getOrderCount(1);
   },
 
@@ -227,13 +239,14 @@ Page({
     const { current } = e.currentTarget.dataset;
     this.setData({
       current,
-      keyword: ''
     }, () => {
-      if (this.data.current == 1) {
-        // this.initData()
-      } else {
-        // this.initLabels()
-      }
+      // if (this.data.current == 1) {
+      //   request.setMany(true);
+      //   this.getOrderList()
+      //   this.getOrderCount(1);
+      // } else {
+      //   this.getMyTakeGoodsList()
+      // }
     })
   },
 

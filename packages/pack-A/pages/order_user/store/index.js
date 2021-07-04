@@ -16,6 +16,10 @@ Component({
       type : String,
       value : {}
     },
+    is_vip : {
+      type : String,
+      value : {}
+    },
   },
 
   /**

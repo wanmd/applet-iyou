@@ -44,11 +44,12 @@
   border-radius: 7rpx;
 }
 .user-type{
-  background-color: #313131;
-  color: #FFE200;
+  background-color: #FFFFFF;
+  color: #AB00FF;
   position: absolute;
   right: 170rpx;
   top: 40rpx;
+  border: 2px solid #AB00FF;
 }
 .user-type1{
   color: #313131;
@@ -63,4 +64,18 @@
   top: 20rpx;
   height: 80rpx;
   line-height: 80rpx;
+}
+.order-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 96rpx;
+  height: 40rpx;
+  background: #AB00FF;
+  opacity: 1;
+  border-radius: 22rpx;
+  font-size: 20rpx;
+  line-height: 28rpx;
+  color: #FFFFFF;
+  margin-left: 20rpx;
 }

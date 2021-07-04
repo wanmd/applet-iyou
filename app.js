@@ -7,6 +7,11 @@ import { assetsImages } from './utils/config.js';
 const MsgQueue = require('./utils/msgqueue.js');
 App({
     onLaunch: function(options) {
+        wx.setStorageSync('storeInfo', {
+            storeId: 903449,
+            name: '展雄的店',
+            mobile: 13088889999
+        })
         // var options = {
         //   query: {
         //     invite_chatId: "0",

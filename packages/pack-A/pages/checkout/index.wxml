@@ -1,16 +1,32 @@
-<view class='p-l-r bc-fff address-containter'>
+<!-- 顶部 -->
+<view class="header d-f ai-fe">
+  <view 
+    bindtap="handleChange" data-index="1" 
+    class=" d-f fx-1 ai-c jc-c h-86  class1 fz-28 c-333 c-F4F4F bgc-AB00FF-15p  ov-h {{current == 1 ? 'active h-108' : ''}}"
+  >
+    快递物流
+  </view>
+  <view 
+  bindtap="handleChange" data-index="2" 
+    class=" d-f fx-1 ai-c jc-c h-86 class2 fz-28 c-333 bgc-AB00FF-15p {{current == 2 ? 'active h-108' : ''}}"
+  >
+    到店消费
+  </view>
+</view>
+<!-- 地址 -->
+<view class='p-l-r bc-fff address-containter' wx:if="{{current == 1 }}">
   <cell height='120rpx' border='{{false}}' url='/pages/deliveryAddress/index?target=select' wx:if='{{address == null}}'>
     <block>
       <view slot='title' class="address_item1">
         <view class='f-32'>请添加收货地址</view>
-        <icon-text catchtap='ai__addressShow' class='ai__address' width="150rpx" icon='ai__address@2x.png'></icon-text>
+        <icon-text catchtap='ai__addressShow' class='ai__address' width="150rpx" icon='iyou_user/location@2x.png'></icon-text>
       </view>
     </block>
   </cell>
   <cell height='120rpx' wx:else border='{{false}}' arrow="{{false}}">
     <!-- <block wx:else> -->
       <view slot='title' class="address_item2">
-        <icon-text class='item-icon' width="35rpx" icon='location.png'></icon-text>
+        <icon-text class='item-icon' width="35rpx" icon='iyou_user/location@2x.png'></icon-text>
         <navigator hover-class="none" url='/pages/deliveryAddress/index?target=select'>
             <view class='fs-18'>{{address.consignee}}<text class='m-l-20'>{{address.mobile}}</text></view>
             <view class='f-24 color-666 m-t-10 padd_b-10'>{{address.province + address.city + address.district + address.address}}</view>
@@ -32,6 +48,74 @@
 </view> -->
     <!-- </block> -->
   <!-- <el-image></el-image> -->
+
+<!-- 到店消费 -->
+<view wx:if="{{current == 2 }}">
+  <!-- 核销 -->
+  <view class="hx bgc-fff" >
+    <view class="fz-28 c-333 lh-28 mb-46 ml-48">到店消费：在线下单，到店消费扫码核销使用</view>
+    <view class="hx_cell" style="padding-bottom: 40rpx;">
+      <view class="label">线下交易 使用流程</view>
+      <view class="hx_liucheng">
+        <view class="hx_liucheng_item">
+          <icon-text-flex class='item-icon' width="35rpx" icon='order/che.png'></icon-text-flex>
+          <view>买家线上购买</view>
+        </view>
+        <view class="hx_liucheng_bor">
+          <icon-text-flex class='item-icon' width="75rpx" icon='order/jiantou.png'></icon-text-flex>
+        </view>
+        <view class="hx_liucheng_item">
+          <icon-text-flex class='item-icon' width="35rpx" icon='order/dian.png'></icon-text-flex>
+          <view>买家到线下门店</view>
+        </view>
+        <view class="hx_liucheng_bor">
+          <icon-text-flex class='item-icon' width="75rpx" icon='order/jiantou.png'></icon-text-flex>
+        </view>
+        <view class="hx_liucheng_item">
+          <icon-text-flex class='item-icon' width="35rpx" icon='order/erweima.png'></icon-text-flex>
+          <view>商家扫描条码</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 自取 -->
+  <view class="self bgc-fff p-20 mb-16">
+    <view class="self-A d-f">
+      <view class="self-A-left d-f fx-1 fxd-c pos-r mr-48 pl-54">
+        <image src="/assets/images/iyou_user/shopname@2x.png" class="w-44 h-44 pos-a t-0 l-0" />
+        <view><text class="fz-32 c-434759 mr-40">{{storeInfo.name}}</text><text class="ml-20">{{storeInfo.mobile}}</text></view>
+        <view class="fz-20 c-3A3A3A">卖家门店地址卖家门店地址卖家门店地址卖家门店地地址卖家门店地址卖家门店地</view>
+      </view>
+      <view class="self-A-right d-f fxd-c jc-c ai-c pos-r w-120" bindtap="daohang">
+        <image src="/assets/images/iyou_user/daohang@2x.png" class="w-32 h-32 mb-16" />
+        <view class="fz-20 c-3A3A3A">导航到商家</view>
+      </view>
+    </view>
+    <view class="self-B d-f fxd-c mt-44 pl-54 pos-r">
+      <image src="/assets/images/iyou_user/walk@2x.png" class="w-44 h-44 pos-a t-24 l-0" />
+      <view class="d-f jc-fs ai-c mb-40">
+        <text class="c-B3B3B3 fz-20 w-120">自取联系人：</text>
+        <input class="w-120" value="{{address.consignee}}"disabled="{{true}}" data-key="consignee" />
+        <text class="c-B3B3B3 fz-20 w-150">自取联系电话：</text>
+        <input class="w-200" value="{{address.mobile}}"disabled="{{true}}" data-key="mobile" />
+        <image bindtap="navToAddress" src="https://xiuxiu-picture-weapp.oss-cn-shenzhen.aliyuncs.com/my/arrow.png" class="pos-a r-0 w-10 h-18" />
+      </view>
+      <view class="d-f jc-sb mb-40">
+        <view class="c-B3B3B3 fz-20 w-150">到店消费时间：</view>
+        <datetimepicker bind:change="handlePickupTime" option="{{option}}"></datetimepicker>
+      </view>
+      <view class="d-f jc-sb">
+        <view class="c-B3B3B3 fz-20 w-150">消费方式：</view>
+        <view class="d-f jc-sb">
+          <!-- 是否自提：1-是 0-否 -->
+          <view class="selfBtn mr-60 {{selfParams.selfPickup == 0 ? 'active2' : ''}}" bindtap="bindChangeType" data-type="0">店内消费</view>
+          <view class="selfBtn {{selfParams.selfPickup == 1 ? 'active2' : ''}}" bindtap="bindChangeType" data-type="1">到店自提</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
 <view class='cart-list'>
   <!-- <view class="car-item" wx:if="{{userType !=2 }}">
     <view class="user-box">
@@ -46,6 +130,7 @@
         <image class='avatar' src='{{item.store.avatar}}'></image>
         <view class='user-info'>{{item.store.nickname}}</view>
         <view class="user-status user-status1" wx:if="{{item.isAgent}}">我的商家</view>
+        <view class="user-status user-status1" wx:if="{{!item.isAgent && userInfo.isVip}}">会员店</view>
       </navigator>
       <view class="fz-24 lh-48 c-A4A4A4" wx:if="{{item.isAgent}}">已按代理价结算</view>
       <view class="fz-24 lh-48 c-A4A4A4" wx:if="{{!item.isAgent && userInfo.isVip}}">已按会员价结算</view>

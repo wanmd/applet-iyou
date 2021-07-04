@@ -334,8 +334,20 @@ Page({
             }
         }, { id: orderId }).showLoading()
 
+        this.getStoreInfo()
+
         this.setData({ orderId: orderId, index: options.index })
     },
+
+    getStoreInfo() {
+        const { storeId } = wx.getStorageSync('storeInfo');
+        request.get('iy/store/' + storeId, res => {
+          console.log(res);
+          this.setData({
+            storeInfo:  res.data.list
+          })
+        }, {}).showLoading()
+      },
 
     // 倒计时
     countDown: function() {

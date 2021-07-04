@@ -116,9 +116,9 @@ class Request {
         config.fail = e => {
             networkError();
         };
-
+        const { storeId } = wx.getStorageSync('storeInfo');
         // config.data = data;
-        config.data = Object.assign({}, data, { storeId: 903449 });
+        config.data = Object.assign({}, data, { storeId });
 
         this.isSendIng = true;
         wx.request(config);
@@ -397,6 +397,7 @@ const maskNumber = num => {
 const navToIme = () => {
     toast('跳转ime小程序')
 }
+
 module.exports = {
     validmobile: validmobile,
     formatTime: formatTime,
@@ -414,5 +415,6 @@ module.exports = {
     getDate: getDate,
     timestampToTime,
     maskNumber,
-    navToIme
+    navToIme,
+    formatNumber
 };
