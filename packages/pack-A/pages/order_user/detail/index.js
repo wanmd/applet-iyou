@@ -320,7 +320,7 @@ Page({
                 }
                 if (order.status == 1) { //待支付,取商家支付信息
                     let req = new Request()
-                    req.get('order/merchantpay', res => {
+                    req.get('iy/order/merchantpay', res => {
                         if (res.success) {
                             res.data.amount = res.data.amount * 1
                             res.data.delivery_fee = res.data.delivery_fee * 1
@@ -431,4 +431,11 @@ Page({
             hx_val: hx_val
         })
     },
+    daohang() {
+        const { storeInfo } = this.data;
+        wx.openLocation({
+          latitude: storeInfo.lat || 22.52291,//要去的纬度-地址
+          longitude: storeInfo.lng || 114.05454,//要去的经度-地址
+        })
+      }
 })

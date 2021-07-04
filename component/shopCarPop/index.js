@@ -264,8 +264,10 @@ Component({
     // 切换拼单购买
     handleGroupBuy() {
       this.setData({
-        type: 'group'
+        type: 'group',
+        type_title: '拼单购买'
       })
+      this.handleSelect(this.data.e)
     },
     // 选取规格型号
     handleSelect(e) {
@@ -273,6 +275,9 @@ Component({
         toast("请先选择+购物车、单独购买或者代理拿货后再进行选择");
         return
       }
+      this.setData({
+        e
+      })
       const { index, vindex } = e.currentTarget.dataset;
       // 当前选中规格所在的数组
       let selectValues = this.data.detail.attribute[index].value;

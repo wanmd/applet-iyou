@@ -1,6 +1,12 @@
 <!-- wx:if='{{order !== null}}'  -->
 <view wx:if='{{order !== null}}' class='p-l-r' style='padding-bottom:200rpx'>
-  <store store='{{order.store}}' status="{{order.status}}" is_agent='{{order.is_agent}}' is_vip='{{userInfo.Vip}}'></store>
+  <store 
+    store='{{order.store}}' 
+    status="{{order.status}}" 
+    is_agent='{{order.is_agent}}' 
+    is_vip='{{userInfo.Vip}}'>
+    self_pickup='{{order.self_pickup}}'>
+  </store>
   <!-- 自取 -->
   <view class="self bgc-fff p-20 mb-16">
     <view class="self-A d-f">

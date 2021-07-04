@@ -759,6 +759,13 @@
           "pathName": "pages/shopGoodsList/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": -1,
+          "name": "发起拼团成功",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -130,6 +130,7 @@ Page({
     // 0 发起新团  >0 加入某个团
     data['groupId'] = this.data.groupId || 0
     console.log(data)
+    const that = this;
     // request.post('cart/settlement', res => {
     request.post('iy/order/buy', res => {
         if(res.success){
@@ -137,7 +138,7 @@ Page({
           params.success = () => {
             toast('提交成功')
             setTimeout(function(){
-              if (data.groupId) {// 组团订单
+              if (that.data.isGroup == 1) {// 组团订单
                 wx.redirectTo({
                   url: '../order_user/group/index'
                 })
@@ -193,7 +194,8 @@ Page({
         cartIds: cartIds,
         type: opt.type
       }
-      this.setData({type : opt.type, cartIds : cartIds, groupId: opt.groupId })
+      
+      this.setData({type : opt.type, cartIds : cartIds, isGroup: opt.isGroup, groupId: opt.groupId })
     }else if(opt.type==2){//直接下单
       // console.log(JSON.parse(opt.productSpecs));
       
@@ -204,18 +206,18 @@ Page({
         shareUserId: opt.shareUserId||0,
         type: opt.type,
         buyType: opt.buyType,
-        // productSpecs: JSON.parse(opt.productSpecs),
-        productSpecs: {尺寸: "27", 颜色: "黑色"},
-        isGroup: opt.isGroup
+        productSpecs: JSON.parse(opt.productSpecs) || {尺寸: "27", 颜色: "黑色"},
+        isGroup: opt.isGroup,
+        groupId: opt.groupId
       }
-      this.setData({type : opt.type, cartIds : opt.chatId, shareUserId: data.shareUserId})
+      this.setData({type : opt.type, cartIds : opt.chatId, shareUserId: data.shareUserId, isGroup: opt.isGroup, groupId: opt.groupId})
     }
     console.log("data-----")
     console.log(data)
 
     // let dddd = '47,46,45,44,43'
     // let cartIds = dddd.split(',')
-console.log(app.formatDecimal("1.20"))
+    // console.log(app.formatDecimal("1.20"))
 
     request.post('iy/cart/toorder', res => {
       if(res.success){
@@ -372,13 +374,6 @@ console.log(app.formatDecimal("1.20"))
       })
     }, {}).showLoading()
   },
-  // handleInput(e) {
-  //   console.log(e);
-  //   let update = {};
-  //   const { key } = e.currentTarget.dataset;
-  //   update[`selfParams.${key}`] = e.detail.value;
-  //   this.setData(update)
-  // },
   bindChangeType(e) {
     this.setData({
       'selfParams.selfPickup': e.currentTarget.dataset.type
@@ -396,9 +391,10 @@ console.log(app.formatDecimal("1.20"))
     })
   },
   daohang() {
+    const { storeInfo } = this.data;
     wx.openLocation({
-      latitude: 22.52291,//要去的纬度-地址
-      longitude: 114.05454,//要去的经度-地址
+      latitude: storeInfo.lat || 22.52291,//要去的纬度-地址
+      longitude: storeInfo.lng || 114.05454,//要去的经度-地址
     })
   }
 })

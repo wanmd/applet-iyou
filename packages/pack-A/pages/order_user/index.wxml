@@ -69,7 +69,7 @@
 <pagination wx:if="{{current==1}}" id='pagination' url='iy/order/list' query='{{query}}' pkName='order_id' bind:load='load'>
 <view class='order-list' wx:if="{{orderList.length>0}}">
   <view class='item p-l-r' wx:for='{{orderList}}' wx:key='order_id'>
-    <store store='{{item.store}}' status='{{item.status}}' is_agent='{{item.is_agent}}'></store>
+    <store store='{{item.store}}' status='{{item.status}}' is_agent='{{item.is_agent}}' self_pickup="{{item.self_pickup}}"></store>
     <view class='relative'>
       <deliveryInfo delivery='{{item.delivery}}'></deliveryInfo>
       <goods wx:for='{{item.goods}}' ismy="{{false}}" goods='{{item}}' wx:key='chat_id'></goods>

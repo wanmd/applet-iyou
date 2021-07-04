@@ -533,9 +533,9 @@ wx.Page({
             ctx.draw(true)
                 // 画背景
             wx.getImageInfo({
-                    src: '/assets/images/bg_goods@2x.png',
+                    src: '/assets/images/bg_goods2@3x.png',
                     success(res) {
-                        ctx.drawImage('/assets/images/bg_goods@2x.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
+                        ctx.drawImage('/assets/images/bg_goods2@3x.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
                         ctx.draw(true)
 
                         ctx.beginPath();
@@ -598,7 +598,7 @@ wx.Page({
                         src: filePath,
                         success: (res) => {
                             let qrSize = rpxTopx(300)
-                            ctx.drawImage(res.path, 0, 0, res.width, res.height, rpxTopx(190), rpxTopx(580), qrSize, qrSize)
+                            ctx.drawImage(res.path, 0, 0, res.width, res.height, rpxTopx(190), rpxTopx(540), qrSize, qrSize)
                             ctx.draw(true)
                         }
                     })
