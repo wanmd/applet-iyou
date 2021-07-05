@@ -1,4 +1,8 @@
 @import '../order.wxss';
+
+page {
+    background-color: #fff !important;
+}
 .pay-type-wrap {
     /*padding:0rpx 40rpx;*/
 }
@@ -532,4 +536,17 @@
 .sharing_bg {
     width: 100%;
     height: 168rpx;
+}
+
+.inviteBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 156rpx;
+    height: 48rpx;
+    background: #AB00FF;
+    border-radius: 24rpx;
+    font-size: 22rpx;
+    line-height: 30rpx;
+    color: #FFFFFF;
 }

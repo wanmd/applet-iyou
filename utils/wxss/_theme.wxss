@@ -780,6 +780,9 @@
 .w-46 {
   width: 46rpx;
 }
+.w-48 {
+  width: 48rpx;
+}
 .w-50 {
   width: 50rpx;
 }
@@ -1383,6 +1386,9 @@
 }
 .c-B3B3B3 {
   color:#B3B3B3;
+}
+.c-979797 {
+  color:#979797;
 }
 /* Background */
 .bgc-f5 {

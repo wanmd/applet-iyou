@@ -18,6 +18,10 @@ Component({
       type : null,
       value: null,
     },
+    font: {
+      type : null,
+      value: null,
+    }
   },
 
   /**

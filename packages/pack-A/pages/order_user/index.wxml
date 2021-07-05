@@ -60,60 +60,38 @@
   </view>
 </view>
 <pagination wx:if="{{current==1}}" id='pagination' url='iy/order/list' query='{{query}}' pkName='order_id' bind:load='load'>
-<view class='order-list' wx:if="{{orderList.length>0}}">
-  <view class='item p-l-r' wx:for='{{orderList}}' wx:key='order_id'>
-    <store store='{{item.store}}' status='{{item.status}}' is_agent='{{item.is_agent}}' self_pickup="{{item.self_pickup}}"></store>
-    <view class='relative'>
-      <deliveryInfo delivery='{{item.delivery}}'></deliveryInfo>
-      <goods wx:for='{{item.goods}}' ismy="{{false}}" goods='{{item}}' wx:key='chat_id'></goods>
-      <view class='bottom'>
-        <view class='wrap'>
-          <view class='overflow'>
-            <text class='pull-left'>共 {{item.quantity}} 件，合计：</text>
-            <text class='pull-right c-AB00FF'>￥<text class='f-36'>{{item.amount}}</text></text>
-          </view>
-          <view class='overflow m-t-30' wx:if='{{item.status == 0 || item.status == 1 || item.status == 3}}'>
-            <navigator wx:if='{{item.status == 1}}' class='confirm-btn ml-16 bdrs-32' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">立即付款</navigator>
-            <button hover-class="none" class='confirm-btn ml-16 bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' data-id="{{item.order_id}}" bindtap='toggleSelfPay'>自助付款</button>
-            <button hover-class="none" class='cancel-btn bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
-            <!-- <button hover-class="none" wx:if='{{ item.status == 3}}' data-index='{{index}}' bindtap='confirmComplete' class='confirm-btn'>确认收货</button> -->
-          </view>
-        </view>
-      </view>
-      <navigator wx:if='{{item.status != 0}}' class='to-order-detail' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none"></navigator>
-    </view>
-  </view>
-</view>
-<empty wx:if="{{orderList.length==0}}" class='absolute xy' text='订单为空'></empty>
-
-</pagination>
-<pagination wx:if="{{current==2}}" id='pagination2' url='iy/getMyTakeGoodsList' query='{{query}}' pkName='order_id' bind:load='load'>
-<view class='order-list' wx:if="{{orderList.length>0}}">
-  <view class='item p-l-r' wx:for='{{orderList}}' wx:key='order_id'>
-    <store store='{{item.store}}' status='{{item.status}}' is_agent='{{item.is_agent}}'></store>
-    <view class='relative'>
-      <deliveryInfo delivery='{{item.delivery}}'></deliveryInfo>
-      <goods wx:for='{{item.goods}}' ismy="{{false}}" goods='{{item}}' wx:key='chat_id'></goods>
-      <view class='bottom'>
-        <view class='wrap'>
-          <view class='overflow'>
-            <text class='pull-left'>共 {{item.quantity}} 件，合计：</text>
-            <text class='pull-right c-AB00FF'>￥<text class='f-36'>{{item.amount}}</text></text>
-          </view>
-          <view class='overflow m-t-30' wx:if='{{item.status == 0 || item.status == 1 || item.status == 3}}'>
-            <navigator wx:if='{{item.status == 1}}' class='confirm-btn ml-16 bdrs-32' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">立即付款</navigator>
-            <button hover-class="none" class='confirm-btn ml-16 bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' data-id="{{item.order_id}}" bindtap='toggleSelfPay'>自助付款</button>
-            <button hover-class="none" class='cancel-btn bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
-            <!-- <button hover-class="none" wx:if='{{ item.status == 3}}' data-index='{{index}}' bindtap='confirmComplete' class='confirm-btn'>确认收货</button> -->
+  <view class='order-list' wx:if="{{orderList.length>0}}">
+    <view class='item p-l-r' wx:for='{{orderList}}' wx:key='order_id'>
+      <store 
+        store='{{item.store}}' 
+        status='{{item.status}}' 
+        is_agent='{{item.is_agent}}' 
+        self_pickup="{{item.self_pickup}}"
+        groupstate="{{query.groupstate}}"
+      >
+      </store>
+      <view class='relative'>
+        <deliveryInfo delivery='{{item.delivery}}'></deliveryInfo>
+        <goods wx:for='{{item.goods}}' ismy="{{false}}" goods='{{item}}' wx:key='chat_id'></goods>
+        <view class='bottom'>
+          <view class='wrap'>
+            <view class='overflow'>
+              <text class='pull-left'>共 {{item.quantity}} 件，合计：</text>
+              <text class='pull-right c-AB00FF'>￥<text class='f-36'>{{item.amount}}</text></text>
+            </view>
+            <view class='overflow m-t-30' wx:if='{{item.status == 0 || item.status == 1 || item.status == 3}}'>
+              <navigator wx:if='{{item.status == 1}}' class='confirm-btn ml-16 bdrs-32' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">立即付款</navigator>
+              <button hover-class="none" class='confirm-btn ml-16 bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' data-id="{{item.order_id}}" bindtap='toggleSelfPay'>自助付款</button>
+              <button hover-class="none" class='cancel-btn bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
+              <!-- <button hover-class="none" wx:if='{{ item.status == 3}}' data-index='{{index}}' bindtap='confirmComplete' class='confirm-btn'>确认收货</button> -->
+            </view>
           </view>
         </view>
+        <navigator wx:if='{{item.status != 0}}' class='to-order-detail' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none"></navigator>
       </view>
-      <navigator wx:if='{{item.status != 0}}' class='to-order-detail' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none"></navigator>
     </view>
   </view>
-</view>
-<empty wx:if="{{orderList.length==0}}" class='absolute xy' text='订单为空'></empty>
-
+  <empty wx:if="{{orderList.length==0}}" class='absolute xy' text='订单为空'></empty>
 </pagination>
 <confirm wx:if='{{showCancelConfirm}}' bindcallback='cancelCallback'></confirm>
 

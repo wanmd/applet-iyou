@@ -24,6 +24,10 @@ Component({
       type : Number,
       value : 0
     },
+    groupstate : {
+      type : Number,
+      value : 0
+    },
   },
 
   /**
