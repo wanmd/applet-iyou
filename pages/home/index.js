@@ -454,12 +454,14 @@ wx.Page({
     getStoreQr() {
         let req = new Request()
         req.setConfig('responseType', 'arraybuffer')
-        req.get('qr/store', res => {
+        req.get('iy/qr/store', res => {
             this.setData({
                 showSelectShareType: 0,
                 shareModal: 0
             })
             let qrcode = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
+            console.log(qrcode);
+            
             this.setData({ storeQr: qrcode, showQr: true })
             wx.nextTick(() => {
                 this.draw1()
@@ -518,6 +520,8 @@ wx.Page({
     draw1() {
         let qrcode = this.data.storeQr
         let userInfo = this.data.user
+        console.log(userInfo);
+        
         let avatar = userInfo.avatar
         let nickname = userInfo.nickname
         let remark = userInfo.remark
@@ -528,14 +532,14 @@ wx.Page({
             W = res[0].width
             H = res[0].height
             var ctx = wx.createCanvasContext('firstCanvas1')
-            ctx.setFillStyle('#FFE200')
+            ctx.setFillStyle('#FFF')
             ctx.fillRect(0, 0, W, H)
             ctx.draw(true)
                 // 画背景
             wx.getImageInfo({
-                    src: ALIYUN_URL + '/34884d3c3fcaa7c9a201b313191f1488.png',
+                    src: '../../packages/bg/34884d3c3fcaa7c9a201b313191f1488.png',
                     success(res) {
-                        ctx.drawImage(ALIYUN_URL + '/34884d3c3fcaa7c9a201b313191f1488.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
+                        ctx.drawImage('../../packages/bg/34884d3c3fcaa7c9a201b313191f1488.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
                         ctx.draw(true)
 
                         ctx.beginPath();
@@ -598,7 +602,7 @@ wx.Page({
                         src: filePath,
                         success: (res) => {
                             let qrSize = rpxTopx(300)
-                            ctx.drawImage(res.path, 0, 0, res.width, res.height, rpxTopx(190), rpxTopx(540), qrSize, qrSize)
+                            ctx.drawImage(res.path, 0, 0, res.width, res.height, rpxTopx(190), rpxTopx(520), qrSize, qrSize)
                             ctx.draw(true)
                         }
                     })

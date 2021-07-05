@@ -274,6 +274,7 @@ Page({
                 order.pay_time = parseTime(order.pay_time)
                 order.deliver_time = parseTime(order.deliver_time)
                 order.complete_time = parseTime(order.complete_time)
+                order.diff_time = order.group_time + 86400 - Math.floor(new Date().getTime()/1000)
 
                 let total_price = 0;
                 let vip_price = 0;
@@ -442,5 +443,15 @@ Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
+        const { product_group_id, goods } = this.data.order;
+        var sceneStr = '?from=ordergroup' + '&groupId=' + (product_group_id || 0);
+
+        let path = '/packages/pack-A/pages/order_user/group/index?' + encodeURIComponent(sceneStr)
+
+        return {
+            path: path,
+            imageUrl: ALIYUN_URL + '/' + goods[0].cover,
+            title: goods[0].goods_name
+        }
     }
 })
