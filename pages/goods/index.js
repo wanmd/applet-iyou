@@ -125,7 +125,6 @@ wx.Page({
         this.setData({
           groupList: res.data.list.map(item => {
             item.difftime = item.created_at + 86400 - Math.floor(new Date().getTime()/1000)
-            console.log(item.difftime);
             return item
           })
         })
@@ -812,9 +811,9 @@ wx.Page({
       ctx.draw(true)
       // 画背景
       wx.getImageInfo({
-        src: '/assets/images/bg_goods@2x.png',
+        src: ALIYUN_URL + '/34884d3c3fcaa7c9a201b313191f1488.png',
         success(res) {
-          ctx.drawImage('/assets/images/bg_goods@2x.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
+          ctx.drawImage(ALIYUN_URL + '/34884d3c3fcaa7c9a201b313191f1488.png', 0, 0, res.width, res.height, 0, 0, rpxTopx(676), rpxTopx(1000))
           ctx.draw(true)
 
           ctx.beginPath();

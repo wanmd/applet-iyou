@@ -49,10 +49,11 @@ Page({
       initialValue: null
     },
     selfParams: {
-      selfPickup: 0,
+      selfPickup: 1,
       pickupTime: '',
       consignee: '',
       mobile: '',
+      pickupStatePart: 1
     }
   },
   smart: function (val){
@@ -107,6 +108,7 @@ Page({
     if(this.data.type == 2){
       data['shareUserId'] = this.data.shareUserId;
     }
+    data['selfPickup'] = 0;
     // 到店
     if(current == 2) {
       if (address == null) {
@@ -116,16 +118,15 @@ Page({
         data['consignee'] = address.consignee;
         data['mobile'] = address.mobile;
       }
-      const { selfPickup, pickupTime } = this.data.selfParams;
-      data['selfPickup'] = selfPickup;
-      if (data['selfPickup'] == 1) {// 自提时间 selfPickup=1时必填
-        if (!pickupTime) {
-          toast('请选择自提时间')
-          return
-        } else {
-          data['pickupTime'] = pickupTime;
-        }
-      }
+      const { pickupTime, pickupStatePart } = this.data.selfParams;
+      if (!pickupTime) {
+        toast('请选择自提时间')
+        return
+      } 
+      data['selfPickup'] = 1;
+      data['pickupTime'] = pickupTime;
+      data['pickupStatePart'] = pickupStatePart;
+      
     }
     // 0 发起新团  >0 加入某个团
     data['groupId'] = this.data.groupId || 0
@@ -140,7 +141,7 @@ Page({
             setTimeout(function(){
               if (that.data.isGroup == 1) {// 组团订单
                 wx.redirectTo({
-                  url: '../order_user/group/index'
+                  url: '../order_user/group/index?groupId=' + res.data.groupId
                 })
               } else {
                 wx.redirectTo({
@@ -206,7 +207,7 @@ Page({
         shareUserId: opt.shareUserId||0,
         type: opt.type,
         buyType: opt.buyType,
-        productSpecs: JSON.parse(opt.productSpecs) || {尺寸: "27", 颜色: "黑色"},
+        productSpecs: JSON.parse(opt.productSpecs) || {"尺寸": "27", "颜色": "黑色"},
         isGroup: opt.isGroup,
         groupId: opt.groupId
       }
@@ -374,9 +375,9 @@ Page({
       })
     }, {}).showLoading()
   },
-  bindChangeType(e) {
+  bindChangePickupType(e) {
     this.setData({
-      'selfParams.selfPickup': e.currentTarget.dataset.type
+      'selfParams.pickupStatePart': e.currentTarget.dataset.type
     })
   },
   // 自提时间

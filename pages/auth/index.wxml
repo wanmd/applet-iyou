@@ -8,7 +8,7 @@
 		</view>
 	</view>
 	<view class='fixed xy w100p' style="padding-top: 80rpx;">
-		<el-image src='auth1@2x.png' style='width:420rpx;display:block;margin:auto;'></el-image>
+		<image src='{{ALIYUN_URL}}/53c01a0542773a279fc29711adb38cdd.png' style='width:420rpx;display:block;margin:auto;'></image>
 		<view class="auth-btns flex-around">
 			<button hover-class="none" class='so-btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>允许</button>
 			<button hover-class="none" class='rj-btn' bindtap="reject">取消</button>

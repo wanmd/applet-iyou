@@ -4,5 +4,6 @@
     "store": "./store/index",
     "deliveryInfo": "./deliveryInfo/index",
     "confirm": "../../../../component/confirm/index"
-  }
+  },
+  "navigationBarTitleText": "产品订单"
 }

@@ -14,15 +14,15 @@ Component({
     },
     is_agent : {
       type : String,
-      value : {}
+      value : 0
     },
     is_vip : {
-      type : String,
-      value : {}
+      type : Number,
+      value : 0
     },
     self_pickup : {
-      type : String,
-      value : {}
+      type : Number,
+      value : 0
     },
   },
 

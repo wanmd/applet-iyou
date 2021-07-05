@@ -102,7 +102,7 @@
               </icon-text-flex>
               <view class="item-text fz-24 mt-0">待付款</view>
           </view>
-          <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=1">
+          <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?groupstate=1&status=2">
               <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order6@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitGroupNum>0}}">{{orderCount.waitGroupNum > 99 ? "99+" : orderCount.waitGroupNum}}</view>
               </icon-text-flex>

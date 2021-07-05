@@ -28,11 +28,20 @@ Page({
 
   selectToggle(e) {
     let status = parseInt(e.currentTarget.dataset.status)
-    if (this.data.query.status == status) {
-      return
+    if (status == 100) {
+      this.setData({
+        'query.groupstate': 1
+      })
+    } else {
+      this.setData({
+        'query.groupstate': ''
+      })
     }
+    // if (this.data.query.status == status) {
+    //   return
+    // }
     this.setData({ orderList: [] })
-    this.setData({ 'query.status': status })
+    this.setData({ 'query.status': status == 100 ? 2 : status })
     this.selectComponent('#pagination').initLoad()
   },
 
@@ -194,7 +203,8 @@ Page({
     let opt = options;
     if(options&&options.status){
       let query = {
-        status: options.status || 5
+        status: options.status || 5,
+        groupstate: options.groupstate
       }
       this.setData({ query: query })
     }
@@ -220,34 +230,22 @@ Page({
     })
   },
   handleSubmit(data) {
+    console.log(data);
     let params = {
       payPicture: data.detail.reduce((prev, next) => {
-        return prev.file + ',' + next.file
-      })
+        return prev.concat(next.file)
+      },[])
     }
+    console.log(params);
     request.post('iy/order/selfpay/' + this.data.selfpayId, res => {
       if (res.success) {
         toast('提交成功');
-        this.toggleSelfPay()
+        this.setData({
+          selfPayShow: !this.data.selfPayShow,
+        });
       } else {
         toast(res.msg)
       }
     }, params)
   },
-  // 切换导航
-  handleNavTab(e) {
-    const { current } = e.currentTarget.dataset;
-    this.setData({
-      current,
-    }, () => {
-      // if (this.data.current == 1) {
-      //   request.setMany(true);
-      //   this.getOrderList()
-      //   this.getOrderCount(1);
-      // } else {
-      //   this.getMyTakeGoodsList()
-      // }
-    })
-  },
-
 })

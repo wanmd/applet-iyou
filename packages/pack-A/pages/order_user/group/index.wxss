@@ -28,6 +28,11 @@ page {
   line-height: 30rpx;
   color: #FFFFFF;
 }
+.invite2 {
+  background-color: #fff;
+  color: #AB00FF;
+  border: 1rpx solid #AB00FF;
+}
 
 .info {
   position: absolute;

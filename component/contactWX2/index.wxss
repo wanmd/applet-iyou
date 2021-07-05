@@ -52,12 +52,12 @@
 .icon-centent{
   width: 191rpx;
   height: 61rpx;
-  border:1px solid rgba(255,226,0,1);
+  border:1px solid #AB00FF;
   border-radius:31rpx;
   line-height: 61rpx;
   text-align: center;
   font-size: 24rpx;
-  color: rgba(102,102,102,1);
+  color: #AB00FF;
 }
 
 /* //上拉运动 */

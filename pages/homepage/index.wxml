@@ -2,9 +2,9 @@
 	<view class='h-100 relative p-l-r'>
 		<view class='relative'>
 			<avatar size='136rpx' vipsize="50rpx" user="{{user}}" src='{{user.avatar}}'></avatar>
-			<navigator wx:if='{{user.user_type == 2}}' url='/pages/store/index?storeId={{userId}}' class='go-store middle' hover-class="none">
+			<!-- <navigator wx:if='{{user.user_type == 2}}' url='/pages/store/index?storeId={{userId}}' class='go-store middle' hover-class="none">
 				<icon-text icon='ic_shop@2x.png' left='8rpx' width='64rpx'>TA的店</icon-text>
-			</navigator>
+			</navigator> -->
 		</view>
 		<view class='color-fff m-t-20'>
 			<view class='f-36'>
@@ -55,7 +55,7 @@
 	</view>
   	<empty wx:else class='absolute xy' style="padding-top: 400rpx;"></empty>
 </view> -->
-<view class='fixed-bottom overflow {{selectedNav == 2 ? "hide" : ""}}' style='height:96rpx;'>
+<view class='fixed-bottom overflow {{selectedNav == 2 ? "hide" : ""}}' style='height:96rpx;' wx:if="{{false}}">
 	<view class='flex'>
 		<icon-text-flex class=" flex__it" icon='{{followed ? "ic_dynamics_praised.png" : "ic_guanzhu@2x.png"}}' bindtap='toggleFollow'>{{followed ? '已关注' : '关注TA'}}</icon-text-flex>
 		<view class=' flex__it pull-left' width='' catch:tap="contact" url='/pages/contact/index?userId={{userId}}'>

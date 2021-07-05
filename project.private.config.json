@@ -730,13 +730,19 @@
         {
           "name": "发起拼团成功",
           "pathName": "packages/pack-A/pages/order_user/group/index",
-          "query": "",
+          "query": "groupId=135",
           "scene": null
         },
         {
           "name": "确认订单",
           "pathName": "packages/pack-A/pages/checkout/index",
-          "query": "chatId=2363&goodsNum=1&remark=&type=2&shareUserId=0&isGroup=2&groupid=0&productSpecs={尺寸: \"27\", 颜色: \"黑色\"}&buyType=1",
+          "query": "chatId=2363&goodsNum=1&remark=&type=2&shareUserId=0&isGroup=2&groupid=0&productSpecs={\"尺寸\": \"27\", \"颜色\": \"黑色\"}&buyType=1",
+          "scene": null
+        },
+        {
+          "name": "参与拼团（客人页）",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "from=ordergroup&groupId=135",
           "scene": null
         }
       ]

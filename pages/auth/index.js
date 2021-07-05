@@ -1,6 +1,7 @@
 import {
     Request
 } from '../../utils/util.js'
+import { ALIYUN_URL } from '../../utils/config.js';
 let request = new Request()
 let app = getApp()
 wx.Page({
@@ -10,7 +11,8 @@ wx.Page({
      */
     data: {
         userInfo: null,
-        isAuth: false
+        isAuth: false,
+        ALIYUN_URL
     },
     onLoad: function(options) {
         this.change("#fff")

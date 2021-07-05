@@ -280,7 +280,7 @@ Page({
                 let amount_price = 0;
                 order.goods.forEach(item => {
                     total_price += app.formatDecimal(item.sale_price) * item.quantity;
-                    vip_price += app.formatDecimal(item.vip_price) * item.quantity;
+                    vip_price += app.formatDecimal(item.member_price) * item.quantity;
                 })
                 amount_price = order.amount;
 

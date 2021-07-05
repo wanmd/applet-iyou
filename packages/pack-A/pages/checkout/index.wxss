@@ -394,4 +394,5 @@ page{
 .active2 {
   background: rgba(171, 0, 255, 0.08);
   color: #AB00FF;
+  border: 1rpx solid #AB00FF;
 }

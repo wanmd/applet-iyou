@@ -3,14 +3,6 @@
     <view class='item current' id='abc'>我发起的订单</view>
     <navigator wx:if='{{userType == 2}}' class='item' url='/pages/order/merchant/index' hover-class="none">我收到的订单</navigator>
   </view> -->
-  <view  class="d-f mlr-100">
-    <view class='fx-1 pb-20 ta-c fz-28 pos-r {{current == 1 ? "current" : ""}}' bindtap="handleNavTab" data-current="1">
-      产品订单
-    </view>
-    <view class='fx-1 pb-20 ta-c fz-28 pos-r {{current == 2 ? "current" : ""}}' bindtap="handleNavTab" data-current="2">
-      拿货订单
-    </view>
-  </view>
   <view class='order-status-item'>
     <view class='item {{query.status == 5 ? "current" : ""}}' data-status='5' bindtap='selectToggle'>
       <view class='wrap'>
@@ -30,16 +22,17 @@
         <view class='text'>待付款</view>
       </view>
     </view>
-    <view class='item {{query.status == 2 ? "current" : ""}}' data-status='2' bindtap='selectToggle'>
+    <!-- `groupstate`  拼团状态 1-待成团 2-已成团 ' -->
+    <view class='item {{query.groupstate == 1 ? "current" : ""}}' data-status='100' data-groupstate="1" bindtap='selectToggle'>
       <view class='wrap'>
         <!-- <el-image class='icon' src='user/my-order2@2x.png' mode='widthFix'></el-image> -->
         <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order6@2x.png'>
-          <view class="red-number" wx:if="{{orderCount.waitSendNum>0}}">{{orderCount.waitSendNum > 99 ? '99+' : orderCount.waitSendNum}}</view>
+          <view class="red-number" wx:if="{{orderCount.waitGroupNum>0}}">{{orderCount.waitGroupNum > 99 ? '99+' : orderCount.waitGroupNum}}</view>
         </icon-text-flex>
         <view class='text'>待成团</view>
       </view>
     </view>
-    <view class='item {{query.status == 2 ? "current" : ""}}' data-status='2' bindtap='selectToggle'>
+    <view class='item {{query.groupstate != 1 && query.status == 2 ? "current" : ""}}' data-status='2' bindtap='selectToggle'>
       <view class='wrap'>
         <!-- <el-image class='icon' src='user/my-order2@2x.png' mode='widthFix'></el-image> -->
         <icon-text-flex class='item-icon' width="100rpx" icon='iyou_user/my-order2@2x.png'>
