@@ -221,13 +221,14 @@ page {
 /* 下单车 */
 .xiadan {
   position: fixed;
-  left: 180rpx;
-  right: 30rpx;
+  left: 114rpx;
+  right: 64rpx;
   bottom: 30rpx;
   height: 88rpx;
   /* display: flex; */
   /* background-color: pink; */
   border-radius: 48rpx;
+  z-index: 999;
 }
 .xiadan-left {
   width: 90%;
@@ -251,4 +252,88 @@ page {
   background: #AB00FF;
   box-shadow: 0rpx 6rpx 12rpx rgba(0, 0, 0, 0.16);
   border-radius: 48rpx;
+}
+
+.select-share-type {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 101;
+  background: rgba(0, 0, 0, 0.5);
+}
+.select-share-type .modal {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 668rpx;
+  background: #fff;
+  z-index: 9;
+  border-radius: 32rpx 32rpx 0rpx 0rpx;
+}
+.select-share-type .modal .close {
+  position: absolute;
+  right: 30rpx;
+  width: 48rpx;
+}
+.select-share-type .modal .header {
+  line-height: 108rpx;
+  font-size: 32rpx;
+  text-align: right;
+  /* border-bottom: 1px solid #f7f7f7; */
+  position: relative;
+}
+.select-share-type .modal .types {
+  display: flex;
+  padding: 30rpx 0rpx 40rpx 0rpx;
+}
+.select-share-type .modal .types .item {
+  flex: 1;
+}
+.select-share-type .modal .types .item .icon {
+  display: block;
+  width: 88rpx;
+  margin: auto;
+}
+.select-share-type .modal .types .item .name {
+  margin-top: 20rpx;
+  text-align: center;
+}
+.select-share-type .modal .types .item .name view{
+  line-height: 22rpx;
+  font-size: 20rpx
+}
+
+.contentWrap {
+  height: 400rpx;
+  overflow-y: auto;
+}
+
+.numberBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+
+  width: 32rpx;
+  height: 32rpx;
+  background-color: #fff;
+  border-radius: 50%;
+  background-color: #AB00FF;
+}
+
+.nums {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 28rpx;
+  height: 28rpx;
+  border-radius: 50%;
+  background-color: #FF0000;
+  color: #FFFFFF;
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 28rpx;
 }

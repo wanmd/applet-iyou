@@ -155,9 +155,65 @@
   needSelectType="{{false}}" 
   bind:ok="handleOK"
 />
-<!-- 下单车 -->
-<view class="xiadan">
-  <view class="xiadan-left"></view>
-  <view class="xiadan-right">下单</view>
+<!-- 购物袋下单车 -->
+<view class="xiadan" wx:if="{{true}}">
+  <view class="xiadan-left d-f ai-c pl-20" bindtap="showCartsPop">
+    <view class="mr-20 pos-r">
+      <view class="nums" wx:if="{{nums}}">{{nums}}</view>
+      <image src="/assets/images/gouwudai@3x.png" class="w-70 h-60" />
+    </view>
+    <view class="d-f fxd-c">
+      <view class="fz-28 c-F61935">￥{{amount}}</view>
+      <view class="fz-16 c-747474">会员/代理优惠 588元</view>
+    </view>
+  </view>
+  <view class="xiadan-right" catchtap="postOrder">下单</view>
+</view>
+
+<!-- 购物袋弹窗 -->
+<view 
+  data-target="out"
+  catchtap='toggleShowGouwuPop'
+  class="select-share-type {{gouwuPop==0?'slidown_none':''}} {{gouwuPop==1 ?'sliup_1': ''}}">
+  <view class="modal" data-target="modal" catchtap='toggleShowGouwuPop'>
+    <view class='header ta-r pr-20'>
+      <image class='w-32 h-32 mr-6' src='/assets/images/empty@2x.png' ></image>
+      <text class="fz-20 c-CDCDCD" catchtap='emptyCartsData'>清空购物篮</text>
+    </view>
+    <view class="contentWrap pl-68 pr-40">
+      <view class="d-f goodsBox" wx:for="{{cartsData}}">
+        <view class="goodsImg d-f w-116 h-116 mr-24">
+          <img style="width:116rpx;height:116rpx" src="{{item.detail.image_urls || '/assets/images/default-jj.png'}}"></img>
+        </view>
+        <view class="d-f fxd-c jc-sb fx-1">
+          <view>
+            <view class="c-666 fz-28 tov-e-1 mb-8 lh-46">{{item.detail.name}}</view>
+            <view class="d-f fxw-w c-CDCDCD fz-20">
+              {{item.productSpecs}}
+            </view>
+          </view>
+          <view class="saleBox w-500 d-f jc-sb ai-c ">
+            <view class="">
+              <text class="c-000 fz-20 lh-28">￥</text><text class="c-000 fz-28 lh-32">{{item.price}}</text>
+            </view>
+            <view class="d-f ai-c">
+              <view 
+                wx:if="{{item.quantity}}"
+                class="numberBtn"
+                data-flag="-" 
+                data-index="{{index}}"
+                catchtap="operaTap">-</view>
+              <view class="mlr-36" wx:if="{{item.quantity}}">{{item.quantity}}</view>
+              <view 
+                class="numberBtn" 
+                data-flag="+" 
+                data-index="{{index}}"
+                catchtap="operaTap">+</view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
 </view>
 

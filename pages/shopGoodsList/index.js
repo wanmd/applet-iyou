@@ -47,6 +47,9 @@ Page({
     },
     showShopCarPop: false,
     goods_id: null,
+    cartsData: [],
+    gouwuPop: 0,
+    amount: 0
   },
 
   /**
@@ -281,17 +284,90 @@ Page({
         goods_id 
     })
   },
-
+  // 确认规格
   handleOK(e) {
     console.log(e);
     const itemData = e.detail;
     app.globalData.cartsData = [...app.globalData.cartsData, itemData];
     console.log(app.globalData.cartsData);
-    
-    // const { detail, }
+    this.changeNumsAndAmounts()
+
     this.setData({
-      showShopCarPop: false
+      cartsData: app.globalData.cartsData,
+      showShopCarPop: false,
     })
+  },
+  changeNumsAndAmounts() {
+    let nums = 0, amount = 0;
+    app.globalData.cartsData.forEach(item => {
+      nums += Number(item.quantity);
+      amount += Number(item.price) * Number(item.quantity);
+    })
+    this.setData({
+      nums,
+      amount
+    })
+  },
+  // 弹起购物袋弹窗
+  showCartsPop() {
+    console.log('showCartsPop');
+    this.setData({
+      gouwuPop: true
+    })
+  },
+  toggleShowCartsPop() {
+
+  },
+  toggleShowGouwuPop(e) {
+    const { target } = e.currentTarget.dataset;
+    if (target === 'modal') return;
+    this.setData({
+      gouwuPop: !this.data.gouwuPop
+    })
+  },
+  // 清空购物篮
+  emptyCartsData() {
+    wx.showModal({
+      title: '确任清空购物篮？',
+      content: '',
+      success: res => {
+          if (res.confirm) {
+            app.globalData.cartsData = [];
+            this.setData({
+              cartsData: [],
+              nums:0,
+              amount:0
+            })
+          }
+      }
+  })
+  },
+  // 数量加减
+  operaTap(e) {
+    const { flag, index } = e.currentTarget.dataset;
+    if (flag === '-') {
+      // if (num == 1 || num < 1) {
+      //   return
+      // } else {
+      //   this.setData({
+      //     'cartsData[index].quantity': this.data.cartsData[index].quantity - 1
+      //   })
+      // }
+      let update = {};
+      update[`cartsData[${index}].quantity`] = this.data.cartsData[index].quantity - 1;
+      this.setData(update)
+      this.changeNumsAndAmounts()
+    } else {
+      let update = {};
+      update[`cartsData[${index}].quantity`] = this.data.cartsData[index].quantity + 1;
+      this.setData(update)
+      this.changeNumsAndAmounts()
+    }
+
+  },
+
+  postOrder() {
+    console.log('postOrder');
   },
 
   /**

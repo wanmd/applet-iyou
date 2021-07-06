@@ -171,7 +171,10 @@ Component({
           }
           console.log(res.data);
           this.setData({ 
-            detail: res.data
+            detail: res.data,
+            canConfirm: false,
+            header_price: '',
+            num: 1
           })
         } else {
           toast(res.msg)
@@ -383,7 +386,7 @@ Component({
     },
     // 确定提交
     handleSubmit() {
-      const { detail, num } = this.data;
+      const { detail, num, header_price } = this.data;
       if (!num) {
         toast('数量不正确');
         return
@@ -391,7 +394,8 @@ Component({
       const data = {
         detail,
         quantity: num,
-        productSpecs: this.getProductSpecs()
+        price: header_price,
+        productSpecs: JSON.stringify(this.getProductSpecs())
       }
 
       console.log(data);
