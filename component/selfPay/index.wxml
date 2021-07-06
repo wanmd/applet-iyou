@@ -5,15 +5,25 @@
      <view class="fz-36 c-333 lh-48">买家自助支付</view>
     </view>
     <view class="content  mt-20">
-      <view class="ml-38 fz-28 c-666 lh-48">买家可与卖家约定付款方式，选择扫码通道完成离线支付，并上传此订单支付成功截图，商家确认后即可完成发货。</view>
+      <view class="mlr-38 fz-28 c-666 lh-48">买家可与卖家约定付款方式，选择扫码通道完成离线支付，并上传此订单支付成功截图，商家确认后即可完成发货。</view>
       <view class="d-f jc-sb mlr-60 mt-56 w-100p">
         <view class="">
           <text>微信支付</text>
-          <image src="/assets/images/index/wx_pay.png" class="w-240 h-240"/>
+          <image 
+            src="{{storeInfo.fee_wx_code || '/assets/images/wxpay-example.png'}}"  
+            data-url="{{storeInfo.fee_wx_code || '/assets/images/wxpay-example.png'}}" 
+            bindlongpress="saveImage" 
+            class="w-240 h-240"
+          />
         </view>
         <view>
           <text>支付宝支付</text>
-          <image src="/assets/images/alipay@2x.png" class="w-240 h-240"/>
+          <image 
+            src="{{storeInfo.fee_ali_code || '/assets/images/alipay@2x.png'}}"  
+            data-url="{{storeInfo.fee_ali_code || '/assets/images/alipay@2x.png'}}" 
+            bindlongpress="saveImage" 
+            class="w-240 h-240"
+          />
         </view>
       </view>
       <view class="fz-24 c-999 mt-54 mb-36 ta-c">长按保存商家收款码</view>

@@ -389,6 +389,10 @@
   margin-left: 30rpx;
   margin-right: 30rpx;
 }
+.mlr-38 {
+  margin-left: 38rpx;
+  margin-right: 38rpx;
+}
 .mlr-40 {
   margin-left: 40rpx;
   margin-right: 40rpx;

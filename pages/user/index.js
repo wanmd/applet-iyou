@@ -38,12 +38,12 @@ Component({
             {
                 image: '../../assets/images/iyou_user/youhuiquan@2x.png',
                 text: '优惠券',
-                url: '/pages/merchant/index',
+                url: '',
             },
             {
                 image: '../../assets/images/iyou_user/jifen@2x.png',
                 text: '积分',
-                url: '/pages/collection/index',
+                url: '',
             },
             {
                 image: '../../assets/images/iyou_user/shoucang@2x.png',
@@ -179,6 +179,11 @@ Component({
             }
         },
         isAuth_(e) {
+            const { url } = e.currentTarget.dataset;
+            if (!url) {
+                this.development_();
+                return
+            }
             let userInfo = wx._getStorageSync('userinfo')
             if (!userInfo.nickname || !userInfo.isAuth) {
                 wx._setStorageSync("nav_key", 'swit')
@@ -186,12 +191,12 @@ Component({
             }else if(!userInfo.isAuth) {
                 this.setData({
                     showBindMobileModel: true,
-                    setUrl: e.currentTarget.dataset.url
+                    setUrl: url
                 })
                 return
             } else {
                 console.log(e)
-                app.requireLogin(e.currentTarget.dataset.url)
+                app.requireLogin(url)
             }
         },
         development_() {

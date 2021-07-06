@@ -550,3 +550,8 @@ page {
     line-height: 30rpx;
     color: #FFFFFF;
 }
+.self {
+    margin-top: 20rpx;
+    border-top: 2rpx solid #f5f5f5;
+    border-bottom: 2rpx solid #f5f5f5;
+}

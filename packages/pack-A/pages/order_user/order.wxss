@@ -74,7 +74,7 @@
   /*margin-top:20rpx;*/
 }
 .order-list {
-  padding-top:60rpx;
+  padding-top:100rpx;
 }
 .order-list .item{
   background: #fff;

@@ -32,3 +32,28 @@ page{
   color: #AB00FF;
   border-bottom: 6rpx solid #AB00FF;
 }
+
+.search_wrap {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 36rpx 20rpx 48rpx;
+  background: #F7F7F7;
+}
+
+.search_wrap .input {
+  width: 516rpx;
+  height: 58rpx;
+  padding: 10rpx 30rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 29rpx;
+}
+
+.search_wrap .input input {
+  height: 38rpx;
+  line-height: 38rpx;
+}
+
+.search_wrap .search_btn {
+  padding: 0 10rpx;
+}

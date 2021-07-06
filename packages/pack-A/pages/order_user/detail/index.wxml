@@ -46,7 +46,7 @@
       
     </view>
   </view>
-  <deliveryInfo delivery='{{order.delivery}}'></deliveryInfo>
+  <deliveryInfo wx:if="{{!order.self_pickup}}" delivery='{{order.delivery}}'></deliveryInfo>
   <!-- 拼团 -->
   <view wx:if="{{order.is_group}}" class="d-f jc-sb ai-c p-20">
     <view>

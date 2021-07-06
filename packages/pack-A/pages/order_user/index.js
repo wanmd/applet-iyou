@@ -23,7 +23,8 @@ Page({
       hasDoneNum: 0,
     },
     current: 1,
-    selfPayShow: 0
+    selfPayShow: 0,
+    keyword: ''
   },
 
   selectToggle(e) {
@@ -152,7 +153,7 @@ Page({
         if (res.success && res.data.list.length > 0) {
           this.load({ detail: { list: res.data.list, page: 1 } }, 1)
         }
-      }, { status: this.data.query.status, lastPk: 0, page: 1, pageSize: 20 }) 
+      }, { status: this.data.query.status, lastPk: 0, page: 1, pageSize: 20, keyword: this.data.query.keyword  }) 
     }
   },
   // 拿货订单
@@ -204,7 +205,7 @@ Page({
     if(options&&options.status){
       let query = {
         status: options.status || 5,
-        groupstate: options.groupstate
+        groupstate: options.groupstate || ''
       }
       this.setData({ query: query })
     }
@@ -248,4 +249,15 @@ Page({
       }
     }, params)
   },
+  bindinput_(e) {
+    const keyword = e.detail.value;
+    this.setData({
+      keyword,
+      'query.keyword': keyword
+    })
+  },
+  search() {
+    this.setData({ orderList: [] })
+    this.selectComponent('#pagination').initLoad()
+  }
 })

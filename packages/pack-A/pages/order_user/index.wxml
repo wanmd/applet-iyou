@@ -1,4 +1,12 @@
 <view class='top-nav'>
+  <view class="search_wrap jc-sb">
+    <view class="d-f ai-c">
+        <view class="input mr-30">
+            <input bindinput="bindinput_" placeholder="搜订单/手机号/联系人等关键词" placeholder-style="color: #d8d8d8;" value="{{keyword}}" bindconfirm="search" confirm-type="search"/>
+        </view>
+        <view class="search_btn" bindtap='search'>搜索</view>
+    </view>
+  </view>
   <!-- <view class='toggle-item'>
     <view class='item current' id='abc'>我发起的订单</view>
     <navigator wx:if='{{userType == 2}}' class='item' url='/pages/order/merchant/index' hover-class="none">我收到的订单</navigator>
