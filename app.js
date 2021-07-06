@@ -390,7 +390,9 @@ App({
         isLogin: false,
         dynamics: {
             type: 1
-        }
+        },
+        // 分类列表下单车数据
+        cartsData: []
     },
 
     newPublish: false

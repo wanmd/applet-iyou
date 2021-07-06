@@ -1,5 +1,6 @@
 import { Request, toast } from '../../utils/util.js'
 let request = new Request()
+let app = getApp();
 
 Page({
 
@@ -43,7 +44,9 @@ Page({
     query2: {
       storeId: 0,
       keyword: '',
-		}
+    },
+    showShopCarPop: false,
+    goods_id: null,
   },
 
   /**
@@ -96,7 +99,6 @@ Page({
             commodityList = item.son
           }
         })
-        console.log(commodityList);
         this.setData({ 
           sidebarData : list,
           sidebarId,
@@ -265,6 +267,30 @@ Page({
     const { name } = e.currentTarget.dataset;
     wx.navigateTo({
       url: '/pages/goodsManage/index?labelname=' + name,
+    })
+  },
+
+  // 购物车弹框
+  showGoodsPopup(e) {
+    // if (!this.isToLogin()) return;
+    // 产品id
+    const { goods_id } = e.currentTarget.dataset;
+    
+    this.setData({
+        showShopCarPop: true,
+        goods_id 
+    })
+  },
+
+  handleOK(e) {
+    console.log(e);
+    const itemData = e.detail;
+    app.globalData.cartsData = [...app.globalData.cartsData, itemData];
+    console.log(app.globalData.cartsData);
+    
+    // const { detail, }
+    this.setData({
+      showShopCarPop: false
     })
   },
 

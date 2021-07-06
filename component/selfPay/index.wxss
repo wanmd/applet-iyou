@@ -25,7 +25,6 @@
   /*bottom: 0;*/
   background: #fff;
   z-index: 9999;
-  
 }
 .b-0 {
   bottom: 0 !important;
@@ -38,9 +37,6 @@
 }
 
 .select-share-type .modal .header {
-  /* position: fixed;
-  left: 20rpx;
-  right: 20rpx; */
   border-radius: 20rpx;
   line-height: 48rpx;
   font-size: 32rpx;
