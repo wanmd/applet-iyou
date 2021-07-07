@@ -1,4 +1,4 @@
-import { Request, toast, rpxTopx, copyText } from '../../utils/util.js';
+import { Request, toast, rpxTopx, copyText, maskNumber } from '../../utils/util.js';
 let app = getApp();
 wx.Page({
     data: {
@@ -46,7 +46,8 @@ wx.Page({
     getList(showLoading) {
         if (showLoading) wx._showLoading();
         console.log(this);
-        this.get('iy/cart').then(res => {
+        const { storeId } = wx.getStorageSync('storeInfo')
+        this.get('iy/cart?storeId=' + storeId).then(res => {
             if (showLoading) wx._hideLoading();
             let cartList = res.data.list;
             let goodsCount = 0;
@@ -61,6 +62,7 @@ wx.Page({
                             item.checked = false;
                             item.agent_price = Number(item.agent_price).toFixed(2);
                             item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : (Number(item.agent_price).toFixed(2));
+                            item.member_price = (item.isAgent || this.data.userInfo.isVip) ? item.member_price : maskNumber(item.member_price)
                             let display = ''
                             let product_specs = item.product_specs && JSON.parse(item.product_specs);
                             for (let key in product_specs) {
@@ -274,17 +276,12 @@ wx.Page({
                     if (v.checked) {
                         totalSelect++;
                         ids.push(v.id);
-                        // if (item.isAgent) {
-                        //     totalMoney += v.agent_price * v.quantity;
-                        // } else if (this.data.userInfo.isVip == 1) {
-                        //     totalMoney += v.vip_price * v.quantity;
-                        // } else {
-                        //     totalMoney += v.sale_price * v.quantity;
-                        // }
                         if (item.isAgent) {
                             totalMoney += v.agent_price * v.quantity;
-                        } else {
+                        } else if (this.data.userInfo.isVip == 1) {
                             totalMoney += v.member_price * v.quantity;
+                        } else {
+                            totalMoney += v.group_price * v.quantity;
                         }
 
                     }

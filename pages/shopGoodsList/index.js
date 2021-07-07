@@ -50,7 +50,8 @@ wx.Page({
     cartList: [],
     gouwuPop: 0,// 购物袋弹框
     totalMoney: 0, // 总价
-    saveamount: 0,// 节省
+    saveMoney: 0,// 节省
+    isAgent: null
   },
 
   /**
@@ -124,22 +125,32 @@ wx.Page({
   getGouwuDai() {
     const { storeId } = wx.getStorageSync('storeInfo')
     wx._showLoading();
-    request.get('iy/cart', res => {
+    request.get('iy/carts', res => {
       wx._hideLoading();
       // 只要本商户的加购产品
       let cartList = res.data.list.filter(item => item.store_id == storeId);
+      let isAgent = res.data.isAgent;
+      this.setData({
+        isAgent
+      })
+      console.log(cartList);
+      
       
       if (res.success) {
           if (cartList.length == 0) {
               this.setData({ cartList: [] });
+              this.changeCountAndMoney(cartList)
           } else {
               this.setData({
-                cartList: cartList[0].cart.map(item => {
-                  item.isAgent = cartList[0].isAgent;
+                cartList: cartList.map(item => {
+                  const image_urls = item.product.image_urls;
+                  item.cover = image_urls.indexOf(',') ? image_urls.split(',')[0] : image_urls;
+                  item.isAgent = isAgent;
+                  item.productSpecs = item.product_specs
                   return item
                 }), 
               })
-              this.changeCountAndMoney(cartList[0].cart)
+              this.changeCountAndMoney(cartList)
           }
       } else {
           wx.showToast({ title: res.msg, icon: 'none' });
@@ -149,7 +160,7 @@ wx.Page({
   // 改变数量和总价
   changeCountAndMoney(cartList) {
     const { isVip } = wx.getStorageSync('storeInfo');
-    let goodsCount = 0, totalMoney = 0;
+    let goodsCount = 0, totalMoney = 0, salesMoney = 0;
     console.log(cartList);
     cartList.forEach((item, index) => {
       item.agent_price = Number(item.agent_price).toFixed(2);
@@ -167,9 +178,14 @@ wx.Page({
         totalMoney += (item.quantity) * (item.group_price)
       }
       goodsCount += (item.quantity);
+      salesMoney += (item.sale_price)*(item.quantity);
     });
     console.log(cartList);
-    this.setData({ goodsCount, totalMoney });
+    this.setData({ 
+      goodsCount, 
+      totalMoney,
+      saveMoney: salesMoney-totalMoney
+    });
   },
 
   // 后退
@@ -367,22 +383,27 @@ wx.Page({
   },
   // 清空购物篮
   emptyCartsData() {
+    if (!this.data.cartList.length) {
+      toast('无可清空项目');
+      return
+    }
     wx.showModal({
       title: '确任清空购物篮？',
       content: '',
       success: res => {
           if (res.confirm) {
-            let cartIds = this.getCurrentIds();
+            let cartIds = this.getCurrentIds().split(',');
             this.deleteGoods(cartIds)
           }
       }
     })
   },
   deleteGoods(ids) {
+    const that = this;
     this.post('iy/cart/delete', { cartIds: ids }).then(res => {
         if (res.success) {
             wx._showToast('删除成功');
-            this.getList(false);
+            that.getGouwuDai();
         } else {
             wx._showToast(res.msg);
         }
@@ -403,7 +424,7 @@ wx.Page({
       }
       this.changeCart(newQuantity, id, remark, callback)
     } else {
-      this.deleteGoods(id)
+      this.deleteGoods([id])
     }
 
     
@@ -422,6 +443,7 @@ wx.Page({
   },
   getCurrentIds() {
     let cartIds = []
+    let { cartList } = this.data;
     for (let i = 0; i < cartList.length; i++) {
       let item = cartList[i];
       if(item.quantity) {
@@ -433,6 +455,10 @@ wx.Page({
   // 下单
   postOrder() {
     let { cartList } = this.data;
+    if (!cartList.length) {
+      toast('请先加购商品再下单');
+      return
+    }
     let cartIds = this.getCurrentIds();
     wx.navigateTo({
       url: '../../packages/pack-A/pages/checkout/index?cartIds=' + cartIds + '&type=1'

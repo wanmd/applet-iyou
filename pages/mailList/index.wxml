@@ -6,7 +6,7 @@
 <pagination id='pagination' url='{{urls[selectedNav - 1]}}' pkName='id' bind:load='load'>
   <view class='list' wx:if='{{userList !== null}}'>
     <view class='item p-l-r' wx:for='{{userList}}' wx:key="index">
-      <cell height='140rpx' url='/pages/homepage/index?userId={{selectedNav == 2 ? item.follow_user_id : item.user_id}}'>
+      <cell height='140rpx' bindtap="changeStore" data-user="{{item.user}}">
         <view class="title" slot='title'>
           <avatar size='80rpx' src='{{item.user.avatar || "../../assets/images/avatar.png"}}'>
           <el-image wx:if="{{item.isVip}}" class="vip" src='vip/vip.png' style='width:30rpx;display: inline-block;'></el-image>

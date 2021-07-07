@@ -182,7 +182,11 @@
     </view>
     <view class="d-f fxd-c">
       <view class="fz-28 c-F61935">￥{{totalMoney}}</view>
-      <view class="fz-16 c-747474">会员/代理优惠 588元</view>
+      <view class="fz-16 c-747474">
+        <text wx:if="{{isAgent}}">代理</text>
+        <text wx:if="{{!isAgent && userinfo.isVip}}">会员</text>
+        优惠 {{saveMoney}}元
+      </view>
     </view>
   </view>
   <view class="xiadan-right" catchtap="postOrder">下单</view>

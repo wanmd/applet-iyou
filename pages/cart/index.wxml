@@ -93,7 +93,7 @@
                           <text class="c-ECBD75">{{it.agent_price}}</text>
                         </view>
                       </view>
-                      <view class="goods-price" wx:else>
+                      <view class="goods-price" wx:if="{{!item.isAgent && userInfo.isVip}}">
                         <view>
                           <image 
                             data-url='../applyAgent/index?storeId={{userInfo.user_id}}&storeName={{userInfo.nickname}}' 
@@ -101,14 +101,25 @@
                             style="width:68rpx;height:28rpx;margin-right:4rpx" 
                             catchtap="isAuth_"
                           />
-                          <text class='text-through c-ECBD75'>{{it.sale_price}}</text>
+                          <text class='text-through c-ECBD75'>{{it.agent_price}}</text>
                         </view>
                         <view>
-                          <text class="text c-262626">代发价￥</text>
+                          <text class="text c-262626">会员价￥</text>
                           <text class="c-262626">{{it.member_price}}</text>
                         </view>
                       </view>
+                      <view class="goods-price" wx:else>
+                        <view>
+                          <text class="text c-262626">会员价</text>
+                          <text class='c-AB00FF'>{{it.member_price}}</text>
+                        </view>
+                        <view>
+                            <text class="text c-ECBD75">拼单价</text>
+                            <text class="c-000">{{it.group_price}}</text>
+                          </view>
+                      </view>
                     </view>
+                    
                     <view class="input-area">
                       <button hover-class="none" class="opera {{it.quantity==1? ' opera-disable': ''}}" data-remark="{{it.remark}}" hover-class="{{it.quantity==1? 'none': 'button-hover'}}" data-pindex="{{index}}" data-cindex="{{idx}}" data-flag="-" catchtap="operaTap">
                         -

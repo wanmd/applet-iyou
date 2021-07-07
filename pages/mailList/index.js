@@ -39,11 +39,23 @@ Page({
         if(!row) {
           return
         }
+        row.user = JSON.parse(row.user);
         userList.push(row)
       })
 
       this.setData({ userList: userList})
     }
+  },
+
+  changeStore(e) {
+    const { user } = e.currentTarget.dataset;
+    const { user_id } = user;
+    user.storeId = user_id;
+    wx.setStorageSync('storeInfo', user);
+    wx.navigateTo({
+      url: '/pages/homepage/index?userId=' + user_id,
+    })
+    // /pages/homepage/index?userId={{selectedNav == 2 ? item.follow_user_id : item.user_id}}
   },
 
   onLoad: function (opts) {
