@@ -1,8 +1,8 @@
-import { Request, toast } from '../../utils/util.js'
+import { Request, toast, maskNumber } from '../../utils/util.js'
 let request = new Request()
 let app = getApp();
 
-Page({
+wx.Page({
 
   /**
    * 页面的初始数据
@@ -45,11 +45,12 @@ Page({
       storeId: 0,
       keyword: '',
     },
-    showShopCarPop: false,
+    showShopCarPop: false,// 规格弹框
     goods_id: null,
-    cartsData: [],
-    gouwuPop: 0,
-    amount: 0
+    cartList: [],
+    gouwuPop: 0,// 购物袋弹框
+    totalMoney: 0, // 总价
+    saveamount: 0,// 节省
   },
 
   /**
@@ -92,6 +93,12 @@ Page({
 
   initData() {
     request.setMany(true);
+    this.getCategory()
+    this.getGouwuDai()
+  },
+  // 分类
+  getCategory() {
+    const userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
     request.get('iy/productcategories', res => {
       if(res.success){
         let { list } = res.data;
@@ -107,10 +114,62 @@ Page({
           sidebarId,
           // currentTab: 0,
           commodityList,
+          userInfo
         })
         this.getGoodsList(sidebarId)
       }
     }, {parentid: 0})
+  },
+  // 购物袋
+  getGouwuDai() {
+    const { storeId } = wx.getStorageSync('storeInfo')
+    wx._showLoading();
+    request.get('iy/cart', res => {
+      wx._hideLoading();
+      // 只要本商户的加购产品
+      let cartList = res.data.list.filter(item => item.store_id == storeId);
+      
+      if (res.success) {
+          if (cartList.length == 0) {
+              this.setData({ cartList: [] });
+          } else {
+              this.setData({
+                cartList: cartList[0].cart.map(item => {
+                  item.isAgent = cartList[0].isAgent;
+                  return item
+                }), 
+              })
+              this.changeCountAndMoney(cartList[0].cart)
+          }
+      } else {
+          wx.showToast({ title: res.msg, icon: 'none' });
+      }
+    });
+  },
+  // 改变数量和总价
+  changeCountAndMoney(cartList) {
+    const { isVip } = wx.getStorageSync('storeInfo');
+    let goodsCount = 0, totalMoney = 0;
+    console.log(cartList);
+    cartList.forEach((item, index) => {
+      item.agent_price = Number(item.agent_price).toFixed(2);
+      let display = ''
+      let product_specs = item.product_specs && JSON.parse(item.product_specs);
+      for (let key in product_specs) {
+          display +=  key + ':' + product_specs[key] + ';'
+      }
+      item.display = display;
+      if (item.isAgent) {
+        totalMoney += (item.quantity) * (item.agent_price)
+      } else if(!item.isAgent && isVip) {
+        totalMoney += (item.quantity) * (item.member_price)
+      } else {
+        totalMoney += (item.quantity) * (item.group_price)
+      }
+      goodsCount += (item.quantity);
+    });
+    console.log(cartList);
+    this.setData({ goodsCount, totalMoney });
   },
 
   // 后退
@@ -214,8 +273,6 @@ Page({
 
   // 确定搜索
   search(e) {
-    // const { target } = e.currentTarget.dataset;
-    // console.log(target);
     if (this.data.current == 1) {
       this.getGoodsList(this.data.query1.categoryid)
     } else {
@@ -243,6 +300,7 @@ Page({
         this.setData({
           goodsList: res.data.list.map(item => {
             item.image_urls = item.image_urls.indexOf(',') ? item.image_urls.split(',')[0] : item.image_urls;
+            item.member_price = (item.isAgent || this.data.userInfo.isVip) ? Number(item.member_price).toFixed(2) : maskNumber(Number(item.member_price).toFixed(2));
             return item
           }),
           loading: false
@@ -275,7 +333,6 @@ Page({
 
   // 购物车弹框
   showGoodsPopup(e) {
-    // if (!this.isToLogin()) return;
     // 产品id
     const { goods_id } = e.currentTarget.dataset;
     
@@ -286,26 +343,9 @@ Page({
   },
   // 确认规格
   handleOK(e) {
-    console.log(e);
-    const itemData = e.detail;
-    app.globalData.cartsData = [...app.globalData.cartsData, itemData];
-    console.log(app.globalData.cartsData);
-    this.changeNumsAndAmounts()
-
+    this.getGouwuDai();
     this.setData({
-      cartsData: app.globalData.cartsData,
       showShopCarPop: false,
-    })
-  },
-  changeNumsAndAmounts() {
-    let nums = 0, amount = 0;
-    app.globalData.cartsData.forEach(item => {
-      nums += Number(item.quantity);
-      amount += Number(item.price) * Number(item.quantity);
-    })
-    this.setData({
-      nums,
-      amount
     })
   },
   // 弹起购物袋弹窗
@@ -332,42 +372,61 @@ Page({
       content: '',
       success: res => {
           if (res.confirm) {
-            app.globalData.cartsData = [];
-            this.setData({
-              cartsData: [],
-              nums:0,
-              amount:0
-            })
+            this.deleteGoods()
           }
       }
-  })
+    })
+  },
+  deleteGoods() {
+    this.post('iy/cart/delete', { cartIds: this.data.ids }).then(res => {
+        if (res.success) {
+            wx._showToast('删除成功');
+            this.getList(false);
+        } else {
+            wx._showToast(res.msg);
+        }
+    });
   },
   // 数量加减
   operaTap(e) {
     const { flag, index } = e.currentTarget.dataset;
-    if (flag === '-') {
-      // if (num == 1 || num < 1) {
-      //   return
-      // } else {
-      //   this.setData({
-      //     'cartsData[index].quantity': this.data.cartsData[index].quantity - 1
-      //   })
-      // }
+    const { quantity, id, remark } = this.data.cartList[index];
+    const newQuantity = flag === '-' ? quantity - 1 : quantity + 1;
+
+    const callback = () => {
       let update = {};
-      update[`cartsData[${index}].quantity`] = this.data.cartsData[index].quantity - 1;
+      update[`cartList[${index}].quantity`] = newQuantity;
       this.setData(update)
-      this.changeNumsAndAmounts()
-    } else {
-      let update = {};
-      update[`cartsData[${index}].quantity`] = this.data.cartsData[index].quantity + 1;
-      this.setData(update)
-      this.changeNumsAndAmounts()
+      this.changeCountAndMoney(this.data.cartList)
     }
-
+    this.changeCart(newQuantity, id, remark, callback)
   },
-
+  // 编辑数量
+  changeCart(q, id, remark, callback) {
+    wx.showToast({ title: '修改中', icon: 'none' });
+    this.post('iy/cart/change', { id: id, quantity: q, remark: remark }).then(res => {
+      if (res.success) {
+          toast("修改成功");
+          callback && callback()
+      } else {
+          toast(res.msg);
+      }
+    });
+  },
+  // 下单
   postOrder() {
-    console.log('postOrder');
+    let { cartList } = this.data;
+    let cartIds = []
+    for (let i = 0; i < cartList.length; i++) {
+      let item = cartList[i];
+      if(item.quantity) {
+        cartIds = cartIds.concat(item.id)
+      }
+    }
+    cartIds = cartIds.join(',');
+    wx.navigateTo({
+      url: '../../packages/pack-A/pages/checkout/index?cartIds=' + cartIds + '&type=1'
+    });
   },
 
   /**

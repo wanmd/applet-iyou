@@ -104,10 +104,28 @@
                       <view class="tagListBox" wx:for="{{tabItem.labels}}" wx:key="id">{{item.name}}</view>
                     </view>
                   </view>
-                  
+                  <!-- 用户价格显示区别：
+
+                    1 一般用户显示：
+                    拼单价+会员价（只显示首位数字，其他*号展示）
+
+                    2.在平台任意一家商家购买了会员，会员用户单击立即购买和拼单购买则都分别显示：
+                    会员价+划线零售价
+
+                    3.此商家代理显示：
+                    代理价（拿货价）+划线零售价 -->
                   <view class="saleBox w-360 d-f jc-sb ai-c ">
-                    <view class="">
-                      <text class="c-000 fz-20 lh-28">￥</text><text class="c-000 fz-28 lh-32">{{tabItem.price}}</text>
+                    <view wx:if="{{!tabItem.isAgent && !userinfo.isVip}}">
+                        <text class='f-32 bold c-333 mr-20'>￥{{tabItem.group_price}}</text>
+                        <text class='f-24 c-BFBFBF'>￥{{tabItem.member_price}}</text>
+                    </view>
+                    <view wx:if="{{!tabItem.isAgent && userinfo.isVip}}">
+                        ￥<text class='f-32 bold c-ECBD75 mr-20'>{{tabItem.member_price}}</text>
+                        ￥<text class='f-24 td-l c-BFBFBF td-l'>￥{{tabItem.group_price}}</text>
+                    </view>
+                    <view wx:if="{{tabItem.isAgent}}">
+                        ￥<text class='f-32 bold c-AB00FF mr-20'>{{tabItem.agent_price}}</text>
+                        ￥<text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
                     </view>
                     <view class="d-f ai-c" catchtap="showGoodsPopup" data-goods_id='{{tabItem.id}}'>
                       <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -157,13 +175,13 @@
 />
 <!-- 购物袋下单车 -->
 <view class="xiadan" wx:if="{{true}}">
-  <view class="xiadan-left d-f ai-c pl-20" bindtap="showCartsPop">
+  <view class="xiadan-left d-f ai-c pl-32" bindtap="toggleShowGouwuPop">
     <view class="mr-20 pos-r">
-      <view class="nums" wx:if="{{nums}}">{{nums}}</view>
+      <view class="nums" wx:if="{{goodsCount}}">{{goodsCount}}</view>
       <image src="/assets/images/gouwudai@3x.png" class="w-70 h-60" />
     </view>
     <view class="d-f fxd-c">
-      <view class="fz-28 c-F61935">￥{{amount}}</view>
+      <view class="fz-28 c-F61935">￥{{totalMoney}}</view>
       <view class="fz-16 c-747474">会员/代理优惠 588元</view>
     </view>
   </view>
@@ -181,13 +199,13 @@
       <text class="fz-20 c-CDCDCD" catchtap='emptyCartsData'>清空购物篮</text>
     </view>
     <view class="contentWrap pl-68 pr-40">
-      <view class="d-f goodsBox" wx:for="{{cartsData}}">
+      <view class="d-f goodsBox" wx:for="{{cartList}}">
         <view class="goodsImg d-f w-116 h-116 mr-24">
-          <img style="width:116rpx;height:116rpx" src="{{item.detail.image_urls || '/assets/images/default-jj.png'}}"></img>
+          <img style="width:116rpx;height:116rpx" src="{{item.cover || '/assets/images/default-jj.png'}}"></img>
         </view>
         <view class="d-f fxd-c jc-sb fx-1">
           <view>
-            <view class="c-666 fz-28 tov-e-1 mb-8 lh-46">{{item.detail.name}}</view>
+            <view class="c-666 fz-28 tov-e-1 mb-8 lh-46">{{item.name}}</view>
             <view class="d-f fxw-w c-CDCDCD fz-20">
               {{item.productSpecs}}
             </view>

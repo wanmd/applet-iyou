@@ -1,4 +1,4 @@
-import { Request, toast, rpxTopx, copyText, maskNumber } from '../../utils/util.js';
+import { Request, toast, rpxTopx, copyText } from '../../utils/util.js';
 let app = getApp();
 wx.Page({
     data: {
@@ -45,6 +45,7 @@ wx.Page({
     },
     getList(showLoading) {
         if (showLoading) wx._showLoading();
+        console.log(this);
         this.get('iy/cart').then(res => {
             if (showLoading) wx._hideLoading();
             let cartList = res.data.list;
@@ -59,7 +60,7 @@ wx.Page({
                         v.cart.forEach(item => {
                             item.checked = false;
                             item.agent_price = Number(item.agent_price).toFixed(2);
-                            item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : maskNumber(Number(item.agent_price).toFixed(2));
+                            item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : (Number(item.agent_price).toFixed(2));
                             let display = ''
                             let product_specs = item.product_specs && JSON.parse(item.product_specs);
                             for (let key in product_specs) {

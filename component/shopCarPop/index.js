@@ -421,13 +421,14 @@ Component({
       }
 
       const data = {
-        id: detail.chat_id || 0,
+        chatId: detail.chat_id || 0,
         remark: detail.remark || '',
         shareUserId: detail.shareUserId || 0,
         quantity: num,
         productSpecs: this.getProductSpecs()
       }
-      request.post('iy/cart/add', res => {
+      request.post('iy/cart', res => {
+
         if(res.success){
           toast('加入购物车成功!')
           this.setData({

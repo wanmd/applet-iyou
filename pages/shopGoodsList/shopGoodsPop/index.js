@@ -358,12 +358,13 @@ Component({
       const { agent_price, member_price, group_price, sale_price } = select_product_specs;
       const { userType, type } = this.data;
 
+      //根据身份取最低价：一般用户：拼单价 会员用户：会员价（公开报价）代理：商家代理取代理价 
       switch(userType) {
         case 'normal':
           this.setData({
             price_1: sale_price,
             price_2: group_price,
-            header_price: type === 'group' ? group_price : sale_price
+            header_price: group_price
           })
           break
         case 'member':
@@ -391,16 +392,16 @@ Component({
         toast('数量不正确');
         return
       }
-      const data = {
-        detail,
-        quantity: num,
-        price: header_price,
-        productSpecs: JSON.stringify(this.getProductSpecs())
-      }
+      // const data = {
+      //   detail,
+      //   quantity: num,
+      //   price: header_price,
+      //   productSpecs: JSON.stringify(this.getProductSpecs())
+      // }
 
-      console.log(data);
-
-      this.triggerEvent('ok', data)
+      // console.log(data);
+      this.postCart()
+      
     },
 
     getProductSpecs() {
@@ -426,13 +427,13 @@ Component({
       }
 
       const data = {
-        id: detail.chat_id || 0,
+        chatId: detail.chat_id || 0,
         remark: detail.remark || '',
         shareUserId: detail.shareUserId || 0,
         quantity: num,
         productSpecs: this.getProductSpecs()
       }
-      request.post('iy/cart/add', res => {
+      request.post('iy/cart', res => {
         if(res.success){
           toast('加入购物车成功!')
           this.setData({
@@ -440,6 +441,7 @@ Component({
             type: '',
             canSelect: false
           })
+          this.triggerEvent('ok', data)
           return
         }else{
           toast(res.msg)
