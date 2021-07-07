@@ -372,13 +372,14 @@ wx.Page({
       content: '',
       success: res => {
           if (res.confirm) {
-            this.deleteGoods()
+            let cartIds = this.getCurrentIds();
+            this.deleteGoods(cartIds)
           }
       }
     })
   },
-  deleteGoods() {
-    this.post('iy/cart/delete', { cartIds: this.data.ids }).then(res => {
+  deleteGoods(ids) {
+    this.post('iy/cart/delete', { cartIds: ids }).then(res => {
         if (res.success) {
             wx._showToast('删除成功');
             this.getList(false);
@@ -393,13 +394,19 @@ wx.Page({
     const { quantity, id, remark } = this.data.cartList[index];
     const newQuantity = flag === '-' ? quantity - 1 : quantity + 1;
 
-    const callback = () => {
-      let update = {};
-      update[`cartList[${index}].quantity`] = newQuantity;
-      this.setData(update)
-      this.changeCountAndMoney(this.data.cartList)
+    if(newQuantity) {
+      const callback = () => {
+        let update = {};
+        update[`cartList[${index}].quantity`] = newQuantity;
+        this.setData(update)
+        this.changeCountAndMoney(this.data.cartList)
+      }
+      this.changeCart(newQuantity, id, remark, callback)
+    } else {
+      this.deleteGoods(id)
     }
-    this.changeCart(newQuantity, id, remark, callback)
+
+    
   },
   // 编辑数量
   changeCart(q, id, remark, callback) {
@@ -413,9 +420,7 @@ wx.Page({
       }
     });
   },
-  // 下单
-  postOrder() {
-    let { cartList } = this.data;
+  getCurrentIds() {
     let cartIds = []
     for (let i = 0; i < cartList.length; i++) {
       let item = cartList[i];
@@ -423,7 +428,12 @@ wx.Page({
         cartIds = cartIds.concat(item.id)
       }
     }
-    cartIds = cartIds.join(',');
+    return cartIds.join(',');
+  },
+  // 下单
+  postOrder() {
+    let { cartList } = this.data;
+    let cartIds = this.getCurrentIds();
     wx.navigateTo({
       url: '../../packages/pack-A/pages/checkout/index?cartIds=' + cartIds + '&type=1'
     });
