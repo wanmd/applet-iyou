@@ -34,7 +34,8 @@
             >
               <view class="link-CWDL">
                 <image class='image' src='/assets/images/DAILI@2x.png'  style="width:35rpx;height:35rpx;"></image>
-                <text>{{item.store_agent_rule.slogan}}</text>
+                <text>加盟代理商 一件代发 拿货更便宜 兼职也赚钱</text>
+                <!-- <text>{{item.store_agent_rule.slogan}}</text> -->
                 <image class='jiantou' src='/assets/images/jiantou.png' style="width:12rpx;height:22rpx;"></image>
               </view>
             </navigator>
@@ -85,12 +86,12 @@
                       <!-- 新 -->
                       <view class="goods-price" wx:if="{{item.isAgent}}">
                         <view>
-                          <text class="text c-262626">零售价</text>
-                          <text class='text-through c-262626'>{{it.sale_price}}</text>
+                          <text class="text c-262626 fz-28">零售价￥</text>
+                          <text class='text-through c-262626 fz-28'>{{it.sale_price}}</text>
                         </view>
                         <view>
-                          <text class="text c-ECBD75">代理价</text>
-                          <text class="c-ECBD75">{{it.agent_price}}</text>
+                          <text class="text c-ECBD75">代理价￥</text>
+                          <text class="c-ECBD75 fz-32">{{it.agent_price}}</text>
                         </view>
                       </view>
                       <view class="goods-price" wx:if="{{!item.isAgent && userInfo.isVip}}">
@@ -101,21 +102,26 @@
                             style="width:68rpx;height:28rpx;margin-right:4rpx" 
                             catchtap="isAuth_"
                           />
-                          <text class='text-through c-ECBD75'>{{it.agent_price}}</text>
+                          <text class='text-through c-ECBD75 fz-28'>{{it.agent_price}}</text>
                         </view>
                         <view>
                           <text class="text c-262626">会员价￥</text>
-                          <text class="c-262626">{{it.member_price}}</text>
+                          <text class="c-262626 fz-32">{{it.member_price}}</text>
                         </view>
                       </view>
                       <view class="goods-price" wx:else>
-                        <view>
-                          <text class="text c-262626">会员价</text>
-                          <text class='c-AB00FF'>{{it.member_price}}</text>
+                        <view class="d-f ai-c">
+                          <el-image 
+                            data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"
+                            class="vip mr-10" 
+                            src='vip/vip_label@2x.png' 
+                            style='width:72rpx;height:34rpx;display: inline-block;'
+                          ></el-image>
+                          <text class='c-AB00FF fz-28'>{{it.member_price}}</text>
                         </view>
                         <view>
-                            <text class="text c-ECBD75">拼单价</text>
-                            <text class="c-000">{{it.group_price}}</text>
+                            <text class="text c-ECBD75">拼单价￥</text>
+                            <text class="c-000 fz-32">{{it.group_price}}</text>
                           </view>
                       </view>
                     </view>

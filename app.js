@@ -7,11 +7,12 @@ import { assetsImages } from './utils/config.js';
 const MsgQueue = require('./utils/msgqueue.js');
 App({
     onLaunch: function(options) {
-        wx.setStorageSync('storeInfo', {
-            storeId: 903449,
-            name: '展雄的店',
-            mobile: 13088889999
-        })
+        
+        // wx.setStorageSync('storeInfo', {
+        //     storeId: 903449,
+        //     name: '展雄的店',
+        //     mobile: 13088889999
+        // })
         // var options = {
         //   query: {
         //     invite_chatId: "0",
@@ -21,6 +22,8 @@ App({
         // }
         this.autoUpdate()
         console.log('onLaunch');
+        console.log("options=========");
+        console.log(options);
         let inviter = options.query.inviter || 0;
         // console.log('inviter=======', inviter)
         // console.log("options=========");
@@ -356,8 +359,6 @@ App({
 
         const { top: navTop, height: nav_button_height } = wx.getMenuButtonBoundingClientRect(); // 胶囊按钮与顶部的距离
 
-        console.log(wx.getMenuButtonBoundingClientRect());
-        
         // 系统
         const isiOS = system.indexOf('iOS') > -1;
         

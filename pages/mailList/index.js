@@ -1,9 +1,10 @@
 
-Page({
+wx.Page({
 
   data: {
     selectedNav : 1,
-    urls: ['iy/mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
+    // urls: ['mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
+    urls: ['iy/mail/follows'],
     topNavs: [
       // { type: 1, name: '关注的店' }, 
       // { type: 2, name: '粉丝' }, 
@@ -13,18 +14,18 @@ Page({
     userList : []
   },
 
-  toggleType (e) {
-    let type = e.currentTarget.dataset.type
-    let selectedNav = this.data.selectedNav
-    if (selectedNav == type) {
-      return
-    }
+  // toggleType (e) {
+  //   let type = e.currentTarget.dataset.type
+  //   let selectedNav = this.data.selectedNav
+  //   if (selectedNav == type) {
+  //     return
+  //   }
 
-    this.setData({ selectedNav: type, userList: []})
-    wx.nextTick(() => {
-      this.selectComponent('#pagination').initLoad()
-    })
-  },
+  //   this.setData({ selectedNav: type, userList: []})
+  //   wx.nextTick(() => {
+  //     this.selectComponent('#pagination').initLoad()
+  //   })
+  // },
 
   load (e) {
     console.log(e);
@@ -52,10 +53,9 @@ Page({
     const { user_id } = user;
     user.storeId = user_id;
     wx.setStorageSync('storeInfo', user);
-    wx.navigateTo({
-      url: '/pages/homepage/index?userId=' + user_id,
+    wx.switchTab({
+      url: '/pages/home/index',
     })
-    // /pages/homepage/index?userId={{selectedNav == 2 ? item.follow_user_id : item.user_id}}
   },
 
   onLoad: function (opts) {

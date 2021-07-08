@@ -55,6 +55,7 @@ Component({
       query.page = data.page
       query.pageSize = this.properties.pageSize
       this.setData({ isSendIng: true})
+
       request.get(this.properties.url, res => {
         this.setData({ isSendIng: false})
         let resultList = []

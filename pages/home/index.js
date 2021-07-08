@@ -78,7 +78,7 @@ wx.Page({
         }
         this.setData({ selectedNav: selectedNav })
         console.log(options.storeId);
-        let storeId = options.storeId || 0
+        let { storeId = 0 } = wx.getStorageSync('storeInfo')
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -98,16 +98,21 @@ wx.Page({
                 if (res.success) {
                     let user = res.data.user
                     if (!(user instanceof Object)) {
+                        wx.setStorageSync('storeInfo', user)
                         user = JSON.parse(user)
                     }
                     this.setData({ user: user })
                 }
             })
-        } else {
+        } else if(storeId > 0 && storeId == userInfo.user_id) {
             // this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId } })
             let storeId = userInfo.user_id;
             this.setData({ isSelf: true, user: userInfo, storeId: options.storeId })
             this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId }, query3: { store_id: '', keyword: '', type: 2 }, query4: { store_id: storeId, type: 2 } })
+        } else {// 没有storeId
+            wx.redirectTo({
+              url: '/pages/mailList/index',
+            })
         }
 
         // let userInfo = app.globalData.userInfo;
@@ -155,6 +160,7 @@ wx.Page({
         })
         if (this.data.pageHude) {
             let selectedNav = this.data.selectedNav;
+            if (!this.data.query.storeId) return;
             if (selectedNav == 1) {
                 this.selectComponent('#pagination').initLoad()
             } else if (selectedNav == 2) {
@@ -223,7 +229,7 @@ wx.Page({
         // console.log(e);
         let rows = e.detail.list
         let page = e.detail.page
-        console.log(page)
+
         if (rows.length == 0 && page == 1) {
             this.setData({ goodsList: null })
             return

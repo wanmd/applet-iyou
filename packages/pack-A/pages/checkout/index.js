@@ -44,7 +44,6 @@ Page({
           label: '特殊商品不退换'
       }
     ],
-    date: '',
     option: {
       initialValue: null
     },

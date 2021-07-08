@@ -3,7 +3,7 @@
     <view wx:for='{{topNavs}}' wx:key="index" class='item {{selectedNav == item.type ? "current" : ""}}' data-type='{{item.type}}' bindtap='toggleType'>{{item.name}}</view>
   </view>
 </view>
-<pagination id='pagination' url='{{urls[selectedNav - 1]}}' pkName='id' bind:load='load'>
+<pagination id='mailpagination' url='{{urls[selectedNav - 1]}}' pkName='id' bind:load='load'>
   <view class='list' wx:if='{{userList !== null}}'>
     <view class='item p-l-r' wx:for='{{userList}}' wx:key="index">
       <cell height='140rpx' bindtap="changeStore" data-user="{{item.user}}">
