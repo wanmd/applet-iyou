@@ -242,10 +242,10 @@ Page({
     request.post('iy/order/selfpay/' + this.data.selfpayId, res => {
       if (res.success) {
         toast('提交成功');
-        this.setData({
-          selfPayShow: !this.data.selfPayShow,
-          'orderList[this.data.selfpayIndex].pay_picture': 100
-        });
+        let update = {};
+        update[`orderList[${this.data.selfpayIndex}].pay_picture`] = 100;
+        update.selfPayShow = !this.data.selfPayShow;
+        this.setData(update);
       } else {
         toast(res.msg)
       }
