@@ -90,7 +90,7 @@
           <!-- 分类下的商品列表 -->
           <view class="mt-10">
             <block wx:for="{{goodsList}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx">
-              <view class="d-f goodsBox" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
+              <navigator class="d-f goodsBox" url="/pages/goods/index?chatId={{tabItem.chat_id}}&productid={{tabItem.id}}">
                 <view class="goodsImg d-f w-180 h-180 mr-16">
                   <img style="width:180rpx;height:180rpx" src="{{tabItem.image_urls || '../../assets/images/default-jj.png'}}"></img>
                 </view>
@@ -132,7 +132,7 @@
                     </view>
                   </view>
                 </view>
-              </view>
+              </navigator>
               
             </block>
             <view class="d-f jc-c p-30">

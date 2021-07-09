@@ -337,11 +337,12 @@ Page({
 
         this.getStoreInfo()
 
-        this.setData({ orderId: orderId, index: options.index })
+        this.setData({ orderId: orderId, index: options.index, userInfo: wx.getStorageSync('userInfo') })
     },
 
     getStoreInfo() {
-        const { storeId } = wx.getStorageSync('storeInfo');
+        const storeInfo = wx.getStorageSync('storeInfo')
+        const storeId = storeInfo.storeId || storeInfo.user_id;
         request.get('iy/store/' + storeId, res => {
           console.log(res);
           this.setData({

@@ -78,7 +78,8 @@ wx.Page({
         }
         this.setData({ selectedNav: selectedNav })
         console.log(options.storeId);
-        let { storeId = 0 } = wx.getStorageSync('storeInfo')
+        const storeInfo = wx.getStorageSync('storeInfo')
+        const storeId = storeInfo.storeId || storeInfo.user_id;
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -98,8 +99,8 @@ wx.Page({
                 if (res.success) {
                     let user = res.data.user
                     if (!(user instanceof Object)) {
-                        wx.setStorageSync('storeInfo', user)
                         user = JSON.parse(user)
+                        wx.setStorageSync('storeInfo', user)
                     }
                     this.setData({ user: user })
                 }

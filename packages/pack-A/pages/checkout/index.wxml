@@ -109,7 +109,7 @@
         <view class="d-f jc-sb">
           <!-- 1-店内消费 2-到店自提 -->
           <view class="selfBtn mr-60 {{selfParams.pickupStatePart == 1 ? 'active2' : ''}}" bindtap="bindChangePickupType" data-type="1">店内消费</view>
-          <view class="selfBtn {{selfParams.pickupStatePart == 2 ? 'active2' : ''}}" bindtap="bindChangeType" data-type="2">到店自提</view>
+          <view class="selfBtn {{selfParams.pickupStatePart == 2 ? 'active2' : ''}}" bindtap="bindChangePickupType" data-type="2">到店自提</view>
         </view>
       </view>
     </view>
