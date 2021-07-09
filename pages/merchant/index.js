@@ -35,8 +35,6 @@ wx.Page({
     })
   },
   closeStroe() {
-    console.log(1111);
-    
     wx._showToast('功能升级中')
   },
   development_(){
