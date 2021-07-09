@@ -88,9 +88,25 @@
               <text class='pull-right c-AB00FF'>￥<text class='f-36'>{{item.amount}}</text></text>
             </view>
             <view class='overflow m-t-30' wx:if='{{item.status == 0 || item.status == 1 || item.status == 3}}'>
-              <navigator wx:if='{{item.status == 1}}' class='confirm-btn ml-16 bdrs-32' url='./detail/index?orderId={{item.order_id}}&index={{index}}' hover-class="none">立即付款</navigator>
-              <button hover-class="none" class='confirm-btn ml-16 bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' data-id="{{item.order_id}}" bindtap='toggleSelfPay'>自助付款</button>
-              <button hover-class="none" class='cancel-btn bdrs-32' wx:if='{{item.status == 0 || item.status == 1}}' data-index='{{index}}' bindtap='cancelOrder'>取消</button>
+              <navigator 
+                wx:if='{{item.status == 1}}' 
+                class='confirm-btn ml-16 bdrs-32' 
+                url='./detail/index?orderId={{item.order_id}}&index={{index}}' 
+                hover-class="none"
+              >立即付款</navigator>
+              <button 
+                hover-class="none" class='confirm-btn ml-16 bdrs-32' 
+                wx:if='{{(item.status == 0 || item.status == 1) && !item.pay_picture}}' 
+                data-index='{{index}}' 
+                data-id="{{item.order_id}}" 
+                bindtap='toggleSelfPay'
+              >自助付款</button>
+              <button 
+              hover-class="none" class='cancel-btn bdrs-32' 
+              wx:if='{{item.status == 0 || item.status == 1}}' 
+              data-index='{{index}}' 
+              bindtap='cancelOrder'
+              >取消</button>
               <!-- <button hover-class="none" wx:if='{{ item.status == 3}}' data-index='{{index}}' bindtap='confirmComplete' class='confirm-btn'>确认收货</button> -->
             </view>
           </view>

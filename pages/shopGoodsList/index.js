@@ -123,7 +123,7 @@ wx.Page({
   },
   // 购物袋
   getGouwuDai() {
-    const { storeId } = wx.getStorageSync('storeInfo')
+    const { user_id: storeId } = wx.getStorageSync('storeInfo')
     wx._showLoading();
     request.get('iy/carts', res => {
       wx._hideLoading();

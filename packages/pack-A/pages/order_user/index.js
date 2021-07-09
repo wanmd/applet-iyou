@@ -227,7 +227,8 @@ Page({
   toggleSelfPay(e) {
     this.setData({
       selfPayShow: !this.data.selfPayShow,
-      selfpayId: e.currentTarget.dataset.id
+      selfpayId: e.currentTarget.dataset.id,
+      selfpayIndex: e.currentTarget.dataset.index
     })
   },
   handleSubmit(data) {
@@ -243,6 +244,7 @@ Page({
         toast('提交成功');
         this.setData({
           selfPayShow: !this.data.selfPayShow,
+          'orderList[this.data.selfpayIndex].pay_picture': 100
         });
       } else {
         toast(res.msg)

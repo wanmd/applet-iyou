@@ -14,7 +14,9 @@ wx.Page({
         storeId: 0,
         goodsName: '',
         query: { 
-            category: 0, goodsName: '' 
+            category: 0, 
+            goodsName: '',
+            price: 1,// 1降序 2.升序 
         },
         query2: {
             keyword: "",
@@ -78,8 +80,7 @@ wx.Page({
         }
         this.setData({ selectedNav: selectedNav })
         console.log(options.storeId);
-        const storeInfo = wx.getStorageSync('storeInfo')
-        const storeId = storeInfo.storeId || storeInfo.user_id;
+        const { user_id: storeId } = wx.getStorageSync('storeInfo')
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -720,6 +721,14 @@ wx.Page({
             // if(type == 3) this.getMyImageTextList();
             // this.selectComponent('#pagination').initLoad()
         })
+    },
+    changePriceSearch() {
+        let query = this.data.query;
+        let price = query.price;
+        this.setData({
+            'query.price': price == 1 ? 2 : 1
+        })
+        this.search()
     },
     search() {
         let query = this.data.query

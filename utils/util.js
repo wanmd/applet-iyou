@@ -116,8 +116,7 @@ class Request {
         config.fail = e => {
             networkError();
         };
-        const storeInfo = wx.getStorageSync('storeInfo')
-        const storeId = storeInfo.storeId || storeInfo.user_id;
+        const { user_id: storeId } = wx.getStorageSync('storeInfo')
         // config.data = data;
         config.data = Object.assign({}, data, { storeId });
 

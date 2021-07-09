@@ -37,7 +37,9 @@
         <view class="relative1_box bgc-fff {{goodsList == null ? 'pb-600' : ''}}">
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
-                    <view class="mr-30 fz-28 c-BFBFBF">价格<span class="triangle_activeDown "></span></view>
+                    <view class="mr-30 fz-28 c-BFBFBF" bindtap="changePriceSearch">
+                        价格<span class='{{ query.price == 1 ? "triangle_activeDown" : "triangle_activeUp" }}'></span>
+                    </view>
                     <view class="input mr-30">
                         <input data-target='goodsName'  bindinput="bindinput_" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
                     </view>

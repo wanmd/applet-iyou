@@ -46,8 +46,7 @@ wx.Page({
     getList(showLoading) {
         if (showLoading) wx._showLoading();
         console.log(this);
-        const storeInfo = wx.getStorageSync('storeInfo')
-        const storeId = storeInfo.storeId || storeInfo.user_id
+        const { user_id: storeId } = wx.getStorageSync('storeInfo')
 
         this.get('iy/cart?storeId=' + storeId).then(res => {
             if (showLoading) wx._hideLoading();

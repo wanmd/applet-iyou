@@ -366,7 +366,7 @@ Page({
     }
   },
   getStoreInfo() {
-    const { storeId } = wx.getStorageSync('storeInfo');
+    const { user_id: storeId } = wx.getStorageSync('storeInfo')
     request.get('iy/store/' + storeId, res => {
       console.log(res);
       this.setData({
