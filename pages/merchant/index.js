@@ -18,9 +18,7 @@ wx.Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
     let userinfo = wx.getStorageSync('userinfo')
-    console.log(userinfo);
     
     let t = new Date()
     let m = (1 + t.getMonth())<10?'0'+ (1 + t.getMonth()):(1 + t.getMonth())
