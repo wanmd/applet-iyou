@@ -4,7 +4,8 @@
     <!-- 顶部导航 -->
     <view class="navbar bgc-fff " style='height:{{navHeight}}px;'>
       <view  class="navbar-action-wrap fz-48" style='top:{{navTop}}px;height:{{menuButtonHeight}}px'>
-        <view class="mr-108" bindtap="handleBack"><text decode="{{true}}">&lt;</text></view>
+        <!-- 占位 -->
+        <view class="mr-108" ><text decode="{{true}}"></text></view>
         <view class='w-120 ta-c mr-120 fz-28 pos-r {{current == 1 ? "current" : ""}}' style='line-height:{{menuButtonHeight}}px' bindtap="handleNavTab" data-current="1">
           分类
         </view>
@@ -17,7 +18,15 @@
     <view class="search_wrap jc-sb bgc-F7F7F7">
         <view class="d-f ai-c">
             <view class="input mr-18">
-                <input data-target='{{keyword}}'  bindinput="bindinput_" placeholder="搜索" placeholder-style="color: #d8d8d8;" value="{{keyword}}" bindconfirm="search" confirm-type="search"/>
+                <input 
+                  data-target='{{keyword}}'  
+                  bindinput="bindinput_" 
+                  placeholder="搜索" 
+                  placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                  value="{{keyword}}" 
+                  bindconfirm="search" 
+                  confirm-type="search"
+                />
             </view>
             <view class="search_btn" data-target='{{keyword}}' bindtap='search'>搜索</view>
         </view>
@@ -174,7 +183,7 @@
   bind:ok="handleOK"
 />
 <!-- 购物袋下单车 -->
-<view class="xiadan" wx:if="{{true}}">
+<view class="xiadan" wx:if="{{current == 1}}">
   <view class="xiadan-left d-f ai-c pl-32" bindtap="toggleShowGouwuPop">
     <view class="mr-20 pos-r">
       <view class="nums" wx:if="{{goodsCount}}">{{goodsCount}}</view>

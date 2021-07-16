@@ -40,8 +40,22 @@
                     <view class="mr-30 fz-28 c-BFBFBF" bindtap="changePriceSearch">
                         价格<span class='{{ query.price == 1 ? "triangle_activeDown" : "triangle_activeUp" }}'></span>
                     </view>
-                    <view class="input mr-30">
-                        <input data-target='goodsName'  bindinput="bindinput_" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{goodsName}}" bindconfirm="search" confirm-type="search"/>
+                    <view class="input mr-30 pos-r">
+                        <input 
+                            bindinput="bindinput_" 
+                            placeholder="搜索店内宝贝" 
+                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            value="{{query.keyword}}" 
+                            bindconfirm="search" 
+                            confirm-type="search"
+                        />
+                        <!-- 删除icon -->
+                        <image 
+                            bindtap="handleDelete" 
+                            wx:if="{{query.keyword}}" 
+                            class="pos-a t-16 r-20 w-26 h-26 z-9" 
+                            src="/assets/images/index/input_delete@3x.png"
+                        />
                     </view>
                     <view class="search_btn" bindtap='search'>搜索</view>
                 </view>
@@ -68,7 +82,7 @@
                             
                         </view>
                         <block wx:if='{{editting == false}}'>
-                            <view class='m-t-30 ellipsis1'>{{item.goods_name}}</view>
+                            <view class='w-100p ta-l m-t-30 ellipsis1'>{{item.goods_name}}</view>
                             <view class='m-tb-20 f-20 color-fbd49d w-100p plr-20 d-f jc-sb'>
                                 <!-- 2一般用户 代理用户显示区别：
                                         2.1一般用户只显示拼单价+会员价
@@ -112,8 +126,24 @@
         <pagination id='pagination2' url='iy/user/getNewChatList' query='{{query2}}' pkName='chat_id' bind:load='load1'>
             <view class="search_wrap jc-sb">
                 <view class="d-f ai-c">
-                    <view class="input mr-30">
-                        <input data-target='query2.keyword'  bindinput="bindinput_keyword" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{query2.keyword}}" bindconfirm="search2" confirm-type="search"/>
+                    <view class="input mr-30 pos-r">
+                        <input 
+                            data-target='query2.keyword'  
+                            bindinput="bindinput_keyword"
+                            placeholder="搜索店内宝贝"
+                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            value="{{query2.keyword}}" 
+                            bindconfirm="search2" 
+                            confirm-type="search"
+                        />
+                        <!-- 删除icon -->
+                        <image 
+                            data-target='query2.keyword'
+                            bindtap="handleDelete_keyword" 
+                            wx:if="{{query2.keyword}}" 
+                            class="pos-a t-16 r-20 w-26 h-26 z-9" 
+                            src="/assets/images/index/input_delete@3x.png"
+                        />
                     </view>
                     <view class="search_btn" bindtap='search2'>搜索</view>
                 </view>
@@ -185,8 +215,24 @@
             <view class="relative1_box">
                 <view class="search_wrap jc-sb">
                     <view class="d-f ai-c">
-                        <view class="input">
-                            <input data-target='query3.keyword'  bindinput="bindinput_keyword" placeholder="请输入产品关键词" placeholder-style="color: #d8d8d8;" value="{{query3.keyword}}" bindconfirm="search3" confirm-type="search"/>
+                        <view class="input pos-r">
+                            <input 
+                                data-target='query3.keyword'  
+                                bindinput="bindinput_keyword" 
+                                placeholder="请输入产品关键词" 
+                                placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                                value="{{query3.keyword}}" 
+                                bindconfirm="search3" 
+                                confirm-type="search"
+                            />
+                            <!-- 删除icon -->
+                            <image 
+                                data-target='query3.keyword'
+                                bindtap="handleDelete_keyword" 
+                                wx:if="{{query3.keyword}}" 
+                                class="pos-a t-16 r-20 w-26 h-26 z-9" 
+                                src="/assets/images/index/input_delete@3x.png"
+                            />
                         </view>
                         <view class="search_btn" bindtap='search3'>搜索</view>
                     </view>
@@ -264,11 +310,27 @@
         </pagination>
     </view>
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==4}}'>
-        <pagination id='pagination4' url='iy/chat/record' query='{{query4}}' pkName='chat_id' bind:load='load2'>
+        <pagination id='pagination4' url='iy/chat/record' query='{{query4}}' pkName='chat_id' bind:load='load4'>
             <view class="search_wrap jc-sb mb-20">
                 <view class="d-f ai-c">
-                    <view class="input mr-30">
-                        <input data-target='query4.keyword'  bindinput="bindinput_keyword" placeholder="搜索店内宝贝" placeholder-style="color: #d8d8d8;" value="{{query4.keyword}}" bindconfirm="search4" confirm-type="search"/>
+                    <view class="input mr-30 pos-r">
+                        <input 
+                            data-target='query4.keyword'  
+                            bindinput="bindinput_keyword" 
+                            placeholder="搜索店内宝贝" 
+                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            value="{{query4.keyword}}" 
+                            bindconfirm="search4" 
+                            confirm-type="search"
+                        />
+                        <!-- 删除icon -->
+                        <image 
+                            data-target='query4.keyword'
+                            bindtap="handleDelete_keyword" 
+                            wx:if="{{query4.keyword}}" 
+                            class="pos-a t-16 r-20 w-26 h-26 z-9" 
+                            src="/assets/images/index/input_delete@3x.png"
+                        />
                     </view>
                     <view class="search_btn" bindtap='search4'>搜索</view>
                 </view>
@@ -277,13 +339,12 @@
                 <view class='thumbs thumbs_l' wx:if="{{picture2.length}}">
                     <block wx:for='{{picture2}}' wx:key="index">
                         <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
-                            <img slot='content' class='thumb thumb_l' thumb src='{{item.cover}}'></img>
-                            <view class="image_num">{{item.picture.length}}</view>
+                            <img slot='content' class='thumb thumb_l' src='{{item.cover}}'></img>
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
                         </navigator>
-                        <navigator class="imageBox" hover-class="none">
+                        <navigator class="imageBox" hover-class="none" wx:if="{{item.video_url}}">
                             <video wx:if="{{item.video_url}}" class='thumb thumb_l' src="{{ALIYUN_URL}}/{{item.video_url}}" />
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />

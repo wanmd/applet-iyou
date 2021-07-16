@@ -2,6 +2,9 @@
 .t-0 {
     top: 0;
 }
+.t-16 {
+    top: 16rpx;
+}
 .t-16rpx {
     top: 16rpx;
 }
@@ -19,6 +22,9 @@
 }
 .r-0 {
     right: 0;
+}
+.r-10 {
+    right: 10rpx;
 }
 .r-20 {
     right: 20rpx;

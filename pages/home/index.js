@@ -15,7 +15,7 @@ wx.Page({
         goodsName: '',
         query: { 
             category: 0, 
-            goodsName: '',
+            keyword: '',
             price: 1,// 1降序 2.升序 
         },
         query2: {
@@ -80,7 +80,12 @@ wx.Page({
         }
         this.setData({ selectedNav: selectedNav })
         console.log(options.storeId);
-        const { user_id: storeId } = wx.getStorageSync('storeInfo')
+        let storeId = '';
+        if (options.storeId) {
+            storeId = options.storeId
+        } else {
+            storeId = wx.getStorageSync('storeInfo').user_id
+        }
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -335,7 +340,35 @@ wx.Page({
             })
         }
     },
-    load2(e) {
+    
+    load3(e) {
+        console.log(e);
+        let rows = e.detail.list
+        let page = e.detail.page
+        console.log(e.detail)
+            // let isAgent =  e.detail.isAgent;
+        if (rows.length == 0 && page == 1) {
+            this.setData({
+                offerList: null
+            })
+            return
+        }
+        if (page == 1) {
+            this.setData({ offerList: [] })
+        }
+
+        if (rows.length > 0) {
+            let offerList = this.data.offerList;
+            rows.forEach(v => {
+                v.update_time = this.splitTime(v.update_time);
+                offerList.push(v)
+            })
+            this.setData({
+                offerList: offerList,
+            })
+        }
+    },
+    load4(e) {
         let rows = e.detail.list
         let page = e.detail.page
             let isAgent =  e.detail.isAgent;
@@ -365,46 +398,36 @@ wx.Page({
             })
         }
     },
-    load3(e) {
-        console.log(e);
-        let rows = e.detail.list
-        let page = e.detail.page
-        console.log(e.detail)
-            // let isAgent =  e.detail.isAgent;
-        if (rows.length == 0 && page == 1) {
-            this.setData({
-                offerList: null
-            })
-            return
-        }
-        if (page == 1) {
-            this.setData({ offerList: [] })
-        }
-
-        if (rows.length > 0) {
-            let offerList = this.data.offerList;
-            rows.forEach(v => {
-                v.update_time = this.splitTime(v.update_time);
-                offerList.push(v)
-            })
-            this.setData({
-                offerList: offerList,
-            })
-        }
-    },
     bindinput_(e) {
-        let target = e.currentTarget.dataset.target
-        let update = {}
-        update[target] = e.detail.value
-        this.setData(update)
+        this.setData({
+            'query.keyword': e.detail.value
+        })
+    },
+    handleDelete(e) {
+        this.setData({
+            'query.keyword': ''
+        })
+        this.search()
     },
     bindinput_keyword(e) {
         let target = e.currentTarget.dataset.target
-        console.log(target);
         let update = {}
         update[target] = e.detail.value
         this.setData(update)
-        console.log(this.data.query2);
+    },
+    handleDelete_keyword(e) {
+        let target = e.currentTarget.dataset.target
+        console.log(target);
+        let update = {}
+        update[target] = ''
+        this.setData(update)
+        if (target == 'query2.keyword') {
+            this.search2()
+        } else if(target == 'query3.keyword') {
+            this.search3()
+        } else {
+            this.search4()
+        }
     },
     copyName(e) {
         var val = e.currentTarget.dataset.copy_name;
