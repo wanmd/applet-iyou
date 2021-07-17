@@ -1,6 +1,8 @@
 <view class="page {{selectedNav!=1 ? 'bg_fff': ''}}" wx:if="{{query.storeId}}">
     <!-- <view class='fixed w-100' style='left:0;top:0;z-index:2;height: {{topHeight + 100}}px;background-image:url({{ALIYUN_URL}}/{{userInfo.store_background}});background-size: cover'> -->
-    <view class='fixed w-100' style='left:0;top:0;z-index:2;height: {{topHeight + 100}}px;background-image:url(https://img2.baidu.com/it/u=4143679663,1350814886&fm=26&fmt=auto&gp=0.jpg);background-size: cover'>
+    <view 
+        class='fixed w-100' 
+        style='left:0;top:0;z-index:999;height: {{topHeight + 100}}px;background-image:url({{ALIYUN_URL + "/"+ user.store_background}});background-size: cover'>
         <!-- <view bindtap="handleBack" class="backnav fz-24 bgc-fff c-929292 fixed w-96 ta-c" style='top:{{navTop}}px;line-height:{{navHeight}}rpx;border-radius: 0 20px 20px 0;'>返回</view> -->
         <view class='p-l-r relative padd_tb-10 mb-20' style="margin-top:{{topHeight}}px">
             <avatar size='80rpx' src='{{user.avatar}}' user="{{user}}">
@@ -11,7 +13,7 @@
                             {{user.merchantType==1?'企业认证':'个人认证'}}
                         </symbol>
                     </view>
-                    <view class="remark ellipsis1 p-t-10">{{user.remark}}</view>
+                    <view class="remark ellipsis1 p-t-10">{{user.remark || '暂无签名'}}</view>
                 </view>
             </avatar>
             <!-- <view class='absolute middle r-0 overflow'>
@@ -44,7 +46,7 @@
                         <input 
                             bindinput="bindinput_" 
                             placeholder="搜索店内宝贝" 
-                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
                             value="{{query.keyword}}" 
                             bindconfirm="search" 
                             confirm-type="search"
@@ -60,6 +62,7 @@
                     <view class="search_btn" bindtap='search'>搜索</view>
                 </view>
             </view>
+            <view wx:if="{{loading}}" class="ta-c m-tb-20">正在加载...</view>
             <view class='goods-list' wx:if='{{goodsList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;">
                 <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
                     <view class='_wrap relative'>
@@ -131,7 +134,7 @@
                             data-target='query2.keyword'  
                             bindinput="bindinput_keyword"
                             placeholder="搜索店内宝贝"
-                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
                             value="{{query2.keyword}}" 
                             bindconfirm="search2" 
                             confirm-type="search"
@@ -220,7 +223,7 @@
                                 data-target='query3.keyword'  
                                 bindinput="bindinput_keyword" 
                                 placeholder="请输入产品关键词" 
-                                placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                                placeholder-style="font-size: 26rpx;color: #F5F5F5" 
                                 value="{{query3.keyword}}" 
                                 bindconfirm="search3" 
                                 confirm-type="search"
@@ -318,7 +321,7 @@
                             data-target='query4.keyword'  
                             bindinput="bindinput_keyword" 
                             placeholder="搜索店内宝贝" 
-                            placeholder-style="font-size: 26rpx;color: #E5E5E5" 
+                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
                             value="{{query4.keyword}}" 
                             bindconfirm="search4" 
                             confirm-type="search"

@@ -140,13 +140,13 @@
                   </view>
                 </view>
               </view>
-              <view class="fz-24 c-9B9B9B">规格:{{it.display}}</view>
-              <view class="goods-product__note">
+              <view class="fz-24 c-9B9B9B mt-10">规格:{{it.display}}</view>
+              <!-- <view class="goods-product__note">
                 <view class="g-p__note_title">购买备注:</view>
                 <view class="g-p__note_val">
                   <input placeholder-class="placeholder-class" value="{{it.remark}}"  disabled="{{!isEdit}}" data-remark="{{it.remark}}" data-cindex="{{idx}}"  data-pindex="{{index}}" data-cindex="{{idx}}"  placeholder='请输入要购买的产品型号和规格说明' type='text' bindblur="changeRemark"/>
                 </view>
-              </view>
+              </view> -->
             </view>
 
             <view class="line10"></view>

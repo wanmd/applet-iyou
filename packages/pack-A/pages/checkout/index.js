@@ -68,15 +68,12 @@ Page({
 
   input (e) {
     let index = e.currentTarget.dataset.index
-    let remarks = e.detail.value
-
-    let update = {}
-    update[`remarks[${index}]`] = remarks
-    this.setData(update)
+    let remark = e.detail.value
+    this.setData(remark)
   },
 
   confirm () {
-    const { current } = this.data; // 1.快递物流  2.到店
+    const { current, remark } = this.data; // 1.快递物流  2.到店
     let address = this.data.address;
 
     if(current == 1 && address == null){
@@ -93,6 +90,7 @@ Page({
 
     let addressId = address.id
     let remarks = this.data.remarks
+    data.remark = remark;
 
     console.log("提交订单")
     let data = {
@@ -267,6 +265,12 @@ Page({
             sorderNo: res.data.sorderNo
           })
         }
+      } else {
+        toast(res.msg);
+        setTimeout(function(){
+          wx.navigateBack()
+        },1000) 
+        
       }
     }, data).showLoading()
 
@@ -369,6 +373,7 @@ Page({
     const { user_id: storeId } = wx.getStorageSync('storeInfo')
     request.get('iy/store/' + storeId, res => {
       console.log(res);
+      res.data.list.name = res.data.list.name.substring(0,10)
       this.setData({
         storeInfo:  res.data.list
       })

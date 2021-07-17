@@ -6,6 +6,7 @@ let W = 0;
 let H = 0;
 wx.Page({
     data: {
+        ALIYUN_URL,
         defaultimg: '/assets/images/default-jj.png',
         showlink: 0,
         thumb: false,
@@ -79,6 +80,7 @@ wx.Page({
             selectedNav = 1;
         }
         this.setData({ selectedNav: selectedNav })
+        console.log('options.storeId');
         console.log(options.storeId);
         let storeId = '';
         if (options.storeId) {
@@ -236,13 +238,15 @@ wx.Page({
         // console.log(e);
         let rows = e.detail.list
         let page = e.detail.page
-
+        this.setData({
+            loading: true
+        })
         if (rows.length == 0 && page == 1) {
-            this.setData({ goodsList: null })
+            this.setData({ goodsList: null, loading: false })
             return
         }
         if (page == 1) {
-            this.setData({ goodsList: [] })
+            this.setData({ goodsList: [], loading: false })
         }
         let goodsList = Object.assign([], this.data.goodsList)
         rows.forEach(row => {
@@ -252,25 +256,25 @@ wx.Page({
             goodsList.push(row)
         })
 
-        this.setData({ goodsList: goodsList })
+        this.setData({ goodsList: goodsList, loading: false })
     },
     load1(e) {
         console.log(e);
         let isAgent = e.detail.isAgent;
         let rows = e.detail.list || [
-            {
-                agent_price: "60.00",
-                chat_id: 2375,
-                cover: "20c261f0a3fd0530754d052f6d745878.jpg",
-                create_time: 1624335219,
-                goods_name: "哈哈11朵粉香皂玫瑰花束礼盒礼品保鲜花康乃馨情人节父亲节",
-                goods_no: "ffff",
-                group_price: "90.00",
-                picture: "",
-                product_id: 69,
-                sale_price: "100.00",
-                vip_price: "80.00",
-            }
+            // {
+            //     agent_price: "60.00",
+            //     chat_id: 2375,
+            //     cover: "20c261f0a3fd0530754d052f6d745878.jpg",
+            //     create_time: 1624335219,
+            //     goods_name: "哈哈11朵粉香皂玫瑰花束礼盒礼品保鲜花康乃馨情人节父亲节",
+            //     goods_no: "ffff",
+            //     group_price: "90.00",
+            //     picture: "",
+            //     product_id: 69,
+            //     sale_price: "100.00",
+            //     vip_price: "80.00",
+            // }
         ]
         let page = e.detail.page
         if (rows.length == 0 && page == 1) {
@@ -756,7 +760,7 @@ wx.Page({
     search() {
         let query = this.data.query
         query.goodsName = this.data.goodsName;
-        this.setData({ query: query })
+        this.setData({ query: query, loading: true })
         let pagination = this.selectComponent('#pagination');
         pagination.initLoad()
     },

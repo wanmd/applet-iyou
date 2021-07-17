@@ -68,7 +68,7 @@ Component({
             {
                 image: '../../assets/images/iyou_user/record@2x.png',
                 text: '拿货记录',
-                url: '../../packages/pack-A/pages/myAskBuy/index',
+                url: '../../packages/pack-A/pages/offer/index',
             },
             {
                 image: '../../assets/images/iyou_user/address@2x.png',
@@ -267,6 +267,18 @@ Component({
                 }
             })
         },
+        navToIme() {
+            // const storeInfo = wx.getStorageSync('userInfo');
+            wx.navigateToMiniProgram({
+                appId: 'wxde0ae16dacfdfd37',
+                path: 'pages/index/index',
+                extraData: {},
+                envVersion: 'trial',
+                success(res) {
+                    // 打开成功
+                }
+            })
+        }
     },
     pageLifetimes: {
         show() { //获取位置

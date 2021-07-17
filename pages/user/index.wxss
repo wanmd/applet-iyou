@@ -297,3 +297,9 @@ page{
 .w-25p  {
   width: 25%;
 }
+
+.iyou-icon {
+  position:absolute;
+  right: 84rpx;
+  width: 60rpx;
+}

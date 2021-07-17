@@ -123,6 +123,12 @@ Page({
     }
   },
 
+  nav(e) {
+    wx.navigateTo({
+      url: '/pages/goods/index?chatId=' + e.currentTarget.dataset.id,
+    })
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */

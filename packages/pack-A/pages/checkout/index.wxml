@@ -28,7 +28,9 @@
       <view slot='title' class="address_item2">
         <icon-text class='item-icon' width="35rpx" icon='iyou_user/location@2x.png'></icon-text>
         <navigator hover-class="none" url='/pages/deliveryAddress/index?target=select'>
-            <view class='fs-18'>{{address.consignee}}<text class='m-l-20'>{{address.mobile}}</text></view>
+            <view class='fs-18'>
+              {{address.consignee}}<text class='m-l-20 mr-20'>{{address.mobile}}</text><text class="fz32 cccc">></text>
+            </view>
             <view class='f-24 color-666 m-t-10 padd_b-10'>{{address.province + address.city + address.district + address.address}}</view>
         </navigator>
         <icon-text catchtap='ai__addressShow' class='ai__address' width="150rpx" icon='ai__address@2x.png'></icon-text>
@@ -204,12 +206,15 @@
       </view>
     </view>
     <view class='p-l-r'>
-      <!-- <view class='order-remark'> -->
-        <!-- <text class='title'>订单备注:</text> -->
-        <!-- <input placeholder-class="placeholder-class" placeholder='请备注购买信息或先与商家协商一致' type='text' data-index='{{index}}' bindinput='input' /> -->
-
+        <view class='order-remark'>
+        <text class='title'>订单备注:</text>
+        <input 
+          placeholder-class="placeholder-class" 
+          placeholder='请备注购买信息或先与商家协商一致' 
+          type='text'  bindinput='input' 
+        />
         <!-- <textarea placeholder='请备注购买信息或先与商家协商一致' style='height:320rpx;width:100%;padding:10rpx 20rpx;' placeholder-style='font-size:24rpx;color:#999' value='{{formData.remarks}}' data-index='{{index}}' bindinput='input'></textarea> -->
-      <!-- </view> -->
+      </view>
     </view>
   </view>
 </view>

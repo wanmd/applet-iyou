@@ -81,7 +81,7 @@
       <text selectable="{{true}}">{{chat.content}}</text>
     </view>
     <!-- 拼单 -->
-    <view class="groupCard p-30">
+    <view class="groupCard p-30" wx:if="{{groupList.length}}">
       <view class="d-f jc-sb mb-40">
         <view class="fz-24 c-333">TA们已发起拼单，可一起拼单</view>
         <!-- <view class="fz-20 c-333" bindtap="handleMoreGroup">查看更多></view> -->
@@ -105,7 +105,7 @@
       </view>
     </view>
     
-    <view data-url='../applyAgent/index?storeId={{chat.user.user_id}}&storeName={{chat.user.nickname}}' catchtap="isAuth_" hover-class="none">
+    <view data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_" hover-class="none">
       <view class="link-CWDL">
         <image class='image' src='/assets/images/DAILI2@2x.png'  style="width:35rpx;height:35rpx;"></image>
         <!-- <el-image class='icon' width= "35rpx" height="31rpx" src='DAILI@2x.png'></el-image> -->

@@ -1,4 +1,4 @@
-<pagination class='relative relative1' id='pagination' pkName='chat_id' url='chat/getMyTakeGoodsList' query='{{query}}' bind:load='load'>
+<pagination class='relative relative1' id='pagination' pkName='chat_id' url='iy/chat/getMyTakeGoodsList' query='{{query}}' bind:load='load'>
     <view class="offer_header">
       <view class="th th1">商户</view>
       <view class="th th2">产品名</view>
