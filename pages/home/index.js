@@ -79,87 +79,13 @@ wx.Page({
         } else {
             selectedNav = 1;
         }
+        
         this.setData({ selectedNav: selectedNav })
-        console.log('options.storeId');
-        console.log(options.storeId);
-        let storeId = '';
-        if (options.storeId) {
-            storeId = options.storeId
-        } else {
-            storeId = wx.getStorageSync('storeInfo').user_id
-        }
-        let query = this.data.query;
-        let query2 = this.data.query2;
-        let query3 = this.data.query3;
-        let query4 = this.data.query4;
-        query.storeId = storeId;
-        query2.store_id = storeId;
-        query3.store_id = storeId;
-        query4.store_id = storeId;
-        this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
-        console.log(storeId)
-        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
-        console.log(userInfo)
-        this.setData({ userInfo: userInfo })
-        if (storeId > 0 && storeId != userInfo.user_id) {
-            // this.setData({ storeId: storeId, query: { storeId: storeId }, query2: { store_id: storeId } })
-            request.get('user/user/' + storeId, res => {
-                if (res.success) {
-                    let user = res.data.user
-                    if (!(user instanceof Object)) {
-                        user = JSON.parse(user)
-                        wx.setStorageSync('storeInfo', user)
-                    }
-                    this.setData({ user: user })
-                }
-            })
-        } else if(storeId > 0 && storeId == userInfo.user_id) {
-            // this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId } })
-            let storeId = userInfo.user_id;
-            this.setData({ isSelf: true, user: userInfo, storeId: options.storeId })
-            this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId }, query3: { store_id: '', keyword: '', type: 2 }, query4: { store_id: storeId, type: 2 } })
-        } else {// 没有storeId
-            wx.redirectTo({
-              url: '/pages/mailList/index',
-            })
-        }
 
-        // let userInfo = app.globalData.userInfo;
-        // console.log(userInfo);
-        // let userId = options.userId || 0
-        // if (userId > 0 && userInfo.user_id != userId) {
-        //   this.setData({
-        //     'query2.userId': userId
-        //   })
-        //   request.get('user/user/' + userId, res => {
-        //     if (res.success) {
-        //       let user = res.data.user
-        //       if (!(user instanceof Object)) {
-        //         user = JSON.parse(user)
-        //       }
-
-        //       if (user.background) {
-        //         user.background = fileUrl(user.background)
-        //       }
-
-        //       this.setData({
-        //         userInfo: user
-        //       })
-        //     }
-        //   })
-
-        // } else {
-        //   let userInfo = JSON.parse(JSON.stringify(Object.assign(app.globalData.userInfo)))
-        //   if (userInfo.background) {
-        //     userInfo.background = fileUrl(userInfo.background)
-        //   }
-        //   this.setData({
-        //     isSelf: true,
-        //     userInfo: userInfo
-        //   })
-        // }
+        
     },
     onShow() {
+        this.initStoreInfo();
         const { topHeight, statusBarHeight, navHeight, navTop } = app.setCustomNav();
         this.setData({
             topHeight, 
@@ -181,6 +107,71 @@ wx.Page({
             }
             this.setData({ editting: false })
                 // this.load({ detail: { list: [], page: 1 } }, 1)
+        }
+    },
+    initStoreInfo() {
+        let user_id = wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : '';
+        console.log('ime_storeId--------------start')
+        console.log(wx.getStorageSync('ime_storeId'))
+        console.log('ime_storeId--------------end')
+        let storeId =  wx.getStorageSync('ime_storeId') || user_id;
+        let query = this.data.query;
+        let query2 = this.data.query2;
+        let query3 = this.data.query3;
+        let query4 = this.data.query4;
+        query.storeId = storeId;
+        query2.store_id = storeId;
+        query3.store_id = storeId;
+        query4.store_id = storeId;
+        this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
+        console.log('storeId--------------start')
+        console.log(storeId)
+        console.log('storeId--------------end')
+        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
+        
+        this.setData({ userInfo: userInfo })
+        if (storeId > 0 && storeId != userInfo.user_id) {
+            wx.showModal({
+                title: '111-storeId-' + String(storeId),
+                content: 'user_id-'+ String(user_id),
+                success: res => {
+                }
+            })
+            // this.setData({ storeId: storeId, query: { storeId: storeId }, query2: { store_id: storeId } })
+            request.get('user/user/' + storeId, res => {
+                if (res.success) {
+                    let user = res.data.user
+                    if (!(user instanceof Object)) {
+                        user = JSON.parse(user)
+                        wx.setStorageSync('storeInfo', user)
+                    }
+                    console.log(user);
+                    
+                    this.setData({ user: user })
+                }
+            })
+        } else if(storeId > 0 && storeId == userInfo.user_id) {
+            wx.showModal({
+                title: '222-storeId-' + String(storeId),
+                content: 'user_id-'+ String(user_id),
+                success: res => {
+                }
+            })
+            // this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId } })
+            // let storeId = userInfo.user_id;
+            this.setData({ 
+                isSelf: true, 
+                user: userInfo, 
+                query: { storeId: storeId }, 
+                storeId: storeId, 
+                query2: { store_id: storeId }, 
+                query3: { store_id: '', keyword: '', type: 2 }, 
+                query4: { store_id: storeId, type: 2 } 
+            })
+        } else {// 没有storeId
+            wx.redirectTo({
+              url: '/pages/mailList/index',
+            })
         }
     },
     onHide() {

@@ -7,23 +7,14 @@ import { assetsImages } from './utils/config.js';
 const MsgQueue = require('./utils/msgqueue.js');
 App({
     onLaunch: function(options) {
-        
-        // wx.setStorageSync('storeInfo', {
-        //     storeId: 903449,
-        //     name: '展雄的店',
-        //     mobile: 13088889999
-        // })
-        // var options = {
-        //   query: {
-        //     invite_chatId: "0",
-        //     invite_userid: 903399,
-        //     scene: "%3Ffrom%3Dchat%26ci%3D%26fromUserId%3D903399",
-        //   }
-        // }
         this.autoUpdate()
         console.log('onLaunch');
         console.log("options=========");
         console.log(options);
+        if (options.query.storeId) {
+            // this.globalData.storeId = options.query.storeId;
+            wx.getStorageSync('ime_storeId', options.query.storeId)
+        }
         let inviter = options.query.inviter || 0;
         // console.log('inviter=======', inviter)
         // console.log("options=========");
