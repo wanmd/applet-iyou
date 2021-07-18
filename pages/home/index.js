@@ -131,12 +131,12 @@ wx.Page({
         
         this.setData({ userInfo: userInfo })
         if (storeId > 0 && storeId != userInfo.user_id) {
-            wx.showModal({
-                title: '111-storeId-' + String(storeId),
-                content: 'user_id-'+ String(user_id),
-                success: res => {
-                }
-            })
+            // wx.showModal({
+            //     title: '111-storeId-' + String(storeId),
+            //     content: 'user_id-'+ String(user_id),
+            //     success: res => {
+            //     }
+            // })
             // this.setData({ storeId: storeId, query: { storeId: storeId }, query2: { store_id: storeId } })
             request.get('user/user/' + storeId, res => {
                 if (res.success) {
@@ -151,12 +151,12 @@ wx.Page({
                 }
             })
         } else if(storeId > 0 && storeId == userInfo.user_id) {
-            wx.showModal({
-                title: '222-storeId-' + String(storeId),
-                content: 'user_id-'+ String(user_id),
-                success: res => {
-                }
-            })
+            // wx.showModal({
+            //     title: '222-storeId-' + String(storeId),
+            //     content: 'user_id-'+ String(user_id),
+            //     success: res => {
+            //     }
+            // })
             // this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId } })
             // let storeId = userInfo.user_id;
             this.setData({ 
