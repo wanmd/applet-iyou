@@ -90,13 +90,13 @@ Page({
 
     let addressId = address.id
     let remarks = this.data.remarks
-    data.remark = remark;
 
     console.log("提交订单")
     let data = {
       receiveId: addressId,
       orderNo: this.data.orderNo,
-      type: this.data.type
+      type: this.data.type,
+      remark: remark
     }
     if(this.data.type == 1){
       data['sorderNo'] = this.data.sorderNo;
