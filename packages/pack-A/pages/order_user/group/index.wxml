@@ -36,7 +36,7 @@
       
     </view>
     <view class="d-f fxd-c jc-c ai-c">
-      <view class="c-AFAFAF fz-24 mt-24 mb-46">TA选的规格：  {{groupInfo.product_specs}}</view>
+      <view class="c-AFAFAF fz-24 mt-24 mb-46">TA选的规格：  <text class="c-3A3A3A">{{product_specs}}</text></view>
       <view class="c-FF0000 fz-28 lh-44">
         <timer time="{{groupInfo.difftime}}" color="#333333" />后结束
       </view>

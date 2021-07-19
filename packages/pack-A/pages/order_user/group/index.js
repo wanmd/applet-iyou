@@ -74,8 +74,10 @@ Page({
     request.get('iy/productgroup/' + this.data.groupId, res => {
       if(res.success){
         res.data.list.difftime = res.data.list.created_at + 86400 - Math.floor(new Date().getTime()/1000)
+        let product_specs = res.data.list.product_specs;
         this.setData({
-          groupInfo: res.data.list
+          groupInfo: res.data.list,
+          product_specs: product_specs.substring(1,product_specs.length -1)
         })
       }
     }).showLoading()
