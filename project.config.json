@@ -766,6 +766,13 @@
           "pathName": "packages/pack-A/pages/order_user/group/index",
           "query": "",
           "scene": null
+        },
+        {
+          "id": 100,
+          "name": "分享团",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "q=%22%3Ffrom%3Dordergroup%26groupId%3D190%22",
+          "scene": null
         }
       ]
     }

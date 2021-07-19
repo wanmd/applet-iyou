@@ -7,11 +7,11 @@
     <view class="d-f fxd-c jc-sb">
       <view>
         <view class="c-666 fz-28 tov-e-1 mb-8 lh-46">{{groupInfo.goods_name}}</view>
-        <view class="d-f fxw-w">
+        <view class="d-f fxw-w" wx:if="{{groupInfo.labels}}">
           <!-- <block wx:for="{{tabItem.tagList}}" wx:for-item="tagList" wx:for-index="idx" wx:key="idx">
             <view class="tagListBox">{{tagList}}</view>
           </block> -->
-          <view class="tagListBox">产品标签6字</view>
+          <view class="tagListBox">{{groupInfo.labels}}</view>
         </view>
       </view>
       
@@ -79,5 +79,5 @@
 </view>
 
 <!-- 购物车弹框 -->
-<shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" mode="not" />
+<shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" mode="not" type="group" needSelectType="{{false}}" />
   

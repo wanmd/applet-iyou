@@ -18,18 +18,37 @@ Page({
     })
   },
 
+  geturlData(url){
+    var theRequest = new Object();
+    if (url.indexOf("?") != -1) {
+      var str = url.split("?");
+      theRequest['url'] = str[0];
+      str = str[1];
+      console.log(str)
+      var strs = str.split("&");
+      console.log(strs)
+      for (var i = 0; i < strs.length; i++) {
+        theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
+      }
+    }
+    return theRequest
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    let q = decodeURIComponent(options.q)
+    let urlData = this.geturlData(q);
+    
     let userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo 
+
     this.setData({
       userInfo: userInfo,
-      groupId: options.groupId,
-      from: options.from
+      groupId: urlData.groupId,
+      from: urlData.from
     })
-    // if (options.from == 'ordergroup') {
+    // if (urlData.from == 'ordergroup') {
 
     // } else {
 
@@ -110,16 +129,10 @@ Page({
   onShareAppMessage: function() {
     const { groupInfo } = this.data;
     var sceneStr = '?from=ordergroup' + '&groupId=' + (this.data.groupId || 0);
-    // var user_id = app.globalData.userInfo.user_id || wx.getStorageSync('userinfo').user_id
 
-    // sceneStr += ('&fromUserId=' + user_id)
-    console.log(sceneStr);
-
-    let path = '/packages/pack-A/pages/order_user/group/index?' + encodeURIComponent(sceneStr)
+    let path = '/packages/pack-A/pages/order_user/group/index' + '?q=' + encodeURIComponent(sceneStr)
     console.log(path);
-    // let path = '/pages/index/index?scene=' + encodeURIComponent(sceneStr) + 'chatId=' + encodeURIComponent(this.data.chatId) + "&shareUserId=" + app.globalData.userInfo.user_id
-    // console.log(path);
-    // let picture = this.data.rentingData.picture[0];
+    
     return {
         path: path,
         imageUrl: ALIYUN_URL + '/' + groupInfo.cover,

@@ -2,6 +2,9 @@ page {
   background-color: #fff !important;
   padding-bottom: 100rpx;
 }
+.goodsImg {
+  border: 1rpx solid #eaeaea;
+}
 .tagListBox {
   height: 32rpx;
   border: 2rpx solid #AB00FF;
