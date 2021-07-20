@@ -811,7 +811,7 @@ wx.Page({
         let to = encodeURIComponent(page.route + '?storeId=' + this.data.storeId)
         console.log(to);
         let uesr_id = app.globalData.userInfo.user_id
-        let path = '/pages/index/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
+        let path = '/pages/home/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
         console.log(path);
 
         // let title = this.data.isSelf?'快进来看看我的iME社电吧，超值好物好服务！一件代发，代理兼职副业天天赚~':'我很喜欢这家iME社电，分享给亲，你也来看看吧~'
