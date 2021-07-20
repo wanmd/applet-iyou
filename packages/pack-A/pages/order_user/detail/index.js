@@ -444,12 +444,11 @@ Page({
      */
     onShareAppMessage: function() {
         const { product_group_id, goods } = this.data.order;
-        var sceneStr = JSON.stringify('?from=ordergroup' + "&groupId=" + (product_group_id || 0));
+        var sceneStr = '?from=ordergroup' + "&groupId=" + (product_group_id || 0);
 
         let path = '/packages/pack-A/pages/order_user/group/index'+ '?q=' + encodeURIComponent(sceneStr)
 
         console.log(path);
-        
 
         return {
             path: path,

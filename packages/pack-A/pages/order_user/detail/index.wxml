@@ -50,7 +50,7 @@
   </view>
   <deliveryInfo wx:if="{{!order.self_pickup}}" delivery='{{order.delivery}}'></deliveryInfo>
   <!-- 拼团 -->
-  <view wx:if="{{order.is_group}}" class="d-f jc-sb ai-c p-20">
+  <view wx:if="{{order.is_group && order.group_state == 1}}" class="d-f jc-sb ai-c p-20">
     <view>
       <text class="c-333 fz-26 lh-34 mr-22">拼单组合</text>
       <timer time="{{order.diff_time}}" font="fz-22" color="c-979797" /><text class="c-979797 fz-22">后结束</text>
