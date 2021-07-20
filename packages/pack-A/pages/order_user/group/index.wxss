@@ -32,7 +32,7 @@ page {
   color: #FFFFFF;
 }
 .invite2 {
-  background-color: #fff;
+  background: #fff;
   color: #AB00FF;
   border: 1rpx solid #AB00FF;
 }

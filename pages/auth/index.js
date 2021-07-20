@@ -70,7 +70,7 @@ wx.Page({
         }
     },
     getUserInfoData(params) {
-        this.post('/userinfo', params).then(res => {
+        this.post('iy/userinfo', params).then(res => {
             console.log('getUserInfoData:获取用户信息');
             if (res.success) {
                 let userInfo = res.data

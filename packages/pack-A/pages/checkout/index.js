@@ -126,7 +126,7 @@ Page({
       
     }
     // 0 发起新团  >0 加入某个团
-    data['groupId'] = this.data.groupId || 0
+    data['groupId'] = Number(this.data.groupId) || 0
     console.log(data)
     const that = this;
     
@@ -140,9 +140,18 @@ Page({
               if (that.data.isGroup == 1) {// 组团订单
                 const q = '?from=checkout&groupId=' + res.data.groupId
                 console.log(q);
-                wx.redirectTo({
-                  url: '../order_user/group/success/index' + '?q=' + encodeURIComponent(q)
-                })
+                if (data.groupId) {// 拼别人的团  显示拼团成功
+                  // debugger
+                  wx.redirectTo({
+                    url: '../order_user/group/success/index' + '?q=' + encodeURIComponent(q)
+                  })
+                } else { // 自己的团待分享给别人
+                  // debugger
+                  wx.redirectTo({
+                    url: '../order_user/group/index' + '?q=' + encodeURIComponent(q)
+                  })
+                }
+                
               } else {
                 wx.redirectTo({
                   url: '../order_user/index'

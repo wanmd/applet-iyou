@@ -50,6 +50,7 @@
   </view>
 </view> -->
 <!-- 拼团成功状态 -->
+<!-- success-groupId-------------{{groupId}} -->
 <view>
   <view class="groupsWrap plr-120 mt-58">
     <view class="ta-c pos-r">
