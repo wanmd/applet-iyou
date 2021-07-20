@@ -138,10 +138,10 @@ Page({
             toast('提交成功')
             setTimeout(function(){
               if (that.data.isGroup == 1) {// 组团订单
-                const q = JSON.stringify('?from=checkout&groupId=' + res.data.groupId)
+                const q = '?from=checkout&groupId=' + res.data.groupId
                 console.log(q);
                 wx.redirectTo({
-                  url: '../order_user/group/index' + '?q=' + encodeURIComponent(q)
+                  url: '../order_user/group/success/index' + '?q=' + encodeURIComponent(q)
                 })
               } else {
                 wx.redirectTo({

@@ -1,0 +1,48 @@
+page {
+  background-color: #fff !important;
+  padding-bottom: 100rpx;
+}
+.goodsImg {
+  border: 1rpx solid #eaeaea;
+}
+.tagListBox {
+  height: 32rpx;
+  border: 2rpx solid #AB00FF;
+  border-radius: 22rpx;
+  font-size: 16rpx;
+  line-height: 22rpx;
+  color: #AB00FF;
+  margin-right: 28rpx;
+  margin-bottom: 10rpx;
+  padding: 4rpx 16rpx;
+}
+.invite {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 42rpx;
+  margin-bottom: 56rpx;
+  width: 460rpx;
+  height: 82rpx;
+  background: #AB00FF;
+  opacity: 1;
+  border-radius: 60rpx;
+  font-size: 28rpx;
+  line-height: 30rpx;
+  color: #FFFFFF;
+}
+.invite2 {
+  background-color: #fff;
+  color: #AB00FF;
+  border: 1rpx solid #AB00FF;
+}
+
+.info {
+  position: absolute;
+  left: 38%;
+  top: 33%;
+  font-size: 36rpx;
+  line-height: 44rpx;
+  color: #EE3700;
+  font-weight: 600;
+}
