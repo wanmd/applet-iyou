@@ -133,8 +133,6 @@ wx.Page({
       this.setData({
         isAgent
       })
-      console.log(cartList);
-      
       
       if (res.success) {
           if (cartList.length == 0) {
@@ -212,7 +210,6 @@ wx.Page({
 
   //选择侧边一级分类
 	async sidebarClick(e) {
-    console.log(e);
 		const query = e.currentTarget ? e.currentTarget.dataset['id'] : e;
 		if (query === this.data.sidebarId) return
     const { sidebarData } = this.data;
@@ -226,7 +223,8 @@ wx.Page({
       navScrollLeft: 0, 
       hasNextPage: true, 
       loading: true, 
-      commodityList
+      commodityList,
+      currentTab: null,
     })
    
     this.getGoodsList(query)

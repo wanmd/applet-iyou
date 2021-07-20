@@ -198,11 +198,10 @@
             </block>
           </view>
         </view>
-        <view class='order-remark'>
+        <!-- <view class='order-remark'>
           <text class='title'>购买备注：</text>
           <text class="color-EAB96D">{{it.remark}}</text>
-          <!-- <input placeholder-class="placeholder-class" value="" placeholder='请备注购买信息或先与商家协商一致' type='text' data-index='{{index}}' bindinput='input' /> -->
-        </view>
+        </view> -->
       </view>
     </view>
     <view class='p-l-r'>

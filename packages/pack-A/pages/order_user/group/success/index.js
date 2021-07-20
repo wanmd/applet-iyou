@@ -1,5 +1,5 @@
-import { Request, toast } from '../../../../../utils/util.js'
-import { ALIYUN_URL } from '../../../../../utils/config'
+import { Request, toast } from '../../../../../../utils/util.js'
+import { ALIYUN_URL } from '../../../../../../utils/config'
 let request = new Request()
 let app = getApp()
 

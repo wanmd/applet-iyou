@@ -6,7 +6,9 @@
     is_agent='{{order.is_agent}}' 
     is_vip='{{userInfo.Vip}}'
     self_pickup='{{order.self_pickup}}'
-    groupstate="{{order.is_group}}"
+    is_group="{{order.is_group}}"
+    groupstate="{{order.group_state}}"
+    is_group_created="{{order.is_group_created}}"
   >
   </store>
   <!-- 自取 -->

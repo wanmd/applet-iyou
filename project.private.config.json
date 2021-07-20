@@ -742,7 +742,19 @@
         {
           "name": "参与拼团（客人页）",
           "pathName": "packages/pack-A/pages/order_user/group/index",
-          "query": "from=ordergroup&groupId=135",
+          "query": "q=%22%3Ffrom%3Dordergroup%26groupId%3D192%22",
+          "scene": null
+        },
+        {
+          "name": "拼团成功",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "?q=groupId%253D201%2526from%253Dcheckout",
+          "scene": null
+        },
+        {
+          "name": "关注的店",
+          "pathName": "pages/mailList/index",
+          "query": "",
           "scene": null
         }
       ]

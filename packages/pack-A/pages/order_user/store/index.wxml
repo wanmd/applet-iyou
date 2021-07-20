@@ -11,8 +11,10 @@
 	<view class='order-type' wx:if="{{self_pickup}}">自提订单</view>
 	<view class='order-store' wx:if="{{status==-1||status==-2}}">发货超时已退款</view>
 	<view class='order-store' wx:if="{{status==1}}">等待买家付款</view>
-	<view class='order-store' wx:if="{{status==2 && !groupstate}}">买家已付款</view>
-	<view class='order-store' wx:if="{{status==2 && groupstate}}">待分享成团</view>
+	<!-- groupstate 1-待成团 2-已成团 -->
+	<view class='order-store' wx:if="{{status==2 && !is_group}}">买家已付款</view>
+	<!-- is_group_created  是不是拼团发起人 true是  false否  如果是拼团发起人 且拼团还未成功的话 则显示待分享成团 -->
+	<view class='order-store' wx:if="{{status==2 && is_group && groupstate == 1 && (is_group_created)}}">待分享成团</view>
 	<view class='order-store' wx:if="{{status==3}}">卖家已发货</view>
 	<view class='order-store' wx:if="{{status==4}}">交易成功</view>
 </view>
