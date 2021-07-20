@@ -72,6 +72,10 @@ class Request {
         let token = wx.getStorageSync('token');
         if (url !== 'login' && token) {
             config.header.Authorization = token;
+        } else {
+            wx.redirectTo({
+              url: '/pages/auth/index',
+            })
         }
 
         config.success = response => {

@@ -1,7 +1,7 @@
 
 <view class='page' wx:if="{{!userInfo.nickname}}">
 	<view class='fixed title'>
-		<el-image src='shanghu@2x.png' style='width:98rpx;display:block;margin:auto;'></el-image>
+		<!-- <el-image src='shanghu@2x.png' style='width:98rpx;display:block;margin:auto;'></el-image> -->
 		<view class="text">
 			<text>您还未授权</text>
 			<text>请先授权再进行操作</text>
