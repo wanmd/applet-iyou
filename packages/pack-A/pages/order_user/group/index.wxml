@@ -1,4 +1,5 @@
 <!-- 1-待成团 2-已成团 -->
+
 <view wx:if="{{groupInfo.group_state == 1}}">
   <view class="d-f goodsBox borderb-1-solid-F7F7F7 ml-48 mr-48 pt-20 pb-32" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
     <view class="goodsImg d-f w-180 h-180 mr-16">
@@ -76,8 +77,9 @@
       <view class="invite" bindtap="more">去看看更多优物</view>
     </view>
   </view>
+  
 </view>
 
 <!-- 购物车弹框 -->
-<shopCarPop show="{{showShopCarPop}}" goods_id="{{goods_id}}" mode="not" type="group" needSelectType="{{false}}" />
+<shopCarPop show="{{showShopCarPop}}" groupid="{{groupId}}" goods_id="{{goods_id}}" mode="not" type="group" needSelectType="{{false}}" />
   

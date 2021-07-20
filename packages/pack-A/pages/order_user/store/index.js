@@ -24,10 +24,17 @@ Component({
       type : Number,
       value : 0
     },
+    is_group : {
+      type : Number,
+      value : 0
+    },
     groupstate : {
       type : Number,
       value : 0
     },
+    is_group_created: {
+      type: Boolean
+    }
   },
 
   /**

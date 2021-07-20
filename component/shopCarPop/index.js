@@ -22,7 +22,7 @@ Component({
       type: Number,
       value: 0
     } ,
-    groupid: { // 产品id
+    groupid: { // 拼团id
       type: Number,
       value: 0
     } ,
@@ -450,6 +450,7 @@ Component({
       const buyType =  userType === 'agent' ? 2 : 1; // 1-普通用户 2-会员购买
       const prefix = '/packages/pack-A/pages/checkout/index?chatId=' ;
       const { groupid } = this.data;
+      console.log(groupid);
 
       wx.navigateTo({
         url: prefix + chatId + "&goodsNum=" + goodsNum + "&remark=" + remark + "&type=2&shareUserId=" + shareUserId + '&isGroup='+ isGroup + '&groupid=' + groupid + '&productSpecs=' + productSpecs + '&buyType=' + buyType,

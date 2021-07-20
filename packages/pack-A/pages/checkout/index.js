@@ -73,7 +73,7 @@ Page({
   },
 
   confirm () {
-    const { current, remark } = this.data; // 1.快递物流  2.到店
+    const { current, remark = "" } = this.data; // 1.快递物流  2.到店
     let address = this.data.address;
 
     if(current == 1 && address == null){
@@ -129,6 +129,7 @@ Page({
     data['groupId'] = this.data.groupId || 0
     console.log(data)
     const that = this;
+    
     // request.post('cart/settlement', res => {
     request.post('iy/order/buy', res => {
         if(res.success){
@@ -137,8 +138,10 @@ Page({
             toast('提交成功')
             setTimeout(function(){
               if (that.data.isGroup == 1) {// 组团订单
+                const q = JSON.stringify('?from=checkout&groupId=' + res.data.groupId)
+                console.log(q);
                 wx.redirectTo({
-                  url: '../order_user/group/index?groupId=' + res.data.groupId
+                  url: '../order_user/group/index' + '?q=' + encodeURIComponent(q)
                 })
               } else {
                 wx.redirectTo({
@@ -193,7 +196,7 @@ Page({
         type: opt.type
       }
       
-      this.setData({type : opt.type, cartIds : cartIds, isGroup: opt.isGroup, groupId: opt.groupId })
+      this.setData({type : opt.type, cartIds : cartIds, isGroup: opt.isGroup, groupId: opt.groupid })
     }else if(opt.type==2){//直接下单
       // console.log(JSON.parse(opt.productSpecs));
       
@@ -206,9 +209,9 @@ Page({
         buyType: opt.buyType,
         productSpecs: JSON.parse(opt.productSpecs) || {"尺寸": "27", "颜色": "黑色"},
         isGroup: opt.isGroup,
-        groupId: opt.groupId
+        groupId: opt.groupid
       }
-      this.setData({type : opt.type, cartIds : opt.chatId, shareUserId: data.shareUserId, isGroup: opt.isGroup, groupId: opt.groupId})
+      this.setData({type : opt.type, cartIds : opt.chatId, shareUserId: data.shareUserId, isGroup: opt.isGroup, groupId: opt.groupid})
     }
     console.log("data-----")
     console.log(data)

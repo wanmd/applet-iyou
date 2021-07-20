@@ -24,13 +24,12 @@ Page({
       var str = url.split("?");
       theRequest['url'] = str[0];
       str = str[1];
-      console.log(str)
       var strs = str.split("&");
-      console.log(strs)
       for (var i = 0; i < strs.length; i++) {
         theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
       }
     }
+    console.log(theRequest);
     return theRequest
   },
 
@@ -39,7 +38,11 @@ Page({
    */
   onLoad: function (options) {
     let q = decodeURIComponent(options.q)
+    console.log(options);
+    console.log(q);
+    // let urlData = this.geturlData(q.substring(1, q.length -1));// 多了个引号
     let urlData = this.geturlData(q);
+    console.log(urlData);
     
     let userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo 
 
@@ -92,7 +95,7 @@ Page({
   },
 
   more() {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/home/index',
     })
   },
