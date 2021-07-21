@@ -73,7 +73,7 @@ class Request {
         if (url !== 'login' && token) {
             config.header.Authorization = token;
         } else {
-            wx.redirectTo({
+            wx.navigateTo({
               url: '/pages/auth/index',
             })
         }

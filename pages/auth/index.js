@@ -49,7 +49,7 @@ wx.Page({
                 // },'登录中...')
         } else {
             wx._removeStorageSync('nav_key')
-            wx._navigateBack()
+            // wx._navigateBack()
         }
     },
     getPhoneNumber(res) {
@@ -83,7 +83,7 @@ wx.Page({
                     isAuth: userInfo.isAuth
                 })
             } else {
-                wx._navigateBack()
+                // wx._navigateBack()
                 wx._showAlert(res.msg)
             }
         })
