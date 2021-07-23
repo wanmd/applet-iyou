@@ -44,7 +44,7 @@ page{
   margin-top:0rpx;
 }
 .goods-list .goods{
-  padding:32rpx 0rpx 32rpx 0rpx;
+  padding:0rpx 0rpx 32rpx 0rpx;
   position:relative;
   border-bottom:1px solid #f7f7f7;
 }
@@ -56,13 +56,13 @@ page{
 }
 .goods-list .goods .cover{
   display:block;
-  width:216rpx;
-  height:216rpx;
+  width:116rpx;
+  height:116rpx;
 }
 
 .content{
   position:absolute;
-  left:245rpx;
+  left:145rpx;
   right:0rpx;
   top:0rpx;
   height:100%;
@@ -88,10 +88,12 @@ page{
 .goods-price {
   font-size:30rpx;
   font-weight: normal;
+  text-align: right;
 }
 .goods-price .num{
   font-size:30rpx;
   font-weight:500;
+  text-align: right;
 }
 .goods-price1{
 /*  position:absolute;
@@ -99,7 +101,6 @@ page{
   bottom:36rpx;
   color:#ABABAB;*/
 }
-.goods-price,
 .goods-price1,
 .goodsNum{
   color: #656565;
@@ -184,7 +185,7 @@ page{
  display: flex;
  padding: 10rpx;
  padding-top: 30rpx;
- /*align-items: center;*/
+ align-items: center;
 }
 .order-remark .title{
   /* align-self: flex-start; */

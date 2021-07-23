@@ -70,6 +70,7 @@
   height: 88rpx;
   /* background: #FFC901; */
   border-radius: 46rpx 46rpx 46rpx 46rpx;
+  border: 2rpx solid #D681FF;
   overflow: hidden;
 }
 
@@ -176,12 +177,20 @@
   height: 48rpx;
   padding: 0 10rpx;
 }
-.active {
-  background: rgba(171, 0, 255, 0.18);
-  border: 2rpx solid #AB00FF;
-  color: #AB00FF;
+.normal {
+  background: rgba(214, 129, 255, 0.08);
+  color: #C246FF;
 }
-
+.bl_D681FF {
+  border-left: 2rpx solid #C246FF;
+}
+.br_D681FF {
+  border-right: 2rpx solid #C246FF;
+}
+.active {
+  background: #AB00FF !important;
+  color: #fff !important;
+}
 .bigger {
   transform: scale(1.2);
   z-index: 999;

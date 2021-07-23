@@ -285,6 +285,19 @@ wx.Page({
     }
   },
 
+  handleDelete_keyword() {
+    if (this.data.current == 1) {
+      this.setData({
+        'query1.keyword': ''
+      })
+    } else {
+      this.setData({
+        'query2.keyword': ''
+      })
+    }
+    this.search()
+  },
+
   // 确定搜索
   search(e) {
     if (this.data.current == 1) {

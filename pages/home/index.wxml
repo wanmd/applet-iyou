@@ -93,7 +93,7 @@
                                         2.3此商家代理显示代理价+划线拼单价 -->
                                 <view wx:if="{{!item.isAgent && !userinfo.isVip}}">
                                     <text class='f-32 bold c-333 mr-20'>￥{{item.group_price}}</text>
-                                    <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text>
+                                    <!-- <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text> -->
                                 </view>
                                 <view wx:if="{{!item.isAgent && userinfo.isVip}}">
                                     ￥<text class='f-32 bold c-ECBD75 mr-20'>{{item.member_price}}</text>
@@ -347,8 +347,8 @@
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
                         </navigator>
-                        <navigator class="imageBox" hover-class="none" wx:if="{{item.video_url}}">
-                            <video wx:if="{{item.video_url}}" class='thumb thumb_l' src="{{ALIYUN_URL}}/{{item.video_url}}" />
+                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}'  hover-class="none" wx:if="{{item.video_url}}">
+                            <video class='thumb thumb_l' src="{{ALIYUN_URL}}/{{item.video_url}}" />
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>

@@ -33,10 +33,12 @@ wx.Page({
         }
 
     },
+    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
     getUserInfo(res) {
         let data = res.detail
             // console.log(data)
         if (data.userInfo) { //授权
+            debugger
             let params = {
                 encryptedData: data.encryptedData,
                 iv: data.iv,
@@ -48,10 +50,39 @@ wx.Page({
                 // 	this.getUserInfoData(params)
                 // },'登录中...')
         } else {
+            debugger
             wx._removeStorageSync('nav_key')
             // wx._navigateBack()
         }
     },
+    getUserProfile(e) {
+        console.log(e);
+        // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+        // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+        wx.getUserProfile({
+          desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+          success: (res) => {
+              console.log(res);
+            // let userInfo = res.userInfo
+            // userInfo = Object.assign(app.globalData.userInfo, userInfo)
+            // app.globalData.userInfo = userInfo
+            // wx._setStorageSync('userinfo', userInfo)
+            // this.change("#FFE200")
+            // this.setData({
+            //     userInfo: userInfo,
+            //     isAuth: userInfo.isAuth
+            // })
+
+            let params = {
+                encryptedData: res.encryptedData,
+                iv: res.iv,
+                rawData: res.rawData,
+                signature: res.signature
+            }
+            this.getUserInfoData(params)
+          }
+        })
+      },
     getPhoneNumber(res) {
         let data = res.detail
         console.log(data.errMsg)
@@ -74,13 +105,14 @@ wx.Page({
             console.log('getUserInfoData:获取用户信息');
             if (res.success) {
                 let userInfo = res.data
+                console.log(res);
                 userInfo = Object.assign(app.globalData.userInfo, userInfo)
                 app.globalData.userInfo = userInfo
                 wx._setStorageSync('userinfo', userInfo)
                 this.change("#FFE200")
                 this.setData({
                     userInfo: userInfo,
-                    isAuth: userInfo.isAuth
+                    isAuth: true
                 })
             } else {
                 // wx._navigateBack()

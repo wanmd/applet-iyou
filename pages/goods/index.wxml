@@ -13,8 +13,8 @@
             会员用户 一件代发(会员价) + 代理拿货(代理价) 
             代理用户 一件代发(代理价) + 代理拿货(代理价) -->
         <view>
-          <text class="fz-48 c-262626 mr-24">￥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.group_price}}</text>
-          <text class="c-828282 fz-28 td-l">￥{{chat.sale_price}}</text>
+          <text class="fz-48 c-262626 mr-24 Bebas">￥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.group_price}}</text>
+          <text class="c-828282 fz-28 td-l Bebas">￥{{chat.sale_price}}</text>
         </view>
         <!-- 分享按钮 -->
         <view class='right-btn'>
@@ -25,7 +25,7 @@
               <el-image class='icon w173' src='iconbg@2x.png'>
               </el-image>
               <view class="text">
-                <view class="t__1 {{chat.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{chat.fina_sale_price}}</view>
+                <view class="t__1 Bebas{{chat.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{chat.fina_sale_price}}</view>
                 <view class="t__2">分享赚收益</view>
               </view>
           </view>

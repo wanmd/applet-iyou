@@ -17,15 +17,21 @@
     <!-- 搜索入口 高度为29px-->
     <view class="search_wrap jc-sb bgc-F7F7F7">
         <view class="d-f ai-c">
-            <view class="input mr-18">
+            <view class="input mr-18 pos-r">
                 <input 
-                  data-target='{{keyword}}'  
                   bindinput="bindinput_" 
                   placeholder="搜索" 
                   placeholder-style="font-size: 26rpx;color: #E5E5E5" 
-                  value="{{keyword}}" 
+                  value="{{current == 1 ? query1.keyword : query2.keyword}}" 
                   bindconfirm="search" 
                   confirm-type="search"
+                />
+                <!-- 删除icon -->
+                <image 
+                  bindtap="handleDelete_keyword" 
+                  wx:if="{{current == 1 ? query1.keyword : query2.keyword}}" 
+                  class="pos-a t-16 r-20 w-26 h-26 z-9" 
+                  src="/assets/images/index/input_delete@3x.png"
                 />
             </view>
             <view class="search_btn" data-target='{{keyword}}' bindtap='search'>搜索</view>

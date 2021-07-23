@@ -172,6 +172,7 @@ App({
         wx.login({
             success(res) {
                 if (res.code) {
+                    console.log(res.code);
                     wx.promise
                         .post('iy/login', { code: res.code, inviter: inviter })
                         .then(result => {
