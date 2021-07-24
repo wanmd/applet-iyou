@@ -8,7 +8,8 @@
 		</view>
 	</view>
 	<view class='fixed xy w100p' style="padding-top: 80rpx;">
-		<image src='{{ALIYUN_URL}}/53c01a0542773a279fc29711adb38cdd.png' style='width:420rpx;display:block;margin:auto;'></image>
+		<el-image src='iyou_auth@2x.png' style='width:120rpx;display:block;margin:auto;'></el-image>
+		<view class="fz-34 c-333 ta-c mt-10">iYOU 爱优</view>
 		<view class="auth-btns flex-around">
 			<!-- <button hover-class="none" class='so-btn' open-type='getUserInfo' bindgetuserinfo='getUserInfo'>允许</button> -->
 			<button hover-class="none" class='so-btn' bindtap='getUserProfile'>允许</button>
@@ -30,9 +31,10 @@
 		</view>
 	</view>
 	<view class='fixed xy w100p'>
-		<el-image src='auth2@2x.png' style='width:420rpx;display:block;margin:auto;'></el-image>
+		<el-image src='iyou_auth@2x.png' style='width:120rpx;display:block;margin:auto;'></el-image>
+		<view class="fz-34 c-fff ta-c mt-10">iYOU 爱优</view>
 		<view class="auth-btns flex-around">
-			<button hover-class="none" class='so-btn white-btn' open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即登录</button>
+			<button hover-class="none" class='so-btn' open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即登录</button>
 			<button hover-class="none" class='rj-btn' bindtap="reject">暂不登录</button>
 		</view>
 	</view>

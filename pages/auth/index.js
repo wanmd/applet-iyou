@@ -25,7 +25,7 @@ wx.Page({
             // },
             // })
         if (userInfo) {
-            this.change("#FFE200")
+            this.change("#AB00FF")
             this.setData({
                 userInfo: userInfo,
                 isAuth: userInfo.isAuth
@@ -69,7 +69,7 @@ wx.Page({
             userInfo.avatar = userInfo.avatarUrl
             app.globalData.userInfo = userInfo
             wx._setStorageSync('userinfo', userInfo)
-            this.change("#FFE200")
+            this.change("#AB00FF")
             this.setData({
                 userInfo: userInfo,
                 isAuth: true
@@ -110,7 +110,7 @@ wx.Page({
                 userInfo = Object.assign(app.globalData.userInfo, userInfo)
                 app.globalData.userInfo = userInfo
                 wx._setStorageSync('userinfo', userInfo)
-                this.change("#FFE200")
+                this.change("#AB00FF")
                 this.setData({
                     userInfo: userInfo,
                     isAuth: true

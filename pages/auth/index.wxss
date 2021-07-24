@@ -14,8 +14,8 @@ page{
 	width: 100%;
 }
 .so-btn{
-	background-color: #FFE200;
-	color: #333;
+	background-color: #AB00FF;
+	color: #fff;
 	width: 350rpx;
 	height: 80rpx;
 	border-radius: 38rpx;
@@ -50,7 +50,7 @@ page{
 	width: 100%;
 }
 .xieyi{
-	color: #FFE200;
+	color:#AB00FF;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -64,7 +64,7 @@ page{
 	/* background: linear-gradient(360deg, #FFFFFF 0%, #AB00FF 100%); */
 }
 .page-yellow{
-	background-color: #FFE200;
+	background: linear-gradient(360deg, #FFFFFF 0%, #AB00FF 100%);
 }
 .title{
 	top: 85rpx;
