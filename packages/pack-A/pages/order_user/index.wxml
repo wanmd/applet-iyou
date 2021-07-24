@@ -82,7 +82,7 @@
       </store>
       <view class='relative'>
         <deliveryInfo delivery='{{item.delivery}}'></deliveryInfo>
-        <goods wx:for='{{item.goods}}' ismy="{{false}}" goods='{{item}}' wx:key='chat_id'></goods>
+        <goods wx:for='{{item.goods}}' wx:for-item="goodItem" ismy="{{false}}" goods='{{goodItem}}' remarks="{{item.remarks}}" wx:key='chat_id'></goods>
         <view class='bottom'>
           <view class='wrap'>
             <view class='overflow'>

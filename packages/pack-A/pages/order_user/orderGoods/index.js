@@ -16,7 +16,10 @@ Component({
       type : Boolean,
       value: false
     },
-    
+    remarks : {
+      type : String,
+      value : ''
+    },
   },
 
   /**
