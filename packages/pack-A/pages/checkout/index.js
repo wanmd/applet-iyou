@@ -67,13 +67,14 @@ Page({
   },
 
   input (e) {
-    let index = e.currentTarget.dataset.index
     let remark = e.detail.value
-    this.setData(remark)
+    this.setData({
+      remark
+    })
   },
 
   confirm () {
-    const { current, remark = "" } = this.data; // 1.快递物流  2.到店
+    const { current } = this.data; // 1.快递物流  2.到店
     let address = this.data.address;
 
     if(current == 1 && address == null){
@@ -89,14 +90,13 @@ Page({
     })
 
     let addressId = address.id
-    let remarks = this.data.remarks
 
     console.log("提交订单")
     let data = {
       receiveId: addressId,
       orderNo: this.data.orderNo,
       type: this.data.type,
-      remark: remark
+      remark: this.data.remark
     }
     if(this.data.type == 1){
       data['sorderNo'] = this.data.sorderNo;
@@ -129,7 +129,7 @@ Page({
     data['groupId'] = Number(this.data.groupId) || 0
     console.log(data)
     const that = this;
-    
+
     // request.post('cart/settlement', res => {
     request.post('iy/order/buy', res => {
         if(res.success){

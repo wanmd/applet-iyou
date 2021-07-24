@@ -831,6 +831,6 @@ page {
   }
   .sharetext {
       position: absolute;
-      right: 20rpx;
+      left:30rpx;
       top: 4rpx;
   }

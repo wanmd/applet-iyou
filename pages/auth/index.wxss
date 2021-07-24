@@ -61,6 +61,7 @@ page{
 .page{
 	width: 100vw;
 	height: 100vh;
+	/* background: linear-gradient(360deg, #FFFFFF 0%, #AB00FF 100%); */
 }
 .page-yellow{
 	background-color: #FFE200;

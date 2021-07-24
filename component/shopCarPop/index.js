@@ -46,6 +46,12 @@ Component({
       if(show && goods_id) {
         this.initData()
       }
+      if (!show) {
+        this.setData({
+          canSelect: false,
+          canConfirm: false
+        })
+      }
     }
   },
 

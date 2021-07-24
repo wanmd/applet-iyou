@@ -39,16 +39,14 @@
   font-size: 26rpx;
   padding: 0 10rpx;
   line-height: 36rpx;
-  height: 36rpx;
+  height: 40rpx;
   text-align: center;
   border-radius: 7rpx;
+  margin-right: 20rpx;
 }
 .user-type{
   background-color: #FFFFFF;
   color: #AB00FF;
-  position: absolute;
-  right: 170rpx;
-  top: 40rpx;
   border: 2px solid #AB00FF;
 }
 .user-type1{
@@ -77,5 +75,4 @@
   font-size: 20rpx;
   line-height: 28rpx;
   color: #FFFFFF;
-  margin-left: 120rpx;
 }

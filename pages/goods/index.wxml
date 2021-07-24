@@ -245,7 +245,7 @@
             bindtap='handleShowPop'
             class='now-buy1 middle' 
             style-text='width:160rpx;height: 88rpx;color: #fff;background:#C246FF;'>
-            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;">
+            <view style="font-size:28rpx;line-height: 31rpx;padding-top: 16rpx;" class="">
               ¥{{chat.isAgent ? chat.agent_price : userInfo.isVip ? chat.vip_price : chat.sale_price}}
             </view>
             <view style="font-size:28rpx;line-height: 31rpx;padding-bottom: 16rpx;">

@@ -15,7 +15,10 @@
 			<button hover-class="none" class='rj-btn' bindtap="reject">取消</button>
 		</view>
 	</view>
-	<view class="mt-40 navigator">授权即表明您同意<view class="xieyi"> <navigator hover-class="none" url="/packages/pack-B/pages/apply-merchant/service-agreement/index">《爱迷服务协议》</navigator> <navigator url="/packages/pack-B/pages/apply-merchant/privacy-agreement/index" hover-class="none">《隐私政策》</navigator> </view></view>
+	<view class="mt-40 navigator">授权即表明您同意<view class="xieyi">
+	 <navigator hover-class="none" url="/packages/pack-B/pages/apply-merchant/service-agreement/index">《iYOU服务协议》</navigator> 
+	 <!-- <navigator url="/packages/pack-B/pages/apply-merchant/privacy-agreement/index" hover-class="none">《隐私政策》</navigator>  -->
+	 </view></view>
 </view>
 
 <view class='page page-yellow' wx:else>

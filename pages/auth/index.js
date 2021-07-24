@@ -62,27 +62,28 @@ wx.Page({
         wx.getUserProfile({
           desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
           success: (res) => {
-              console.log(res);
-            // let userInfo = res.userInfo
-            // userInfo = Object.assign(app.globalData.userInfo, userInfo)
-            // app.globalData.userInfo = userInfo
-            // wx._setStorageSync('userinfo', userInfo)
-            // this.change("#FFE200")
-            // this.setData({
-            //     userInfo: userInfo,
-            //     isAuth: userInfo.isAuth
-            // })
+            console.log(res);
+            let userInfo = res.userInfo
+            userInfo = Object.assign(app.globalData.userInfo, userInfo)
+            userInfo.nickname = userInfo.nickName
+            userInfo.avatar = userInfo.avatarUrl
+            app.globalData.userInfo = userInfo
+            wx._setStorageSync('userinfo', userInfo)
+            this.change("#FFE200")
+            this.setData({
+                userInfo: userInfo,
+                isAuth: true
+            })
 
             let params = {
-                encryptedData: res.encryptedData,
-                iv: res.iv,
-                rawData: res.rawData,
-                signature: res.signature
+                nickname: res.userInfo.nickName,
+                avatar: res.userInfo.avatarUrl,
             }
-            this.getUserInfoData(params)
+            this.updateNickName_Avatar(params)
+            // this.getUserInfoData(params)
           }
         })
-      },
+    },
     getPhoneNumber(res) {
         let data = res.detail
         console.log(data.errMsg)
@@ -114,11 +115,23 @@ wx.Page({
                     userInfo: userInfo,
                     isAuth: true
                 })
+                
             } else {
                 // wx._navigateBack()
                 wx._showAlert(res.msg)
             }
         })
+    },
+    updateNickName_Avatar(params) {
+        request.post('iy/user/update', res => {
+        if(res.success) {
+            console.log(res);
+            console.log('更新用户昵称和头像成功');
+            wx._navigateBack()
+        }else{
+            wx._showAlert(res.msg)  
+        }
+        }, params)
     },
     getTel(params) {
         this.post('iy/bindMobile', params).then(res => {

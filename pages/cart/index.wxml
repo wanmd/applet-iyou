@@ -87,11 +87,11 @@
                       <view class="goods-price" wx:if="{{item.isAgent}}">
                         <view>
                           <text class="text c-262626 fz-28">零售价￥</text>
-                          <text class='text-through c-262626 fz-28'>{{it.sale_price}}</text>
+                          <text class='text-through c-262626 fz-28 Bebas'>{{it.sale_price}}</text>
                         </view>
                         <view>
                           <text class="text c-ECBD75">代理价￥</text>
-                          <text class="c-ECBD75 fz-32">{{it.agent_price}}</text>
+                          <text class="c-ECBD75 fz-32 Bebas">{{it.agent_price}}</text>
                         </view>
                       </view>
                       <view class="goods-price" wx:if="{{!item.isAgent && userInfo.isVip}}">
@@ -106,7 +106,7 @@
                         </view>
                         <view>
                           <text class="text c-262626">会员价￥</text>
-                          <text class="c-262626 fz-32">{{it.member_price}}</text>
+                          <text class="c-262626 fz-32 Bebas">{{it.member_price}}</text>
                         </view>
                       </view>
                       <view class="goods-price" wx:else>
@@ -117,11 +117,11 @@
                             src='vip/vip_label@2x.png' 
                             style='width:72rpx;height:34rpx;display: inline-block;'
                           ></el-image>
-                          <text class='c-AB00FF fz-28'>{{it.member_price}}</text>
+                          <text class='c-AB00FF fz-28 Bebas'>{{it.member_price}}</text>
                         </view>
                         <view>
                             <text class="text c-ECBD75">拼单价￥</text>
-                            <text class="c-000 fz-32">{{it.group_price}}</text>
+                            <text class="c-000 fz-32 Bebas">{{it.group_price}}</text>
                           </view>
                       </view>
                     </view>
@@ -166,7 +166,7 @@
               <view class="car-cell-l" wx:if="{{!isEdit}}">
                 <view class="car-cell__txt">
                   合计(不含运费)：
-                  <view style="display:inline-block" class="price">¥{{totalMoney}}</view>
+                  <view style="display:inline-block" class="price Bebas">¥{{totalMoney}}</view>
                 </view>
               </view>
               <view class="car-cell-l" wx:else>

@@ -78,7 +78,7 @@
                             <!-- 一键转发 -->
                             <image class='shareicon' src='/assets/images/iconbg2@2x.png'>
                                 <view class="sharetext">
-                                    <view class="t__1 c-fff fz-12 {{item.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{item.fina_sale_price}}</view>
+                                    <view class="t__1 c-fff fz-12 Bebas {{item.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{item.fina_sale_price}}</view>
                                     <view class="t__2 c-fff fz-8">分享赚收益</view>
                                 </view>
                             </image>
@@ -92,16 +92,16 @@
                                         2.2会员展示 公开报价（会员价）+划线拼单价
                                         2.3此商家代理显示代理价+划线拼单价 -->
                                 <view wx:if="{{!item.isAgent && !userinfo.isVip}}">
-                                    <text class='f-32 bold c-333 mr-20'>￥{{item.group_price}}</text>
+                                    <text class='f-32 bold c-333 mr-20 Bebas'>￥{{item.group_price}}</text>
                                     <!-- <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text> -->
                                 </view>
                                 <view wx:if="{{!item.isAgent && userinfo.isVip}}">
-                                    ￥<text class='f-32 bold c-ECBD75 mr-20'>{{item.member_price}}</text>
-                                    ￥<text class='f-24 td-l c-BFBFBF td-l'>￥{{item.group_price}}</text>
+                                    <text class='f-32 bold c-ECBD75 mr-20 Bebas'>￥{{item.member_price}}</text>
+                                    <text class='f-24 td-l c-BFBFBF td-l Bebas'>￥{{item.group_price}}</text>
                                 </view>
                                 <view wx:if="{{item.isAgent}}">
-                                    ￥<text class='f-32 bold c-AB00FF mr-20'>{{item.agent_price}}</text>
-                                    ￥<text class='f-24 td-l c-BFBFBF'>￥{{item.group_price}}</text>
+                                    <text class='f-32 bold c-AB00FF mr-20 Bebas'>{{item.agent_price}}</text>
+                                    <text class='f-24 td-l c-BFBFBF Bebas'>￥{{item.group_price}}</text>
                                 </view>
                                 <view catchtap="showGoodsPopup" data-goods_id='{{item.id}}'>
                                     <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -177,8 +177,8 @@
                                 2.3此商家代理显示代理价+划线拼单价，按照代理价结算； -->
                                 <view class='a' wx:if='{{isAgent == 1}}'>
                                     <view class='price1'>
-                                        <text class="c-AB00FF mr-8 fz-32">￥ {{chat.agent_price}}</text>
-                                        <text class="c-000 fz-24 td-l">￥ {{chat.group_price}}</text>
+                                        <text class="c-AB00FF mr-8 fz-32 Bebas">￥ {{chat.agent_price}}</text>
+                                        <text class="c-000 fz-24 td-l Bebas">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -186,8 +186,8 @@
                                 </view>
                                 <view class='a' wx:elif="{{!isAgent && isVip}}">
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-ECBD75 fz-32">￥ {{chat.member_price}}</text>
-                                        <text class="c-A5A5A5 fz-24 td-l">￥ {{chat.group_price}}</text>
+                                        <text class="c-ECBD75 fz-32 Bebas">￥ {{chat.member_price}}</text>
+                                        <text class="c-A5A5A5 fz-24 td-l Bebas">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -195,9 +195,9 @@
                                 </view>
                                 <view class='a' wx:else>
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-000 fz-32">￥ {{chat.group_price}}</text>
+                                        <text class="c-000 fz-32 Bebas">￥ {{chat.group_price}}</text>
                                         <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>
-                                        <text class="c-ECBD75 fz-24">￥ {{chat.member_price}}</text>
+                                        <text class="c-ECBD75 fz-24 Bebas">￥ {{chat.member_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -290,12 +290,12 @@
                             3此商家代理显示代理价+划线拼单价 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
                             <view wx:if="{{item.isAgent}}">
-                                <text class="">{{item.product.agent_price}}</text>
-                                <text class="td-l">{{item.product.group_price}}</text>
+                                <text class="Bebas">{{item.product.agent_price}}</text>
+                                <text class="td-l Bebas">{{item.product.group_price}}</text>
                             </view>
                             <view wx:if="{{!item.isAgent && userInfo.isVip}}">
-                                <text class="">{{item.product.member_price}}</text>
-                                <text class="td-l">{{item.product.group_price}}</text>
+                                <text class="Bebas">{{item.product.member_price}}</text>
+                                <text class="td-l Bebas">{{item.product.group_price}}</text>
                             </view>
                         </view>
                         <!-- 操作 -->
