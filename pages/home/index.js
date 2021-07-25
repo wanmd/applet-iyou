@@ -115,6 +115,32 @@ wx.Page({
         console.log(wx.getStorageSync('ime_storeId'))
         console.log('ime_storeId--------------end')
         let storeId =  wx.getStorageSync('ime_storeId') || user_id;
+        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
+        
+        this.setData({ userInfo: userInfo })
+        if (!storeId) {
+            request.get('iy/mail/follows', res => {
+                if (res.success) {
+                    storeId = res.data.default.user_id || 0
+                    let user = res.data.default.user
+                    if (!(user instanceof Object)) {
+                        user = JSON.parse(user)
+                        wx.setStorageSync('storeInfo', user)
+                    }
+
+                    this.setData({ 
+                        isSelf: false, 
+                        user: user, 
+                        query: { storeId: storeId }, 
+                        storeId: storeId, 
+                        query2: { store_id: storeId }, 
+                        query3: { store_id: '', keyword: '', type: 2 }, 
+                        query4: { store_id: storeId, type: 2 } 
+                    })
+                }
+            })
+        }
+        
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -127,17 +153,8 @@ wx.Page({
         console.log('storeId--------------start')
         console.log(storeId)
         console.log('storeId--------------end')
-        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
         
-        this.setData({ userInfo: userInfo })
         if (storeId > 0 && storeId != userInfo.user_id) {
-            // wx.showModal({
-            //     title: '111-storeId-' + String(storeId),
-            //     content: 'user_id-'+ String(user_id),
-            //     success: res => {
-            //     }
-            // })
-            // this.setData({ storeId: storeId, query: { storeId: storeId }, query2: { store_id: storeId } })
             request.get('user/user/' + storeId, res => {
                 if (res.success) {
                     let user = res.data.user
@@ -151,14 +168,6 @@ wx.Page({
                 }
             })
         } else if(storeId > 0 && storeId == userInfo.user_id) {
-            // wx.showModal({
-            //     title: '222-storeId-' + String(storeId),
-            //     content: 'user_id-'+ String(user_id),
-            //     success: res => {
-            //     }
-            // })
-            // this.setData({ query: { storeId: storeId }, storeId: storeId, query2: { store_id: storeId } })
-            // let storeId = userInfo.user_id;
             this.setData({ 
                 isSelf: true, 
                 user: userInfo, 
@@ -168,10 +177,8 @@ wx.Page({
                 query3: { store_id: '', keyword: '', type: 2 }, 
                 query4: { store_id: storeId, type: 2 } 
             })
-        } else {// 没有storeId
-            wx.redirectTo({
-              url: '/pages/mailList/index',
-            })
+        } else {// 没有storeId 取默认关注的店铺数据
+            
         }
     },
     onHide() {

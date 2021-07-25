@@ -73,9 +73,14 @@ class Request {
         if (url !== 'login' && token) {
             config.header.Authorization = token;
         } else {
-            wx.navigateTo({
-              url: '/pages/auth/index',
-            })
+            var pages = getCurrentPages();
+            var page = pages[pages.length - 1];
+            
+            if (page.is.indexOf('/auth') == -1) {
+                wx.navigateTo({
+                    url: '/pages/auth/index',
+                })
+            }
         }
 
         config.success = response => {
