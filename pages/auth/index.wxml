@@ -23,7 +23,7 @@
 </view>
 
 <view class='page page-yellow' wx:else>
-	<view class='fixed title'>
+	<view class='fixed title' wx:if="{{false}}">
 		<image src='{{userInfo.avatar}}' style='width:90rpx;height:90rpx;'></image>
 		<view class="text">
 			<text>亲爱的  {{userInfo.nickname}}</text>
@@ -33,6 +33,7 @@
 	<view class='fixed xy w100p'>
 		<el-image src='iyou_auth@2x.png' style='width:120rpx;display:block;margin:auto;'></el-image>
 		<view class="fz-34 c-fff ta-c mt-10">iYOU 爱优</view>
+		<view class="fz-28 c-fff ta-c mt-36">矮油！我看好你！啥都阔以...</view>
 		<view class="auth-btns flex-around">
 			<button hover-class="none" class='so-btn' open-type="getPhoneNumber" bindgetphonenumber='getPhoneNumber'>立即登录</button>
 			<button hover-class="none" class='rj-btn' bindtap="reject">暂不登录</button>

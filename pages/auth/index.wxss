@@ -8,7 +8,7 @@ page{
 	/*display: flex;*/
 	/*justify-content: space-around;*/
 	/*align-items: center;*/
-	margin-top: 120rpx;
+	margin-top: 480rpx;
 }
 .w100p{
 	width: 100%;
@@ -92,5 +92,5 @@ page{
 	display: block;
 }
 .xy{
-	top: 600rpx;
+	top: 660rpx;
 }

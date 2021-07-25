@@ -170,10 +170,18 @@ wx.Page({
           let cut_string = '';
           service_setting.forEach((item, index) => {
             if (index < 2) {
-              cut_string += item+','
+              cut_string += item+'/'
             }
           })
           data.service_setting = cut_string;
+        }
+
+        // 商家运费
+        if (!data.is_express) {// 不包邮
+          const { defaultNumber, defaultPrice } = data.fee.config;
+          this.setData({
+            express_desc: `${defaultNumber}件${defaultPrice}元起`
+          })
         }
         
         this.setData({
@@ -310,7 +318,7 @@ wx.Page({
       // if(this.data.shareUserId!=''&&this.data.shareUserId!=0) data.shareUserId = this.data.shareUserId;
       let req = new Request()
       req.setConfig('responseType', 'arraybuffer')
-      req.get('qr/chat', res => {
+      req.get('iy/qr/chat', res => {
         let qrcode = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
         this.setData({ qrcode: qrcode })
         wx.nextTick(() => {
@@ -392,7 +400,7 @@ wx.Page({
       W = res[0].width
       H = res[0].height
       var ctx = wx.createCanvasContext('firstCanvas')
-      ctx.setFillStyle('#FFE200')
+      ctx.setFillStyle('#AB00FF')
       ctx.fillRect(0, 0, W, H)
       ctx.draw(true)
 
@@ -501,7 +509,7 @@ wx.Page({
       ctx.draw(true)
 
       // 画底部二维码区域
-      ctx.setFillStyle('#FFE200')
+      ctx.setFillStyle('#AB00FF')
       ctx.fillRect(0, rpxTopx(730), W, H - rpxTopx(730))
       ctx.draw(true)
       // 画商品名称位置

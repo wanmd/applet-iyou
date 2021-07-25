@@ -39,7 +39,7 @@
       </view>
       <cell height="90rpx" arrow="{{false}}">
         <view slot='title'>发货</view>
-        <view slot='content'>{{chat.is_express ? '包邮' : '不包邮'}}</view>
+        <view slot='content'>{{chat.is_express ? '包邮' : express_desc}}</view>
       </cell>
       <cell height="90rpx"  arrow="{{true}}" bindtap="showMoreService">
         <view slot='title'>服务</view>

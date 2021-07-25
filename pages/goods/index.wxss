@@ -609,6 +609,9 @@ page {
   line-height: 32rpx;
   color: #333333;
 }
+.service-item:nth-child(3n) {
+  margin-right: 0
+}
 
 
 

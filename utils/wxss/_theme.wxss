@@ -42,6 +42,9 @@
 .mt-30 {
   margin-top: 30rpx;
 }
+.mt-36 {
+  margin-top: 36rpx;
+}
 .mt-38 {
   margin-top: 38rpx;
 }
@@ -1254,6 +1257,9 @@
 }
 .fz-32 {
   font-size: 32rpx;
+}
+.fz-34 {
+  font-size: 34rpx;
 }
 .fz-36 {
   font-size: 36rpx;
