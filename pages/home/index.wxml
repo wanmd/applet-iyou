@@ -352,7 +352,9 @@
                 <view class='thumbs thumbs_l' wx:if="{{picture2.length}}">
                     <block wx:for='{{picture2}}' wx:key="index">
                         <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
-                            <img slot='content' class='thumb thumb_l' src='{{item.cover}}'></img>
+                            <image mode="aspectFill" slot='content' class='thumb thumb_l' src='{{ALIYUN_URL}}/{{item.cover}}'></image>
+                            <!-- 图片数字 -->
+                            <view class="image_num">{{item.picture.length}}</view>
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
@@ -363,7 +365,6 @@
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
                         </navigator>
-                        
                     </block>
                 </view>
                 <empty wx:else class='absolute xy' style="padding-top: 400rpx;"></empty>

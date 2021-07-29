@@ -512,12 +512,12 @@ page {
 
 .thumbs .imageBox,
 .thumbs .thumb_l {
-    float: left;
     width: 187rpx;
     height: 187rpx;
     padding: 2rpx;
     display: block;
     margin: 0rpx;
+    display: inline-block;
     box-sizing: border-box;
 }
 
