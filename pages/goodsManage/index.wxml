@@ -17,10 +17,18 @@
           </view>
       </view> -->
       <view class='goods-list bgc-fff {{ goodsList.length ? "pb-50" : ""}}' wx:if='{{goodsList.length}}' style="padding-top: 0;margin-top: 46rpx;">
-          <navigator class='item mb-20 pl-32 pr-60' wx:for="{{goodsList}}" wx:for-item="tabItem" wx:for-index="idx" wx:key="idx" url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none">
-            <view class="d-f goodsBox" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
+          <navigator 
+            class='item mb-20 pl-32 pr-60' 
+            wx:for="{{goodsList}}" 
+            wx:for-item="tabItem" 
+            wx:for-index="idx" 
+            wx:key="idx" 
+            url='/pages/goods/index?chatId={{tabItem.chat_id}}&productid={{tabItem.id}}' 
+            hover-class="none"
+          >
+            <view class="d-f goodsBox">
               <view class="goodsImg d-f w-180 h-180 mr-16">
-                <img style="width:180rpx;height:180rpx" src="{{tabItem.image_urls || '../../assets/images/default-jj.png'}}"></img>
+                <image mode='aspectFill' style="width:180rpx;height:180rpx" src="{{ALIYUN_URL}}/{{tabItem.image_urls}}" />
               </view>
               <view class="d-f fxd-c jc-sb">
                 <view>

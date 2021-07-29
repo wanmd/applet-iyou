@@ -831,8 +831,8 @@ page {
   }
   .sharetext {
       position: absolute;
-      left:30rpx;
-      top: 0rpx;
+      left:32rpx;
+      top: 2rpx;
   }
   .mask_notVip {
       position: absolute;

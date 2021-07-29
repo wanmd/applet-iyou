@@ -1,6 +1,7 @@
 // pages/collection/index.js
 import { Request, toast } from '../../utils/util.js'
 import { ALIYUN_URL } from '../../utils/config.js'
+let app = getApp();
 
 let request = new Request()
 
@@ -123,10 +124,20 @@ Page({
     }
   },
 
-  nav(e) {
-    wx.navigateTo({
-      url: '/pages/goods/index?chatId=' + e.currentTarget.dataset.id,
-    })
+  isAuth_(e) {
+    if(!this.isToLogin()) return;
+    app.requireLogin(e.currentTarget.dataset.url)
+  },
+
+  isToLogin() {
+    let userInfo = wx._getStorageSync('userinfo')
+    if (!userInfo.nickname || !userInfo.isAuth) {
+        wx._setStorageSync("nav_key", 'swit')
+        app.requireLogin('/pages/index/index')
+        return false;
+    } else {
+        return true;
+    }
   },
 
   /**

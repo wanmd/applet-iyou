@@ -1,5 +1,6 @@
 // pages/goodsManage/index.js
-import { Request, toast, errorToast } from '../../utils/util.js'
+import { Request } from '../../utils/util.js'
+import { ALIYUN_URL } from '../../utils/config.js';
 let request = new Request()
 
 Page({
@@ -8,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ALIYUN_URL,
     selectedNav: 0,
     goodsList: [],
     query: {

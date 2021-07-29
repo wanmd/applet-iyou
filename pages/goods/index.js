@@ -855,36 +855,36 @@ wx.Page({
       // 画头像
       wx.getImageInfo({
         src: avatar,
-        success: function (res) {
-          ctx.save();
-          ctx.beginPath();
-          ctx.arc(rpxTopx(100), rpxTopx(80), rpxTopx(50), 0, 2*Math.PI);
-          ctx.closePath();
-          // 下面就裁剪出一个圆形了，且坐标在 （50， 90）
-          ctx.clip();
-          ctx.drawImage(res.path, rpxTopx(50), rpxTopx(30), rpxTopx(100), rpxTopx(100));
-          ctx.restore();
-          ctx.draw(true);
-          // 画昵称
-          ctx.setFillStyle('#333333')
-          ctx.setFontSize(rpxTopx(32))
-          var nickname_ = self.transformContentToMultiLineText(ctx, nickname, rpxTopx(320), 1);
-          let nickname_length = nickname_[0].length;
-          let nickname_txt = nickname;
-          if(nickname_length<nickname.length) nickname_txt = nickname.substring(0,nickname_length)+'...';
-          ctx.fillText(nickname_txt, rpxTopx(170), rpxTopx(72))
-          ctx.draw(true)
+        success: function(res) {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(rpxTopx(338), rpxTopx(144), rpxTopx(50), 0, 2 * Math.PI);
+            ctx.closePath();
+            // 下面就裁剪出一个圆形了，且坐标在 （338， 144）
+            ctx.clip();
+            ctx.drawImage(res.path, rpxTopx(338-52), rpxTopx(144-52), rpxTopx(104), rpxTopx(104));
+            ctx.restore();
+            ctx.draw(true);
+            // 画昵称
+            ctx.setFillStyle('#333333')
+            ctx.setFontSize(rpxTopx(32))
+            var nickname_ = self.transformContentToMultiLineText(ctx, nickname, rpxTopx(320), 1);
+            let nickname_length = nickname_[0].length;
+            let nickname_txt = nickname;
+            if (nickname_length < nickname.length) nickname_txt = nickname.substring(0, nickname_length) + '...';
+            ctx.fillText(nickname_txt, rpxTopx(338-20*(Math.ceil(nickname_txt.length /2))), rpxTopx(272))
+            ctx.draw(true)
 
-          ctx.setFillStyle('#333333')
-          ctx.setFontSize(rpxTopx(24))
-          var remark_ = self.transformContentToMultiLineText(ctx, remark, rpxTopx(320), 1);
-          let remark_length = remark_[0].length;
-          let remark_txt = remark;
-          if(remark_length<remark.length) remark_txt = remark.substring(0,remark_length)+'...';
-          ctx.fillText(remark_txt, rpxTopx(170), rpxTopx(112))
-          ctx.draw(true)
+            ctx.setFillStyle('#333333')
+            ctx.setFontSize(rpxTopx(24))
+            var remark_ = self.transformContentToMultiLineText(ctx, remark, rpxTopx(320), 1);
+            let remark_length = remark_[0].length;
+            let remark_txt = remark;
+            if (remark_length < remark.length) remark_txt = remark.substring(0, remark_length) + '...';
+            ctx.fillText(remark_txt, rpxTopx(120), rpxTopx(332))
+            ctx.draw(true)
         }
-      })
+    })
 
 
       // 画二维码

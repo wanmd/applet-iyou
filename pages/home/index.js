@@ -163,7 +163,6 @@ wx.Page({
                         wx.setStorageSync('storeInfo', user)
                     }
                     console.log(user);
-                    
                     this.setData({ user: user })
                 }
             })
@@ -606,7 +605,7 @@ wx.Page({
                     let nickname_length = nickname_[0].length;
                     let nickname_txt = nickname;
                     if (nickname_length < nickname.length) nickname_txt = nickname.substring(0, nickname_length) + '...';
-                    ctx.fillText(nickname_txt, rpxTopx(120), rpxTopx(272))
+                    ctx.fillText(nickname_txt, rpxTopx(338-20*(Math.ceil(nickname_txt.length /2))), rpxTopx(272))
                     ctx.draw(true)
 
                     ctx.setFillStyle('#333333')

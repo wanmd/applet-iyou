@@ -214,10 +214,11 @@
     </view>
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
+        <!-- 非会员不展示列表 -->
         <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
             <view class="modal_notVip">
                 <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
-                <view class="modal_notVip_button">申请商家会员一键代发</view>
+                <view class="modal_notVip_button" data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_">申请商家会员一键代发</view>
             </view>
         </view>
         <pagination id='pagination3' class='relative' url='iy/chat/getQuoteList' query='{{query3}}' bind:load='load3'>
@@ -351,7 +352,7 @@
             <view class='body'>
                 <view class='thumbs thumbs_l' wx:if="{{picture2.length}}">
                     <block wx:for='{{picture2}}' wx:key="index">
-                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' hover-class="none">
+                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.product_id}}' hover-class="none">
                             <image mode="aspectFill" slot='content' class='thumb thumb_l' src='{{ALIYUN_URL}}/{{item.cover}}'></image>
                             <!-- 图片数字 -->
                             <view class="image_num">{{item.picture.length}}</view>
@@ -359,7 +360,7 @@
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
                         </navigator>
-                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}'  hover-class="none" wx:if="{{item.video_url}}">
+                        <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.product_id}}'  hover-class="none" wx:if="{{item.video_url}}">
                             <video class='thumb thumb_l' src="{{ALIYUN_URL}}/{{item.video_url}}" />
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />

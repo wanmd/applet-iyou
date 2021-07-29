@@ -15,10 +15,10 @@
     <block wx:if='{{currentType == 0}}'>
 			<pagination id='pagination1' url='collects' pkName='chat_id' bind:load='load' query='{{query}}'>
 				<view class='list' wx:if='{{productList.length>0}}'>
-					<view class='item mb-16' wx:for='{{productList}}' wx:key='index' data-id="{{item.chat_id}}" bindtap="nav">
+					<view class='item mb-16' wx:for='{{productList}}' wx:key='index' bind:tap="isAuth_" data-url="/pages/goods/index?chatId={{item.chat_id}}&productid={{item.product_id}}">
             <view class="d-f">
               <view class="avatar w-180 h-180 mr-24">
-                <image src="{{baseUrl + '/' + item.cover || ''}}" class="w-180 h-180" />
+                <image mode='aspectFill' src="{{baseUrl + '/' + item.cover || ''}}" class="w-180 h-180" />
               </view>
               <view class="dataitem d-f fxd-c jc-sb">
                 <view class="dataitem-header">

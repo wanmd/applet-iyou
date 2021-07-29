@@ -47,8 +47,8 @@
                   <view class="round">失效</view>
                 </view>
                 <switch color="#AB00FF" type="checkbox" class="checkbox" checked="{{it.checked}}" data-pindex="{{index}}" data-cindex="{{idx}}" catchchange="selectOne" />
-                <img class='cover' thumb src='{{it.cover}}' bind:tap="toGoodsDetail" data-chatid="{{it.chat_id}}"></img>
-                <view class="goods-info flex__it" url='/pages/goods/index?chatId={{it.chat_id}}' hover-class="none" bind:tap="toGoodsDetail" data-chatid="{{it.chat_id}}">
+                <image mode='aspectFill' class='cover' thumb src='{{ALIYUN_URL}}/{{it.cover}}' bind:tap="isAuth_" data-url="/pages/goods/index?chatId={{it.chat_id}}&productid={{it.id}}" />
+                <view class="goods-info flex__it" hover-class="none" bind:tap="isAuth_" data-url="/pages/goods/index?chatId={{it.chat_id}}&productid={{it.id}}">
                   <view class="goods-info--t">
                     <view class="w-500 tov-e-ok">{{it.name}}</view>  
                     <view class="w-500 tov-e-ok fz-24 c-9B9B9B">{{it.display}}</view>

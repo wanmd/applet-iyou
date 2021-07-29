@@ -1,4 +1,5 @@
 import { Request, toast, maskNumber } from '../../utils/util.js'
+import { ALIYUN_URL } from '../../utils/config.js';
 let request = new Request()
 let app = getApp();
 
@@ -8,6 +9,7 @@ wx.Page({
    * 页面的初始数据
    */
   data: {
+    ALIYUN_URL,
     error: undefined,
     loading: false,
     allCategoryMenu: false, // 是否展开所有二级分类
@@ -103,13 +105,21 @@ wx.Page({
     request.get('iy/productcategories', res => {
       if(res.success){
         let { list } = res.data;
-        let sidebarId = list.length > 0 ? list[0].id : null;
         let commodityList = [];
         list.forEach(item => {
           if (item.id === sidebarId) {
             commodityList = item.son
           }
         })
+        
+        list.unshift({
+          id: 0,
+          name: '全部',
+          parent_id: 0,
+          son: []
+        })
+        let sidebarId = list.length > 0 ? list[0].id : null;
+        
         this.setData({ 
           sidebarData : list,
           sidebarId,

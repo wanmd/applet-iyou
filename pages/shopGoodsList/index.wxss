@@ -29,6 +29,7 @@ page {
 /* 右边内容 */
  .partition-wrap {
   overflow-y: scroll;
+  padding-bottom: 80rpx;
 }
 page {
   width: 100%;
