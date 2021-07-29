@@ -69,7 +69,7 @@ wx.Page({
                             if(item.product_specs) {
                                 let product_specs =JSON.parse(item.product_specs);
                                 for (let key in product_specs) {
-                                    display +=  key + ':' + product_specs[key] + ';'
+                                    display +=  product_specs[key] + '/'
                                 }
                                 item.display = display;
                             }

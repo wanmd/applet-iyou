@@ -46,7 +46,7 @@
                         <input 
                             bindinput="bindinput_" 
                             placeholder="搜索店内宝贝" 
-                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
+                            placeholder-style="font-size: 26rpx;color: #BFBFBF" 
                             value="{{query.keyword}}" 
                             bindconfirm="search" 
                             confirm-type="search"
@@ -134,7 +134,7 @@
                             data-target='query2.keyword'  
                             bindinput="bindinput_keyword"
                             placeholder="搜索店内宝贝"
-                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
+                            placeholder-style="font-size: 26rpx;color: #BFBFBF" 
                             value="{{query2.keyword}}" 
                             bindconfirm="search2" 
                             confirm-type="search"
@@ -213,7 +213,13 @@
         </pagination>
     </view>
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
-    <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==3}}'>
+    <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
+        <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
+            <view class="modal_notVip">
+                <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
+                <view class="modal_notVip_button">申请商家会员一键代发</view>
+            </view>
+        </view>
         <pagination id='pagination3' class='relative' url='iy/chat/getQuoteList' query='{{query3}}' bind:load='load3'>
             <view class="relative1_box">
                 <view class="search_wrap jc-sb">
@@ -223,7 +229,7 @@
                                 data-target='query3.keyword'  
                                 bindinput="bindinput_keyword" 
                                 placeholder="请输入产品关键词" 
-                                placeholder-style="font-size: 26rpx;color: #F5F5F5" 
+                                placeholder-style="font-size: 26rpx;color: #BFBFBF" 
                                 value="{{query3.keyword}}" 
                                 bindconfirm="search3" 
                                 confirm-type="search"
@@ -239,7 +245,7 @@
                         </view>
                         <view class="search_btn" bindtap='search3'>搜索</view>
                     </view>
-                    <view bindtap="handleChangeShowType"><image class="w-46 h-48" src="../../assets/images/index/changeView@2x.png" /></view>
+                    <view bindtap="handleChangeShowType"><image class="w-46 h-48" src="{{showType == 0 ? '/assets/images/index/changeView@2x.png' : '/assets/images/index/changeView_pic@2x.png'}}" /></view>
                 </view>
                 <view class="offer-header" wx:if="{{showType == 0}}">
                     <view class="th th1">日期</view>
@@ -249,14 +255,14 @@
                 </view> 
                 <view class="offer-header" wx:if="{{showType == 1}}">
                     <view class="th th1">日期</view>
-                    <view class="th th2">产品主图</view>
+                    <view class="ta-c w-130">产品主图</view>
                     <view class="th th3">产品名</view>
                     <view class="th th3">报价</view>
                     <view class="th th4">操作</view>
                 </view> 
                 <!-- <view class='goods-list' wx:if='{{goodsList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;"> -->
                 <!-- <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none"> -->
-                <view class='offer-list' wx:if='{{offerList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;">
+                <view class='{{userInfo.isVip ? "offer-list pb-120" : "offer-list"}}' wx:if='{{offerList !== null}}'>
                     <view class='item' wx:for='{{offerList}}' wx:key='chat_id'>
                         <!-- 日期 -->
                         <view class="td td1">
@@ -274,9 +280,13 @@
                             </view>
                         </view>
                         <!-- 产品主图 -->
-                        <view wx:if="{{showType == '1'}}" class="td td2">
-                            <img mode="aspectFit" class="w-130 h-130" src="{{item.url}}" />
-                        </view>
+                        <navigator 
+                            url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.id}}' 
+                            wx:if="{{showType == '1'}}" 
+                            class="w-130 ta-c bdr1-EBEBEB"
+                        >
+                            <img mode="aspectFill" class="w-130" src="{{item.url}}" />
+                        </navigator>
                         <!-- 产品名 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
                             <view>
@@ -290,12 +300,12 @@
                             3此商家代理显示代理价+划线拼单价 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
                             <view wx:if="{{item.isAgent}}">
-                                <text class="Bebas">{{item.product.agent_price}}</text>
-                                <text class="td-l Bebas">{{item.product.group_price}}</text>
+                                <view class="td-l Bebas">￥{{item.product.group_price}}</view>
+                                <view class="Bebas">￥{{item.product.agent_price}}</view>
                             </view>
                             <view wx:if="{{!item.isAgent && userInfo.isVip}}">
-                                <text class="Bebas">{{item.product.member_price}}</text>
-                                <text class="td-l Bebas">{{item.product.group_price}}</text>
+                                <view class="td-l Bebas">￥{{item.product.group_price}}</view>
+                                <view class="Bebas">￥{{item.product.member_price}}</view><br/>
                             </view>
                         </view>
                         <!-- 操作 -->
@@ -321,7 +331,7 @@
                             data-target='query4.keyword'  
                             bindinput="bindinput_keyword" 
                             placeholder="搜索店内宝贝" 
-                            placeholder-style="font-size: 26rpx;color: #F5F5F5" 
+                            placeholder-style="font-size: 26rpx;color: #BFBFBF" 
                             value="{{query4.keyword}}" 
                             bindconfirm="search4" 
                             confirm-type="search"

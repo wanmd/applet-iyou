@@ -78,6 +78,9 @@
 .mt-84 {
   margin-top: 84rpx;
 }
+.mt-100 {
+  margin-top: 100rpx;
+}
 .mt-140 {
   margin-top: 140rpx;
 }
@@ -544,6 +547,9 @@
 }
 .pb-100 {
   padding-bottom: 100rpx;
+}
+.pb-120 {
+  padding-bottom: 120rpx;
 }
 .pb-200 {
   padding-bottom: 200rpx;

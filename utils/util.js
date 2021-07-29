@@ -76,7 +76,7 @@ class Request {
             var pages = getCurrentPages();
             var page = pages[pages.length - 1];
             
-            if (page.is.indexOf('/auth') == -1) {
+            if (page.is.indexOf('/auth') > 0) {
                 wx.navigateTo({
                     url: '/pages/auth/index',
                 })

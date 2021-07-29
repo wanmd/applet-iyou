@@ -959,6 +959,9 @@
 .bdr-n {
   border-right: none;
 }
+.bdr1-EBEBEB {
+  border-right: 1rpx solid #EBEBEB;
+}
 /* .bdrw { border-right-width:; } */
 /* .bdrst { border-right-style:; } */
 .bdrst-n {
