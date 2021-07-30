@@ -72,16 +72,16 @@
     </view>
     <view class="type mt-60 {{mode === 'b0' ? 'b-20' : 'b-180'}}" wx:if="{{needSelectType}}">
       <view class="buttonWrap d-f">
-        <view class="w-200 d-f jc-c ai-c normal br_D681FF {{ type === 'cart' ? 'active bigger' : ''}}" bindtap="handleChangeOpea" data-type="cart">+购物车</view>
+        <view class="w-200 d-f jc-c ai-c normal1 br_D681FF {{ type === 'cart' ? 'active bigger' : ''}}" bindtap="handleChangeOpea" data-type="cart">+购物车</view>
         <!-- 一般用户 一件代发(会员价) + 代理拿货(代理价) 
         会员用户 一件代发(会员价) + 代理拿货(代理价) 
         代理用户 一件代发(代理价) + 代理拿货(代理价) -->
-        <view class="w-200 d-f fxd-c jc-c ai-c normal br_D681FF {{ type === 'single' ? 'active bigger' : ''}}" bindtap="handleChangeOpea" data-type="single">
+        <view class="w-200 d-f fxd-c jc-c ai-c normal2 br_D681FF {{ type === 'single' ? 'active bigger' : ''}}" bindtap="handleChangeOpea" data-type="single">
           <view class="fz-30">￥{{price_1}}</view>
           <view class="fz-20">单独购买</view>
         </view>
         <view 
-          class="w-200 d-f fxd-c jc-c ai-c normal {{ type === 'group' ? 'active bigger' : ''}}" 
+          class="w-200 d-f fxd-c jc-c ai-c normal3 {{ type === 'group' ? 'active bigger' : ''}}" 
           bindtap="handleChangeOpea" 
           data-type="group"
         > 

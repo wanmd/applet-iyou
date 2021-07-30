@@ -598,7 +598,7 @@ page {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 208rpx;
+  width: 192rpx;
   height: 68rpx;
   background: rgba(255, 226, 0, 0.13);
   border: 2rpx solid #FFE200;
@@ -610,7 +610,7 @@ page {
   color: #333333;
 }
 .service-item:nth-child(3n) {
-  margin-right: 0
+  /* margin-right: 0 */
 }
 
 

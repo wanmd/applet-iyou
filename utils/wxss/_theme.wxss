@@ -494,6 +494,9 @@
 .pt-60 {
   padding-top: 60rpx;
 }
+.pt-70 {
+  padding-top: 70rpx;
+}
 .pt-78 {
   padding-top: 78rpx;
 }
@@ -1439,6 +1442,9 @@
 }
 .c-CDCDCD {
   color:#CDCDCD;
+}
+.c-E1E1E1 {
+  color:#E1E1E1;
 }
 /* Background */
 .bgc-f5 {

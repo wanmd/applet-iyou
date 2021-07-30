@@ -303,3 +303,37 @@ page{
   right: 84rpx;
   width: 60rpx;
 }
+
+/* 联系TA */
+
+.contact_mark {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 99;
+}
+.contact-link-box {
+  position: fixed;
+  left: 50%;
+  background-color: #fff;
+  width: 560rpx;
+  height: 332rpx;
+  margin-left: -280rpx;
+  z-index: 99;
+}
+
+.h332 {
+  height: 332rpx;
+}
+.h524 {
+  height: 524rpx;
+}
+.ta-c {
+  text-align: center;
+}
+.pt-70 {
+  padding-top: 70rpx;
+}

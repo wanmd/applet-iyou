@@ -17,7 +17,7 @@
             <view class="car-item" wx:if="{{userType !=2 }}">
               <view class="user-box">
                 <image class='avatar' src='{{item.store.avatar}}'></image>
-                <view class="user-info mr-20">
+                <view class="user-info">
                   {{item.store.nickname}}
                 </view>
                 <view class="shop-type" wx:if="{{item.isAgent}}">我的商家</view>
@@ -89,8 +89,8 @@
                       <!-- 新 -->
                       <view class="goods-price" wx:if="{{item.isAgent}}">
                         <view>
-                          <text class="text c-262626 fz-28">零售价￥</text>
-                          <text class='text-through c-262626 fz-28 Bebas'>{{it.sale_price}}</text>
+                          <text class="text c-CDCDCD fz-28">零售价￥</text>
+                          <text class='text-through c-CDCDCD fz-28 Bebas'>{{it.sale_price}}</text>
                         </view>
                         <view>
                           <text class="text c-ECBD75">代理价￥</text>
@@ -105,6 +105,7 @@
                             style="width:68rpx;height:28rpx;margin-right:4rpx" 
                             catchtap="isAuth_"
                           />
+                          <text class="text c-262626">零售价￥</text>
                           <text class='text-through c-ECBD75 fz-28'>{{it.agent_price}}</text>
                         </view>
                         <view>
@@ -112,7 +113,7 @@
                           <text class="c-262626 fz-32 Bebas">{{it.member_price}}</text>
                         </view>
                       </view>
-                      <view class="goods-price" wx:else>
+                      <view class="goods-price" wx:if="{{!item.isAgent && !userInfo.isVip}}">
                         <view class="d-f ai-c">
                           <el-image 
                             data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"
@@ -123,8 +124,8 @@
                           <text class='c-AB00FF fz-28 Bebas'>{{it.member_price}}</text>
                         </view>
                         <view>
-                            <text class="text c-ECBD75">拼单价￥</text>
-                            <text class="c-000 fz-32 Bebas">{{it.group_price}}</text>
+                            <text class="text c-333">拼单价￥</text>
+                            <text class="c-333 fz-32 Bebas">{{it.group_price}}</text>
                           </view>
                       </view>
                     </view>
@@ -158,17 +159,20 @@
         
           <!-- 合计，结算 -->
           <view class="car-cell--fixed" style="z-index:10" wx:if="{{cartList.length>0}}">
-
             <label class="allselect">
               <switch checked="{{allSelect}}" class="checkbox" type="checkbox" bindchange="allSelect" />
               全选
             </label>
             <view class="car-cell flex__it">
-
               <view class="car-cell-l" wx:if="{{!isEdit}}">
                 <view class="car-cell__txt">
-                  合计(不含运费)：
+                  <block wx:if="{{isAgent}}">代理价合计：</block>
+                  <block wx:if="{{!isAgent && userInfo.isVip}}">会员价合计：</block>
+                  <block wx:if="{{!isAgent && !userInfo.isVip}}">合计：</block>
                   <view style="display:inline-block" class="price Bebas">¥{{totalMoney}}</view>
+                </view>
+                <view class="car-cell__txt_s" wx:if="{{totalMoney > 0}}">
+                  原价{{salesMoney}}元 | 优惠{{salesMoney-totalMoney}}元
                 </view>
               </view>
               <view class="car-cell-l" wx:else>

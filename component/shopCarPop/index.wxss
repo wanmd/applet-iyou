@@ -177,10 +177,18 @@
   height: 48rpx;
   padding: 0 10rpx;
 }
-.normal {
+.normal1 {
   background: rgba(214, 129, 255, 0.08);
+  color: #D681FF;
+} 
+.normal2 {
+  background: rgba(194, 70, 255, 0.08);
   color: #C246FF;
-}
+} 
+.normal3 {
+  background: rgba(171, 0, 255, 0.08);
+  color: #AB00FF;
+} 
 .bl_D681FF {
   border-left: 2rpx solid #C246FF;
 }

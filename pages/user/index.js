@@ -2,6 +2,7 @@ import {
     Request,
     toast
 } from '../../utils/util.js'
+import { ALIYUN_URL } from '../../utils/config.js';
 
 let request = new Request()
 let app = getApp()
@@ -11,7 +12,8 @@ Component({
      * 页面的初始数据
      */
     data: {
-        showlink: 1,
+        ALIYUN_URL,
+        showlink: 0,
         url: 'https://mp.weixin.qq.com/s/Qmb1KZ1cLA-K4qXIGgv9AA',
         showBindMobileModel: false,
         userType: 1,
@@ -89,6 +91,7 @@ Component({
                 image: '../../assets/images/iyou_user/contact@2x.png',
                 text: '联系我们',
                 url: '',
+                method: 'handleContact'
             },
             {
                 image: '../../assets/images/iyou_user/setting@2x.png',
@@ -268,7 +271,6 @@ Component({
             })
         },
         navToIme() {
-            // const storeInfo = wx.getStorageSync('userInfo');
             wx.navigateToMiniProgram({
                 appId: 'wxde0ae16dacfdfd37',
                 path: 'pages/index/index',
@@ -278,7 +280,24 @@ Component({
                     // 打开成功
                 }
             })
-        }
+        },
+        handleContact() {
+            let isAuth = app.isAuthWxInfo()
+            if (!isAuth) {
+                toast('需要授权获取您的用户信息')
+                return
+            }
+            const storeInfo = wx.getStorageSync('storeInfo');
+            this.setData({ 
+                storeInfo,
+                showlink: 1
+            });
+        },
+        hideMark() {
+            this.setData({
+                showlink: 2
+            });
+        },
     },
     pageLifetimes: {
         show() { //获取位置

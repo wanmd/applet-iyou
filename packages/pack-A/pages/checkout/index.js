@@ -243,7 +243,15 @@ Page({
           v.store = JSON.parse(v.store)
           v.id = index
           v.cart.forEach(item => {
-            goodsCount += ~~item.quantity
+            goodsCount += ~~item.quantity;
+            let display = '';
+            if(item.product_specs) {
+                let product_specs =JSON.parse(item.product_specs);
+                for (let key in product_specs) {
+                    display +=  product_specs[key] + '/'
+                }
+                item.display = display.substr(0, display.length -1);
+            }
             if(v.isAgent) {
               user__isAgent = true;
               isAgent__amount += (item.quantity * app.formatDecimal(item.agent_price))*100

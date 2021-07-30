@@ -128,15 +128,15 @@
   </view> -->
   <view class='item' wx:for='{{cartList}}' wx:key='id'>
     <view class='p-l-r car-item'>
-      <navigator class='user-line user-box' hover-class="none">
+      <view class='user-line user-box' hover-class="none">
         <image class='avatar' src='{{item.store.avatar}}'></image>
         <view class='user-info'>{{item.store.nickname}}</view>
-        <view class="user-status user-status1" wx:if="{{item.isAgent}}">我的商家</view>
-        <view class="user-status user-status1" wx:if="{{!item.isAgent && userInfo.isVip}}">会员店</view>
-      </navigator>
-      <view class="fz-24 lh-48 c-A4A4A4" wx:if="{{item.isAgent}}">已按代理价结算</view>
-      <view class="fz-24 lh-48 c-A4A4A4" wx:if="{{!item.isAgent && userInfo.isVip}}">已按会员价结算</view>
-      <view class="fz-24 lh-48 c-A4A4A4" wx:else>已按拼团价结算</view>
+        <view class="user-status bgc-AB00FF" wx:if="{{item.isAgent}}">我的商家</view>
+        <view class="user-status bgc-AB00FF" wx:if="{{!item.isAgent && userInfo.isVip}}">会员店</view>
+        <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{item.isAgent}}">已按代理价结算</text>
+        <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{!item.isAgent && userInfo.isVip}}">已按会员价结算</text>
+        <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{!item.isAgent && !userInfo.isVip}}">已按拼团价结算</text>
+      </view>
     </view>
     <view class='goods-list p-l-r'>
       <view class='goods' wx:for='{{item.cart}}' wx:for-index='idx' wx:for-item="it" wx:key='id'>
@@ -149,13 +149,13 @@
               <navigator class='goods-name w-100p d-f jc-sb' hover-class="none" url='/pages/goods/index?chatId={{it.chat_id}}'>
                 <view class="w-400 ta-l whs-nw ov-h">{{it.goods_name}}</view>
                 <view class="goods-price w-200">
-                  <text class='num Bebas' wx:if="{{it.isAgent}}">￥{{it.agent_price}}</text>
-                  <text class='num Bebas' wx:if="{{!it.isAgent && userInfo.isVip}}">￥{{it.member_price}}</text>
-                  <text class='num Bebas' wx:else>￥{{it.group_price}}</text>
+                  <text class='num Bebas' wx:if="{{item.isAgent}}">￥{{it.agent_price}}</text>
+                  <text class='num Bebas' wx:if="{{!item.isAgent && userInfo.isVip}}">￥{{it.member_price}}</text>
+                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip}}">￥{{it.group_price}}</text>
                 </view>
               </navigator>
               <view class="d-f jc-sb fz-20 c-C5C5C5 w-100p">
-                <view>规格:{{it.product_specs}}</view>
+                <view>{{it.display}}</view>
                 <view class="line-through Bebas">￥{{it.sale_price}}</view>
               </view>
             </view>

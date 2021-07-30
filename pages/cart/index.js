@@ -63,9 +63,10 @@ wx.Page({
                         v.id = index;
                         v.cart.forEach(item => {
                             item.checked = false;
+                            item.isAgent = v.isAgent;
                             item.agent_price = Number(item.agent_price).toFixed(2);
-                            item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : (Number(item.agent_price).toFixed(2));
-                            item.member_price = (item.isAgent || this.data.userInfo.isVip) ? item.member_price : maskNumber(item.member_price)
+                            // item.sale_price = item.isAgent ? Number(item.sale_price).toFixed(2) : (Number(item.agent_price).toFixed(2));
+                            item.member_price = (v.isAgent || this.data.userInfo.isVip) ? item.member_price : maskNumber(item.member_price)
                             
                             let display = '';
                             if(item.product_specs) {
@@ -83,7 +84,11 @@ wx.Page({
                         });
                     });
                     console.log(cartList);
-                    this.setData({ cartList, goodsCount });
+                    this.setData({ 
+                        cartList, 
+                        goodsCount,
+                        isAgent: cartList[0].isAgent
+                    });
                 }
                 this.total();
             } else {
@@ -273,16 +278,21 @@ wx.Page({
     },
     total: function() {
         let list = this.data.cartList;
+        let salesMoney = 0; // 原价
         let totalMoney = 0;
         let totalSelect = 0;
         let allSelect = false;
         let ids = [];
+       
         if (list.length > 0) {
             list.forEach(item => {
                 item.cart.map((v, i) => {
                     if (v.checked) {
+                        console.log(v);
                         totalSelect++;
                         ids.push(v.id);
+                        v.isAgent = item.isAgent;
+                        salesMoney += v.sale_price * v.quantity;
                         if (item.isAgent) {
                             totalMoney += v.agent_price * v.quantity;
                         } else if (this.data.userInfo.isVip == 1) {
@@ -302,6 +312,7 @@ wx.Page({
             }
             this.setData({
                 totalMoney: totalMoney.toFixed(2),
+                salesMoney: salesMoney.toFixed(2),
                 totalSelect,
                 allSelect,
                 ids

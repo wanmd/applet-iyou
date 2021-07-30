@@ -88,7 +88,7 @@
                             <view class='w-100p ta-l m-t-30 ellipsis1'>{{item.goods_name}}</view>
                             <view class='m-tb-20 f-20 color-fbd49d w-100p plr-20 d-f jc-sb'>
                                 <!-- 2一般用户 代理用户显示区别：
-                                        2.1一般用户只显示拼单价+会员价
+                                        2.1一般用户只显示拼单价
                                         2.2会员展示 公开报价（会员价）+划线拼单价
                                         2.3此商家代理显示代理价+划线拼单价 -->
                                 <view wx:if="{{!item.isAgent && !userinfo.isVip}}">
@@ -160,7 +160,7 @@
                     <view class='body'>
                         <img class='cover cover1' wx:if="{{chat.cover}}" ispre="true" picture="{{chat.picture}}" thumb src='{{chat.cover}}'></img>
                         <view class="flex-column">
-                            <navigator class="a" url='/pages/goods/index?chatId={{chat.chat_id}}&productid={{item.id}}' hover-class="none">
+                            <navigator class="a" url='/pages/goods/index?chatId={{chat.chat_id}}&productid={{chat.id}}' hover-class="none">
                                 <view class='title ellipsis-2' data-type="{{chat.chat_type}}" data-chatid="{{chat.chat_id}}">
                                     {{chat.goods_name?chat.goods_name:chat.content}}
                                 </view>
@@ -177,8 +177,8 @@
                                 2.3此商家代理显示代理价+划线拼单价，按照代理价结算； -->
                                 <view class='a' wx:if='{{isAgent == 1}}'>
                                     <view class='price1'>
-                                        <text class="c-AB00FF mr-8 fz-32 Bebas">￥ {{chat.agent_price}}</text>
-                                        <text class="c-000 fz-24 td-l Bebas">￥ {{chat.group_price}}</text>
+                                        <text class="c-AB00FF mr-8 fz-24 Bebas">￥ {{chat.agent_price}}</text>
+                                        <text class="c-000 fz-20 td-l Bebas">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -186,8 +186,8 @@
                                 </view>
                                 <view class='a' wx:elif="{{!isAgent && isVip}}">
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-ECBD75 fz-32 Bebas">￥ {{chat.member_price}}</text>
-                                        <text class="c-A5A5A5 fz-24 td-l Bebas">￥ {{chat.group_price}}</text>
+                                        <text class="c-ECBD75 fz-24 Bebas">￥ {{chat.member_price}}</text>
+                                        <text class="c-A5A5A5 fz-20 td-l Bebas">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -195,9 +195,9 @@
                                 </view>
                                 <view class='a' wx:else>
                                     <view class='price1 d-f ai-c'>
-                                        <text class="c-000 fz-32 Bebas">￥ {{chat.group_price}}</text>
+                                        <text class="c-000 fz-24 Bebas">￥ {{chat.group_price}}</text>
                                         <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>
-                                        <text class="c-ECBD75 fz-24 Bebas">￥ {{chat.member_price}}</text>
+                                        <text class="c-ECBD75 fz-20 Bebas">￥ {{chat.member_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -263,7 +263,7 @@
                 </view> 
                 <!-- <view class='goods-list' wx:if='{{goodsList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;"> -->
                 <!-- <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none"> -->
-                <view class='{{userInfo.isVip ? "offer-list pb-120" : "offer-list"}}' wx:if='{{offerList !== null}}'>
+                <view class='{{userInfo.isVip ? "offer-list pb-100" : "offer-list"}}' wx:if='{{offerList !== null}}'>
                     <view class='item' wx:for='{{offerList}}' wx:key='chat_id'>
                         <!-- 日期 -->
                         <view class="td td1">
@@ -301,12 +301,12 @@
                             3此商家代理显示代理价+划线拼单价 -->
                         <view wx:if="{{showType == '1'}}" class="td td3">
                             <view wx:if="{{item.isAgent}}">
-                                <view class="td-l Bebas">￥{{item.product.group_price}}</view>
-                                <view class="Bebas">￥{{item.product.agent_price}}</view>
+                                <view class="td-l c-E1E1E1 Bebas">￥{{item.product.group_price || 0}}</view>
+                                <view class="Bebas">￥{{item.product.agent_price  || 0}}</view>
                             </view>
                             <view wx:if="{{!item.isAgent && userInfo.isVip}}">
-                                <view class="td-l Bebas">￥{{item.product.group_price}}</view>
-                                <view class="Bebas">￥{{item.product.member_price}}</view><br/>
+                                <view class="td-l c-E1E1E1 Bebas">￥{{item.product.group_price  || 0}}</view>
+                                <view class="Bebas">￥{{item.product.member_price  || 0}}</view><br/>
                             </view>
                         </view>
                         <!-- 操作 -->
@@ -361,7 +361,12 @@
                             </view>
                         </navigator>
                         <navigator class="imageBox" url='/pages/goods/index?chatId={{item.chat_id}}&productid={{item.product_id}}'  hover-class="none" wx:if="{{item.video_url}}">
-                            <video class='thumb thumb_l' src="{{ALIYUN_URL}}/{{item.video_url}}" />
+                            <video 
+                                show-fullscreen-btn="{{false}}" 
+                                show-center-play-btn="{{false}}" 
+                                class='thumb thumb_l' 
+                                src="{{ALIYUN_URL}}/{{item.video_url}}" 
+                            />
                             <view catchtap="showGoodsPopup" data-goods_id='{{item.product_id}}' class="image_shopcar">
                                 <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                             </view>
