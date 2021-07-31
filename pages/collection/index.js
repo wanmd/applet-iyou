@@ -33,6 +33,9 @@ Page({
    */
   onLoad: function (options) {
     console.log(this.data);
+    this.setData({
+      userInfo: wx._getStorageSync('userinfo')
+    })
   },
 
   /**

@@ -141,7 +141,7 @@
         <view class="d-f fxd-c jc-c w-20p mb-28" 
           wx:for="{{personManageList}}" 
           wx:key="{{item.text}}" 
-          bindtap="{{item.method ? item.method :isAuth_ }}"
+          bindtap="{{item.method ? item.method : 'isAuth_' }}"
           data-url="{{item.url}}"
         >
           <view class="d-f jc-c mb-28"><image style="width: 35px;height:35px" src="{{item.image}}" /></view>

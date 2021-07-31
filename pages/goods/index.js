@@ -400,7 +400,12 @@ wx.Page({
       W = res[0].width
       H = res[0].height
       var ctx = wx.createCanvasContext('firstCanvas')
-      ctx.setFillStyle('#AB00FF')
+      // ctx.setFillStyle('#AB00FF')
+      var grd=ctx.createLinearGradient(0,0,0,300);
+      grd.addColorStop(0,"#AB00FF");
+      grd.addColorStop(1,"white");
+
+      ctx.fillStyle=grd;
       ctx.fillRect(0, 0, W, H)
       ctx.draw(true)
 
@@ -440,8 +445,8 @@ wx.Page({
           var h = 0
           var l = 0
           var t = 0
-          var baseSize = 504
-          var baseSize_ = 504
+          var baseSize = 500
+          var baseSize_ = 500
           var w_h__bar = res.width/res.height;
 
           if(w_h__bar>1){
@@ -457,7 +462,7 @@ wx.Page({
           }
           // –drawImage(Imageimg,float sx,float sy,float sw,float sh,float dx,float dy,float dw,float dh)
           // •从sx、sy处截取sw、sh大小的图片，绘制dw、dh大小到dx、dy处
-          ctx.drawImage(res.path, l, t, baseSize_, baseSize_, rpxTopx(120), rpxTopx(180), rpxTopx(baseSize), rpxTopx(baseSize))
+          ctx.drawImage(res.path, l, t, baseSize_, baseSize_, rpxTopx(90), rpxTopx(180), rpxTopx(baseSize), rpxTopx(baseSize))
           ctx.draw(true)
         }
       })
@@ -485,13 +490,13 @@ wx.Page({
       
 
       // 画点赞
-      wx.getImageInfo({
-        src: '/assets/images/dianzan.png',
-        success(res) {
-          ctx.drawImage('/assets/images/dianzan.png', 0, 0, res.width, res.height, rpxTopx(20), rpxTopx(590), rpxTopx(res.width), rpxTopx(res.height))
-          ctx.draw(true)
-        }
-      })
+      // wx.getImageInfo({
+      //   src: '/assets/images/dianzan.png',
+      //   success(res) {
+      //     ctx.drawImage('/assets/images/dianzan.png', 0, 0, res.width, res.height, rpxTopx(20), rpxTopx(590), rpxTopx(res.width), rpxTopx(res.height))
+      //     ctx.draw(true)
+      //   }
+      // })
       // 画昵称
       ctx.setFillStyle('#333333')
       ctx.setFontSize(rpxTopx(24))
@@ -509,7 +514,7 @@ wx.Page({
       ctx.draw(true)
 
       // 画底部二维码区域
-      ctx.setFillStyle('#AB00FF')
+      ctx.setFillStyle('#FFF')
       ctx.fillRect(0, rpxTopx(730), W, H - rpxTopx(730))
       ctx.draw(true)
       // 画商品名称位置
@@ -541,20 +546,32 @@ wx.Page({
      //    ctx.fillText(text[i], rpxTopx(50), dirh)
      //    ctx.draw(true)
      // }
-      // 画商品价格
-      ctx.setFontSize(rpxTopx(44))
-      ctx.setFillStyle('#000000')
-      ctx.fillText('￥' + chat.sale_price, rpxTopx(50), rpxTopx(860))
+     // 画商品价格(优惠价)
+      ctx.setFontSize(rpxTopx(34))
+      ctx.setFillStyle('#AB00FF')
+      ctx.fillText('￥' + chat.group_price, rpxTopx(50), rpxTopx(860))
       ctx.draw(true)
+      // 画商品价格(原价)
+      ctx.setFontSize(rpxTopx(24))
+      ctx.setFillStyle('#AFAFAF')
+      ctx.fillText('￥' + chat.sale_price, rpxTopx(50 + (chat.group_price.length + 2) *20), rpxTopx(860))
+      ctx.draw(true)
+      // 画斜线
+      ctx.beginPath();
+      let line_startX = Math.floor(rpxTopx(50 + (chat.group_price.length + 2) *20));
+      let line_endX = Math.floor(50 + (chat.group_price.length + 2) *20 + (chat.sale_price.length + 1) *14);
+      ctx.moveTo(line_startX,rpxTopx(850));
+      ctx.lineTo(rpxTopx(line_endX),rpxTopx(850));
+      ctx.stroke();
       // 画标语
       ctx.setFillStyle('#333333')
-      ctx.setFontSize(rpxTopx(24))
-      ctx.fillText('好产品，分享赚，天天赚', rpxTopx(50), rpxTopx(910))
+      ctx.setFontSize(rpxTopx(20))
+      ctx.fillText('YOU 爱（哎）优（油）！我看行！...', rpxTopx(50), rpxTopx(910))
       ctx.draw(true)
 
       // 画微信扫码
       ctx.setFillStyle('#333333')
-      ctx.setFontSize(rpxTopx(24))
+      ctx.setFontSize(rpxTopx(20))
       ctx.fillText('长按识别/微信扫码', rpxTopx(50), rpxTopx(950))
       ctx.draw(true)
 
@@ -568,15 +585,13 @@ wx.Page({
       ctx.draw(true)
 
       // 画二维码
-      console.log(qrcode);
-      
       let d = new Date()
       const fsm = wx.getFileSystemManager()
       const filePath = `${wx.env.USER_DATA_PATH}/` + d.getTime() + '.png'
       const buffer = wx.base64ToArrayBuffer(qrcode)
-      console.log(qrcode)
-      console.log(filePath)
-      console.log(buffer)
+      // console.log(qrcode)
+      // console.log(filePath)
+      // console.log(buffer)
       fsm.writeFile({
         filePath,
         data: buffer,
@@ -881,7 +896,7 @@ wx.Page({
             let remark_length = remark_[0].length;
             let remark_txt = remark;
             if (remark_length < remark.length) remark_txt = remark.substring(0, remark_length) + '...';
-            ctx.fillText(remark_txt, rpxTopx(120), rpxTopx(332))
+            ctx.fillText(remark_txt, rpxTopx(338-16*(Math.ceil(remark_txt.length /2))), rpxTopx(332))
             ctx.draw(true)
         }
     })

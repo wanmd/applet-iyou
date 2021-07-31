@@ -193,7 +193,7 @@
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
                                     </view>
                                 </view>
-                                <view class='a' wx:else>
+                                <view class='a' wx:elif="{{!isAgent && !isVip}}">
                                     <view class='price1 d-f ai-c'>
                                         <text class="c-000 fz-24 Bebas">￥ {{chat.group_price}}</text>
                                         <image data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"  class="w-64 h-28 mlr-16"  src='/assets/images/vip/vip_label@2x.png'></image>

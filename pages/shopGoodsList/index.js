@@ -154,7 +154,17 @@ wx.Page({
                   const image_urls = item.product.image_urls;
                   item.cover = image_urls.indexOf(',') ? image_urls.split(',')[0] : image_urls;
                   item.isAgent = isAgent;
-                  item.productSpecs = item.product_specs
+
+                  let display = '';
+                  if(item.product_specs) {
+                      let product_specs =JSON.parse(item.product_specs);
+                      for (let key in product_specs) {
+                          display +=  product_specs[key] + '/'
+                      }
+                      display = display.substr(0, display.length -1);
+                  }
+
+                  item.productSpecs = display
                   return item
                 }), 
               })

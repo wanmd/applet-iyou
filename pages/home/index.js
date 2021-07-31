@@ -614,7 +614,7 @@ wx.Page({
                     let remark_length = remark_[0].length;
                     let remark_txt = remark;
                     if (remark_length < remark.length) remark_txt = remark.substring(0, remark_length) + '...';
-                    ctx.fillText(remark_txt, rpxTopx(120), rpxTopx(332))
+                    ctx.fillText(remark_txt, rpxTopx(338-16*(Math.ceil(remark_txt.length /2))), rpxTopx(332))
                     ctx.draw(true)
                 }
             })
