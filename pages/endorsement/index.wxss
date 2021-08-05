@@ -2,7 +2,7 @@ page{
   background:rgba(247,247,247,1);
 }
 .part-1{
-  background:#FFE200;
+  background: linear-gradient(#AB00FF, #fff);
   padding:100rpx 0rpx 60rpx 0rpx;
 }
 .part-2{

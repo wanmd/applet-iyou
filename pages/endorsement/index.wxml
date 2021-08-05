@@ -1,11 +1,11 @@
 <view class='part-1'>
   <view style='margin:auto;'>
-    <image class='block' mode='aspectFill' src='{{assetsImages}}auth3@2x.png' style="width:712rpx;height:466rpx;"></image>
+    <image class='block' mode='aspectFill' src='{{assetsImages}}iyou_auth3@2x.png' style="width:712rpx;height:466rpx;"></image>
   </view>
   <view style='width:400rpx;margin:auto;'>
     <view style='margin-top:96rpx;'>
-      <btn style-text='border:1px solid #333333;font-weight:bold;' open-type='share'>邀请好友赚代言费</btn>
-      <btn style-text='border:1px solid #333333;font-weight:bold;background:#333333;margin-top:40rpx;color:#FFE200' bindtap='toggleShowPoster'>分享代言卡赚代言费 </btn>
+      <btn style-text='font-weight:bold;background:#FFF;color:#333333' open-type='share'>邀请好友赚代言费</btn>
+      <btn style-text='border:1px solid #333333;font-weight:bold;background:#AC04FF;margin-top:40rpx;color:#FFF' bindtap='toggleShowPoster'>分享代言卡赚代言费 </btn>
     </view>
   </view>
 </view>

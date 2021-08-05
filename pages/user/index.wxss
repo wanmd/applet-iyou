@@ -249,8 +249,8 @@ page{
 }
 .item-icon{
   width: 120rpx;
-  height: 100rpx;
-  margin: 0 auto;
+  /* height: 100rpx;
+  margin: 0 auto; */
   display: block;
   position: relative;
 }

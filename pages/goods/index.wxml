@@ -349,7 +349,7 @@
       <text>分享好物给好友，TA从你分享的链接购物消费，你最高可获得成交金额5%的奖励金哦。</text>
       <!-- <el-image class='close middle' src='close.png' bindtap='toggleSelectShareType'></el-image> -->
     </view>
-    <view class='types' style="padding-bottom: 0;">
+    <!-- <view class='types' style="padding-bottom: 0;">
       <navigator wx:if='{{userType == 2}}' class='item' hover-class="none" url='/pages/publish/newChat/edit?type=2&chatId={{chatId}}&share=dp&id={{chat.product_id}}'>
         <el-image class='icon' src='shanghu@2x.png'></el-image>
         <view class='name'>
@@ -371,7 +371,7 @@
           <view>我的 iME 相册</view>
         </view>
       </navigator>
-    </view>
+    </view> -->
     <view class='types'>
       <button hover-class="none" class='item' open-type='share'>
         <el-image class='icon' src='share_ic_wechat@2x.png'></el-image>

@@ -489,6 +489,7 @@ wx.Page({
         let req = new Request()
         req.setConfig('responseType', 'arraybuffer')
         req.get('iy/qr/store', res => {
+            console.log(res);
             this.setData({
                 showSelectShareType: 0,
                 shareModal: 0
@@ -622,6 +623,7 @@ wx.Page({
 
 
             // 画二维码
+            console.log(wx.env);
             let d = new Date()
             const fsm = wx.getFileSystemManager()
             const filePath = `${wx.env.USER_DATA_PATH}/` + d.getTime() + '.png'
@@ -824,7 +826,7 @@ wx.Page({
 
         // let title = this.data.isSelf?'快进来看看我的iME社电吧，超值好物好服务！一件代发，代理兼职副业天天赚~':'我很喜欢这家iME社电，分享给亲，你也来看看吧~'
         // let title = this.data.isSelf ? '卖货！分销！代理！招商…！超值好物！分享躺赚！跟着我就赚钱！！！':'我很喜欢这家iME社电，分享给亲，你也来看看吧~'
-        let title = this.data.isSelf ? '好生意，用iME！早用早赚钱！不用守店！0抽成！客户天天来！' : '我很喜欢这家iME社电，分享给亲，你也来看看吧~'
+        let title = this.data.isSelf ? '爱优（哎油）哦！这家店不错哦…分享给你！' : '爱优（哎油）哦！这家店不错哦…分享给你！'
         return {
             path: path,
             title: title

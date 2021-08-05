@@ -135,7 +135,7 @@
         <view class="user-status bgc-AB00FF" wx:if="{{!item.isAgent && userInfo.isVip}}">会员店</view>
         <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{item.isAgent}}">已按代理价结算</text>
         <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{!item.isAgent && userInfo.isVip}}">已按会员价结算</text>
-        <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{!item.isAgent && !userInfo.isVip}}">已按拼团价结算</text>
+        <text class="fz-24 lh-48 c-A4A4A4 ml-20" wx:if="{{!item.isAgent && !userInfo.isVip && type == 1}}">已按拼团价结算</text>
       </view>
     </view>
     <view class='goods-list p-l-r'>
@@ -151,12 +151,13 @@
                 <view class="goods-price w-200">
                   <text class='num Bebas' wx:if="{{item.isAgent}}">￥{{it.agent_price}}</text>
                   <text class='num Bebas' wx:if="{{!item.isAgent && userInfo.isVip}}">￥{{it.member_price}}</text>
-                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip}}">￥{{it.group_price}}</text>
+                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && type == 1}}">￥{{it.group_price}}</text>
+                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && type == 2}}">￥{{it.sale_price}}</text>
                 </view>
               </navigator>
               <view class="d-f jc-sb fz-20 c-C5C5C5 w-100p">
                 <view>{{it.display}}</view>
-                <view class="line-through Bebas">￥{{it.sale_price}}</view>
+                <view class="line-through Bebas" wx:if="{{type != 2}}">￥{{it.sale_price}}</view>
               </view>
             </view>
             <view class="goodsNum">

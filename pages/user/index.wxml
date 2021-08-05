@@ -100,31 +100,31 @@
         </view>
         <view class="d-f ai-c jc-c pb-30">
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=1">
-              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order1@2x.png'>
+              <icon-text-flex class='item-icon' width="68rpx" icon='iyou_user/my-order1@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitPayNum>0}}">{{orderCount.waitPayNum > 99 ? "99+" : orderCount.waitPayNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24 mt-0">待付款</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?groupstate=1&status=2">
-              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order6@2x.png'>
+              <icon-text-flex class='item-icon' width="68rpx" icon='iyou_user/my-order6@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitGroupNum>0}}">{{orderCount.waitGroupNum > 99 ? "99+" : orderCount.waitGroupNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24 mt-0">待成团</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=2">
-              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order2@2x.png'>
+              <icon-text-flex class='item-icon' width="68rpx" icon='iyou_user/my-order2@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitSendNum>0}}">{{orderCount.waitSendNum > 99 ? '99+' : orderCount.waitSendNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24 mt-0">待发货</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=3">
-              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order3@2x.png'>
+              <icon-text-flex class='item-icon' width="68rpx" icon='iyou_user/my-order3@2x.png'>
                 <view class="red-number" wx:if="{{orderCount.waitReceiveNum>0}}">{{orderCount.waitReceiveNum > 99 ? '99+' : orderCount.waitReceiveNum}}</view>
               </icon-text-flex>
               <view class="item-text fz-24 mt-0">待收货</view>
           </view>
           <view class="order-item" bindtap="isAuth_" data-url="../../packages/pack-A/pages/order_user/index?status=4">
-              <icon-text-flex class='item-icon' width="120rpx" icon='iyou_user/my-order4@2x.png'>
+              <icon-text-flex class='item-icon' width="68rpx" icon='iyou_user/my-order4@2x.png'>
                 <!-- <view class="red-number" wx:if="{{orderCount.hasDoneNum>0}}">{{orderCount.hasDoneNum > 99 ? '99+' : orderCount.hasDoneNum}}</view> -->
                 <!-- <view class="red-number">0</view> -->
               </icon-text-flex>

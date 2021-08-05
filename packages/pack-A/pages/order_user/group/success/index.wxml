@@ -66,7 +66,6 @@
           <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
       </view>
       <view class="">
-        <image src="{{groupInfo.create_user_avatar}}" class="w-100rpx h-100rpx bdrs-50p" />
         <image src="{{groupInfo.receive_user_avatar}}" class="w-100rpx h-100rpx bdrs-50p ml--50" />
       </view>
       

@@ -98,7 +98,7 @@ wx.Page({
     },
     getList2(showLoading) {
         if (showLoading) wx._showLoading();
-        this.get('chat/getTakeGoodsList').then(res => {
+        this.get('iy/chat/getTakeGoodsList').then(res => {
             if (showLoading) wx._hideLoading();
             let takeGoodsList = res.data.list;
             if (res.success) {

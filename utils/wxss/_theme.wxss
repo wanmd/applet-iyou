@@ -1085,6 +1085,9 @@
 .h-72 {
   height: 72rpx;
 }
+.h-74 {
+  height: 74rpx;
+}
 .h-78 {
   height: 78rpx;
 }

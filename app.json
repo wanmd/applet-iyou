@@ -97,7 +97,8 @@
         "pages/goodsRemark/index",
         "pages/user/setQrCode/index",
         "pages/order_user/group/index",
-        "pages/order_user/group/success/index"
+        "pages/order_user/group/success/index",
+        "pages/webview/index"
       ]
     },
     {

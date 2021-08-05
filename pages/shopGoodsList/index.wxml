@@ -193,7 +193,7 @@
   <view class="xiadan-left d-f ai-c pl-32" bindtap="toggleShowGouwuPop">
     <view class="mr-20 pos-r">
       <view class="nums" wx:if="{{goodsCount}}">{{goodsCount}}</view>
-      <image src="/assets/images/gouwudai@3x.png" class="w-70 h-60" />
+      <image src="/assets/images/gouwudai@3x.png" class="w-70 h-74" />
     </view>
     <view class="d-f fxd-c">
       <view class="fz-28 c-F61935">￥{{totalMoney}}</view>

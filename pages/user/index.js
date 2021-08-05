@@ -52,11 +52,11 @@ Component({
                 text: '收藏夹',
                 url: '/pages/collection/index',
             },
-            {
-                image: '../../assets/images/iyou_user/dianzan@2x.png',
-                text: '点赞',
-                url: '',
-            },
+            // {
+            //     image: '../../assets/images/iyou_user/dianzan@2x.png',
+            //     text: '点赞',
+            //     url: '',
+            // },
             {
                 image: '../../assets/images/iyou_user/guanzhu@2x.png',
                 text: '关注的店',
@@ -77,11 +77,11 @@ Component({
                 text: '收货地址',
                 url: '/pages/deliveryAddress/index',
             },
-            {
-                image: '../../assets/images/iyou_user/remark@2x.png',
-                text: '建议留言',
-                url: '',
-            },
+            // {
+            //     image: '../../assets/images/iyou_user/remark@2x.png',
+            //     text: '建议留言',
+            //     url: '',
+            // },
             {
                 image: '../../assets/images/iyou_user/rebate@2x.png',
                 text: '返利小金库',
@@ -93,15 +93,16 @@ Component({
                 url: '',
                 method: 'handleContact'
             },
-            {
-                image: '../../assets/images/iyou_user/setting@2x.png',
-                text: '设置',
-                url: '',
-            },
+            // {
+            //     image: '../../assets/images/iyou_user/setting@2x.png',
+            //     text: '设置',
+            //     url: '',
+            // },
             {
                 image: '../../assets/images/iyou_user/message@2x.png',
                 text: '开启通知',
                 url: '',
+                method: 'navToXiaoXi'
             },
             {
                 image: '../../assets/images/iyou_user/organizag@2x.png',
@@ -298,6 +299,11 @@ Component({
                 showlink: 2
             });
         },
+        navToXiaoXi() {
+            wx.navigateTo({
+              url: '/packages/pack-A/pages/webview/index?targetUrl=' + 'https://mp.weixin.qq.com/s/ozkfskEDeyri-0YOYQajeA',
+            })
+        }
     },
     pageLifetimes: {
         show() { //获取位置
