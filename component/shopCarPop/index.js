@@ -457,7 +457,7 @@ Component({
       const prefix = '/packages/pack-A/pages/checkout/index?chatId=' ;
       const { groupid } = this.data;
       console.log(groupid);
-
+      // type==2 直接下单
       wx.navigateTo({
         url: prefix + chatId + "&goodsNum=" + goodsNum + "&remark=" + remark + "&type=2&shareUserId=" + shareUserId + '&isGroup='+ isGroup + '&groupid=' + groupid + '&productSpecs=' + productSpecs + '&buyType=' + buyType,
       });

@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    ALIYUN_URL,
     groupInfo: {}
   },
 
@@ -78,9 +79,17 @@ Page({
       if(res.success){
         res.data.list.difftime = res.data.list.created_at + 86400 - Math.floor(new Date().getTime()/1000)
         let product_specs = res.data.list.product_specs;
+        let display = '';
+        if(product_specs) {
+            let specs =JSON.parse(product_specs);
+            for (let key in specs) {
+                display +=  specs[key] + '/'
+            }
+            display = display.substr(0, display.length -1);
+        }
         this.setData({
           groupInfo: res.data.list,
-          product_specs: product_specs.substring(1,product_specs.length -1)
+          product_specs: display
         })
       }
     }).showLoading()

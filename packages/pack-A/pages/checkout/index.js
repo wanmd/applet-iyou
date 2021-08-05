@@ -260,7 +260,7 @@ Page({
               isVip__amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
               amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
             }else if(!v.isAgent && !this.data.userInfo.isVip){
-              if (opt.type == 1) {//拼团
+              if (opt.isGroup == 1) {//拼团
                 isGroup__amount += (item.quantity * app.formatDecimal(item.group_price))*100
                 amount += (~~item.quantity * app.formatDecimal(item.group_price))*100
               } else {

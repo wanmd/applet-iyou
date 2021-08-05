@@ -3,7 +3,7 @@
 <view wx:if="{{groupInfo.group_state == 1}}">
   <view class="d-f goodsBox borderb-1-solid-F7F7F7 ml-48 mr-48 pt-20 pb-32" data-path="/pages/packagesGoods/goodsDetail/index?goodsId={{tabItem.id}}" bind:tap="handleJump">
     <view class="goodsImg d-f w-180 h-180 mr-16">
-      <img style="width:180rpx;height:180rpx" src="{{groupInfo.cover}}"></img>
+      <image class="w-180 h-180" mode="aspectFill"  src="{{ALIYUN_URL}}/{{groupInfo.cover}}"></image>
     </view>
     <view class="d-f fxd-c jc-sb">
       <view>

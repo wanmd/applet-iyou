@@ -19,7 +19,7 @@
     <block>
       <view slot='title' class="address_item1">
         <view class='f-32'>请添加收货地址</view>
-        <icon-text catchtap='ai__addressShow' class='ai__address' width="150rpx" icon='iyou_user/location@2x.png'></icon-text>
+        <icon-text catchtap='ai__addressShow' class='ai__address' width="35rpx" icon='iyou_user/location@2x.png'></icon-text>
       </view>
     </block>
   </cell>
@@ -151,13 +151,14 @@
                 <view class="goods-price w-200">
                   <text class='num Bebas' wx:if="{{item.isAgent}}">￥{{it.agent_price}}</text>
                   <text class='num Bebas' wx:if="{{!item.isAgent && userInfo.isVip}}">￥{{it.member_price}}</text>
-                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && type == 1}}">￥{{it.group_price}}</text>
-                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && type == 2}}">￥{{it.sale_price}}</text>
+                  <!-- // isGroup是否拼单购买 1-是 2-否 -->
+                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && isGroup == 1}}">￥{{it.group_price}}</text>
+                  <text class='num Bebas' wx:if="{{!item.isAgent && !userInfo.isVip && isGroup == 2}}">￥{{it.sale_price}}</text>
                 </view>
               </navigator>
               <view class="d-f jc-sb fz-20 c-C5C5C5 w-100p">
                 <view>{{it.display}}</view>
-                <view class="line-through Bebas" wx:if="{{type != 2}}">￥{{it.sale_price}}</view>
+                <view class="line-through Bebas" wx:if="{{isGroup == 1}}">￥{{it.sale_price}}</view>
               </view>
             </view>
             <view class="goodsNum">

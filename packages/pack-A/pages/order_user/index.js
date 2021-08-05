@@ -261,5 +261,12 @@ Page({
   search() {
     this.setData({ orderList: [] })
     this.selectComponent('#pagination').initLoad()
+  },
+  handleDelete_keyword() {
+    this.setData({
+      keyword: '',
+      'query.keyword': ''
+    })
+    this.search()
   }
 })

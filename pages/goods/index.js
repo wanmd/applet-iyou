@@ -966,10 +966,10 @@ wx.Page({
       sceneStr += '&dst=share'
     }
 
-    sceneStr += ('&fromUserId=' + app.globalData.userInfo.user_id)
+    sceneStr += ('&storeId=' + this.data.chat.user.user_id)
 
     // let path = '/pages/index/index?scene=' + encodeURIComponent(sceneStr)
-    let path = '/pages/index/index?scene=' + encodeURIComponent(sceneStr)+'chatId=' + encodeURIComponent(this.data.chatId) + "&shareUserId=" + app.globalData.userInfo.user_id
+    let path = '/pages/home/index?scene=' + encodeURIComponent(sceneStr)+'chatId=' + encodeURIComponent(this.data.chatId) + "&shareUserId=" + app.globalData.userInfo.user_id
     console.log(path);
     
     return {

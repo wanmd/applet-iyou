@@ -222,9 +222,9 @@
   <view class='contact'>
     <contact-wx contact='联系卖家' userInfo='{{otherUserInfo}}'></contact-wx>
   </view>
-
+  
   <view class='bottom-fixed' style='display:flex;z-index:2'  wx:if='{{(order.status == 1 && isShowTime)||(order.status == 2 && isShowTime)||(order.status == 3 && isShowTime) || order.status == 3}}'>
-      <block wx:if='{{ order.status == 1 && isShowTime }}'>
+      <block wx:if='{{ !order.is_group && order.status == 1 && isShowTime }}'>
         <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);'>
           <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999' bindtap='cancelOrder'>
             <view class="line1">订单将于</view>
@@ -235,7 +235,8 @@
           <btn bindtap='confirmBuy'>付款</btn>
         </view>
       </block>
-      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' wx:if="{{order.status == 2 && isShowTime }}">
+      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
+        wx:if="{{!order.is_group && order.status == 2 && isShowTime }}">
         <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999'>
           <view class="line1">卖家/买家 还剩</view>
           <view class="line2 m-t-b">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}发货 / 消费</view>
@@ -243,10 +244,19 @@
         </btn>
       </view>
       
-      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' wx:if="{{order.status == 3 && isShowTime }}">
+      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
+        wx:if="{{!order.is_group && order.status == 3 && isShowTime }}">
         <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999'>
           <view class="line1">卖/买家已确认发货/消费 ，还剩</view>
           <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}自动确认</view>
+          <!-- <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}自动确认</view> -->
+        </btn>
+      </view>
+      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
+        wx:if="{{order.is_group && order.group_state == 1 && isShowTime }}">
+        <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999'>
+          <view class="line1">拼单结束还有</view>
+          <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}</view>
           <!-- <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}自动确认</view> -->
         </btn>
       </view>
