@@ -59,8 +59,7 @@ wx.Page({
 	},
 	toDetail(e) {
 		console.log(e);
-		let chatid = e.currentTarget.dataset.chatid
-		let chat_type = e.currentTarget.dataset.type
+		const { chatid, type: chat_type, productid } = e.currentTarget.dataset;
 		let url = ''
 		switch (chat_type) {
 		  case 1: url = '/pages/chat/index'; break;
@@ -68,7 +67,7 @@ wx.Page({
 		  case 4:
 		  case 5: url = '/pages/goods/index'; break;
 		}
-		url += '?chatId=' + chatid
+		url += '?chatId=' + chatid + '&productid=' + productid
 		wx._navigateTo(url)
 	},
 	load(e) {

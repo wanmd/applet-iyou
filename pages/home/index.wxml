@@ -91,11 +91,11 @@
                                         2.1一般用户只显示拼单价
                                         2.2会员展示 公开报价（会员价）+划线拼单价
                                         2.3此商家代理显示代理价+划线拼单价 -->
-                                <view wx:if="{{!item.isAgent && !userinfo.isVip}}">
+                                <view wx:if="{{!item.isAgent && !userInfo.isVip}}">
                                     <text class='f-32 bold c-333 mr-20 Bebas'>￥{{item.group_price}}</text>
                                     <!-- <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text> -->
                                 </view>
-                                <view wx:if="{{!item.isAgent && userinfo.isVip}}">
+                                <view wx:if="{{!item.isAgent && userInfo.isVip}}">
                                     <text class='f-32 bold c-ECBD75 mr-20 Bebas'>￥{{item.member_price}}</text>
                                     <text class='f-24 td-l c-BFBFBF td-l Bebas'>￥{{item.group_price}}</text>
                                 </view>

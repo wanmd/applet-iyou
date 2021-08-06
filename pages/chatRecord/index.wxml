@@ -13,7 +13,12 @@
         <view class='body'>
           <img class='cover' wx:if="{{chat.cover}}" ispre="true" picture="{{chat.picture}}" thumb src='{{chat.cover}}'></img>
           <view class="flex-column">
-            <view class='title ellipsis-2' data-type="{{chat.chat_type}}" data-chatid="{{chat.chat_id}}" catchtap="toDetail">{{chat.goods_name?chat.goods_name:chat.content}}</view>
+            <view class='title ellipsis-2' 
+              data-productid="{{chat.product_id}}" 
+              data-type="{{chat.chat_type}}" 
+              data-chatid="{{chat.chat_id}}" 
+              catchtap="toDetail"
+            >{{chat.goods_name?chat.goods_name:chat.content}}</view>
             <view class='a'>
               <view class='label' wx:if='{{chat.chat_type == 3 || chat.chat_type == 4}}'>红包</view>
               <view class='label' wx:elif='{{chat.chat_type == 5}}'>砍价</view>

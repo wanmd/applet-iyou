@@ -132,12 +132,17 @@ Component({
           let sale_price = specs.sort(function(a, b) {
             return a.sale_price - b.sale_price
           })
+          let member_price = specs.sort(function(a, b) {
+            return a.member_price - b.member_price
+          })
           let group_price = specs.sort(function(a, b) {
             return a.group_price - b.group_price
           })
           let agent_price = specs.sort(function(a, b) {
             return a.agent_price - b.agent_price
           })
+          // console.log(sale_price, member_price, group_price, agent_price);
+          
           // 用户价格显示区别：
           // 1 一般用户单击单独购买：
           // 零售价
@@ -164,7 +169,7 @@ Component({
             this.setData({
               userType: 'member',
               price_1: member_price[0].member_price,
-              price_2: group_price[0].group_price
+              price_2: member_price[0].member_price
             })
           }
           // 代理
@@ -175,7 +180,6 @@ Component({
               price_2: group_price[0].group_price
             })
           }
-          console.log(res.data);
           this.setData({ 
             detail: res.data
           })
@@ -372,7 +376,7 @@ Component({
         case 'member':
           this.setData({
             price_1: member_price,
-            price_2: group_price,
+            price_2: member_price,
             header_price: member_price
           })
           break

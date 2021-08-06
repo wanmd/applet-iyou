@@ -28,7 +28,7 @@
       <view class="w-100rpx h-100rpx mr-46 bdrs-50p ov-h">
           <image src="{{groupInfo.create_user_avatar}}" class="w-100rpx h-100rpx" />
       </view>
-      <view class="w-64 h-58 mr-46 bdrs-50p ov-h">
+      <view class="w-64 h-58 mr-46">
           <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
       </view>
       <view class="w-100rpx h-100rpx bdrs-50p ov-h">

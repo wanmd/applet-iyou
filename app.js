@@ -11,9 +11,9 @@ App({
         console.log('onLaunch');
         console.log("options=========");
         console.log(options);
-        if (options.query.storeId) {
+        if (options.query.storeId || options.query.si) {
             // this.globalData.storeId = options.query.storeId;
-            wx.getStorageSync('ime_storeId', options.query.storeId)
+            wx.getStorageSync('ime_storeId', options.query.storeId || options.query.si)
         }
         let inviter = options.query.inviter || 0;
         // console.log('inviter=======', inviter)
@@ -190,7 +190,7 @@ App({
                                 self.globalData.userInfo = user;
                                 if (inviter && inviter > 0) {
                                     wx.promise
-                                        .post('/visit/follow', { userId: inviter })
+                                        .post('iy/visit/follow', { userId: inviter })
                                         .then(info => {
                                             if (info.success) {
                                                 // wx._showToast('关注成功~')

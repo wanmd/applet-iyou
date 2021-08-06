@@ -63,7 +63,7 @@
       </view>
     </view>
   </view>
-  <goods wx:for='{{order.goods}}' ismy="{{false}}" goods='{{item}}' note='{{true}}' wx:key="index"></goods>
+  <goods wx:for='{{order.goods}}' ismy="{{false}}" goods='{{item}}' remarks="{{order.remarks}}" note='{{true}}' wx:key="index"></goods>
   <view class='order-fee-detail'>
     <view class='item'>
       <text class='title w-300 color333'>共 {{order.quantity}} 件，合计：</text>

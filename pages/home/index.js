@@ -81,8 +81,6 @@ wx.Page({
         }
         
         this.setData({ selectedNav: selectedNav })
-
-        
     },
     onShow() {
         this.initStoreInfo();
@@ -118,7 +116,7 @@ wx.Page({
         let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
         
         this.setData({ userInfo: userInfo })
-        if (!storeId) {
+        if (!storeId) {// 没有默认的店铺id 去获取默认
             request.get('iy/mail/follows', res => {
                 if (res.success) {
                     storeId = res.data.default.user_id || 0
@@ -137,10 +135,11 @@ wx.Page({
                         query3: { store_id: '', keyword: '', type: 2 }, 
                         query4: { store_id: storeId, type: 2 } 
                     })
+                    this.setVisitFollow(storeId)
                 }
             })
         }
-        
+        // 路由有携带要浏览的店铺id
         let query = this.data.query;
         let query2 = this.data.query2;
         let query3 = this.data.query3;
@@ -155,6 +154,7 @@ wx.Page({
         console.log('storeId--------------end')
         
         if (storeId > 0 && storeId != userInfo.user_id) {
+            request.setMany(true)
             request.get('user/user/' + storeId, res => {
                 if (res.success) {
                     let user = res.data.user
@@ -163,7 +163,7 @@ wx.Page({
                         wx.setStorageSync('storeInfo', user)
                     }
                     console.log(user);
-                    this.setData({ user: user })
+                    this.setData({ user: user, storeId })
                 }
             })
         } else if(storeId > 0 && storeId == userInfo.user_id) {
@@ -176,9 +176,16 @@ wx.Page({
                 query3: { store_id: '', keyword: '', type: 2 }, 
                 query4: { store_id: storeId, type: 2 } 
             })
-        } else {// 没有storeId 取默认关注的店铺数据
-            
         }
+        this.setVisitFollow(storeId)
+    },
+    // 设置关注的店铺
+    setVisitFollow(storeId) {
+        request.post('iy/visit/follow', res => {
+            if (res.success) {
+                console.log('关注店铺成功！');
+            }
+        }, { userId: storeId })
     },
     onHide() {
         this.setData({ pageHude: true })
@@ -819,10 +826,12 @@ wx.Page({
         let pages = getCurrentPages()
         let page = pages[pages.length - 1]
         let to = encodeURIComponent(page.route + '?storeId=' + this.data.storeId)
+        console.log(this.data.storeId);
         console.log(to);
         let uesr_id = app.globalData.userInfo.user_id
         let path = '/pages/home/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
         console.log(path);
+        return
 
         // let title = this.data.isSelf?'快进来看看我的iME社电吧，超值好物好服务！一件代发，代理兼职副业天天赚~':'我很喜欢这家iME社电，分享给亲，你也来看看吧~'
         // let title = this.data.isSelf ? '卖货！分销！代理！招商…！超值好物！分享躺赚！跟着我就赚钱！！！':'我很喜欢这家iME社电，分享给亲，你也来看看吧~'

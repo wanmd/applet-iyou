@@ -771,7 +771,7 @@
           "id": 100,
           "name": "分享团",
           "pathName": "packages/pack-A/pages/order_user/group/index",
-          "query": "q=%3Ffrom%3Dcheckout%26groupId%3D5967",
+          "query": "q=%3Ffrom%3Dcheckout%26groupId%3D5970",
           "scene": null
         }
       ]
