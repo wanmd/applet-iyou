@@ -246,6 +246,15 @@ Page({
         update[`orderList[${this.data.selfpayIndex}].pay_picture`] = 100;
         update.selfPayShow = !this.data.selfPayShow;
         this.setData(update);
+        this.selectToggle(
+          {
+            currentTarget: {
+              dataset: {
+                status: 2
+              }
+            }
+          }
+        )
       } else {
         toast(res.msg)
       }

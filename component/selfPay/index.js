@@ -1,5 +1,6 @@
 // component/selfPay/index.js
 import { Request, toast } from '../../utils/util.js'
+import { ALIYUN_URL } from '../../utils/config.js';
 let request = new Request()
 
 Component({
@@ -13,6 +14,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    ALIYUN_URL,
     storeInfo: {},
     images: [],
   },

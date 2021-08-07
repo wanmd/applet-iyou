@@ -45,8 +45,8 @@ Page({
             toast('余额不足')
             return
         }
-        toast('系统维护中')
-        return
+        // toast('系统维护中')
+        // return
 
         request.post('wallet/withdrawal', res => {
             if (res.success) {
