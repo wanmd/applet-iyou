@@ -510,7 +510,7 @@ wx.Page({
       // 画分享推荐
       ctx.setFillStyle('#333333')
       ctx.setFontSize(rpxTopx(20))
-      ctx.fillText('iME好物分享', rpxTopx(170), rpxTopx(120))
+      ctx.fillText('iYOU好物分享', rpxTopx(170), rpxTopx(120))
       ctx.draw(true)
 
       // 画底部二维码区域

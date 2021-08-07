@@ -11,9 +11,9 @@ App({
         console.log('onLaunch');
         console.log("options=========");
         console.log(options);
-        if (options.query.storeId || options.query.si) {
-            // this.globalData.storeId = options.query.storeId;
-            wx.getStorageSync('ime_storeId', options.query.storeId || options.query.si)
+        const ime_storeId = options.query.storeId || options.query.si;
+        if (ime_storeId) {
+            wx.getStorageSync('ime_storeId', ime_storeId)
         }
         let inviter = options.query.inviter || 0;
         // console.log('inviter=======', inviter)
@@ -26,15 +26,15 @@ App({
             scene = queryParams(scene);
             // console.log("scene=========");
             // console.log(scene);
-            if (scene.f === 's') { //店铺卡进来也绑定关系
+            if (scene.f === 's') { //店铺卡进来也绑定关系 s->store
                 //来自邀请 si就是storeId
                 inviter = scene.fi; //生成这个码的人id
             }
-            if (scene.f === 'g') { //商品卡进来也绑定关系
+            if (scene.f === 'g') { //商品卡进来也绑定关系 g->good
                 //来自邀请
                 inviter = scene.fi; //邀请人
             }
-            if (scene.f === 'i') {
+            if (scene.f === 'i') { // i ->inviter
                 //来自邀请
                 inviter = scene.iv; //邀请人
             }
@@ -56,7 +56,9 @@ App({
             }
             this.wxlogin(inviter);
         }
+        // 将分享者的id存储
         this.globalData.inviter = inviter;
+        
         wx.getSystemInfo({
             success: res => {
                 this.systemInfo = res;

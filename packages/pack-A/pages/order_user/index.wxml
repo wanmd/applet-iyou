@@ -116,6 +116,7 @@
                 wx:if='{{(item.status == 0 || item.status == 1) && !item.pay_picture}}' 
                 data-index='{{index}}' 
                 data-id="{{item.order_id}}" 
+                data-storeid="{{item.store.user_id}}" 
                 bindtap='toggleSelfPay'
               >自助付款</button>
               <button 
@@ -136,4 +137,4 @@
 </pagination>
 <confirm wx:if='{{showCancelConfirm}}' bindcallback='cancelCallback'></confirm>
 
-<selfPay wx:if="{{selfPayShow}}" bind:cancel="toggleSelfPay" bind:submit="handleSubmit" />
+<selfPay wx:if="{{selfPayShow}}" storeid="{{storeid}}" bind:cancel="toggleSelfPay" bind:submit="handleSubmit" />

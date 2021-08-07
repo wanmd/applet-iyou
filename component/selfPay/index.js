@@ -8,6 +8,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    storeid: {
+      type: String,
+      value: ''
+    }
   },
 
   /**
@@ -30,9 +34,7 @@ Component({
    */
   methods: {
     getStoreInfo() {
-      const storeInfo = wx.getStorageSync('storeInfo')
-      const storeId = storeInfo.storeId || storeInfo.user_id;
-        request.get('iy/store/' + storeId, res => {
+        request.get('iy/store/' + this.data.storeid, res => {
           console.log(res);
           this.setData({
             storeInfo:  res.data.list

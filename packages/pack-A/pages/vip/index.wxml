@@ -3,7 +3,7 @@
     <!-- <el-image src=vip/vip_header.png' style='width:100%;display:block;margin:auto;'></el-image> -->
     <image src='{{assetsImages}}vip/vip_header.png' style='width:100%;height:503rpx;display:block;margin:auto;'></image>
     <view class="vip_crde" bindtap='showCord'>
-      <image class='vip_crde_img' src='{{assetsImages}}vip/vip_crde.png'></image>
+      <image class='vip_crde_img' src='{{assetsImages}}vip/iyou_vip_crde.png'></image>
       <!-- <el-image class="vip_crde_img" src=vip/vip_crde.png'></el-image> -->
       <view class="vip_crde_text">
         <view class="user_img">
@@ -19,7 +19,7 @@
   </view>
   <view class="vip-info">
     <view class="t1">每天不管在哪里您都是会员价！</view>
-    <view>快来激活IME年度会员</view>
+    <view>快来激活IYOU年度会员</view>
     <view>尊享全平台商家购物会员价超值优惠！</view>
   </view>
   <image src='{{assetsImages}}vip/vip_info.png' style='width:616rpx;height: 676rpx;display:block;margin:auto;'></image>

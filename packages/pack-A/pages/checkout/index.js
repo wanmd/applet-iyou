@@ -117,7 +117,7 @@ Page({
       }
       const { pickupTime, pickupStatePart } = this.data.selfParams;
       if (!pickupTime) {
-        toast('请选择自提时间')
+        toast('请选择到店或自提时间')
         return
       } 
       data['selfPickup'] = 1;
@@ -213,10 +213,10 @@ Page({
         chatId: opt.chatId,
         goodsNum: opt.goodsNum,
         remark: opt.remark,
-        shareUserId: opt.shareUserId||0,
+        shareUserId: opt.shareUserId || 0,
         type: opt.type,
         buyType: opt.buyType,
-        productSpecs: JSON.parse(opt.productSpecs) || {"尺寸": "27", "颜色": "黑色"},
+        productSpecs: JSON.parse(opt.productSpecs) || {},
         isGroup: opt.isGroup,
         groupId: opt.groupid
       }

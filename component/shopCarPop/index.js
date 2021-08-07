@@ -433,7 +433,7 @@ Component({
       const data = {
         chatId: detail.chat_id || 0,
         remark: detail.remark || '',
-        shareUserId: detail.shareUserId || 0,
+        shareUserId: app.globalData.inviter || 0,
         quantity: num,
         productSpecs: this.getProductSpecs()
       }

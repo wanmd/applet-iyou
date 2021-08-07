@@ -46,7 +46,7 @@ Component({
       } else {
         let request = new Request()
         request.setConfig('responseType', 'arraybuffer')
-        request.get('qr/invite', res => {
+        request.get('iy/qr/invite', res => {
           let qrcode = res
             qrcode = 'data:image/png;base64,' + wx.arrayBufferToBase64(res);
             let qrcodeBase = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
@@ -89,7 +89,7 @@ Component({
       let data = {
         share_user_id: ''
       }
-      request.post('user/applyVip', res => {
+      request.post('iy/user/applyVip', res => {
         if(res.success){
           let params = res.data.wxparam
           params.success = () => {

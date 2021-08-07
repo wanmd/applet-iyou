@@ -9,6 +9,7 @@ Page({
      * 页面的初始数据
      */
     data: {
+        ALIYUN_URL,
         assetsImages: app.assetsImages,
         baseUrl: ALIYUN_URL,
         orderId: 0,
@@ -45,6 +46,7 @@ Page({
         amount_price: 0,
 
         verify_flag: false,
+        selfPay_pic: false
     },
 
     copy() {
@@ -275,6 +277,7 @@ Page({
                 order.deliver_time = parseTime(order.deliver_time)
                 order.complete_time = parseTime(order.complete_time)
                 order.diff_time = order.group_time + 86400 - Math.floor(new Date().getTime()/1000)
+                order.pay_picture = JSON.parse(order.pay_picture)
 
                 let total_price = 0;
                 let vip_price = 0;
@@ -437,6 +440,26 @@ Page({
         wx.openLocation({
             latitude: storeInfo.lat || 22.52291,//要去的纬度-地址
             longitude: storeInfo.lng || 114.05454,//要去的经度-地址
+        })
+    },
+    // 查看付款凭证
+    toggleViewSelfPay() {
+        this.setData({
+        selfPay_pic: !this.data.selfPay_pic
+        })
+    },
+    previewImage (e) {
+        let img = e.currentTarget.dataset.img;
+        let imgs = e.currentTarget.dataset.imgs;
+        let urls = []
+        let url = ALIYUN_URL + '/' + img
+        for(let i=0;i<imgs.length;i++){
+        let curl = ALIYUN_URL + '/' + imgs[i]
+        urls.push(curl)
+        }
+        wx.previewImage({
+        current: url,
+        urls: urls 
         })
     },
     /**

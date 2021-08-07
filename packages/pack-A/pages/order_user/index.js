@@ -225,10 +225,14 @@ Page({
     clearTimeout(numberInter)
   },
   toggleSelfPay(e) {
+    console.log(e);
+    
+    const { storeid, id, index } = e.currentTarget.dataset;
     this.setData({
       selfPayShow: !this.data.selfPayShow,
-      selfpayId: e.currentTarget.dataset.id,
-      selfpayIndex: e.currentTarget.dataset.index
+      selfpayId: id,
+      selfpayIndex: index,
+      storeid,
     })
   },
   handleSubmit(data) {

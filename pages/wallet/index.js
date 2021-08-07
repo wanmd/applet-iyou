@@ -48,7 +48,7 @@ Page({
         // toast('系统维护中')
         // return
 
-        request.post('wallet/withdrawal', res => {
+        request.post('iy/wallet/withdrawal', res => {
             if (res.success) {
                 toast('提现成功')
                 this.setData({ balance: balance - amount })
