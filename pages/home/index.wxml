@@ -5,7 +5,7 @@
         style='left:0;top:0;z-index:5;height: {{topHeight + 100}}px;background-image:url({{ALIYUN_URL + "/"+ user.store_background}});background-size: cover'>
         <!-- <view bindtap="handleBack" class="backnav fz-24 bgc-fff c-929292 fixed w-96 ta-c" style='top:{{navTop}}px;line-height:{{navHeight}}rpx;border-radius: 0 20px 20px 0;'>返回</view> -->
         <view class='p-l-r relative padd_tb-10 mb-20' style="margin-top:{{topHeight}}px">
-            <avatar size='80rpx' src='{{user.avatar}}' user="{{user}}">
+            <avatar size='80rpx' src='{{user.avatar}}' user="{{user}}" userId="{{user.user_id}}">
                 <view class='m-l-20 c-fff'>
                     <view class='bold'>
                         <text class="nickname ellipsis1">{{user.nickname}}</text>
