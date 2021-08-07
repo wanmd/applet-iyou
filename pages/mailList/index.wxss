@@ -61,7 +61,7 @@ page{
   position: absolute;
   width: 33rpx;
   height: 33rpx;
-  bottom: 0;
+  bottom: -10rpx;
   left: -30rpx;
 }
 .title{

@@ -10,23 +10,38 @@
         <view class="">
           <text>微信支付</text>
           <image 
-            src="{{ALIYUN_URL + '/' + storeInfo.fee_wx_code || '/assets/images/wxpay-example.png'}}"  
-            data-url="{{ALIYUN_URL + '/' + storeInfo.fee_wx_code || '/assets/images/wxpay-example.png'}}" 
+            wx:if="{{storeInfo.fee_wx_code}}"
+            src="{{ALIYUN_URL + '/' + storeInfo.fee_wx_code}}"  
+            data-url="{{ALIYUN_URL + '/' + storeInfo.fee_wx_code}}" 
             bindlongpress="saveImage" 
+            class="w-240 h-240"
+          />
+          <image 
+            wx:else
+            src="/assets/images/wxpay-example.png"
             class="w-240 h-240"
           />
         </view>
         <view>
           <text>支付宝支付</text>
           <image 
-            src="{{ALIYUN_URL + '/' + storeInfo.fee_ali_code || '/assets/images/alipay@2x.png'}}"  
-            data-url="{{ALIYUN_URL + '/' + storeInfo.fee_ali_code || '/assets/images/alipay@2x.png'}}" 
+            wx:if="{{storeInfo.fee_ali_code}}"
+            src="{{ALIYUN_URL + '/' + storeInfo.fee_ali_code}}"  
+            data-url="{{ALIYUN_URL + '/' + storeInfo.fee_ali_code}}" 
             bindlongpress="saveImage" 
+            class="w-240 h-240"
+          />
+          <image 
+            wx:else
+            src="/assets/images/alipay@2x.png"  
             class="w-240 h-240"
           />
         </view>
       </view>
-      <view class="fz-24 c-999 mt-54 mb-36 ta-c">长按保存商家收款码</view>
+      <view class="fz-24 c-999 mt-54 mb-36 ta-c" wx:if="{{storeInfo.fee_ali_code && storeInfo.fee_wx_code}}">长按保存商家收款码</view>
+      <view class="fz-24 c-999 mt-54 mb-36 ta-c">
+        该商家未设置<text wx:if="{{!storeInfo.fee_wx_code}}">微信收款码</text><text wx:if="{{!storeInfo.fee_ali_code}}">支付宝收款码</text>
+      </view>
       <view class="ml-38 c-333 fz-32 lh-42 mb-20">上传付款凭证{{images.length}}/3</view>
       <view class='images clear ml-10 ov-h'>
         <upload class='item' wx:for='{{images}}' wx:key='id' data-index='{{index}}' initFile='{{item.file}}' bind:success='uploadPic_' bind:clear='clearPic'></upload>

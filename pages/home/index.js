@@ -73,17 +73,17 @@ wx.Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        app.globalData.STOREID = options.storeId || options.si;
         let selectedNav = this.data.selectedNav;
         if (options.type) {
             selectedNav = options.type;
         } else {
             selectedNav = 1;
         }
-        
         this.setData({ selectedNav: selectedNav })
     },
     onShow() {
-        this.initStoreInfo();
+        this.getStoreId(app.globalData.STOREID);
         const { topHeight, statusBarHeight, navHeight, navTop } = app.setCustomNav();
         this.setData({
             topHeight, 
@@ -107,16 +107,29 @@ wx.Page({
                 // this.load({ detail: { list: [], page: 1 } }, 1)
         }
     },
-    initStoreInfo() {
-        let user_id = wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : '';
-        console.log('ime_storeId--------------start')
-        console.log(wx.getStorageSync('ime_storeId'))
-        console.log('ime_storeId--------------end')
-        let storeId =  wx.getStorageSync('ime_storeId') || user_id;
-        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
+    getStoreId(STOREID) {
+        // 1.优先查看路由上传递的商家 (可能是自己看，也可能是看别的商家)
+        // 2.如果路由上没有，那就从上次的浏览历史中找商家
+        // 3.如果也没有浏览历史，那就请求接口获取默认商家
+        let storeId =  STOREID || (wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : null);
         
-        this.setData({ userInfo: userInfo })
-        if (!storeId) {// 没有默认的店铺id 去获取默认
+        if (storeId) {
+            let query = this.data.query;
+            let query2 = this.data.query2;
+            let query3 = this.data.query3;
+            let query4 = this.data.query4;
+            query.storeId = storeId;
+            query2.store_id = storeId;
+
+            query3.store_id = storeId;
+            query4.store_id = storeId;
+            this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
+
+             // 有可能这时候login还没有结束
+            setTimeout(() => {
+                this.new_initStoreInfo(storeId)
+            }, 0)
+        } else {
             request.get('iy/mail/follows', res => {
                 if (res.success) {
                     storeId = res.data.default.user_id || 0
@@ -139,19 +152,12 @@ wx.Page({
                 }
             })
         }
-        // 路由有携带要浏览的店铺id
-        let query = this.data.query;
-        let query2 = this.data.query2;
-        let query3 = this.data.query3;
-        let query4 = this.data.query4;
-        query.storeId = storeId;
-        query2.store_id = storeId;
-        query3.store_id = storeId;
-        query4.store_id = storeId;
-        this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
-        console.log('storeId--------------start')
-        console.log(storeId)
-        console.log('storeId--------------end')
+    },
+    new_initStoreInfo(storeId) {
+        let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo || {};
+        console.log('new_initStoreInfo');
+        console.log(storeId);
+        console.log(userInfo);
         
         if (storeId > 0 && storeId != userInfo.user_id) {
             request.setMany(true)
@@ -179,6 +185,79 @@ wx.Page({
         }
         this.setVisitFollow(storeId)
     },
+
+    // initStoreInfo() {
+    //     let user_id = wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : '';
+    //     console.log('ime_storeId--------------start')
+    //     console.log(wx.getStorageSync('ime_storeId'))
+    //     console.log('ime_storeId--------------end')
+    //     let storeId =  wx.getStorageSync('ime_storeId') || user_id;
+    //     let userInfo = wx.getStorageSync('userinfo') || app.globalData.userInfo;
+        
+    //     this.setData({ userInfo: userInfo })
+    //     if (!storeId) {// 没有默认的店铺id 去获取默认
+    //         request.get('iy/mail/follows', res => {
+    //             if (res.success) {
+    //                 storeId = res.data.default.user_id || 0
+    //                 let user = res.data.default.user
+    //                 if (!(user instanceof Object)) {
+    //                     user = JSON.parse(user)
+    //                     wx.setStorageSync('storeInfo', user)
+    //                 }
+
+    //                 this.setData({ 
+    //                     isSelf: false, 
+    //                     user: user, 
+    //                     query: { storeId: storeId }, 
+    //                     storeId: storeId, 
+    //                     query2: { store_id: storeId }, 
+    //                     query3: { store_id: '', keyword: '', type: 2 }, 
+    //                     query4: { store_id: storeId, type: 2 } 
+    //                 })
+    //                 this.setVisitFollow(storeId)
+    //             }
+    //         })
+    //     }
+    //     // 路由有携带要浏览的店铺id
+    //     let query = this.data.query;
+    //     let query2 = this.data.query2;
+    //     let query3 = this.data.query3;
+    //     let query4 = this.data.query4;
+    //     query.storeId = storeId;
+    //     query2.store_id = storeId;
+    //     query3.store_id = storeId;
+    //     query4.store_id = storeId;
+    //     this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
+    //     console.log('storeId--------------start')
+    //     console.log(storeId)
+    //     console.log('storeId--------------end')
+        
+    //     if (storeId > 0 && storeId != userInfo.user_id) {
+    //         request.setMany(true)
+    //         request.get('user/user/' + storeId, res => {
+    //             if (res.success) {
+    //                 let user = res.data.user
+    //                 if (!(user instanceof Object)) {
+    //                     user = JSON.parse(user)
+    //                     wx.setStorageSync('storeInfo', user)
+    //                 }
+    //                 console.log(user);
+    //                 this.setData({ user: user, storeId })
+    //             }
+    //         })
+    //     } else if(storeId > 0 && storeId == userInfo.user_id) {
+    //         this.setData({ 
+    //             isSelf: true, 
+    //             user: userInfo, 
+    //             query: { storeId: storeId }, 
+    //             storeId: storeId, 
+    //             query2: { store_id: storeId }, 
+    //             query3: { store_id: '', keyword: '', type: 2 }, 
+    //             query4: { store_id: storeId, type: 2 } 
+    //         })
+    //     }
+    //     this.setVisitFollow(storeId)
+    // },
     // 设置关注的店铺
     setVisitFollow(storeId) {
         request.post('iy/visit/follow', res => {

@@ -9,7 +9,7 @@
       <cell height='140rpx' bindtap="changeStore" data-user="{{item.user}}">
         <view class="title" slot='title'>
           <avatar size='80rpx' src='{{item.user.avatar || "../../assets/images/avatar.png"}}'>
-          <el-image wx:if="{{item.isVip}}" class="vip" src='vip/vip.png' style='width:30rpx;display: inline-block;'></el-image>
+          <!-- <el-image wx:if="{{item.isVip}}" class="vip" src='vip/vip.png' style='width:30rpx;display: inline-block;'></el-image> -->
             <view class='user-info'>
               <view class='bold f-32'>
                 <text class="user_name">{{item.user.nickname}}</text>

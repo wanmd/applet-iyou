@@ -510,6 +510,12 @@ page {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+.user__ .user-info2 {
+    width: 200rpx;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
 
 .user_l_r {
     justify-content: space-between;

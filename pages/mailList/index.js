@@ -49,6 +49,8 @@ wx.Page({
   },
 
   changeStore(e) {
+    // 重置
+    getApp().globalData.STOREID = 0;
     const { user } = e.currentTarget.dataset;
     const { user_id } = user;
     user.storeId = user_id;

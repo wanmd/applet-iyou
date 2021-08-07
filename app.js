@@ -13,7 +13,7 @@ App({
         console.log(options);
         const ime_storeId = options.query.storeId || options.query.si;
         if (ime_storeId) {
-            wx.getStorageSync('ime_storeId', ime_storeId)
+            this.globalData.ime_storeId = ime_storeId;
         }
         let inviter = options.query.inviter || 0;
         // console.log('inviter=======', inviter)
