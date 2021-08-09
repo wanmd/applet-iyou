@@ -106,7 +106,7 @@
                             catchtap="isAuth_"
                           />
                           <text class="text c-262626">零售价￥</text>
-                          <text class='text-through c-ECBD75 fz-28'>{{it.agent_price}}</text>
+                          <text class='text-through c-ECBD75 fz-28'>{{it.sale_price}}</text>
                         </view>
                         <view>
                           <text class="text c-262626">会员价￥</text>

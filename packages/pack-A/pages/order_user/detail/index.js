@@ -277,7 +277,7 @@ Page({
                 order.deliver_time = parseTime(order.deliver_time)
                 order.complete_time = parseTime(order.complete_time)
                 order.diff_time = order.group_time + 86400 - Math.floor(new Date().getTime()/1000)
-                order.pay_picture = JSON.parse(order.pay_picture)
+                order.pay_picture = order.pay_picture && JSON.parse(order.pay_picture) || []
 
                 let total_price = 0;
                 let vip_price = 0;
