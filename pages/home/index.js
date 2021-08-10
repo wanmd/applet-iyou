@@ -453,7 +453,7 @@ wx.Page({
             })
             // 非会员进行数据截取
             this.setData({
-                offerList: userInfo.isVip ? offerList : offerList.slice(0,6),
+                offerList: userInfo.isVip ? offerList : offerList.slice(0,3),
             })
         }
     },

@@ -96,11 +96,11 @@
                                     <!-- <text class='f-24 c-BFBFBF'>￥{{item.member_price}}</text> -->
                                 </view>
                                 <view wx:if="{{!item.isAgent && userInfo.isVip}}">
-                                    <text class='f-32 bold c-ECBD75 mr-20 Bebas'>￥{{item.member_price}}</text>
+                                    <text class='f-32 bold c-AB00FF mr-20 Bebas'>￥{{item.member_price}}</text>
                                     <text class='f-24 td-l c-BFBFBF td-l Bebas'>￥{{item.group_price}}</text>
                                 </view>
                                 <view wx:if="{{item.isAgent}}">
-                                    <text class='f-32 bold c-AB00FF mr-20 Bebas'>{{item.agent_price}}</text>
+                                    <text class='f-32 bold c-ECBD75 mr-20 Bebas'>{{item.agent_price}}</text>
                                     <text class='f-24 td-l c-BFBFBF Bebas'>￥{{item.group_price}}</text>
                                 </view>
                                 <view catchtap="showGoodsPopup" data-goods_id='{{item.id}}'>
@@ -215,7 +215,7 @@
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
         <!-- 非会员不展示列表 -->
-        <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
+        <view wx:if="{{!user.isVip}}" class="mask_notVip">
             <view class="modal_notVip">
                 <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
                 <view class="modal_notVip_button" data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_">申请商家会员一键代发</view>
