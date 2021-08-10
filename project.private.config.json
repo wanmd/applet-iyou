@@ -748,7 +748,7 @@
         {
           "name": "拼团成功",
           "pathName": "packages/pack-A/pages/order_user/group/index",
-          "query": "?q=groupId%253D201%2526from%253Dcheckout",
+          "query": "q=%3Ffrom%3Dcheckout%26groupId%3D6156",
           "scene": null
         },
         {

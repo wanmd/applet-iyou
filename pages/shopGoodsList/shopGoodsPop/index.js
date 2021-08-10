@@ -126,6 +126,9 @@ Component({
           let sale_price = specs.sort(function(a, b) {
             return a.sale_price - b.sale_price
           })
+          let member_price = specs.sort(function(a, b) {
+            return a.member_price - b.member_price
+          })
           let group_price = specs.sort(function(a, b) {
             return a.group_price - b.group_price
           })

@@ -571,12 +571,12 @@ page {
 .container {}
 
 .car-wrap {
-    height: calc(100vh - 236rpx);
+    /* height: calc(100vh - 236rpx); */
     overflow-y: auto;
 }
 
 .car2-wrap {
-    height: calc(100vh - 136rpx);
+    /* height: calc(100vh - 136rpx); */
 }
 
 .page_bar {

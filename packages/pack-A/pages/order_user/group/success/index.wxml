@@ -58,11 +58,10 @@
         <image src="/assets/images/iyou_user/success@2x.png" class="w-424 h-236" />
     </view>
     <view class="d-f jc-sb ai-c">
-      
       <view class="w-100rpx h-100rpx mr-46 bdrs-50p ov-h">
           <image src="{{groupInfo.create_user_avatar}}" class="w-100rpx h-100rpx" />
       </view>
-      <view class="w-64 h-58 mr-46 bdrs-50p ov-h">
+      <view class="w-64 h-58 mr-46 ov-h">
           <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
       </view>
       <view class="">
@@ -72,6 +71,7 @@
     </view>
     <view class="d-f fxd-c jc-c ai-c mt-60">
       <view class="invite" bindtap="more">去看看更多优物</view>
+      <view class="mt-56 fz-24 lh-44 c-3A3A3A" bindtap="navToOrderDetail">查看订单详情 ></view>
     </view>
   </view>
   

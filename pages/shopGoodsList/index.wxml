@@ -130,17 +130,17 @@
                     3.此商家代理显示：
                     代理价（拿货价）+划线零售价 -->
                   <view class="saleBox w-360 d-f jc-sb ai-c ">
-                    <view wx:if="{{!tabItem.isAgent && !userinfo.isVip}}">
+                    <view wx:if="{{!tabItem.isAgent && !userInfo.isVip}}">
                         <text class='f-32 bold c-333 mr-20'>￥{{tabItem.group_price}}</text>
                         <text class='f-24 c-BFBFBF'>￥{{tabItem.member_price}}</text>
                     </view>
-                    <view wx:if="{{!tabItem.isAgent && userinfo.isVip}}">
-                        ￥<text class='f-32 bold c-ECBD75 mr-20'>{{tabItem.member_price}}</text>
-                        ￥<text class='f-24 td-l c-BFBFBF td-l'>￥{{tabItem.group_price}}</text>
+                    <view wx:if="{{!tabItem.isAgent && userInfo.isVip}}">
+                        <text class='f-32 bold c-AB00FF mr-20'>￥{{tabItem.member_price}}</text>
+                        <text class='f-24 td-l c-BFBFBF td-l'>￥{{tabItem.group_price}}</text>
                     </view>
                     <view wx:if="{{tabItem.isAgent}}">
-                        ￥<text class='f-32 bold c-AB00FF mr-20'>{{tabItem.agent_price}}</text>
-                        ￥<text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
+                        <text class='f-32 bold c-ECBD75 mr-20'>￥{{tabItem.agent_price}}</text>
+                        <text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
                     </view>
                     <view class="d-f ai-c" catchtap="showGoodsPopup" data-goods_id='{{tabItem.id}}'>
                       <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
@@ -199,7 +199,7 @@
       <view class="fz-28 c-F61935">￥{{totalMoney}}</view>
       <view class="fz-16 c-747474">
         <text wx:if="{{isAgent}}">代理</text>
-        <text wx:if="{{!isAgent && userinfo.isVip}}">会员</text>
+        <text wx:if="{{!isAgent && userInfo.isVip}}">会员</text>
         优惠 {{saveMoney}}元
       </view>
     </view>

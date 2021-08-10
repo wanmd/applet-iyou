@@ -1,6 +1,6 @@
 <view class='part-1'>
   <view style='margin:auto;'>
-    <image class='block' mode='aspectFill' src='{{assetsImages}}iyou_auth3@2x.png' style="width:712rpx;height:466rpx;"></image>
+    <image class='block' mode='aspectFill' src='{{assetsImages}}iyou_auth3@2x.png' style="width:750rpx;height:680rpx"></image>
   </view>
   <view style='width:400rpx;margin:auto;'>
     <view style='margin-top:96rpx;'>

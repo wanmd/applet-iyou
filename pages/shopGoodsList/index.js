@@ -177,7 +177,7 @@ wx.Page({
   },
   // 改变数量和总价
   changeCountAndMoney(cartList) {
-    const { isVip } = wx.getStorageSync('storeInfo');
+    const { isVip } =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
     let goodsCount = 0, totalMoney = 0, salesMoney = 0;
     console.log(cartList);
     cartList.forEach((item, index) => {
@@ -199,6 +199,8 @@ wx.Page({
       salesMoney += (item.sale_price)*(item.quantity);
     });
     console.log(cartList);
+    console.log(salesMoney);
+    console.log(totalMoney);
     this.setData({ 
       goodsCount, 
       totalMoney,

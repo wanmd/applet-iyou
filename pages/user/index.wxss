@@ -256,8 +256,8 @@ page{
 }
 .red-number{
   position: absolute;
-  right: 30rpx;
-  top: 15rpx;
+  right: 15rpx;
+  top: 0rpx;
   width: 30rpx;
   height: 30rpx;
   line-height: 30rpx;
