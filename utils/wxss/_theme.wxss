@@ -1240,8 +1240,14 @@
 .fz-8 {
   font-size: 8rpx;
 }
+.fz-10 {
+  font-size: 10rpx;
+}
 .fz-12 {
   font-size: 12rpx;
+}
+.fz-14 {
+  font-size: 14rpx;
 }
 .fz-16 {
   font-size: 16rpx;

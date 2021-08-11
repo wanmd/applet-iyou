@@ -270,16 +270,14 @@
           <!-- <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}自动确认</view> -->
         </btn>
       </view>
-      <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
+      <view style='flex:1;align-items: center;justify-content:space-between;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
         wx:if="{{order.is_group && order.group_state == 1 && isShowTime }}">
-        <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999'>
+        <btn style-text='background:rgba(242,242,242,1);color:#999999' style="flex:1;">
           <view class="line1">拼单结束还有</view>
           <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}</view>
           <!-- <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}自动确认</view> -->
         </btn>
-      </view>
-      <view style='flex:1;' wx:if="{{order.status == 3}}">
-        <btn bindtap='confirmComplete'>确认收货 / 消费</btn>
+        <btn bindtap='confirmBuy' style="flex:1;">付款</btn>
       </view>
   </view>
 </view>

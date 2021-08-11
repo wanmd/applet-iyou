@@ -61,7 +61,7 @@ Page({
       W = res[0].width
       H = res[0].height
       var ctx = wx.createCanvasContext('firstCanvas')
-      ctx.setFillStyle('#FFE200')
+      ctx.setFillStyle('#AB00FF')
       ctx.fillRect(0, 0, W, H)
       ctx.draw(true)
 

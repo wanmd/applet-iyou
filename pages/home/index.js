@@ -169,13 +169,18 @@ wx.Page({
                         wx.setStorageSync('storeInfo', user)
                     }
                     console.log(user);
-                    this.setData({ user: user, storeId })
+                    this.setData({ 
+                        user, 
+                        userInfo, 
+                        storeId 
+                    })
                 }
             })
         } else if(storeId > 0 && storeId == userInfo.user_id) {
             this.setData({ 
                 isSelf: true, 
                 user: userInfo, 
+                userInfo,
                 query: { storeId: storeId }, 
                 storeId: storeId, 
                 query2: { store_id: storeId }, 

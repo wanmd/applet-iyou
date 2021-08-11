@@ -50,9 +50,10 @@ wx.Page({
         console.log(this);
         const { user_id: storeId } = wx.getStorageSync('storeInfo')
 
-        this.get('iy/cart?storeId=' + storeId).then(res => {
+        this.get('iy/v2/carts?storeId=' + storeId).then(res => {
             if (showLoading) wx._hideLoading();
-            let cartList = res.data.list;
+            let cartList = [];
+            cartList.push(res.data.list)
             let goodsCount = 0;
             if (res.success) {
                 if (cartList.length == 0) {

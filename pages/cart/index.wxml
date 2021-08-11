@@ -30,7 +30,7 @@
               url='../applyAgent/index?storeId={{item.store_id}}' 
               hover-class="none"  
               class="slogan"
-              wx:if="{{!item.isAgent && item.store_agent_rule.slogan && item.store_agent_rule.slogan!=''}}"
+              wx:if="{{!item.isAgent}}"
             >
               <view class="link-CWDL">
                 <image class='image' src='/assets/images/DAILI@2x.png'  style="width:35rpx;height:35rpx;"></image>
@@ -105,12 +105,12 @@
                             style="width:68rpx;height:28rpx;margin-right:4rpx" 
                             catchtap="isAuth_"
                           />
-                          <text class="text c-262626">零售价￥</text>
-                          <text class='text-through c-ECBD75 fz-28'>{{it.sale_price}}</text>
+                          <text class="text c-CDCDCD">零售价￥</text>
+                          <text class='text-through c-CDCDCD fz-28'>{{it.sale_price}}</text>
                         </view>
                         <view>
-                          <text class="text c-262626">会员价￥</text>
-                          <text class="c-262626 fz-32 Bebas">{{it.member_price}}</text>
+                          <text class="text" style="color: #AB00FF">会员价￥</text>
+                          <text class="c-AB00FF fz-32 Bebas">{{it.member_price}}</text>
                         </view>
                       </view>
                       <view class="goods-price" wx:if="{{!item.isAgent && !userInfo.isVip}}">

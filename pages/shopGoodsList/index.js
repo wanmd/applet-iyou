@@ -134,6 +134,7 @@ wx.Page({
   // 购物袋
   getGouwuDai() {
     const { user_id: storeId } = wx.getStorageSync('storeInfo')
+    const { isVip } =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
     wx._showLoading();
     request.get('iy/carts', res => {
       wx._hideLoading();
@@ -154,6 +155,13 @@ wx.Page({
                   const image_urls = item.product.image_urls;
                   item.cover = image_urls.indexOf(',') ? image_urls.split(',')[0] : image_urls;
                   item.isAgent = isAgent;
+                  if (isAgent) {
+                    item.price = item.agent_price
+                  } else if(!isAgent && isVip) {
+                    item.price = item.member_price
+                  } else {
+                    item.price = item.group_price
+                  }
 
                   let display = '';
                   if(item.product_specs) {

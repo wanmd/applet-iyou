@@ -47,7 +47,7 @@ Page({
 
   submit() {
     let storeName = this.data.store.nickname
-    request.post('agent/apply', res => {
+    request.post('iy/agent/apply', res => {
       if (res.success) {
         let params = res.data.wxparam
         params.success = () => {

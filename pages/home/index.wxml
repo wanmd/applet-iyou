@@ -78,15 +78,15 @@
                             <!-- 一键转发 -->
                             <image class='shareicon' src='/assets/images/iconbg2@2x.png'>
                                 <view class="sharetext">
-                                    <view class="t__1 c-fff fz-12 Bebas {{item.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{item.fina_sale_price}}</view>
-                                    <view class="t__2 c-fff fz-8">分享赚收益</view>
+                                    <view class="t__1 c-fff fz-14 Bebas {{item.fina_sale_price.length > 5 ? 't__11' : ''}}">￥{{item.fina_sale_price}}</view>
+                                    <view class="t__2 c-fff fz-10">分享赚收益</view>
                                 </view>
                             </image>
                             
                         </view>
                         <block wx:if='{{editting == false}}'>
                             <view class='w-100p ta-l m-t-30 ellipsis1'>{{item.goods_name}}</view>
-                            <view class='m-tb-20 f-20 color-fbd49d w-100p plr-20 d-f jc-sb'>
+                            <view class='m-tb-20 f-20 color-fbd49d w-100p  d-f jc-sb ai-c'>
                                 <!-- 2一般用户 代理用户显示区别：
                                         2.1一般用户只显示拼单价
                                         2.2会员展示 公开报价（会员价）+划线拼单价
@@ -215,7 +215,7 @@
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
         <!-- 非会员不展示列表 -->
-        <view wx:if="{{!user.isVip}}" class="mask_notVip">
+        <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
             <view class="modal_notVip">
                 <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
                 <view class="modal_notVip_button" data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_">申请商家会员一键代发</view>
