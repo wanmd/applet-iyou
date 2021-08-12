@@ -6,7 +6,7 @@
 	</view>
 	<view class='container'>
 	  <block wx:if='{{currentType==1}}'>
-      <pagination class='relative relative1' id='pagination' pkName='chat_id' url='user/getVisitGoodsList' query='{{query}}' bind:load='load'>
+      <pagination class='relative relative1' id='pagination' pkName='chat_id' url='iy/user/getVisitGoodsList' query='{{query}}' bind:load='load'>
       <!-- <pagination url='user/getVisitGoodsList' pkName='id' showEmptyNoMore bindload='load'> -->
           <view class='car-goods-item border-b' wx:for='{{goodsList}}' data-item="{{item}}" bind:tap="toGoodsDetail"  wx:key="index">
             <!-- <img class='cover' thumb src='{{it.cover}}' bind:tap="toGoodsDetail" data-chatid="{{it.chat_id}}"></img> -->
@@ -39,7 +39,7 @@
       </pagination>
     </block>
 	  <block wx:if='{{currentType==2}}'>
-      <pagination id='pagination2' url='user/getVisitLeaseList' bind:load='load2'query='{{query2}}'>
+      <pagination id='pagination2' url='iy/user/getVisitLeaseList' bind:load='load2'query='{{query2}}'>
         <view class='renting-lists' wx:if='{{rentingList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;">
           <template is="renting" data="{{rentingList: rentingList,baseUrl: baseUrl,browse: true}}" />
         </view>
