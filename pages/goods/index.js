@@ -363,7 +363,7 @@ wx.Page({
     // 如果数组长度大于2，则截取前两个
     if (row.length > lineNumber) {
       var rowCut = row.slice(0, lineNumber);
-      console.log(rowCut)
+      // console.log(rowCut)
       var rowPart = '';
       if(rowCut.length<=1){
         rowPart = rowCut[0];
@@ -968,8 +968,13 @@ wx.Page({
 
     sceneStr += ('&storeId=' + this.data.chat.user.user_id)
 
+    let chatStr = '&chatId=' + this.data.chatId;
+    let productidStr = '&productid=' + this.data.product_id;
+    let shareUserStr = '&shareUserId=' + app.globalData.userInfo.user_id;
+
     // let path = '/pages/index/index?scene=' + encodeURIComponent(sceneStr)
-    let path = '/pages/home/index?scene=' + encodeURIComponent(sceneStr)+'chatId=' + encodeURIComponent(this.data.chatId) + "&shareUserId=" + app.globalData.userInfo.user_id
+    // let path = '/pages/home/index?scene=' + encodeURIComponent(sceneStr)+'chatId=' + encodeURIComponent(this.data.chatId) + "&shareUserId=" + app.globalData.userInfo.user_id
+    let path = '/pages/goods/index?scene=' + encodeURIComponent(sceneStr) + chatStr + productidStr + shareUserStr
     console.log(path);
     
     return {

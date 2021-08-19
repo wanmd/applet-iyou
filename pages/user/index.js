@@ -303,6 +303,20 @@ Component({
             wx.navigateTo({
               url: '/packages/pack-A/pages/webview/index?targetUrl=' + 'https://mp.weixin.qq.com/s/ozkfskEDeyri-0YOYQajeA',
             })
+        },
+        previewImage(e) {
+            let img = e.currentTarget.dataset.img;
+            let url = ALIYUN_URL + '/' + img;
+            // let urls = []
+            // let url = ALIYUN_URL + '/' + img
+            // for(let i=0;i<imgs.length;i++){
+            // let curl = ALIYUN_URL + '/' + imgs[i]
+            // urls.push(curl)
+            // }
+            wx.previewImage({
+                current: url,
+                urls: [url] 
+            })
         }
     },
     pageLifetimes: {

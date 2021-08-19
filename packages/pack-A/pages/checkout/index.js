@@ -422,9 +422,11 @@ Page({
   },
   daohang() {
     const { storeInfo } = this.data;
+    console.log(storeInfo);
+    
     wx.openLocation({
-      latitude: storeInfo.lat || 22.52291,//要去的纬度-地址
-      longitude: storeInfo.lng || 114.05454,//要去的经度-地址
+      latitude: Number(storeInfo.lat) || 22.52291,//要去的纬度-地址
+      longitude: Number(storeInfo.lng) || 114.05454,//要去的经度-地址
     })
   }
 })

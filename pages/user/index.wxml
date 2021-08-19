@@ -169,7 +169,7 @@
   <view class="contact-link-box h524" style="bottom: 560rpx;" data-content="{{storeInfo.wechat}}" catch:tap="copy">
     <view>
       <view class="buyer_user_code ta-c pt-70">
-        <image src="{{ALIYUN_URL}}/{{storeInfo.wx_qr_code}}" style="width:286rpx;height:290rpx"></image>
+        <image mode="aspectFill" bindtap="previewImage" data-img="{{storeInfo.wx_qr_code}}" src="{{ALIYUN_URL}}/{{storeInfo.wx_qr_code}}" style="width:286rpx;height:290rpx"></image>
       </view>
       <view class="buyer_name">{{storeInfo.nickname}}</view>
       <view class="link-tit">
