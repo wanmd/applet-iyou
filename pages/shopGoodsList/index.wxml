@@ -143,7 +143,7 @@
                         <text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
                     </view>
                     <view class="d-f ai-c" catchtap="showGoodsPopup" data-goods_id='{{tabItem.id}}'>
-                      <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
+                      <image class="w-40 h-40" src="/assets/images/index/shopcar2@3x.png" />
                     </view>
                   </view>
                 </view>

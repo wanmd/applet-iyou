@@ -110,7 +110,7 @@
         <image class='image' src='/assets/images/DAILI2@2x.png'  style="width:35rpx;height:35rpx;"></image>
         <!-- <el-image class='icon' width= "35rpx" height="31rpx" src='DAILI@2x.png'></el-image> -->
         <text>超值商家会员天天都是会员价！尊享全平台超值优惠！</text>
-        <image class='jiantou' src='/assets/images/jiantou.png' style="width:12rpx;height:22rpx;"></image>
+        <image class='jiantou' src='/assets/images/jiantou@3x.png' style="width:24rpx;height:24rpx;"></image>
       </view>
     </view>
     <!-- 视频 -->
