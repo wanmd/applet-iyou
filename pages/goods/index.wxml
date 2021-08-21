@@ -29,8 +29,6 @@
                 <view class="t__2">分享赚收益</view>
               </view>
           </view>
-          <!-- <el-image class='icon wh44' src='fenxiang3@2x.png' bindtap='toggleSelectShareType'></el-image> -->
-          <!-- <el-image class='icon wh44' src='share1.png' bindtap='toggleSelectShareType'></el-image> -->
         </view>
       </view>
       <view class="good_name_new mb-20" bind:longpress="longpress" data-content="{{chat.goods_name}}">{{chat.goods_name}}</view>
