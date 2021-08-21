@@ -956,5 +956,21 @@ wx.Page({
         this.setData({
             shareModal: !this.data.shareModal
         })
-    }
+    },
+    // 图片预览
+    previewImage(e) {
+        const { src } = e.currentTarget.dataset;
+        let picture = [src]
+        let current = src
+
+        wx.previewImage({
+            current,
+            urls: picture
+        })
+    },
+    navToXiaoXi() {
+        wx.navigateTo({
+          url: '/packages/pack-A/pages/webview/index?targetUrl=' + 'https://mp.weixin.qq.com/s/ozkfskEDeyri-0YOYQajeA',
+        })
+    },
 })
