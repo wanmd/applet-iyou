@@ -413,7 +413,7 @@ page {
   height: 60rpx;
   line-height: 60rpx;
   margin: 40rpx 0;
-  padding: 0 40rpx;
+  padding: 0 20rpx;
   box-sizing: border-box; 
   background: rgba(255, 0, 238, 0.08);
   position: relative;
@@ -424,7 +424,7 @@ page {
 }
 .link-CWDL .jiantou{
   position: absolute;
-  right: 40rpx;
+  right: 20rpx;
   top: 19rpx;
 }
 

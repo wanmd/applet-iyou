@@ -67,8 +67,6 @@ wx.Page({
     request.setMany(true)
     // 获取商品详情
     this.getGoodsDetail(this.data.chatId)
-    // 获取拼单列表
-    this.getGroupList()
     // 添加访问记录
     this.addVisitGoods(this.data.chatId)
     // 分享
@@ -153,7 +151,8 @@ wx.Page({
   getGoodsDetail(chatId){
     request.get('iy/chat/chat', res => {
       if(res.success){
-        let data = res.data
+        let data = res.data;
+        // 数据处理
         if(!(data.user instanceof Object)) {
           data.user = JSON.parse(data.user)
         }
@@ -189,6 +188,7 @@ wx.Page({
           storeCommonParam: storeCommonParam, 
           goods_id: data.product_id, 
           user: JSON.stringify(data.user),
+          product_id: data.product_id,
           service_setting
         })
         if(this.data.chat.chat_type==5 || (this.data.shareUserId!=''&&this.data.shareUserId!='0')){
@@ -196,6 +196,8 @@ wx.Page({
             padd_r270: true
           })
         }
+        // 获取拼单列表
+        this.getGroupList();
         // this.getStoreCommonParam(data.user.user_id)
       }else{
         if(res.code == 404){

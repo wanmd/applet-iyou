@@ -130,7 +130,7 @@ wx.Page({
                 this.new_initStoreInfo(storeId)
             }, 0)
         } else {
-            request.get('iy/mail/follows', res => {
+            this.get('iy/mail/follows', res => {
                 if (res.success) {
                     storeId = res.data.default.user_id || 0
                     let user = res.data.default.user

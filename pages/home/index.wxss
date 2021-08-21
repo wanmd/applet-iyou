@@ -885,7 +885,7 @@ page {
       margin-left: -300rpx;
   }
   .link-CWDL{
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
     display: flex;

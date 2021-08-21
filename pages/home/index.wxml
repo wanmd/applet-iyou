@@ -127,13 +127,13 @@
             <image 
                 class="pic_ad" mode="aspectFill" 
                 wx:if="{{!goodsList && !query.storeId}}" 
-                src="{{ALIYUN_URL}}/images/ime/zhizhao.png"
-                data-src="{{ALIYUN_URL}}/images/ime/zhizhao.png" 
+                src="{{ALIYUN_URL}}/images/iyou/home_ad.png"
+                data-src="{{ALIYUN_URL}}/images/iyou/home_ad.png" 
                 bindtap='previewImage'
             />
         </view>
         </pagination>
-        <view class="link-CWDL" bindtap="navToXiaoXi">
+        <view wx:if="{{!goodsList && !query.storeId}}" class="link-CWDL" bindtap="navToXiaoXi">
             <text>关注金维盛科技及时获取提现、活动、订单信息提醒</text>
             <image class='jiantou' src='/assets/images/jiantou@3x.png' style="width:24rpx;height:24rpx;"></image>
         </view>
