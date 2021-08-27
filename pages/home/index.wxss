@@ -877,12 +877,15 @@ page {
   .pic_notVip {
       width: 660rpx;
   }
+  .pic_ad_wrap {
+    position: absolute;
+    top: 200rpx;
+    width: 600rpx;
+    left: 50%;
+    margin-left: -300rpx;
+  }
   .pic_ad {
-      position: absolute;
-      top: 200rpx;
-      width: 600rpx;
-      left: 50%;
-      margin-left: -300rpx;
+      
   }
   .link-CWDL{
     position: fixed;

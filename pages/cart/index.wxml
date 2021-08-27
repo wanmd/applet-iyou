@@ -8,12 +8,12 @@
   <view class='container'>
       <block wx:if='{{currentType == 1}}'>
         <view class="car-wrap">
-          <view class="is_edit border-b" wx:if="{{cartList.length>0}}">
+          <view class="is_edit border-b" wx:if="{{cartList.cart && cartList.cart.length>0}}">
             <view class="{{isEdit?'car-cell-succ':'car-cell-edit'}}" bindtap='switchState'>
               {{isEdit?'完成':'管理'}}
             </view>
           </view>
-          <block wx:if="{{cartList.length>0}}" wx:for="{{cartList}}" wx:key="index">
+          <block wx:if="{{cartList.cart && cartList.cart.length>0}}" wx:for="{{cartList}}" wx:key="index">
             <view class="car-item" wx:if="{{userType !=2 }}">
               <view class="user-box">
                 <image class='avatar' src='{{item.store.avatar}}'></image>
@@ -155,10 +155,10 @@
             <view class="line10"></view>
           </block>
 
-          <empty wx:if="{{cartList.length==0}}" class='fixed xy'></empty>
+          <empty wx:if="{{cartList.cart && cartList.cart.length == 0}}" class='fixed xy'></empty>
         
           <!-- 合计，结算 -->
-          <view class="car-cell--fixed" style="z-index:10" wx:if="{{cartList.length>0}}">
+          <view class="car-cell--fixed" style="z-index:10" wx:if="{{cartList.cart && cartList.cart.length>0}}">
             <label class="allselect">
               <switch checked="{{allSelect}}" class="checkbox" type="checkbox" bindchange="allSelect" />
               全选

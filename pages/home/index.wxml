@@ -14,7 +14,7 @@
                         </symbol>
                     </view>
                     <view class="remark ellipsis1 p-t-10" wx:if="{{user.user_id}}">{{user.remark || '暂无签名'}}</view>
-                    <view class="remark ellipsis1 p-t-10" wx:if="{{!user.user_id}}">欢迎来到iYOU爱优</view>
+                    <view class="remark ellipsis1 p-t-10" wx:if="{{!user.user_id}}">当前没有关注的店</view>
                 </view>
             </avatar>
             <!-- <view class='absolute middle r-0 overflow'>
@@ -124,13 +124,15 @@
             </view>
             <empty wx:if="{{!goodsList && query.storeId}}" class='absolute xy' text='TA还没放商品呢'></empty>
             <!-- 广告图 -->
-            <image 
-                class="pic_ad" mode="aspectFill" 
-                wx:if="{{!goodsList && !query.storeId}}" 
-                src="{{ALIYUN_URL}}/images/iyou/home_ad.png"
-                data-src="{{ALIYUN_URL}}/images/iyou/home_ad.png" 
-                bindtap='previewImage'
-            />
+            <view class="pic_ad_wrap" wx:if="{{!goodsList && !query.storeId}}" >
+                <view class="c-FF00EE fz-24 ta-c">欢迎来到iYOU爱优</view>
+                <image 
+                    class="pic_ad" mode="aspectFill" 
+                    src="{{ALIYUN_URL}}/images/iyou/home_ad.png"
+                    data-src="{{ALIYUN_URL}}/images/iyou/home_ad.png" 
+                    bindtap='previewImage'
+                />
+            </view>
         </view>
         </pagination>
         <view wx:if="{{!goodsList && !query.storeId}}" class="link-CWDL" bindtap="navToXiaoXi">

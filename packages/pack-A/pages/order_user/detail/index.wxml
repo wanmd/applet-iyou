@@ -264,11 +264,12 @@
       
       <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
         wx:if="{{!order.is_group && order.status == 3 && isShowTime }}">
-        <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999'>
+        <btn style-text='background:rgba(242,242,242,1);color:#999999'>
           <view class="line1">卖/买家已确认发货/消费 ，还剩</view>
           <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}自动确认</view>
           <!-- <view class="line2">{{surplusObj.day}}天{{surplusObj.hou}}：{{surplusObj.min}}自动确认</view> -->
         </btn>
+        <btn style="flex:1;" catchtap='confirmCompleteApi'>确认收货/自提</btn>
       </view>
       <view style='flex:1;align-items: center;justify-content:space-between;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);' 
         wx:if="{{order.is_group && order.group_state == 1 && isShowTime }}">
