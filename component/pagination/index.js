@@ -76,7 +76,7 @@ Component({
           this.setData({ isMore: false })
         }
         console.log(this.properties.url)
-        if(this.properties.url == 'user/getNewChatList'){
+        if(this.properties.url == 'iy/user/getNewChatList'){
           this.triggerEvent('load', { list: resultList, page: page, isAgent: res.data.isAgent})
         }else{
           this.triggerEvent('load', { list: resultList, page: page})

@@ -132,7 +132,7 @@ wx.Page({
         } else {
             this.get('iy/mail/follows', res => {
                 if (res.success) {
-                    storeId = res.data.default.user_id || 0
+                    storeId = res.data.default.id || 0
                     let user = res.data.default.user
                     if (!(user instanceof Object)) {
                         user = JSON.parse(user)

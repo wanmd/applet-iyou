@@ -231,6 +231,12 @@ Page({
 
     request.post('iy/cart/toorder', res => {
       if(res.success){
+        // 别人打开拼团进入到订单提交页需要获取商家信息
+        if (!wx.getStorageSync('storeInfo')) {
+          getApp().globalData.STOREID = res.data.list[0].store_id;
+          wx.setStorageSync('storeInfo', JSON.parse(res.data.list[0].store[0]))
+        }
+
         let goodsCount = 0
         let amount = 0
         let remarks = []
@@ -395,9 +401,8 @@ Page({
     }
   },
   getStoreInfo() {
-    const { user_id: storeId } = wx.getStorageSync('storeInfo')
-    request.get('iy/store/' + storeId, res => {
-      console.log(res);
+    const { user_id: storeId } = wx.getStorageSync('storeInfo');
+    request.get('iy/store/' + (storeId || getApp().globalData.STOREID), res => {
       res.data.list.name = res.data.list.name.substring(0,10)
       this.setData({
         storeInfo:  res.data.list
@@ -412,7 +417,7 @@ Page({
   // 自提时间
   handlePickupTime(e) {
     this.setData({
-      'selfParams.pickupTime': e.detail.value
+      'selfParams.pickupTime': Math.floor(new Date(e.detail.value).getTime()/1000)
     })
   },
   navToAddress() {

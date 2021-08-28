@@ -126,7 +126,7 @@ class Request {
             networkError();
         };
         const { user_id: storeId } = wx.getStorageSync('storeInfo')
-        console.log('utils----------' );
+        // console.log('utils----------' );
         console.log(getApp().globalData.STOREID);
         console.log(wx.getStorageSync('storeInfo'));
         

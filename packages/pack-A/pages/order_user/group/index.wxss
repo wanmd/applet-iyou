@@ -34,7 +34,7 @@ page {
 .invite2 {
   background: #fff;
   color: #AB00FF;
-  border: 1rpx solid #AB00FF;
+  border: 2rpx solid #AB00FF;
 }
 
 .info {

@@ -102,6 +102,10 @@
       <view class='pull-right c-AB00FF f-28' data-content="{{order.order_no}}" catch:tap="copyTxt">复制</view>
     </view>
     <view class='m-t-20 overflow'>
+      <view class='pull-left'>购买备注：<text class='m-l-20'>{{order.remarks}}</text></view>
+      <view class='pull-right c-AB00FF f-28' data-content="{{order.remarks}}" catch:tap="copyTxt">复制</view>
+    </view>
+    <view class='m-t-20 overflow'>
       <view class='pull-left'>付款方式：<text class='m-l-20'>{{order.is_self_pay == 1 ? '自助支付' : '在线支付'}}</text></view>
       <view wx:if="{{order.self_pay_state}}" class='pull-right c-AB00FF f-28' catch:tap="toggleViewSelfPay">查看付款凭证</view>
     </view>
@@ -244,10 +248,17 @@
   <view class='bottom-fixed' style='display:flex;z-index:2'  wx:if='{{(order.status == 1 && isShowTime)||(order.status == 2 && isShowTime)||(order.status == 3 && isShowTime) || order.status == 3}}'>
       <block wx:if='{{ !order.is_group && order.status == 1 && isShowTime }}'>
         <view style='flex:1;align-items: center;justify-content:center;display: flex;flex-wrap: nowrap;flex-direction: row; background:rgba(242,242,242,1);'>
-          <btn style-text='width: 100%;background:rgba(242,242,242,1);color:#999999' bindtap='cancelOrder'>
+          <btn style-text='width: 400rpx;background:rgba(242,242,242,1);color:#999999' bindtap='cancelOrder'>
             <view class="line1">订单将于</view>
             <view class="line2">{{surplusObj.hou}}：{{surplusObj.min}}：{{surplusObj.sec}}自动取消</view>
           </btn>
+        </view>
+        <view style='flex:1;border-right: 1rpx solid #fff'>
+          <btn 
+            data-id="{{item.order_id}}" 
+            data-storeid="{{item.store.user_id}}" 
+            bindtap='toggleSelfPay'
+          >自助付款</btn>
         </view>
         <view style='flex:1'>
           <btn bindtap='confirmBuy'>付款</btn>
@@ -362,6 +373,8 @@
     </view>
   </view>
 </view>
+
+<selfPay wx:if="{{selfPayShow}}" storeid="{{storeid}}" bind:cancel="toggleSelfPay" bind:submit="handleSubmit" />
 
 
 

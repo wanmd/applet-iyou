@@ -52,11 +52,6 @@ Page({
       groupId: urlData.groupId,
       from: urlData.from
     })
-    // if (urlData.from == 'ordergroup') {
-
-    // } else {
-
-    // }
     this.getGroupInfo()
   },
 

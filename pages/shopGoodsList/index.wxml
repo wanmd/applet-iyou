@@ -130,15 +130,15 @@
                     3.此商家代理显示：
                     代理价（拿货价）+划线零售价 -->
                   <view class="saleBox w-360 d-f jc-sb ai-c ">
-                    <view wx:if="{{!tabItem.isAgent && !userInfo.isVip}}">
+                    <view wx:if="{{!tabItem.is_agent && !userInfo.isVip}}">
                         <text class='f-32 bold c-333 mr-20'>￥{{tabItem.group_price}}</text>
                         <text class='f-24 c-BFBFBF'>￥{{tabItem.member_price}}</text>
                     </view>
-                    <view wx:if="{{!tabItem.isAgent && userInfo.isVip}}">
+                    <view wx:if="{{!tabItem.is_agent && userInfo.isVip}}">
                         <text class='f-32 bold c-AB00FF mr-20'>￥{{tabItem.member_price}}</text>
                         <text class='f-24 td-l c-BFBFBF td-l'>￥{{tabItem.group_price}}</text>
                     </view>
-                    <view wx:if="{{tabItem.isAgent}}">
+                    <view wx:if="{{tabItem.is_agent}}">
                         <text class='f-32 bold c-ECBD75 mr-20'>￥{{tabItem.agent_price}}</text>
                         <text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
                     </view>

@@ -39,7 +39,7 @@
         </view>
       </view>
       <view class="fz-24 c-999 mt-54 mb-36 ta-c" wx:if="{{storeInfo.fee_ali_code && storeInfo.fee_wx_code}}">长按保存商家收款码</view>
-      <view class="fz-24 c-999 mt-54 mb-36 ta-c">
+      <view class="fz-24 c-999 mt-54 mb-36 ta-c" wx:if="{{!storeInfo.fee_wx_code || !storeInfo.fee_ali_code}}">
         该商家未设置<text wx:if="{{!storeInfo.fee_wx_code}}">微信收款码</text><text wx:if="{{!storeInfo.fee_ali_code}}">支付宝收款码</text>
       </view>
       <view class="ml-38 c-333 fz-32 lh-42 mb-20">上传付款凭证{{images.length}}/3</view>

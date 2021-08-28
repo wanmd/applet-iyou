@@ -21,20 +21,22 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "lazyloadPlaceholderEnable": false,
     "useMultiFrameRuntime": false,
-    "useApiHook": false,
-    "useApiHostProcess": false,
+    "useApiHook": true,
     "babelSetting": {
       "ignore": [],
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "useIsolateContext": true,
-    "userConfirmedBundleSwitch": false,
+    "useCompilerModule": true,
+    "userConfirmedUseCompilerModuleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "lazyloadPlaceholderEnable": false,
+    "useApiHostProcess": false,
+    "enableEngineNative": false,
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true,
     "showES6CompileOption": false
   },
@@ -771,7 +773,7 @@
           "id": 100,
           "name": "分享团",
           "pathName": "packages/pack-A/pages/order_user/group/index",
-          "query": "q=%3Ffrom%3Dcheckout%26groupId%3D5970",
+          "query": "q=%3Ffrom%3Dordergroup%26groupId%3D7607",
           "scene": null
         }
       ]

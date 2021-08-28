@@ -42,13 +42,19 @@
         <timer time="{{groupInfo.difftime}}" color="#333333" />后结束
       </view>
       <view class="mt-18 mb-42 fz-24 lh-44 c-3A3A3A">还差 1 位好友即可拼单成功，快去邀请TA吧！</view>
-      <button hover-class="none" class='invite mb-20' wx:if="{{from && (groupInfo.create_user_nickname != userInfo.nickname)}}" bindtap="handlePick">
+      <button hover-class="none" class='invite mb-20' 
+        wx:if="{{from && (groupInfo.create_user_nickname != userInfo.nickname)}}" 
+        bindtap="handlePick">
         跟拼主{{groupInfo.create_user_nickname}}一起拼单
       </button>
       <button hover-class="none" class='invite {{from ? "invite2" : ""}}' open-type='share'>
         邀请好友拼单
       </button>
-      <view class="fz-24 lh-44 c-3A3A3A" bindtap="navToOrderDetail">查看订单详情 ></view>
+      <view 
+        class="fz-24 lh-44 c-3A3A3A" 
+        bindtap="navToOrderDetail" 
+        wx:if="{{groupInfo.create_user_nickname == userInfo.nickname}}"
+      >查看订单详情 ></view>
     </view>
   </view>
 </view>
@@ -68,7 +74,7 @@
           <image src="/assets/images/index/groupwith@2x.png" class="w-64 h-58" />
       </view>
       <view class="">
-        <image src="{{groupInfo.receive_user_avatar}}" class="w-100rpx h-100rpx bdrs-50p ml--50" />
+        <image src="{{groupInfo.receive_user_avatar}}" class="w-100rpx h-100rpx" />
       </view>
       
     </view>

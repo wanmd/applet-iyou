@@ -1,4 +1,4 @@
-import { Request, toast, alert, copyText, parseTime } from '../../../../../utils/util.js'
+import { Request, toast, alert, copyText, parseTime, formatTime } from '../../../../../utils/util.js'
 import { ALIYUN_URL } from '../../../../../utils/config.js'
 let request = new Request()
 var numberInter = null
@@ -46,7 +46,8 @@ Page({
         amount_price: 0,
 
         verify_flag: false,
-        selfPay_pic: false
+        selfPay_pic: false,
+        selfPayShow: false
     },
 
     copy() {
@@ -278,6 +279,9 @@ Page({
                 order.complete_time = parseTime(order.complete_time)
                 order.diff_time = order.group_time + 86400 - Math.floor(new Date().getTime()/1000)
                 order.pay_picture = order.pay_picture && JSON.parse(order.pay_picture) || []
+                order.pickup_time = parseTime(order.pickup_time)
+
+               
 
                 let total_price = 0;
                 let vip_price = 0;
@@ -285,6 +289,15 @@ Page({
                 order.goods.forEach(item => {
                     total_price += app.formatDecimal(item.sale_price) * item.quantity;
                     vip_price += app.formatDecimal(item.member_price) * item.quantity;
+                    let display = '';
+                    if(item.product_specs) {
+                        let specs =JSON.parse(item.product_specs);
+                        for (let key in specs) {
+                            display +=  specs[key] + '/'
+                        }
+                        display = display.substr(0, display.length -1);
+                    }
+                    item.product_specs = display;
                 })
                 amount_price = order.amount;
 
@@ -348,7 +361,8 @@ Page({
         request.get('iy/store/' + storeId, res => {
           console.log(res);
           this.setData({
-            storeInfo:  res.data.list
+            storeInfo:  res.data.list,
+            storeid: storeId
           })
         }, {}).showLoading()
       },
@@ -465,6 +479,34 @@ Page({
         current: url,
         urls: urls 
         })
+    },
+    toggleSelfPay(e) {
+        this.setData({
+          selfPayShow: !this.data.selfPayShow,
+          selfpayId: this.data.orderId,
+          storeid: this.data.storeInfo.user_id,
+        })
+    },
+    handleSubmit(data) {
+        console.log(data);
+        let params = {
+            payPicture: data.detail.reduce((prev, next) => {
+                return prev.concat(next.file)
+            },[])
+        }
+        console.log(params);
+        request.post('iy/order/selfpay/' + this.data.selfpayId, res => {
+            if (res.success) {
+                toast('提交成功');
+                this.setData({
+                    selfPayShow: false,
+                }, () => {
+                    this.onLoad({ 'orderId': this.data.orderId, 'index': this.data.index });
+                })
+            } else {
+                toast(res.msg)
+            }
+        }, params)
     },
     /**
      * 用户点击右上角分享

@@ -53,7 +53,11 @@ wx.Page({
         this.get('iy/v2/carts?storeId=' + storeId).then(res => {
             if (showLoading) wx._hideLoading();
             let cartList = [];
-            cartList.push(res.data.list)
+            if (res.data.list && !res.data.list.cart.length) {
+                cartList = []
+            } else {
+                cartList.push(res.data.list)
+            }
             let goodsCount = 0;
             if (res.success) {
                 if (cartList.length == 0) {

@@ -125,7 +125,7 @@
             <empty wx:if="{{!goodsList && query.storeId}}" class='absolute xy' text='TA还没放商品呢'></empty>
             <!-- 广告图 -->
             <view class="pic_ad_wrap" wx:if="{{!goodsList && !query.storeId}}" >
-                <view class="c-FF00EE fz-24 ta-c">欢迎来到iYOU爱优</view>
+                <view class="c-FF00EE fz-24 ta-c mb-20">欢迎来到iYOU爱优</view>
                 <image 
                     class="pic_ad" mode="aspectFill" 
                     src="{{ALIYUN_URL}}/images/iyou/home_ad.png"
@@ -192,8 +192,8 @@
                                 2.3此商家代理显示代理价+划线拼单价，按照代理价结算； -->
                                 <view class='a' wx:if='{{isAgent == 1}}'>
                                     <view class='price1'>
-                                        <text class="c-AB00FF mr-8 fz-24 Bebas">￥ {{chat.agent_price}}</text>
-                                        <text class="c-000 fz-20 td-l Bebas">￥ {{chat.group_price}}</text>
+                                        <text class="c-ECBD75 mr-8 fz-32 Bebas">￥ {{chat.agent_price}}</text>
+                                        <text class="c-A5A5A5 fz-24 td-l Bebas">￥ {{chat.group_price}}</text>
                                     </view>
                                     <view catchtap="showGoodsPopup" data-goods_id='{{chat.product_id}}'>
                                         <image class="w-34 h-34" src="/assets/images/index/shopcar2.png" />
