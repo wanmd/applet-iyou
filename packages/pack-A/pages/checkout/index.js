@@ -261,29 +261,31 @@ Page({
             if(v.isAgent) {
               user__isAgent = true;
               isAgent__amount += (item.quantity * app.formatDecimal(item.agent_price))*100
-              amount += (~~item.quantity * app.formatDecimal(item.agent_price))*100
+              // amount += (~~item.quantity * app.formatDecimal(item.agent_price))*100
             }else if(!v.isAgent && this.data.userInfo.isVip==1){
               isVip__amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
-              amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
+              // amount += (~~item.quantity * app.formatDecimal(item.member_price))*100
             }else if(!v.isAgent && !this.data.userInfo.isVip){
               if (opt.isGroup == 1) {//拼团
                 isGroup__amount += (item.quantity * app.formatDecimal(item.group_price))*100
-                amount += (~~item.quantity * app.formatDecimal(item.group_price))*100
+                // amount += (~~item.quantity * app.formatDecimal(item.group_price))*100
               } else {
                 isGroup__amount += (item.quantity * app.formatDecimal(item.sale_price))*100
-                amount += (~~item.quantity * app.formatDecimal(item.sale_price))*100
+                // amount += (~~item.quantity * app.formatDecimal(item.sale_price))*100
               }
             }
+            amount += (~~item.quantity * app.formatDecimal(item.price))*100
           })
         })
+        
         isAgent__amount = isAgent__amount/100;
         isVip__amount = isVip__amount/100;
         isGroup__amount = isGroup__amount/100;
-        amount = amount/100;
+        // amount = amount/100;
         this.setData({
             cartList: res.data.list, 
             goodsCount: goodsCount, 
-            amount: amount, 
+            amount: amount/100, 
             remarks: remarks, 
             orderNo: res.data.orderNo,
             user__isAgent: user__isAgent,

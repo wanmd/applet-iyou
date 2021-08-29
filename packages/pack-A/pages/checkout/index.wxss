@@ -182,8 +182,8 @@ page{
 
 .hj{
   display: inline-block;
-  width: 200rpx;
-  text-align: right;
+  max-width: 400rpx;
+  text-align: center;
   /*line-height: 20px;*/
 }
 /*.line-96 .hj,*/

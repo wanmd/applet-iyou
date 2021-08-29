@@ -234,15 +234,11 @@
 <view class='cart-bottom p-l'>
   <view class='wrap'>
     <view class='wrap__1 {{user__isAgent||userInfo.isVip==1 ? "" : "line-96"}}'>
-      <text class="hj">共 {{goodsCount}} 件，合计：</text>
-      <text 
-        class='{{user__isAgent||userInfo.isVip==1 ? "color-333333" : "color-f9696c"}} flex__1'
-      >
-        ￥<text 
-            class='Bebas {{user__isAgent||userInfo.isVip==1 ? "f-28" : "f-36"}}'
-          >{{amount}}
-        </text>
-    </text>
+      <view class="hj">共 {{goodsCount}} 件，合计：<text 
+          class='{{user__isAgent||userInfo.isVip==1 ? "color-333333" : "color-f9696c"}} flex__1'
+         >￥<text class='Bebas {{user__isAgent||userInfo.isVip==1 ? "f-28" : "f-36"}}' >{{amount}}</text>
+         </text>
+      </view>
     </view>
     <!-- <view class='wrap__2' wx:if="{{user__isAgent}}">
       <text class="hj">代理价合计：</text>

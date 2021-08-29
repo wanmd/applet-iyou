@@ -158,7 +158,7 @@
           <empty wx:if="{{cartList.length == 0}}" class='fixed xy'></empty>
         
           <!-- 合计，结算 -->
-          <view class="car-cell--fixed" style="z-index:10" wx:if="{{cartList.length>0}}">
+          <view class="car-cell--fixed" style="z-index:999" wx:if="{{cartList.length>0}}">
             <label class="allselect">
               <switch checked="{{allSelect}}" class="checkbox" type="checkbox" bindchange="allSelect" />
               全选
