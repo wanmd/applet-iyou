@@ -274,7 +274,7 @@ Page({
                 // amount += (~~item.quantity * app.formatDecimal(item.sale_price))*100
               }
             }
-            amount += (~~item.quantity * app.formatDecimal(item.price))*100
+            amount += (item.price)*100
           })
         })
         

@@ -130,18 +130,24 @@
                     3.此商家代理显示：
                     代理价（拿货价）+划线零售价 -->
                   <view class="saleBox w-360 d-f jc-sb ai-c ">
-                    <view wx:if="{{!tabItem.is_agent && !userInfo.isVip}}">
+                    <view class="d-f ai-c">
                         <text class='f-32 bold c-333 mr-20'>￥{{tabItem.group_price}}</text>
+                        <el-image 
+                          data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_"
+                          class="vip mr-10" 
+                          src='vip/vip_label@2x.png' 
+                          style='width:72rpx;height:34rpx;display: inline-block;'
+                        ></el-image>
                         <text class='f-24 c-BFBFBF'>￥{{tabItem.member_price}}</text>
                     </view>
-                    <view wx:if="{{!tabItem.is_agent && userInfo.isVip}}">
+                    <!-- <view wx:if="{{!tabItem.is_agent && userInfo.isVip}}">
                         <text class='f-32 bold c-AB00FF mr-20'>￥{{tabItem.member_price}}</text>
                         <text class='f-24 td-l c-BFBFBF td-l'>￥{{tabItem.group_price}}</text>
                     </view>
                     <view wx:if="{{tabItem.is_agent}}">
                         <text class='f-32 bold c-ECBD75 mr-20'>￥{{tabItem.agent_price}}</text>
                         <text class='f-24 td-l c-BFBFBF'>￥{{tabItem.group_price}}</text>
-                    </view>
+                    </view> -->
                     <view class="d-f ai-c" catchtap="showGoodsPopup" data-goods_id='{{tabItem.id}}'>
                       <image class="w-40 h-40" src="/assets/images/index/shopcar2@3x.png" />
                     </view>

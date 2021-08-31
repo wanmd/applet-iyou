@@ -105,7 +105,7 @@
       <view class='pull-left'>购买备注：<text class='m-l-20'>{{order.remarks}}</text></view>
       <view class='pull-right c-AB00FF f-28' data-content="{{order.remarks}}" catch:tap="copyTxt">复制</view>
     </view>
-    <view class='m-t-20 overflow'>
+    <view class='m-t-20 overflow' wx:if="{{order.status > 1}}">
       <view class='pull-left'>付款方式：<text class='m-l-20'>{{order.is_self_pay == 1 ? '自助支付' : '在线支付'}}</text></view>
       <view wx:if="{{order.self_pay_state}}" class='pull-right c-AB00FF f-28' catch:tap="toggleViewSelfPay">查看付款凭证</view>
     </view>

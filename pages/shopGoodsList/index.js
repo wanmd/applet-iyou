@@ -505,7 +505,20 @@ wx.Page({
       url: '../../packages/pack-A/pages/checkout/index?cartIds=' + cartIds + '&type=1'
     });
   },
-
+  isAuth_(e) {
+    if(!this.isToLogin()) return;
+    app.requireLogin(e.currentTarget.dataset.url)
+  },
+  isToLogin() {
+    let userInfo = wx._getStorageSync('userinfo')
+    if (!userInfo.nickname || !userInfo.isAuth) {
+        wx._setStorageSync("nav_key", 'swit')
+        app.requireLogin('/pages/index/index')
+        return false;
+    } else {
+        return true;
+    }
+},
   /**
    * 生命周期函数--监听页面隐藏
    */
