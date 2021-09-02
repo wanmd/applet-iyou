@@ -52,7 +52,8 @@ Page({
       groupId: urlData.groupId,
       from: urlData.from
     })
-    this.getGroupInfo()
+    // 获取拼团信息
+    this.getGroupInfo();
   },
 
   /**
@@ -70,6 +71,7 @@ Page({
   },
 
   getGroupInfo() {
+    request.setMany(true);
     request.get('iy/productgroup/' + this.data.groupId, res => {
       if(res.success){
         res.data.list.difftime = res.data.list.created_at + 86400 - Math.floor(new Date().getTime()/1000)
@@ -86,8 +88,21 @@ Page({
           groupInfo: res.data.list,
           product_specs: display
         })
+        // 设置关注用户
+        this.setVisitFollow(res.data.create_user_id);
+        // 设置关注店铺
+        this.setVisitFollow(res.data.storeId)
       }
     }).showLoading()
+  },
+
+  // 设置关注用户
+  setVisitFollow(userId) {
+    request.post('iy/visit/follow', res => {
+        if (res.success) {
+          console.log('关注成功！');
+        }
+    }, { userId: userId })
   },
 
   handlePick() {
