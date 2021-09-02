@@ -5,6 +5,7 @@ wx.Page({
     selectedNav : 1,
     // urls: ['mail/follows', 'mail/fans', 'mail/agent', 'mail/merchant'],
     urls: ['iy/mail/follows'],
+    query: { isstore: 1 },
     topNavs: [
       // { type: 1, name: '关注的店' }, 
       // { type: 2, name: '粉丝' }, 

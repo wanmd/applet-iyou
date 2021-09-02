@@ -3,10 +3,10 @@
     <view wx:for='{{topNavs}}' wx:key="index" class='item {{selectedNav == item.type ? "current" : ""}}' data-type='{{item.type}}' bindtap='toggleType'>{{item.name}}</view>
   </view>
 </view>
-<pagination id='mailpagination' url='{{urls[selectedNav - 1]}}' pkName='id' bind:load='load'>
+<pagination id='mailpagination' url='{{urls[selectedNav - 1]}}' pkName='id' bind:load='load' query="{{query}}">
   <view class='list' wx:if='{{userList !== null}}'>
     <view class='item p-l-r' wx:for='{{userList}}' wx:key="index">
-      <cell height='140rpx' bindtap="changeStore" data-user="{{item.user}}">
+      <cell wx:if="{{item.user}}" height='140rpx' bindtap="changeStore" data-user="{{item.user}}">
         <view class="title" slot='title'>
           <avatar size='80rpx' src='{{item.user.avatar || "../../assets/images/avatar.png"}}'>
           <!-- <el-image wx:if="{{item.isVip}}" class="vip" src='vip/vip.png' style='width:30rpx;display: inline-block;'></el-image> -->

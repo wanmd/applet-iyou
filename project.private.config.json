@@ -756,6 +756,12 @@
           "pathName": "pages/mailList/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "分享团",
+          "pathName": "packages/pack-A/pages/order_user/group/index",
+          "query": "q=%3Ffrom%3Dordergroup%26groupId%3D7607",
+          "scene": null
         }
       ]
     }
