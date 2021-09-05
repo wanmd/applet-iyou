@@ -381,9 +381,14 @@ wx.Page({
 
         if (rows.length > 0) {
             let offerList = this.data.offerList;
-            rows.forEach(v => {
+            rows.forEach((v, index) => {
                 v.update_time = this.splitTime(v.update_time);
-                offerList.push(v)
+                offerList.push(v);
+                if (!v) {
+                    this.setData({
+                        isAgent: v.isAgent
+                    })
+                }
             })
             // 非会员进行数据截取
             this.setData({

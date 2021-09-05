@@ -232,14 +232,20 @@
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <!-- 报价 -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
-        <!-- 非会员不展示列表 -->
-        <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
+        <!-- 非会员且不是代理不展示列表 -->
+        <view wx:if="{{!userInfo.isVip && !isAgent}}" class="mask_notVip">
             <view class="modal_notVip">
                 <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
                 <view class="modal_notVip_button" data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_">申请商家会员一键代发</view>
             </view>
         </view>
-        <pagination id='pagination3' class='relative' url='iy/chat/getQuoteList' query='{{query3}}' bind:load='load3'>
+        <pagination 
+            id='pagination3' 
+            class='relative' 
+            url='iy/chat/getQuoteList' 
+            query='{{query3}}' 
+            bind:load='load3'
+        >
             <view class="relative1_box">
                 <view class="search_wrap jc-sb">
                     <view class="d-f ai-c">
@@ -281,7 +287,10 @@
                 </view> 
                 <!-- <view class='goods-list' wx:if='{{goodsList !== null}}' style="padding-bottom: 120rpx;padding-top: 0;margin-top: 0;"> -->
                 <!-- <navigator class='item' wx:for='{{goodsList}}' wx:key='index' url='/pages/goods/index?chatId={{item.chat_id}}' hover-class="none"> -->
-                <view class='{{userInfo.isVip ? "offer-list pb-100" : "offer-list"}}' wx:if='{{offerList !== null}}'>
+                <view 
+                    wx:if='{{offerList !== null}}'
+                    class='{{userInfo.isVip ? "offer-list pb-100" : "offer-list"}}' 
+                >
                     <view class='item' wx:for='{{offerList}}' wx:key='chat_id'>
                         <!-- 日期 -->
                         <view class="td td1">
@@ -339,7 +348,8 @@
                 <!-- </view> -->
                 <!-- <empty wx:else class='absolute xy' text='TA还没放商品呢'></empty> -->
             </view>
-            <view class="btn-quote" bindtap="initPricePicture">一键生成今日报价单</view>
+            <!-- 按钮只有商家才有这个按钮 -->
+            <view wx:if="{{userInfo.user_type == 2 && isSelf}}" class="btn-quote" bindtap="initPricePicture">一键生成今日报价单</view>
         </pagination>
     </view>
     <!-- 产品图集 -->
