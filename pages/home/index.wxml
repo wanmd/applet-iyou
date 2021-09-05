@@ -1,5 +1,5 @@
 <view class="page {{selectedNav!=1 ? 'bg_fff': ''}}">
-    <!-- <view class='fixed w-100' style='left:0;top:0;z-index:2;height: {{topHeight + 100}}px;background-image:url({{ALIYUN_URL}}/{{userInfo.store_background}});background-size: cover'> -->
+    <!-- 顶部 -->
     <view 
         class='fixed w-100' 
         style='left:0;top:0;z-index:5;height: {{topHeight + 100}}px;background-image:url({{ALIYUN_URL + "/"+ (user.store_background || "images/iyou/emptyStore.png")}});background-size: cover;'>
@@ -35,6 +35,7 @@
             </view>
         </view>
     </view>
+    <!-- 首页 -->
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==1}}'>
         <pagination  class='relative relative1' id='pagination' pkName='chat_id' url='iy/store/goods' query='{{query}}' bind:load='load'>
         <view class="relative1_box bgc-fff {{goodsList == null ? 'pb-600' : ''}}">
@@ -140,6 +141,7 @@
             <image class='jiantou' src='/assets/images/jiantou@3x.png' style="width:24rpx;height:24rpx;"></image>
         </view>
     </view>
+    <!-- 上新 -->
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==2}}'>
         <pagination id='pagination2' url='iy/user/getNewChatList' query='{{query2}}' pkName='chat_id' bind:load='load1'>
             <view class="search_wrap jc-sb">
@@ -228,6 +230,7 @@
         </pagination>
     </view>
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
+    <!-- 报价 -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
         <!-- 非会员不展示列表 -->
         <view wx:if="{{!userInfo.isVip}}" class="mask_notVip">
@@ -336,8 +339,10 @@
                 <!-- </view> -->
                 <!-- <empty wx:else class='absolute xy' text='TA还没放商品呢'></empty> -->
             </view>
+            <view class="btn-quote" bindtap="initPricePicture">一键生成今日报价单</view>
         </pagination>
     </view>
+    <!-- 产品图集 -->
     <view style="margin-top:{{topHeight + 10}}px" wx:if='{{selectedNav==4}}'>
         <pagination id='pagination4' url='iy/chat/record' query='{{query4}}' pkName='chat_id' bind:load='load4'>
             <view class="search_wrap jc-sb mb-20">
@@ -551,5 +556,23 @@
         <view class='name'>店铺卡</view>
       </view>
     </view>
+  </view>
+</view>
+
+<!-- 今日报价单 -->
+<view wx:if='{{showCard}}' bindtap='toggleCardHide'>
+  <view style='position:fixed;z-index:9;background:rgba(0,0,0,0.5);height:100%;width:100%;left:0;top:0;' ></view>
+  <view class='card-modal'>
+    <canvas 
+      id='canvas-modal' 
+      canvas-id="firstCanvas" 
+      style='width:696rpx;height:1076rpx;'
+    ></canvas>
+    <button 
+        hover-class="none" 
+        style='background:#AB00FF;color:#fff;padding:30rpx 0rpx;width:512rpx;margin:40rpx auto 0rpx auto;border-radius: 48px;' 
+        catchtap='saveCard'>
+        保存图片分享好友/群/朋友圈
+    </button>
   </view>
 </view>

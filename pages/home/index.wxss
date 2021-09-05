@@ -918,3 +918,19 @@ page {
   .link-CWDL text{
     vertical-align: middle;
   }
+  .btn-quote {
+    position: fixed;
+    left: 156rpx;
+    bottom: 24rpx;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36rpx;
+    line-height: 48rpx;
+    color: #FFFFFF;
+    width: 438rpx;
+    height: 92rpx;
+    background: #AB00FF;
+    opacity: 1;
+    border-radius: 46rpx;
+  }
