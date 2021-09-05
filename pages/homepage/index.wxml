@@ -57,7 +57,7 @@
 </view> -->
 <view class='fixed-bottom overflow {{selectedNav == 2 ? "hide" : ""}}' style='height:96rpx;' wx:if="{{false}}">
 	<view class='flex'>
-		<icon-text-flex class=" flex__it" icon='{{followed ? "ic_dynamics_praised.png" : "ic_guanzhu@2x.png"}}' bindtap='toggleFollow'>{{followed ? '已关注' : '关注TA'}}</icon-text-flex>
+		<!-- <icon-text-flex class=" flex__it" icon='{{followed ? "ic_dynamics_praised.png" : "ic_guanzhu@2x.png"}}' bindtap='toggleFollow'>{{followed ? '已关注' : '关注TA'}}</icon-text-flex> -->
 		<view class=' flex__it pull-left' width='' catch:tap="contact" url='/pages/contact/index?userId={{userId}}'>
 			<icon-text-flex icon='lianxiTA1@2x.png'>联系TA</icon-text-flex>
 		</view>

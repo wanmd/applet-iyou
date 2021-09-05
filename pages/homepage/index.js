@@ -45,7 +45,7 @@ wx.Page({
   },
   getInfo() {
     let userId = this.data.userId
-    this.get('/visit/homepage', { userId }).then(res => {
+    this.get('iy/visit/homepage', { userId }).then(res => {
       if (res.code == 200 && res.success) {
         let data = res.data;
         let user = res.data.user;
@@ -201,7 +201,7 @@ wx.Page({
   },
   getConcentInfo(userId) {
     request.get(
-      'visit/contactInfo',
+      'iy/visit/contactInfo',
       res => {
         if (res.success) {
           this.setData({
