@@ -337,3 +337,10 @@ page{
 .pt-70 {
   padding-top: 70rpx;
 }
+
+.copyright {
+  margin-top: 112rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

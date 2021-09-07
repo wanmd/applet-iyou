@@ -55,14 +55,14 @@
 	</view>
   	<empty wx:else class='absolute xy' style="padding-top: 400rpx;"></empty>
 </view> -->
-<view class='fixed-bottom overflow {{selectedNav == 2 ? "hide" : ""}}' style='height:96rpx;' wx:if="{{false}}">
+<view class='fixed-bottom overflow {{selectedNav == 2 ? "hide" : ""}}' style='height:96rpx;'>
 	<view class='flex'>
 		<!-- <icon-text-flex class=" flex__it" icon='{{followed ? "ic_dynamics_praised.png" : "ic_guanzhu@2x.png"}}' bindtap='toggleFollow'>{{followed ? '已关注' : '关注TA'}}</icon-text-flex> -->
 		<view class=' flex__it pull-left' width='' catch:tap="contact" url='/pages/contact/index?userId={{userId}}'>
 			<icon-text-flex icon='lianxiTA1@2x.png'>联系TA</icon-text-flex>
 		</view>
 		<view wx:if='{{user.user_type == 2}}' class='flex_ac flex__it pull-right bold'>
-			<view class="flex-it" wx:if="{{!isAgent}}"><el-image wx:key="index" class='thumb' thumb src='DAILI@2x.png'></el-image></view>
+			<!-- <view class="flex-it" wx:if="{{!isAgent}}"><el-image wx:key="index" class='thumb' thumb src='DAILI@2x.png'></el-image></view> -->
 			<btn bindtap='navTo' class="flex__it" disabled='{{isAgent}}'>{{isAgent ? '已是TA的代理' : '申请代理'}}</btn>
 		</view>
 	</view>

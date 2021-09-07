@@ -95,7 +95,7 @@ page{
   flex: 1;
 }
 .flex_ac{
-  background-color: #FFE200
+  background-color: #AB00FF
 }
 .flex-it{
   margin-left: 15rpx;
