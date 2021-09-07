@@ -1,4 +1,4 @@
-import { Request, toast, formatDate, alert, fileUrl, rpxTopx, maskNumber } from '../../utils/util.js'
+import { Request, toast, formatDate, alert, fileUrl, rpxTopx, maskNumber, queryParams } from '../../utils/util.js'
 import { ALIYUN_URL } from '../../utils/config.js'
 let W, H = 0
 let request = new Request()
@@ -46,6 +46,10 @@ wx.Page({
   onLoad: function (opts) {
     console.log("goods=======opts");
     console.log(opts);
+    let chatId = opts.chatId;
+    if (opts.scene) {
+      chatId = queryParams(opts.scene).ci;
+    }
     let pages = getCurrentPages()
     let page = pages[pages.length - 1]
     let path = '/'+page.route+'?flag=goods'
@@ -58,11 +62,10 @@ wx.Page({
       path+= '&shareUserId='+opts.shareUserId
       app.wxlogin()
     }
-    console.log(path);
     this.setData({
-      path:path,
-      chatId:opts.chatId,
-      productid:opts.productid
+      path,
+      chatId,
+      product_id:opts.productid
     })
     request.setMany(true)
     // 获取商品详情
@@ -130,7 +133,7 @@ wx.Page({
       }else{
         toast(res.msg)
       }
-    }, { productid: this.data.productid }).showLoading()
+    }, { productid: this.data.product_id }).showLoading()
   },
   getStoreCommonParam(user_id){
     // request.get('user/getStoreCommonParam', res => {
