@@ -75,6 +75,7 @@ wx.Page({
      * 生命周期函数--监听页面加载
      */
     onLoad: function(options) {
+        console.log(options);
         app.globalData.STOREID = options.storeId || options.si;
         // 设置跳转报价单
         options = queryParams(options.scene);
@@ -116,6 +117,7 @@ wx.Page({
         // 2.如果路由上没有，那就从上次的浏览历史中找商家
         // 3.如果也没有浏览历史，那就请求接口获取默认商家
         let storeId =  STOREID || (wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : null);
+        let userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
         
         if (storeId) {
             let query = this.data.query;
@@ -127,7 +129,13 @@ wx.Page({
 
             query3.store_id = storeId;
             query4.store_id = storeId;
-            this.setData({ query: query, query2: query2, query3: query3, query4: query4 })
+            this.setData({ 
+                query: query, 
+                query2: query2, 
+                query3: query3, 
+                query4: query4,
+                isSelf: storeId == userInfo.user_id, 
+            })
 
              // 有可能这时候login还没有结束
             setTimeout(() => {
@@ -162,6 +170,7 @@ wx.Page({
         console.log('new_initStoreInfo');
         console.log(storeId);
         console.log(userInfo);
+        console.log(userInfo.user_id);
         
         if (storeId > 0 && storeId != userInfo.user_id) {
             request.setMany(true)
@@ -390,9 +399,9 @@ wx.Page({
                     })
                 }
             })
-            // 非会员进行数据截取
+            // 非会员非代理进行数据截取
             this.setData({
-                offerList: userInfo.isVip ? offerList : offerList.slice(0,3),
+                offerList: (userInfo.isVip && this.data.isAgent) ? offerList : offerList.slice(0,3),
             })
         }
     },
@@ -841,18 +850,22 @@ wx.Page({
      * 用户点击右上角分享
      */
     onShareAppMessage: function() {
-        let pages = getCurrentPages()
-        let page = pages[pages.length - 1]
-        let to = encodeURIComponent(page.route + '?storeId=' + this.data.storeId)
-        console.log(this.data.storeId);
-        console.log(to);
+        // let pages = getCurrentPages()
+        // let page = pages[pages.length - 1]
+        // let to = encodeURIComponent(page.route + '?storeId=' + this.data.storeId)
+        // console.log(this.data.storeId);
+        // console.log(to);
+        // let uesr_id = app.globalData.userInfo.user_id
+        // let path = '/pages/home/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
+        // console.log(path);
         let uesr_id = app.globalData.userInfo.user_id
-        let path = '/pages/home/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
-        console.log(path);
+        let data = encodeURIComponent('?f=s&fi=' + uesr_id)
         
         let title = this.data.isSelf ? '爱优（哎油）哦！这家店不错哦…分享给你！' : '爱优（哎油）哦！这家店不错哦…分享给你！'
+        console.log('/pages/home/index?scene=' + data + '&storeId=' + this.data.storeId + '&fromUserId=' + uesr_id);
+
         return {
-            path: path,
+            path: '/pages/home/index?scene=' + data + '&storeId=' + this.data.storeId + '&fromUserId=' + uesr_id,
             title: title
         }
     },
@@ -1214,4 +1227,31 @@ wx.Page({
         })
 
     },
+    // 复制报价信息
+    copyPrice() {
+        console.log(this.data.offerList);
+
+        let str = '';
+        this.data.offerList.forEach(item => {
+            const { content } = item;
+            str += `${content};` +"\n";
+        })
+        if (str == '') {
+            return;
+        }
+        wx.setClipboardData({
+            data: str,
+            success(res) {
+                wx.showToast({
+                    title: '全部文字报价信息已复制',
+                    duration: 3000
+                })
+                wx.getClipboardData({
+                    success(res) {
+                        console.log(res.data); // data
+                    }
+                });
+            }
+        });
+    }
 })

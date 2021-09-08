@@ -232,8 +232,8 @@
     <!-- <pagination id='pagination3' class='relative' wx:if='{{selectedNav==3&&userInfo&&userInfo.user_type == 2}}' url='chat/getQuoteList' query='{{query3}}' bind:load='load3'> -->
     <!-- 报价 -->
     <view style="margin-top:{{topHeight + 10}}px; position: relative" wx:if='{{selectedNav==3}}'>
-        <!-- 非会员且不是代理不展示列表 -->
-        <view wx:if="{{!userInfo.isVip && !isAgent}}" class="mask_notVip">
+        <!-- 非会员且不是代理不展示列表 展示申请商家会员 但是如果自己是商家就不应该展示-->
+        <view wx:if="{{!userInfo.isVip && !isAgent && !isSelf}}" class="mask_notVip">
             <view class="modal_notVip">
                 <view class="ta-c mt-84"><image class="pic_notVip" style="width:600rpx;height:600rpx" mode="aspectFit" src="{{ALIYUN_URL + '/58465965c3c658a8f4c3f6de706765b5.png'}}" /></view>
                 <view class="modal_notVip_button" data-url='../../packages/pack-A/pages/vip/index' catchtap="isAuth_">申请商家会员一键代发</view>
@@ -348,8 +348,9 @@
                 <!-- </view> -->
                 <!-- <empty wx:else class='absolute xy' text='TA还没放商品呢'></empty> -->
             </view>
-            <!-- 按钮只有商家才有这个按钮 -->
+            <!-- 按钮只有商家自己才有这个按钮 -->
             <view wx:if="{{userInfo.user_type == 2 && isSelf}}" class="btn-quote" bindtap="initPricePicture">一键生成今日报价单</view>
+            <view wx:if="{{isAgent && !isSelf}}" class="btn-quote" bindtap="copyPrice">一键复制商家报价</view>
         </pagination>
     </view>
     <!-- 产品图集 -->

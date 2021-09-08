@@ -9,18 +9,16 @@ App({
     onLaunch: function(options) {
         this.autoUpdate()
         console.log('onLaunch');
-        console.log("options=========");
+        console.log("options=========start");
         console.log(options);
-        const ime_storeId = options.query.storeId || options.query.si;
-        if (ime_storeId) {
-            this.globalData.ime_storeId = ime_storeId;
-        }
+        
         let inviter = options.query.inviter || 0;
-        // console.log('inviter=======', inviter)
-        // console.log("options=========");
-        // console.log(options);
         let option = options.query;
         let scene = options.query.scene;
+        // 设置当前浏览店铺的id
+        let storeId = options.query.storeId || options.query.si || 0;
+        this.globalData.STOREID = storeId;
+
         if (scene) {
             scene = decodeURIComponent(scene);
             scene = queryParams(scene);
@@ -174,7 +172,7 @@ App({
         wx.login({
             success(res) {
                 if (res.code) {
-                    console.log(res.code);
+                    // console.log(res.code);
                     wx.promise
                         .post('iy/login', { code: res.code, inviter: inviter })
                         .then(result => {

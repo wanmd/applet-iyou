@@ -132,9 +132,9 @@ class Request {
             networkError();
         };
         const { user_id: storeId } = wx.getStorageSync('storeInfo')
-        // console.log('utils----------' );
+        console.log('utils----------getApp().globalData.STOREID' );
         console.log(getApp().globalData.STOREID);
-        console.log(wx.getStorageSync('storeInfo'));
+        // console.log(wx.getStorageSync('storeInfo'));
         
         // config.data = data;
         config.data = Object.assign({}, data, { storeId: getApp().globalData.STOREID || storeId });

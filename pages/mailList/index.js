@@ -43,6 +43,15 @@ wx.Page({
         }
         row.user = JSON.parse(row.user);
         userList.push(row)
+        // userList.push({
+        //   user_id: 908366,
+        //   id: 2368,
+        //   isAgent: false,
+        //   isMerchant: false,
+        //   isVip: true,
+        //   user: { user_id: 908366 },
+        //   storeId: 0
+        // })
       })
 
       this.setData({ userList: userList})

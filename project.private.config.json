@@ -762,6 +762,12 @@
           "pathName": "packages/pack-A/pages/order_user/group/index",
           "query": "q=%3Ffrom%3Dordergroup%26groupId%3D7607",
           "scene": null
+        },
+        {
+          "name": "首页分享",
+          "pathName": "pages/home/index",
+          "query": "f=s&fi=903450&path=pages%2Fhome%2Findex%3FstoreId%3D901056&fromUserId=903450",
+          "scene": null
         }
       ]
     }

@@ -24,7 +24,7 @@ Page({
     } else {
       let request = new Request()
       request.setConfig('responseType', 'arraybuffer')
-      request.get('qr/invite', res => {
+      request.get('iy/qr/invite', res => {
         let qrcode = wx.arrayBufferToBase64(res).replace(/[\r\n]/g, '')
         this.setData({ qrcode: qrcode })
         wx.setStorage({
@@ -196,7 +196,7 @@ Page({
     console.log(data);
     
     return {
-      path: '/pages/index/index?scene=' + data,
+      path: '/pages/home/index?scene=' + data,
       title : '我代言我赚钱！开店卖货引流拓客代理分销！线上线下互通互卖每天赚钱！好产品就要分享！'
     }
   }
