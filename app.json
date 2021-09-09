@@ -33,8 +33,6 @@
     "pages/marketing/agent/index",
     "pages/redenvelopeLog/index",
     "pages/userInfo/index",
-    "pages/applyMerchant/index",
-    "pages/applyMerchantType/index",
     "pages/homepage/index",
     "pages/merchant/paySet/index",
     "pages/mailList/index",
