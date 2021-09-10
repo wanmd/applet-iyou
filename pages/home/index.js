@@ -76,7 +76,7 @@ wx.Page({
      */
     onLoad: function(options) {
         console.log(options);
-        app.globalData.STOREID = options.storeId || options.si;
+        // app.globalData.STOREID = options.storeId || options.si;
         // 设置跳转报价单
         options = queryParams(options.scene);
         let selectedNav = this.data.selectedNav;
@@ -113,11 +113,13 @@ wx.Page({
         }
     },
     getStoreId(STOREID) {
+        console.log(STOREID);
         // 1.优先查看路由上传递的商家 (可能是自己看，也可能是看别的商家)
         // 2.如果路由上没有，那就从上次的浏览历史中找商家
         // 3.如果也没有浏览历史，那就请求接口获取默认商家
         let storeId =  STOREID || (wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : null);
         let userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
+        console.log(storeId);
         
         if (storeId) {
             let query = this.data.query;

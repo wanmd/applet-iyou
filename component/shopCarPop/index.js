@@ -42,7 +42,7 @@ Component({
 
   observers:{
     'show, goods_id': function(show, goods_id) {
-      console.log(show, goods_id);
+      // console.log(show, goods_id);
       if(show && goods_id) {
         this.initData()
       }

@@ -24,6 +24,11 @@ App({
             scene = queryParams(scene);
             // console.log("scene=========");
             // console.log(scene);
+            // 店铺卡一些路径storeId放在scene里
+            if (!storeId) {
+                storeId = scene.storeId || scene.si || 0;
+                this.globalData.STOREID = storeId;
+            }
             if (scene.f === 's') { //店铺卡进来也绑定关系 s->store
                 //来自邀请 si就是storeId
                 inviter = scene.fi; //生成这个码的人id
