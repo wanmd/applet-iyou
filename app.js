@@ -193,6 +193,7 @@ App({
                                 wx._setStorageSync('token', token);
                                 wx._setStorageSync('userinfo', user);
                                 self.globalData.userInfo = user;
+                                // 关注分享者
                                 if (inviter && inviter > 0) {
                                     wx.promise
                                         .post('iy/visit/follow', { userId: inviter })

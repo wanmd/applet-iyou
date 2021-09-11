@@ -76,9 +76,13 @@ wx.Page({
      */
     onLoad: function(options) {
         console.log(options);
-        // app.globalData.STOREID = options.storeId || options.si;
-        // 设置跳转报价单
-        options = queryParams(options.scene);
+        // 设置页面分享携带的参数
+        if (options.scene) {
+            options = queryParams(options.scene);
+            // 设置浏览店铺
+            app.globalData.STOREID = options.storeId;
+        }
+        // 设置tabIndex
         let selectedNav = this.data.selectedNav;
         if (options.type) {
             selectedNav = options.type;
@@ -119,7 +123,6 @@ wx.Page({
         // 3.如果也没有浏览历史，那就请求接口获取默认商家
         let storeId =  STOREID || (wx.getStorageSync('storeInfo') ? wx.getStorageSync('storeInfo').user_id : null);
         let userInfo =  wx.getStorageSync('userinfo') || app.globalData.userInfo;
-        console.log(storeId);
         
         if (storeId) {
             let query = this.data.query;
@@ -144,6 +147,7 @@ wx.Page({
                 this.new_initStoreInfo(storeId)
             }, 0)
         } else {
+            // 获取关注列表
             this.get('iy/mail/follows', res => {
                 if (res.success) {
                     storeId = res.data.default.id || 0
@@ -154,7 +158,7 @@ wx.Page({
                     }
 
                     this.setData({ 
-                        isSelf: false, 
+                        isSelf: user.user_id == storeId, 
                         user: user, 
                         query: { storeId: storeId }, 
                         storeId: storeId, 
@@ -175,7 +179,8 @@ wx.Page({
         console.log(userInfo.user_id);
         
         if (storeId > 0 && storeId != userInfo.user_id) {
-            request.setMany(true)
+            request.setMany(true);
+            // 查询店铺信息
             request.get('user/user/' + storeId, res => {
                 if (res.success) {
                     let user = res.data.user
@@ -207,11 +212,11 @@ wx.Page({
     },
     // 设置关注的店铺
     setVisitFollow(storeId) {
-        request.post('iy/visit/follow', res => {
+        this.post('iy/visit/follow', { userId: storeId }).then(res => {
             if (res.success) {
-                console.log('关注店铺成功！');
+                console.log('关注店铺成功！storeId=' + storeId);
             }
-        }, { userId: storeId })
+        })
     },
     onHide() {
         this.setData({ pageHude: true })
@@ -401,9 +406,10 @@ wx.Page({
                     })
                 }
             })
-            // 非会员非代理进行数据截取
+            // 会员或代理或自己展示全数据  其它进行数据截取
+            const { isAgent, isSelf } = this.data;
             this.setData({
-                offerList: (userInfo.isVip && this.data.isAgent) ? offerList : offerList.slice(0,3),
+                offerList: (userInfo.isVip || isAgent || isSelf) ? offerList : offerList.slice(0,3),
             })
         }
     },
@@ -861,13 +867,13 @@ wx.Page({
         // let path = '/pages/home/index?f=s&fi=' + uesr_id + '&path=' + to + '&fromUserId=' + uesr_id
         // console.log(path);
         let uesr_id = app.globalData.userInfo.user_id
-        let data = encodeURIComponent('?f=s&fi=' + uesr_id)
+        let data = encodeURIComponent('?f=s&fi=' + uesr_id + '&storeId=' + this.data.storeId )
         
         let title = this.data.isSelf ? '爱优（哎油）哦！这家店不错哦…分享给你！' : '爱优（哎油）哦！这家店不错哦…分享给你！'
-        console.log('/pages/home/index?scene=' + data + '&storeId=' + this.data.storeId + '&fromUserId=' + uesr_id);
+        console.log('/pages/home/index?scene=' + data );
 
         return {
-            path: '/pages/home/index?scene=' + data + '&storeId=' + this.data.storeId + '&fromUserId=' + uesr_id,
+            path: '/pages/home/index?scene=' + data,
             title: title
         }
     },

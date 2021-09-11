@@ -127,7 +127,6 @@ wx.Page({
         if(res.success) {
             console.log(res);
             console.log('更新用户昵称和头像成功');
-            wx._navigateBack()
         }else{
             wx._showAlert(res.msg)  
         }
